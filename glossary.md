@@ -9,9 +9,15 @@
 
 **Correctness**:
 
+**Field**:
+
+**Group**:
+
 **Security assumption**:
 
 **Functionality** vs. **function**:
+
+**i.i.d.**:
 
 **Parallel composition**: Compare to _concurrent composition_, _sequential composition_.
 
@@ -21,7 +27,12 @@
 
 **Sequential composition**: Compare to _concurrent composition_, _parallel composition_.
 
+**uniform**:
+
 **Without loss of generality**: 
+
+## Cryptographic Primitives
+**Pseudo-random function (PRF)**:
 
 ## Areas of Cryptography
 **Consensus**:
