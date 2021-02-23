@@ -42,7 +42,7 @@ _Assumptions:_ None!
 
 **Chaum-Crepeau-Damgård (CCD)**: 
 
-**Beaver-Micali-Rogaway (BMR)**: 
+**Beaver-Micali-Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
 
 ---
 
@@ -57,7 +57,7 @@ Year | Name | Number of parties | Threat Model | Round Complexity | Communicatio
 1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic circuit
 &#8203;        || many | < n/3 malicious   | O(d) |      | Arithmetic circuit
 1988 | CCD      | many |                   |      |      |
-1990 | BMR      | many | < n               | O(1) | 
+1990 | BMR      | many | < n               | O(1) |     | Boolean circuit
 
 ## References
 
