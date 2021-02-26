@@ -39,7 +39,7 @@
 
 **Lattice-based cryptography**:
 
-**Multi-party computation**:
+**Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &#8594;](./mpc.md)
 
 **Post-quantum cryptography (PQC)**:
 
