@@ -8,7 +8,9 @@
 **Adversary**: Some dishonest entity that will try to break a primitive or protocol. See [Threat Models](#threat-models) for the types of adversaries, each with different capabilities.
 
 **Concurrent composition**: Two protocols running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
+
 ![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)
+
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
 **Correctness**:
@@ -30,7 +32,9 @@ That is, if we have a protocol that can secure compute some function _f_ given i
 **i.i.d.**: Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
 
 **Parallel composition**: Two protocols running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+
 ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
+
 In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
 
 **Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable &Pi;.
@@ -40,7 +44,9 @@ In general, composing secure protocols in parallel does not maintain security (a
 **Security game**:
 
 **Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
+
 ![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
+
 Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over _N_ elements means each of the elements is drawn with probability 1/_N_.
