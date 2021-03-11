@@ -77,7 +77,7 @@ Basic building blocks for cryptographic protocols.
 
 **Passive adversary**: See _semi-honest adversary_.
 
-**Malicious adversary**:
+**Malicious adversary**: We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
 
 **Semi-honest adversary**:
 
