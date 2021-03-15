@@ -1,6 +1,6 @@
 # Glossary
 
-[General](#general) | [Primitives](#primitives) | [Areas of Crypto](#areas-of-cryptography) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
+[General](#general) | [Primitives](#cryptographic-primitives) | [Areas of Crypto](#areas-of-cryptography) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
 
 ## General
 **Advantage**:
@@ -100,3 +100,5 @@ Basic building blocks for cryptographic protocols.
 **Generic Group Model (GGM)**:
 
 **Random Oracle Model (ROM)**:
+
+**Standard Model**:

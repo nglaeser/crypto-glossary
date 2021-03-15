@@ -6,7 +6,7 @@ The protocol should meet a couple of conditions to be interesting/useful:
 - None of the parties learn anything about the other parties' inputs (except what they can deduce from the output)
 - _y_ should be correct. That is, _y_ should in fact be the function _f_ applied to the parties' inputs – no errors.
 
-Why is this useful? A simple example is Yao's Millionaries' Problem. Two millionaires want to know who's richer, but they don't want to reveal exactly how rich they are. They can run an MPC protocol where the inputs are their net worths and the function _f_ computes the sign of _x1 - x_2_. (For example _f(x1, x2) =_ {1 if _x1 > x2_, 0 if _x1 = x2_, and -1 if _x1 < x2_}.)
+Why is this useful? A simple example is Yao's Millionaries' Problem. Two millionaires want to know who's richer, but they don't want to reveal exactly how rich they are. They can run an MPC protocol where the inputs are their net worths and the function _f_ computes the sign of _x1 - x2_. (For example _f(x1, x2) =_ {1 if _x1 > x2_, 0 if _x1 = x2_, and -1 if _x1 < x2_}.)
 
 There are more serious real-world applications for this too. You could imagine using this to let hospitals collaborate on health analytics without sharing their patient records and other similar use cases.
 
@@ -43,8 +43,10 @@ _Assumptions:_ None!
 **Chaum-Crepeau-Damgård (CCD)**: 
 
 **Beaver-Micali-Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
+_Assumptions:_ Secure OT
 
 ---
+### Tabular Summary
 
 `n`: number of circuit gates  
 `d`: depth of circuit  
@@ -61,10 +63,10 @@ Year | Name | Number of parties | Threat Model | Round Complexity | Communicatio
 
 ## References
 
-Yao's GC: [Original paper](https://ieeexplore.ieee.org/document/4568207)
+**Yao's GC**: [Original paper](https://ieeexplore.ieee.org/document/4568207)
 
-GMW: 
+**GMW**: 
 
-BMR: [Original paper](https://dl.acm.org/doi/pdf/10.1145/100216.100287?casa_token=jgHhj-wpD88AAAAA:17nxjtduFXBZwYyyvRd9sVKdnPBXZ-vaBxXxzmHFQwhZy_dRc1UGxRnmoXj6WlNRflZ-wRlQA0v-iA), [Rogaway's Thesis](https://www.cs.ucdavis.edu/~rogaway/papers/thesis.pdf), [Pragmatic Introduction to MPC, Section 3.5](https://securecomputation.org/)
+**BGW**: Original paper, [full proof](https://eccc.weizmann.ac.il//report/2011/036/)
 
-BGW: Original paper, [full proof](https://eccc.weizmann.ac.il//report/2011/036/)
+**BMR**: [Original paper](https://dl.acm.org/doi/pdf/10.1145/100216.100287?casa_token=jgHhj-wpD88AAAAA:17nxjtduFXBZwYyyvRd9sVKdnPBXZ-vaBxXxzmHFQwhZy_dRc1UGxRnmoXj6WlNRflZ-wRlQA0v-iA), [Rogaway's Thesis](https://www.cs.ucdavis.edu/~rogaway/papers/thesis.pdf), [Pragmatic Introduction to MPC, Section 3.5](https://securecomputation.org/)
