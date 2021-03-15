@@ -21,7 +21,7 @@ OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four 
 <a title="Blokhead at English Wikipedia, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Visual_crypto_animation_demo.gif"><img width="256" alt="Visual crypto animation demo" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Visual_crypto_animation_demo.gif"></a>
 
 - **Exclusive OR (XOR) secret-sharing**: For a secret _s_, set Party _i_'s share to some random value _r_i_, except for a designated party which gets _s_ XOR _r1_ XOR ... XOR _rN_. The shares XOR together to _s_, but each individual share looks random.
-- **Shamir secret-sharing**: This is a form of (_t_+1)-out-of-_n_ secret-sharing, i.e., at least _t_+1 out of _n_ parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-_t_ polynomial. Because _t_+1 points define a unique polynomial, _t_+1 parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./shamir_ss.ipynb).
+- **Shamir secret-sharing**: This is a form of (_t_+1)-out-of-_n_ secret-sharing, i.e., at least _t_+1 out of _n_ parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-_t_ polynomial. Because _t_+1 points define a unique polynomial, _t_+1 parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./shamirSS.ipynb).
 
 ## Protocols
 
