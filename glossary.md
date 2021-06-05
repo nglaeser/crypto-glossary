@@ -59,6 +59,8 @@ Basic building blocks for cryptographic protocols.
 
 **Pseudo-random function (PRF)**: A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
 
+**Pseudo-random permutation (PRP)**:
+
 ### Encryption Schemes
 
 **Asymmetric (public-key) encryption**:
@@ -82,6 +84,8 @@ Basic building blocks for cryptographic protocols.
 
 **Private set intersetion (PSI)**:
 
+**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
+
 **Quantum Cryptography**:
 
 **Zero-knowledge proofs**: [More about zero-knowledge &rarr;](./zk.md)
@@ -89,13 +93,15 @@ Basic building blocks for cryptographic protocols.
 ### Cryptographic Schemes
 These are active lines of research creating particular schemes or primitives that are not quite large enough to be their own area but new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
 
-**Attribute-based encryption (ABE)**:
+**Attribute-based encryption (ABE)**: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
 
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key _k_f_ that decrypts the ciphertext into a function _f(m)_ of the plaintext _m_.
 
 **Identity-based encryption (IBE)**:
 
 **Time-Lock Puzzle**:
+
+**One-time Pad**:
 
 ## Threat Models
 **Active adversary**: See _malicious adversary_.
@@ -106,13 +112,19 @@ These are active lines of research creating particular schemes or primitives tha
 
 **Semi-honest adversary**:
 
-**Perfect security**:
-
-**Statistical security**: See _information-theoretic security_.
-
-**Information-theoretic security**:
+## Security Notions
 
 **Computational security**:
+
+**Information-theoretic security**: ... See also _unconditional security_.
+
+**Perfect security**:
+
+**Semantic security**:
+
+**Statistical security**: Another term for _information-theoretic security_.
+
+**Unconditional security**: Usually used interchangeably with _information-theoretic security_. However, it can also be used to mean security that is not based on any computational assumption.
 
 ## Phrases
 **Secure in the __ model**:

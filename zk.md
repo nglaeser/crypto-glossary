@@ -6,7 +6,7 @@ First, we define what an NP language is. A _language_ is some set of elements th
 
 Loosely defined, a language is in _[NP](https://en.wikipedia.org/wiki/NP_(complexity))_ if it is difficult to decide whether an element belongs to a language, but easy to confirm that it is when provided some evidence (called a _witness_). In the case of _L\_HAM_, it's difficult to check if a graph contains a Hamiltonian cycle because finding such a cycle is hard. But if you are given a graph and a supposed cycle in the graph, it's easy to check that the graph really does contain that cycle. 
 
-With our less abstract example, think of a computer program that determes whether a word is in the double-letter language: we have to check all the pairs of consecutive letters in the word and see if any of them match. If we are told exactly which two letters repeat and where they are in the word (that is, given the witness `ll, 2` for the word "hello"), we can quickly jump to the letter at index `2` in the word and only check that the next two letters both equal `l`. (Of course this is a flawed example, since cycling through the entire length of the word doesn't take that much time, but the point is that the witness simplifies the verification process.)
+In the case of our less abstract example, think of a computer program that determes whether a word is in the double-letter language: we have to check all the pairs of consecutive letters in the word and see if any of them match. If we are told exactly which two letters repeat and where they are in the word (that is, given the witness `ll, 2` for the word "hello"), we can quickly jump to the letter at index `2` in the word and only check that the next two letters both equal `l`. (This is not a perfect example, since cycling through the entire length of the word doesn't take all that much time, but the point is that the witness simplifies the verification process.)
 
 ## ZK 
 
@@ -18,8 +18,24 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **Argument of knowledge**: 
 
+**Honest-verifier zero-knowledge (HVZK)**:
+
 **Proof of knowledge (PoK)**: Secure against a dishonest prover.
 
 **Witness indistinguishable (WI)**:
 
 **Zero-knowledge (ZK)**: Secure against a dishonest verifier.
+
+## Types
+
+**Sigma protocol (&Sigma;-protocol)**: Interactive honest-verifier zero-knowledge (HVZK) proof system.
+
+**NIZK**:
+
+**SNARG**: (more accurately SNArg) Succinct Non-interactive Argument.
+
+**SNARK**: (more accurately SNArK) Succinct Non-interactive Argument of Knowledge.
+
+**SNIP**: Succinct Non-Interactive Proof.
+
+<!-- Insert table? -->
