@@ -3,7 +3,7 @@
 [General](#general) | [Primitives](#cryptographic-primitives) | [Areas of Crypto](#areas-of-cryptography) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
 
 ## General
-**Advantage**:
+**Advantage**: The probability of an _adversary_ violating the security property of a scheme. The advantage is generally defined with respect to a _security game_. For secure constructions, the adversary's advantage usually shown to be small by showing it is bounded by a _negligible function_.
 
 **Adversary**: Some dishonest entity that will try to break a primitive or protocol. See [Threat Models](#threat-models) for the types of adversaries, each with different capabilities.
 
@@ -13,7 +13,7 @@
 
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
-**Correctness**:
+**Correctness**: A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that decryption and encryption are inverses, or that sharing and reconstruction are inverses.
 
 **Deterministic**: A function that always proceeds in the same way when run on the same outputs. Alternatively, the inputs directly determine the output. Compare to _randomized_.
 
@@ -23,13 +23,20 @@ In general, concurrent composition of secure protocols does not maintain securit
 
 **Group**: A set of elements _G_ with some binary operation • (the group operation) that satisfies particular properties called the [group axioms](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition) (specifically associativity, identity, and invertibility). The integers form a group under addition.
 
-**Hardness/security assumption**:
+**Hardness assumption**: A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated.
 
 **Hybrid composition**: 
 - **Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.
 That is, if we have a protocol that can secure compute some function _f_ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
 
 **i.i.d.**: Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
+
+**Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:
+
+![The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs.](./img/negligible.png)
+
+<summary>Formal Definition</summary>
+<details>A function <emph>f</emph> is negligible if for all natural numbers <emph>c</emph>, there exists a natural number <emph>N</emph> such that <emph>f(n) < n^{-c}</emph> for all <emph>n > N</emph>.</details>
 
 **Parallel composition**: Two protocols running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
 
@@ -88,7 +95,7 @@ Basic building blocks for cryptographic protocols.
 
 **Quantum Cryptography**:
 
-**Zero-knowledge proofs**: [More about zero-knowledge &rarr;](./zk.md)
+**Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](./zk.md)
 
 ### Cryptographic Schemes
 These are active lines of research creating particular schemes or primitives that are not quite large enough to be their own area but new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
@@ -106,11 +113,16 @@ These are active lines of research creating particular schemes or primitives tha
 ## Threat Models
 **Active adversary**: See _malicious adversary_.
 
+**Honest-but-curious (HbC)**: See _semi-honest adversary_.
+
+**Malicious adversary**: 
+An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Compare to _semi-honest adversary_.
+
+We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
+
 **Passive adversary**: See _semi-honest adversary_.
 
-**Malicious adversary**: We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
-
-**Semi-honest adversary**:
+**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.
 
 ## Security Notions
 

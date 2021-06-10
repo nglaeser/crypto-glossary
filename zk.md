@@ -38,4 +38,6 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **SNIP**: Succinct Non-Interactive Proof.
 
+**DV-NIZK**: Designated Verifier NIZK.
+
 <!-- Insert table? -->
