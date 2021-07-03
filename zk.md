@@ -30,13 +30,13 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **Sigma protocol (&Sigma;-protocol)**: Interactive honest-verifier zero-knowledge (HVZK) proof system.
 
-**NIZK**:
+**NIZK**: Non-Interactive Zero Knowledge proof.
 
-**SNARG**: (more accurately SNArg) Succinct Non-interactive Argument.
+**SNARG**: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
 
-**SNARK**: (more accurately SNArK) Succinct Non-interactive Argument of Knowledge.
+**SNARK**: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
 
-**SNIP**: Succinct Non-Interactive Proof.
+**SNIP**: Secret-shared Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
 
 **DV-NIZK**: Designated Verifier NIZK.
 
