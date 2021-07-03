@@ -28,22 +28,22 @@ OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four 
 Most MPC protocols turn the function to compute into a circuit representation (yes, like in electrical engineering with AND gates and whatnot). 
 
 **Yao's Garbled Circuits (GC)**: One party (the garbler) "garbles" the circuit by successively encrypting wire keys. The other party (the evaluator) follows the path of correct decriptions through the circuit until it obtains the keys corresponding to the output value.  
-_Assumptions:_ Secure OT  
-_Optimizations:_ Point-and-permute, PRF for encryption, garbled row reduction, half-gates, free XOR.
+- _Assumptions:_ Secure OT  
+- _Optimizations:_ Point-and-permute, PRF for encryption, garbled row reduction, half-gates, free XOR.
 
 **Goldreich–Micali–Wigderson (GMW)** (semi-honest version): Construct gates so that parties can step through the circuit using XOR-shares of wires. Multiplication gates require 1-out-of-4 OT to communicate the correct output shares.  
-_Assumptions:_ Secure OT
+- _Assumptions:_ Secure OT
 
 **Goldreich–Micali–Wigderson (GMW)** (malicious version): Same as semi-honest, but use zero-knowledge proofs to ensure well-formedness.  
-_Assumptions:_ Secure OT, ZK
+- _Assumptions:_ Secure OT, ZK
 
 **Ben-Or–Goldwasser–Wigderson (BGW)**: Same structure as GMW but over arithmetic circuits (where wires carry field elements). So, instead of using XOR-shares, use (t+1)-out-of-n Shamir secret-sharing. Multiplication gates use a degree-reduction step to maintain the invariant that parties hold well-formed wire value shares.  
-_Assumptions:_ None!
+- _Assumptions:_ None!
 
-**Chaum-Crepeau-Damgård (CCD)**: 
+**Chaum–Crepeau–Damgård (CCD)**: 
 
-**Beaver-Micali-Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
-_Assumptions:_ Secure OT
+**Beaver–Micali–Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
+- _Assumptions:_ Secure OT
 
 ---
 ### Tabular Summary
