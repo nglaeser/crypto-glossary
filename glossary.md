@@ -7,6 +7,14 @@
 
 **Adversary**: Some dishonest entity that will try to break a primitive or protocol. See [Threat Models](#threat-models) for the types of adversaries, each with different capabilities.
 
+**Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+
+**Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+
+**Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function _f(n)_ is Big-Theta of n (written as _f(n) &isin; &Theta;(n)_) iff _f(n) &isin; O(n)_ and _f(n) &isin; &Omega;(n)_.
+
+<!-- TODO: drawing of O/Omega/Theta and f(n) --->
+
 **Concurrent composition**: Two protocols running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
 
 ![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)
@@ -118,15 +126,17 @@ These are active lines of research creating particular schemes or primitives tha
 **Honest-but-curious (HbC)**: See _semi-honest adversary_.
 
 **Malicious adversary**: 
-An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Compare to _semi-honest adversary_.
+An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as _active_; compare to _semi-honest adversary_.
 
 We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
 
 **Passive adversary**: See _semi-honest adversary_.
 
-**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.
+**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as _honest-but-curious (HbC)_ or _passive_.
 
 ## Security Notions
+
+**Adaptive security** (adaptive security):
 
 **Computational security**:
 
