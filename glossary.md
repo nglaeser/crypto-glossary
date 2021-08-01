@@ -18,27 +18,21 @@
 
 **Composition**:
 - **Concurrent composition**: Two protocols &Pi;1, &Pi;2 running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
-
 ![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)
-
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
 - **Hybrid composition**: 
-  - > **Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.
-
+  - **Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.
   That is, if we have a protocol that can secure compute some function _f_ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
 
 - **Parallel composition**: Two protocols &Pi;1, &Pi;2 running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
-
 ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
-
 In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
 
 - **Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
-
 ![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
-
 Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
+
 
 **Correctness**: A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that decryption and encryption are inverses, or that sharing and reconstruction are inverses.
 
