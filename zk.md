@@ -16,17 +16,23 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 ## Properties
 
-**Argument of knowledge**: 
+**Argument of knowledge (AoK)**: 
 
 **Honest-verifier zero-knowledge (HVZK)**:
 
+**Non-interactive**:
+
 **Proof of knowledge (PoK)**: Secure against a dishonest prover.
+
+**Succinct**:
 
 **Witness indistinguishable (WI)**:
 
 **Zero-knowledge (ZK)**: Secure against a dishonest verifier.
 
 ## Types
+
+Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. Common ZK proofs:
 
 **Sigma protocol (&Sigma;-protocol)**: Interactive honest-verifier zero-knowledge (HVZK) proof system.
 
@@ -36,8 +42,8 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **SNARK**: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
 
-**SNIP**: Secret-shared Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
+**SNIP**: [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
 
-**DV-NIZK**: Designated Verifier NIZK.
+**DV-NIZK**: Designated Verifier NIZK; can be verified by a particular party. A MAC can be thought of as a DV-NIZK for a message, where the verifier is the party holding the MAC key (?).
 
 <!-- Insert table? -->

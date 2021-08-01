@@ -1,6 +1,6 @@
 # Glossary
 
-[General](#general) | [Primitives](#cryptographic-primitives) | [Areas of Crypto](#areas-of-cryptography) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
+[General](#general) | [Areas of Crypto](#areas-of-cryptography) | [Primitives](#cryptographic-primitives) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
 
 ## General
 **Advantage**: The probability of an _adversary_ violating the security property of a scheme. The advantage is generally defined with respect to a _security game_. For secure constructions, the adversary's advantage usually shown to be small by showing it is bounded by a _negligible function_.
@@ -67,6 +67,23 @@ A function <emph>f</emph> is negligible if for all natural numbers <emph>c</emph
 
 **Without loss of generality**: 
 
+## Areas of Cryptography
+**Consensus**: [More about consensus &rarr;](./consensus.md)
+
+**Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
+
+**Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](./mpc.md)
+
+**Post-quantum cryptography (PQC)**: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC.
+
+**Private set intersetion (PSI)**:
+
+**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
+
+**Quantum Cryptography**:
+
+**Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](./zk.md)
+
 ## Cryptographic Primitives
 
 Basic building blocks for cryptographic protocols.
@@ -99,23 +116,6 @@ Signatures are used to ensure _integrity_.
 
 **ECDSA signatures**:
 
-## Areas of Cryptography
-**Consensus**: [More about consensus &rarr;](./consensus.md)
-
-**Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
-
-**Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](./mpc.md)
-
-**Post-quantum cryptography (PQC)**: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC.
-
-**Private set intersetion (PSI)**:
-
-**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
-
-**Quantum Cryptography**:
-
-**Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](./zk.md)
-
 ### Cryptographic Schemes
 These are active lines of research creating particular schemes or primitives that to me don't seem quite large enough to be their own area and are new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
 
@@ -124,6 +124,8 @@ These are active lines of research creating particular schemes or primitives tha
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key _k_f_ that decrypts the ciphertext into a function _f(m)_ of the plaintext _m_.
 
 **Identity-based encryption (IBE)**:
+
+**Message authentication code (MAC)**:
 
 **Time-Lock Puzzle (TLP)**:
 
