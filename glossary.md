@@ -1,11 +1,13 @@
 # Glossary
 
-[General](#general) | [Areas of Crypto](#areas-of-cryptography) | [Primitives](#cryptographic-primitives) | [Threat Models](#threat-models) | [Phrases](#phrases) | [Models](#models)
+[General](#general) | [Areas of Crypto](#areas-of-cryptography) | [Primitives](#cryptographic-primitives) | [Threat Models](#threat-models) | [Models](#models)
 
 ## General
 **Advantage**: The probability of an _adversary_ violating the security property of a scheme. The advantage is generally defined with respect to a _security game_. For secure constructions, the adversary's advantage usually shown to be small by showing it is bounded by a _negligible function_.
 
 **Adversary**: Some dishonest entity that will try to break a primitive or protocol. See [Threat Models](#threat-models) for the types of adversaries, each with different capabilities.
+
+**Black-box**: Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
 
 **Complexity Theory**:
 - **Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
@@ -156,14 +158,10 @@ Also known as **honest-but-curious (HbC)** or **passive**.
 
 **Unconditional security**: Usually used interchangeably with _information-theoretic security_. However, it can also be used to mean security that is not based on any computational assumption.
 
-## Phrases
-**Secure in the __ model**:
-
-**In the __-hybrid model**:
-
-**Black-box**: Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
-
 ## Models
+
+The phrase used is "[Scheme] is secure in the _X_ model".
+<!-- "In the __-hybrid model"? -->
 
 **Oracle**:
 
