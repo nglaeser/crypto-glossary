@@ -7,19 +7,32 @@
 
 **Adversary**: Some dishonest entity that will try to break a primitive or protocol. See [Threat Models](#threat-models) for the types of adversaries, each with different capabilities.
 
-**Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+**Complexity Theory**:
+- **Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
-**Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+- **Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
-**Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function _f(n)_ is Big-Theta of n (written as _f(n) &isin; &Theta;(n)_) iff _f(n) &isin; O(n)_ and _f(n) &isin; &Omega;(n)_.
+- **Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function _f(n)_ is Big-Theta of n (written as _f(n) &isin; &Theta;(n)_) iff _f(n) &isin; O(n)_ and _f(n) &isin; &Omega;(n)_.
 
 <!-- TODO: drawing of O/Omega/Theta and f(n) --->
 
-**Concurrent composition**: Two protocols running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
-
+**Composition**:
+- **Concurrent composition**: Two protocols &Pi;1, &Pi;2 running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
 ![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)
-
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
+
+- **Hybrid composition**: 
+  - **Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.
+  That is, if we have a protocol that can secure compute some function _f_ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
+
+- **Parallel composition**: Two protocols &Pi;1, &Pi;2 running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
+In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
+
+- **Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
+![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
+Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
+
 
 **Correctness**: A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that decryption and encryption are inverses, or that sharing and reconstruction are inverses.
 
@@ -33,10 +46,6 @@ In general, concurrent composition of secure protocols does not maintain securit
 
 **Hardness assumption**: A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated.
 
-**Hybrid composition**: 
-- **Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.
-That is, if we have a protocol that can secure compute some function _f_ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
-
 **i.i.d.**: Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
 
 **Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:
@@ -48,23 +57,11 @@ That is, if we have a protocol that can secure compute some function _f_ given i
 A function <emph>f</emph> is negligible if for all natural numbers <emph>c</emph>, there exists a natural number <emph>N</emph> such that <emph>f(n) < n^{-c}</emph> for all <emph>n > N</emph>.
 </details>
 
-**Parallel composition**: Two protocols running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
-
-![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
-
-In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
-
 **Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable &Pi;.
 
 **Randomized**: A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
 **Security game**:
-
-**Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
-
-![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
-
-Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over _N_ elements means each of the elements is drawn with probability 1/_N_.
 
@@ -79,19 +76,31 @@ Basic building blocks for cryptographic protocols.
 **Pseudo-random permutation (PRP)**:
 
 ### Encryption Schemes
+Encryption schemes are used to ensure _confidentiality_.
 
-**Asymmetric (public-key) encryption**:
+**Asymmetric (public-key) encryption**: One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys for a key pair. Example schemes:
 
-**Symmetric (secret-key) encryption**:
+- **ElGamal encryption**: For a cyclic group G of order q with generator g, the secret key is _x_, a uniformly chosen element of G; the public key is _(G, q, g, h:=g^x)_.
+  - Enc(m &isin; G): choose a uniform element _y &isin; G_; return _(c1 := g^y, c2 := m h^y = m g^(xy))_
+  - Dec(c1,c2): let _s := c1^x = g^(xy) = h^y_ and compute _s^(-1)_. Then _m_ is recovered as _c2 s^(-1) = m h^y (h^y)^(-1) = m_.
+
+- **RSA encryption**:
+
+**Symmetric (secret-key) encryption**: The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption. Example symmetric key encryption schemes:
+
+- **Advanced Encryption Standard (AES)**:
+- **One-time Pad**:
+
 
 ### Signatures
+Signatures are used to ensure _integrity_.
 
 **Schnorr signatures**:
 
 **ECDSA signatures**:
 
 ## Areas of Cryptography
-**Consensus**:
+**Consensus**: [More about consensus &rarr;](./consensus.md)
 
 **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
 
@@ -108,7 +117,7 @@ Basic building blocks for cryptographic protocols.
 **Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](./zk.md)
 
 ### Cryptographic Schemes
-These are active lines of research creating particular schemes or primitives that are not quite large enough to be their own area but new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
+These are active lines of research creating particular schemes or primitives that to me don't seem quite large enough to be their own area and are new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
 
 **Attribute-based encryption (ABE)**: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
 
@@ -116,27 +125,19 @@ These are active lines of research creating particular schemes or primitives tha
 
 **Identity-based encryption (IBE)**:
 
-**Time-Lock Puzzle**:
-
-**One-time Pad**:
+**Time-Lock Puzzle (TLP)**:
 
 ## Threat Models
-**Active adversary**: See _malicious adversary_.
-
-**Honest-but-curious (HbC)**: See _semi-honest adversary_.
-
 **Malicious adversary**: 
-An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as _active_; compare to _semi-honest adversary_.
+An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as **active adversary**; compare to _semi-honest adversary_.
 
-We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
+> We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
 
-**Passive adversary**: See _semi-honest adversary_.
-
-**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as _honest-but-curious (HbC)_ or _passive_.
+**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
 ## Security Notions
 
-**Adaptive security** (adaptive security):
+**Adaptive security**:
 
 **Computational security**:
 
@@ -155,11 +156,17 @@ We sometimes use * as a superscript to denote that a party may be malicious, i.e
 
 **In the __-hybrid model**:
 
-**Black-box**:
+**Black-box**: Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
 
 ## Models
-**Generic Group Model (GGM)**:
 
-**Random Oracle Model (ROM)**:
+**Oracle**:
 
-**Standard Model**:
+**Algebraic Group Model (AGM)**:
+
+**Generic Group Model (GGM)**: This model assumes that the adversary is given access to a randomly chosen (encoding of a) group instead of the groups used in practice, which have efficient encodings. The adversary also has access to an oracle for the group function.
+(Can see this as an analogue of giving the adversary access to a _random oracle_ instead of a real hash function used in practice.)
+
+**Random Oracle Model (ROM)**: A proof paradigm that models hash functions as random oracles, i.e. an oracle that outputs a random number for any input (but outputs the same number when given the same input). Read more [here](https://blog.cryptographyengineering.com/2020/01/05/what-is-the-random-oracle-model-and-why-should-you-care-part-5/).
+
+**Standard Model**: This model assumes only that the adversary is limited by time or computational power; it makes no further assumptions (as in the ROM or GGM). Proofs in the standard model therefore usually rest on a computational hardness assumption, but no idealized cryptographic primitives, and are thus very difficult. In this way this model is "better" than the others listed here because it assumes less. Also known as the **bare model** or **plain model**.
