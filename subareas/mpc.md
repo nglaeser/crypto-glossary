@@ -1,4 +1,4 @@
-[&larr; Back to Glossary](glossary.md)
+[&larr; Back to Glossary](../glossary.md)
 
 # Multi-Party Computation
 
