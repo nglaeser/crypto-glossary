@@ -1,4 +1,4 @@
-[&larr; Back to Glossary](../glossary.md)
+[← Back to Glossary](../glossary.md)
 
 # Consensus
 
