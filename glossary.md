@@ -76,9 +76,9 @@ A function <emph>f</emph> is negligible if for all natural numbers <emph>c</emph
 **Without loss of generality**: 
 
 ## Areas of Cryptography
-**Consensus**: An area of problems about how to get distributed systems to agree on state or some other piece of information. [More about consensus &rarr;](./consensus.md)
+**Consensus**: An area of problems about how to get distributed systems to agree on state or some other piece of information. [More about consensus &rarr;](subareas/consensus.md)
 
-**Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](./mpc.md)
+**Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](subareas/mpc.md)
 - **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC.
 <!-- add use case -->
 
@@ -90,7 +90,7 @@ A function <emph>f</emph> is negligible if for all natural numbers <emph>c</emph
 
 **Quantum Cryptography**: Rebuilding cryptographic primitives and cryptosystems that run on (and take advantage of the properties of) quantum computers.
 
-**Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](./zk.md)
+**Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](subareas/zk.md)
 
 ## Cryptographic Primitives
 
