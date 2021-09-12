@@ -1,3 +1,5 @@
+[&larr; Back to Glossary](glossary.md)
+
 # Zero-Knowledge
 
 ## Background

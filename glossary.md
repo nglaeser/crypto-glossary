@@ -1,6 +1,6 @@
 # Glossary
 
-[General](#general) | [Areas of Crypto](#areas-of-cryptography) | [Primitives](#cryptographic-primitives) | [Threat Models](#threat-models) | [Models](#models)
+[General](#general) | [Areas of Crypto](#areas-of-cryptography) | [Primitives](#cryptographic-primitives) | [Threat Models](#threat-models) | [Security Definitions](#security-definitions--notions) | [Models](#models)
 
 ## General
 **Advantage**: The probability of an _adversary_ violating the security property of a scheme. The advantage is generally defined with respect to a _security game_. For secure constructions, the adversary's advantage usually shown to be small by showing it is bounded by a _negligible function_.
@@ -125,9 +125,9 @@ Also known as **active adversary**; compare to _semi-honest adversary_.
 **Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.  
 Also known as **honest-but-curious (HbC)** or **passive**.
 
-## Security Definitions
+## Security Definitions & Notions
 
-**Computational 
+**Computational security**:
 
 **Knowledge assumption**:
 
@@ -151,7 +151,7 @@ Weaker than IND-CCA2.
 <!-- Table of security games. 
 Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
-## Security Notions
+---
 
 **Adaptive security**:
 

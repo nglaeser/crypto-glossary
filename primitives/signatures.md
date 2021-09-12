@@ -1,3 +1,5 @@
+[&larr; Back to Glossary](glossary.md)
+
 # Signatures
 
 **Schnorr signatures**: Based on DLog assumption. Let _G_ be an elliptic curve group with generator _g_ and order _q_.

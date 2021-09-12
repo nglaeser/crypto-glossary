@@ -1,3 +1,5 @@
+[&larr; Back to Glossary](glossary.md)
+
 # Multi-Party Computation
 
 Sometimes also referred to as secure multi-party computation (SMC), multi-party computation (MPC) is a functionality in which two or more parties with secret inputs want to compute a joint function _f_ on those inputs. More explicitly, for _N_ parties with inputs _x1_, ..., _xN_, an MPC protocol takes those inputs and outputs _y := f(x1, ..., xN)_.
