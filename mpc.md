@@ -25,8 +25,11 @@ Schemes:
 - **Shamir secret-sharing**: This is a form of (_t_+1)-out-of-_n_ secret-sharing, i.e., at least _t_+1 out of _n_ parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-_t_ polynomial. Because _t_+1 points define a unique polynomial, _t_+1 parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
 
 Secret-sharing schemes with additional properties also exist, but basic secret sharing usually suffices for MPC.
-- **Verifiable secret sharing**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
+- **Homomorphic secret sharing**:
 - **Robust secret sharing**: Does not consider a corrupt dealer. ...
+- **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
+
+**Cut-and-choose**: This is an idea to turn a semi-honest secure MPC protocol into malicious-secure one. ...
 
 ## Properties
 

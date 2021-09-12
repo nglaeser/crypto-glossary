@@ -47,3 +47,7 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **DV-NIZK**: Designated Verifier NIZK; can be verified by a particular party. A MAC can be thought of as a DV-NIZK for a message, where the verifier is the party holding the MAC key (?).
 
 <!-- Insert table? -->
+
+## Example Protocols
+
+**GMW ZK proof**:

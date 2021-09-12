@@ -40,6 +40,8 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 **Deterministic**: A function that always proceeds in the same way when run on the same outputs. Alternatively, the inputs directly determine the output. Compare to _randomized_.
 
+**Feasibility result**:
+
 **Field**: A set of elements _F_ with two binary operations + and • (addition and multiplication) that satisfy particular properties called the [field axioms](https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition) (specifically associativity, commutativity, identity, and invertibility of both operations along with distributivity of multiplication over addition). Both the rational numbers and the real numbers are fields.
 
 **Functionality**: A particular set of capabilities or properties to be achieved. For example, many protocols exist that implement the functionality of public key encryption. In this way, a functionality is abstract and independent of implementation details, and cryptosystems are build to achieve a functionality. Often, to prove security, a protocol is compared to an _ideal_ functionality, to show that it meets the same security properties.
@@ -102,55 +104,20 @@ Basic building blocks for cryptographic protocols.
 
 **Pseudo-random permutation (PRP)**:
 
-### Encryption Schemes
-Encryption schemes are used to ensure _confidentiality_.
+**Encryption**: Encryption schemes are used to ensure _confidentiality_. [More about encryption &rarr;](primitives/encryption.md)
 
-**Asymmetric (public-key) encryption**: One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys for a key pair.  
-Example schemes:
-
-- **ElGamal encryption**: For a cyclic group G of order q with generator g, the secret key is _x_, a uniformly chosen element of G; the public key is _(G, q, g, h:=g^x)_.
-  - Enc(m &isin; G): choose a uniform element _y &isin; G_; return _(c1 := g^y, c2 := m h^y = m g^(xy))_
-  - Dec(c1,c2): let _s := c1^x = g^(xy) = h^y_ and compute _s^(-1)_. Then _m_ is recovered as _c2 s^(-1) = m h^y (h^y)^(-1) = m_.  
-**Properties**: CPA-secure (by DDH assumption), unconditionally malleable.
-
-- **RSA encryption**:
-
-**Symmetric (secret-key) encryption**: The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
-Example symmetric key encryption schemes:
-
-- **Advanced Encryption Standard (AES)**:
-- **One-time Pad**:
-
-
-### Signatures
-Signatures are used to ensure _integrity_.
-
-**Schnorr signatures**: Based on DLog assumption. Let _G_ be an elliptic curve group with generator _g_ and order _q_.
-- KeyGen(G, g, q): choose a uniform element _sk &isin; Zq_; set the public key _pk = sk * g_.
-- Sign(sk, m): choose a uniform one-time key _k &isin; Zq_; compute a nonce _R = k * g_; the signature is _&sigma; = (k - sk * H(R || m ) (mod q), R)_, where _H_ is a hash function.
-- Verify(m, &sigma; = (s,R)): Check _s * g =? R - H(R || m) * pk_.
-
-**ECDSA signatures**:
-
-**Threshold signature**: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares.
-- a threshold signature should be indistinguishable from an ordinary signature
+**Signatures**: Signatures are used to ensure _integrity_. [More about signatures &rarr;](primitives/signatures.md)
 
 ### Cryptographic Schemes
 These are active lines of research creating particular schemes or primitives that to me don't seem quite large enough to be their own area and are new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
-
-**Attribute-based encryption (ABE)**: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
-
-**Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key _k_f_ that decrypts the ciphertext into a function _f(m)_ of the plaintext _m_.
-
-**Identity-based encryption (IBE)**:
 
 **Message authentication code (MAC)**:
 
 **Time-Lock Puzzle (TLP)**:
 
 ## Threat Models
-**Malicious adversary**: 
-An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously.  
+
+**Malicious adversary**: An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously.  
 Also known as **active adversary**; compare to _semi-honest adversary_.
 
 > We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party S* in a commitment scheme denotes a potentially malicious sender.
@@ -159,6 +126,8 @@ Also known as **active adversary**; compare to _semi-honest adversary_.
 Also known as **honest-but-curious (HbC)** or **passive**.
 
 ## Security Definitions
+
+**Computational 
 
 **Knowledge assumption**:
 
