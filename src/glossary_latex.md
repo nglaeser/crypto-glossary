@@ -89,12 +89,10 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 **Consensus**: An area of problems about how to get distributed systems to agree on state or some other piece of information. [More about consensus &rarr;](subareas/consensus.md)
 
 **Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](subareas/mpc.md)
-- **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC. <!-- add use case -->
-
+- **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC.<!-- add use case -->  
 
 **Post-quantum cryptography (PQC)**: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC.
-- **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
-
+- **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.  
 
 **Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
 
@@ -127,15 +125,11 @@ These are active lines of research creating particular schemes or primitives tha
 
 ## Threat Models
 
-**Malicious adversary**: An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously.
-
-Also known as **active adversary**; compare to _semi-honest adversary_.
+**Malicious adversary**: An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as **active adversary**; compare to _semi-honest adversary_.
 
 > We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party $S^*$ in a commitment scheme denotes a potentially malicious sender.
 
-**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.
-
-Also known as **honest-but-curious (HbC)** or **passive**.
+**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
 ## Security Definitions & Notions
 
@@ -157,9 +151,9 @@ Security is defined by a _security game_ in which an attacker should have _negli
   1. A continues to interact with Enc_k(•) (in polynomial time)
   1. A outputs b'
 
-  A *wins* if b=b', and the game outputs 1.
+A *wins* if b=b', and the game outputs 1.  
 
-
+<br/>
 **CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
 
 - **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2.
