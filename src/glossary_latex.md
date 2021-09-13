@@ -74,9 +74,10 @@ In general, concurrent composition of secure protocols does not maintain securit
 
   In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
 
+
 **Hybrid composition**: 
-- >**Composition Theorem.** If $\rho_1, \ldots, \rho_m$ are secure protocols for computing the functionalities $f_1, \ldots, f_m$, and if $\Pi$ is a secure protocol for computing $f$ in the $(f_1, \ldots, f_m)$-hybrid world, then the composed protocol $\Pi^{\rho_1, \ldots, \rho_m}$ is a secure protocol for $f$.
-That is, if we have a protocol that can secure compute some function $f$ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
+>**Composition Theorem.** If $\rho_1, \ldots, \rho_m$ are secure protocols for computing the functionalities $f_1, \ldots, f_m$, and if $\Pi$ is a secure protocol for computing $f$ in the $(f_1, \ldots, f_m)$-hybrid world, then the composed protocol $\Pi^{\rho_1, \ldots, \rho_m}$ is a secure protocol for $f$. That is, if we have a protocol that can secure compute some function $f$ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
+
 
 **Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
 
@@ -88,12 +89,12 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 **Consensus**: An area of problems about how to get distributed systems to agree on state or some other piece of information. [More about consensus &rarr;](subareas/consensus.md)
 
 **Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](subareas/mpc.md)
-- **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC.
-<!-- add use case -->
+- **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC. <!-- add use case -->
 
 
 **Post-quantum cryptography (PQC)**: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC.
 - **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
+
 
 **Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
 
@@ -126,12 +127,14 @@ These are active lines of research creating particular schemes or primitives tha
 
 ## Threat Models
 
-**Malicious adversary**: An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously.  
+**Malicious adversary**: An adversary that can deviate arbitrarily from the protocol it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously.
+
 Also known as **active adversary**; compare to _semi-honest adversary_.
 
 > We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party $S^*$ in a commitment scheme denotes a potentially malicious sender.
 
-**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.  
+**Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees.
+
 Also known as **honest-but-curious (HbC)** or **passive**.
 
 ## Security Definitions & Notions
@@ -140,14 +143,12 @@ Also known as **honest-but-curious (HbC)** or **passive**.
 
 **Knowledge assumption**:
 
-**Semantic security**: Equivalent to _IND-CPA_.
-
 **UC security**: Universal composability. Security definitions in the UC framework cannot be game-based.
 
 ### Game-based security
 Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_.
 
-**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to semantic security (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
+**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
 - **IND-CPA game**:
   1. Challenger: k &larr; Gen(1^n)
   1. A(1^n) interacts with Enc_k(•) (in polynomial time)
@@ -158,31 +159,37 @@ Security is defined by a _security game_ in which an attacker should have _negli
 
   A *wins* if b=b', and the game outputs 1.
 
+
 **CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
-- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
-  1. Challenger: k &larr; Gen(1^n)
-  1. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
-  1. A outputs m0, m1 of same length
-  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-  1. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-  1. A outputs b'
 
-  A *wins* if b=b', and the game outputs 1.
+- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2.
 
-- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. Game:
-  1. Challenger: k &larr; Gen(1^n)
-  1. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
-  1. A outputs m0, m1 of same length
-  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-  1. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
-  1. A outputs b'
+Game:
+1. Challenger: k &larr; Gen(1^n)
+1. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
+1. A outputs m0, m1 of same length
+1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
+1. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+1. A outputs b'
 
-  A *wins* if b=b', and the game outputs 1.
+A *wins* if b=b', and the game outputs 1.
+
+- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. 
+
+Game:
+1. Challenger: k &larr; Gen(1^n)
+1. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
+1. A outputs m0, m1 of same length
+1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
+1. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
+1. A outputs b'
+
+A *wins* if b=b', and the game outputs 1.
 
 <!-- Table of security games. 
 Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
----
+<hr/>
 
 **Adaptive security**:
 
