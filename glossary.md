@@ -10,18 +10,6 @@
 
 **Black-box**: Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
 
-**Complexity Theory**:
-* **Big-O notation**: Written <img alt="O(n)" src="https://render.githubusercontent.com/render/math?math=O%28n%29" style="transform: translateY(20%);" />, this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
-* **Big-omega notation**: Written <img alt="\Omega(n)" src="https://render.githubusercontent.com/render/math?math=%5COmega%28n%29" style="transform: translateY(20%);" />, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
-* **Big-theta notation**: Written <img alt="\Theta(n)" src="https://render.githubusercontent.com/render/math?math=%5CTheta%28n%29" style="transform: translateY(20%);" />, this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function <img alt="f(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29" style="transform: translateY(20%);" /> is Big-Theta of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> (written as <img alt="f(n) \in \Theta(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5CTheta%28n%29" style="transform: translateY(20%);" />) iff <img alt="f(n) \in O(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20O%28n%29" style="transform: translateY(20%);" /> and <img alt="f(n) \in \Omega(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5COmega%28n%29" style="transform: translateY(20%);" />.
-<!-- TODO: drawing of O/Omega/Theta and f(n) --->
-
-**Composition**:
-* **Concurrent composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running concurrently are run with their messages arbitrarily interleaved. In the two-party case:![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png) In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
-* **Hybrid composition**:
-  * > **Composition Theorem.** If <img alt="\rho_1, \ldots, \rho_m" src="https://render.githubusercontent.com/render/math?math=%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m" style="transform: translateY(20%);" /> are secure protocols for computing the functionalities <img alt="f_1, \ldots, f_m" src="https://render.githubusercontent.com/render/math?math=f_1%2C%20%5Cldots%2C%20f_m" style="transform: translateY(20%);" />, and if <img alt="\Pi" src="https://render.githubusercontent.com/render/math?math=%5CPi" style="transform: translateY(20%);" /> is a secure protocol for computing <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> in the <img alt="(f_1, \ldots, f_m)" src="https://render.githubusercontent.com/render/math?math=%28f_1%2C%20%5Cldots%2C%20f_m%29" style="transform: translateY(20%);" />-hybrid world, then the composed protocol <img alt="\Pi^{\rho_1, \ldots, \rho_m}" src="https://render.githubusercontent.com/render/math?math=%5CPi%5E%7B%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m%7D" style="transform: translateY(20%);" /> is a secure protocol for <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" />.That is, if we have a protocol that can secure compute some function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
-* **Parallel composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png) In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
-* **Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png) Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 **Correctness**: A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that decryption and encryption are inverses, or that sharing and reconstruction are inverses.
 
 **Deterministic**: A function that always proceeds in the same way when run on the same outputs. Alternatively, the inputs directly determine the output. Compare to _randomized_.
@@ -42,7 +30,9 @@
 
 **Linear operations:** Addition and scalar multiplication.
 
-**Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:![The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs.](./img/negligible.png)
+**Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:
+
+![The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs.](./img/negligible.png)
 
 <details>
 <summary>Formal Definition</summary>
@@ -59,6 +49,33 @@ A function <img alt="f" src="https://render.githubusercontent.com/render/math?ma
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over <img alt="N" src="https://render.githubusercontent.com/render/math?math=N" style="transform: translateY(20%);" /> elements means each of the elements is drawn with probability <img alt="1/N" src="https://render.githubusercontent.com/render/math?math=1%2FN" style="transform: translateY(20%);" />.
 
 **Without loss of generality**:
+
+### Complexity Theory
+* **Big-O notation**: Written <img alt="O(n)" src="https://render.githubusercontent.com/render/math?math=O%28n%29" style="transform: translateY(20%);" />, this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+* **Big-omega notation**: Written <img alt="\Omega(n)" src="https://render.githubusercontent.com/render/math?math=%5COmega%28n%29" style="transform: translateY(20%);" />, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+* **Big-theta notation**: Written <img alt="\Theta(n)" src="https://render.githubusercontent.com/render/math?math=%5CTheta%28n%29" style="transform: translateY(20%);" />, this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function <img alt="f(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29" style="transform: translateY(20%);" /> is Big-Theta of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> (written as <img alt="f(n) \in \Theta(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5CTheta%28n%29" style="transform: translateY(20%);" />) iff <img alt="f(n) \in O(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20O%28n%29" style="transform: translateY(20%);" /> and <img alt="f(n) \in \Omega(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5COmega%28n%29" style="transform: translateY(20%);" />.
+<!-- TODO: drawing of O/Omega/Theta and f(n) --->
+
+### Composition
+
+**Concurrent composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
+
+![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)
+
+In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
+* **Parallel composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+*
+* ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
+*
+* In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
+**Hybrid composition**:
+* > **Composition Theorem.** If <img alt="\rho_1, \ldots, \rho_m" src="https://render.githubusercontent.com/render/math?math=%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m" style="transform: translateY(20%);" /> are secure protocols for computing the functionalities <img alt="f_1, \ldots, f_m" src="https://render.githubusercontent.com/render/math?math=f_1%2C%20%5Cldots%2C%20f_m" style="transform: translateY(20%);" />, and if <img alt="\Pi" src="https://render.githubusercontent.com/render/math?math=%5CPi" style="transform: translateY(20%);" /> is a secure protocol for computing <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> in the <img alt="(f_1, \ldots, f_m)" src="https://render.githubusercontent.com/render/math?math=%28f_1%2C%20%5Cldots%2C%20f_m%29" style="transform: translateY(20%);" />-hybrid world, then the composed protocol <img alt="\Pi^{\rho_1, \ldots, \rho_m}" src="https://render.githubusercontent.com/render/math?math=%5CPi%5E%7B%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m%7D" style="transform: translateY(20%);" /> is a secure protocol for <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" />.
+* > That is, if we have a protocol that can secure compute some function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
+**Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:
+
+![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
+
+Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 
 ## Areas of Cryptography
 
@@ -121,13 +138,32 @@ These are active lines of research creating particular schemes or primitives tha
 
 Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_.
 
-**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security.
-* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. <!-- Game -->Weaker than IND-CCA2.
-* **IND-CCA2**: Adaptive chosen ciphertext attack. "IND-CCA" (without a number) usually refers to IND-CCA2.
-* <!-- Game -->
 **CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to semantic security (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
-* **IND-CPA**:
-* <!-- Game -->
+* **IND-CPA game**:
+  1. Challenger: k ← Gen(1^n)
+  2. A(1^n) interacts with Enc_k(•) (in polynomial time)
+  3. A outputs m0, m1 of same length
+  4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
+  5. A continues to interact with Enc_k(•) (in polynomial time)
+  6. A outputs b'
+* A *wins* if b=b', and the game outputs 1.
+**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
+  1. Challenger: k ← Gen(1^n)
+  2. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
+  3. A outputs m0, m1 of same length
+  4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
+  5. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+  6. A outputs b'
+* A *wins* if b=b', and the game outputs 1.
+* **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. Game:
+  1. Challenger: k ← Gen(1^n)
+  2. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
+  3. A outputs m0, m1 of same length
+  4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
+  5. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
+  6. A outputs b'
+* A *wins* if b=b', and the game outputs 1.
 <!-- Table of security games.
 Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
