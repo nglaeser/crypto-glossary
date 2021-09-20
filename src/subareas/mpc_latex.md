@@ -85,7 +85,7 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 `d`: depth of circuit  
 
-<embed type="text/html" src="../src/subareas/table.html"></embed>
+<!-- <embed type="text/html" src="../src/subareas/table.html"></embed> -->
 
 Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Function Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------

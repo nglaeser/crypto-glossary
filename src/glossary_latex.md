@@ -94,8 +94,12 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 **Multi-party computation (MPC)**: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](subareas/mpc.md)
 - **Private set intersetion (PSI)**: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC.<!-- add use case -->  
 
+<br/>
+
 **Post-quantum cryptography (PQC)**: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC.
 - **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.  
+
+<br/>
 
 **Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
 

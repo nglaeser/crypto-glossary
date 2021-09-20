@@ -78,7 +78,7 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 `d`: depth of circuit
 
-<embed type="text/html" src="../src/subareas/table.html"></embed>
+<!-- <embed type="text/html" src="../src/subareas/table.html"></embed> -->
 
 YearNameNumber of partiesThreat ModelRound ComplexityCommunication ComplexityFunction Representation1986Yao's GC2semi-honestO(1)O(n)Boolean circuit1987GMWmany< n semi-honestO(d)O(1)Boolean circuit​many< n maliciousBoolean circuit1988BGWmany< n/2 semi-honestO(d)O(d)Arithmetic circuit​many< n/3 maliciousO(d)Arithmetic circuit1988CCDmany1990BMRmany< nO(1)Boolean circuit## References
 
