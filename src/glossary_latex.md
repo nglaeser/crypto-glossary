@@ -69,6 +69,7 @@ A function $f$ is negligible if for all natural numbers $c$, there exists a natu
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
 - **Parallel composition**: Two protocols $\Pi_1, \Pi_2$ running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+
 <br/>
 
 ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)  

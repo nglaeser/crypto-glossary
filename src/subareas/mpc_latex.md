@@ -24,7 +24,7 @@ There are more serious real-world applications for this too. You could imagine u
 
 ## Building Blocks
 **Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit $b$. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
-![Diagram of the OT functionality](./img/OT.png)
+![Diagram of the OT functionality](../img/OT.png)
 
 OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four choices) or more generally 1-out-of-$n$ OT for some parameter $n$.
 
@@ -40,6 +40,8 @@ Secret-sharing schemes with additional properties also exist, but basic secret s
 - **Homomorphic secret sharing**:
 - **Robust secret sharing**: Does not consider a corrupt dealer. ...
 - **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
+
+<br/>
 
 **Cut-and-choose**: This is an idea to turn a semi-honest secure MPC protocol into malicious-secure one. ...
 
@@ -57,33 +59,45 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 - _Assumptions:_ Secure OT  
 - _Optimizations:_ Point-and-permute, PRF for encryption, garbled row reduction, half-gates, free XOR.
 
+<br/>
+
 **Goldreich–Micali–Wigderson (GMW)** (semi-honest version): Construct gates so that parties can step through the circuit using XOR-shares of wires. Multiplication gates require 1-out-of-4 OT to communicate the correct output shares.  
 - _Assumptions:_ Secure OT
+
+<br/>
 
 **Goldreich–Micali–Wigderson (GMW)** (malicious version): Same as semi-honest, but use zero-knowledge proofs to ensure well-formedness.  
 - _Assumptions:_ Secure OT, ZK
 
+<br/>
+
 **Ben-Or–Goldwasser–Wigderson (BGW)**: Same structure as GMW but over arithmetic circuits (where wires carry field elements). So, instead of using XOR-shares, use (t+1)-out-of-n Shamir secret-sharing. Multiplication gates use a degree-reduction step to maintain the invariant that parties hold well-formed wire value shares.  
 - _Assumptions:_ None!
+
+<br/>
 
 **Chaum–Crepeau–Damgård (CCD)**: 
 
 **Beaver–Micali–Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
 - _Assumptions:_ Secure OT
 
----
+<hr/>
+
 ### Tabular Summary
 
-`n`: number of circuit gates  
+`n`: number of circuit gates
+
 `d`: depth of circuit  
+
+<embed type="text/html" src="table.html"></embed>
 
 Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Function Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
 1986 | Yao's GC | 2    | semi-honest       | O(1) | O(n) | Boolean circuit
 1987 | GMW      | many | < n semi-honest   | O(d) | O(1) | Boolean circuit
-&#8203;        || many | < n malicious     |      |      | Boolean circuit
+&#8203;|        | many | < n malicious     |      |      | Boolean circuit
 1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic circuit
-&#8203;        || many | < n/3 malicious   | O(d) |      | Arithmetic circuit
+&#8203;|        | many | < n/3 malicious   | O(d) |      | Arithmetic circuit
 1988 | CCD      | many |                   |      |      |
 1990 | BMR      | many | < n               | O(1) |     | Boolean circuit
 

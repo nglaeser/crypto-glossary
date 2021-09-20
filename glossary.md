@@ -64,7 +64,8 @@ A function <img alt="f" src="https://render.githubusercontent.com/render/math?ma
 
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 * **Parallel composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
-* <br/>
+<br/>
+
 ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
 
 In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
