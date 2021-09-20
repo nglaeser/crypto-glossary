@@ -10,15 +10,11 @@ The protocol should meet a couple of conditions to be interesting/useful:
 
 Why is this useful? A simple example is Yao's Millionaries' Problem. Two millionaires want to know who's richer, but they don't want to reveal exactly how rich they are. They can run an MPC protocol where the inputs are their net worths and the function $f$ computes the sign of $x_1 - x_2$. (For example 
 
-$$
-f(x_1, x_2) = \begin{cases}
+$$f(x_1, x_2) = \begin{cases}
 1 	& x_1 > x_2\\
 0 	& x_1 = x_2\\
 -1 	& x_1 < x_2
-\end{cases}
-$$
-
-<!-- $f(x_1, x_2) = {1 \text{ if } x_1 > x_2, 0 \text{ if } x_1 = x_2, \text{ and } -1 \text{ if } x_1 < x_2}$.) -->
+\end{cases}$$
 
 There are more serious real-world applications for this too. You could imagine using this to let hospitals collaborate on health analytics without sharing their patient records and other similar use cases.
 
@@ -89,7 +85,7 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 `d`: depth of circuit  
 
-<embed type="text/html" src="table.html"></embed>
+<embed type="text/html" src="../src/subareas/table.html"></embed>
 
 Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Function Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------

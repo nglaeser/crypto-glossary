@@ -9,15 +9,11 @@ The protocol should meet a couple of conditions to be interesting/useful:
 * <img alt="y" src="https://render.githubusercontent.com/render/math?math=y" style="transform: translateY(20%);" /> should be correct. That is, <img alt="y" src="https://render.githubusercontent.com/render/math?math=y" style="transform: translateY(20%);" /> should in fact be the function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> applied to the parties' inputs – no errors.
 Why is this useful? A simple example is Yao's Millionaries' Problem. Two millionaires want to know who's richer, but they don't want to reveal exactly how rich they are. They can run an MPC protocol where the inputs are their net worths and the function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> computes the sign of <img alt="x_1 - x_2" src="https://render.githubusercontent.com/render/math?math=x_1%20-%20x_2" style="transform: translateY(20%);" />. (For example
 
-<p align="center"><img alt="
-f(x_1, x_2) = \begin{cases}
+<p align="center"><img alt="f(x_1, x_2) = \begin{cases}
 1 	& x_1 > x_2\\
 0 	& x_1 = x_2\\
 -1 	& x_1 < x_2
-\end{cases}
-" src="https://render.githubusercontent.com/render/math?math=%0Af%28x_1%2C%20x_2%29%20%3D%20%5Cbegin%7Bcases%7D%0A1%20%09%26%20x_1%20%3E%20x_2%5C%5C%0A0%20%09%26%20x_1%20%3D%20x_2%5C%5C%0A-1%20%09%26%20x_1%20%3C%20x_2%0A%5Cend%7Bcases%7D%0A"/></p>
-
-<!-- <img alt="f(x_1, x_2) = {1 \text{ if } x_1 > x_2, 0 \text{ if } x_1 = x_2, \text{ and } -1 \text{ if } x_1 < x_2}" src="https://render.githubusercontent.com/render/math?math=f%28x_1%2C%20x_2%29%20%3D%20%7B1%20%5Ctext%7B%20if%20%7D%20x_1%20%3E%20x_2%2C%200%20%5Ctext%7B%20if%20%7D%20x_1%20%3D%20x_2%2C%20%5Ctext%7B%20and%20%7D%20-1%20%5Ctext%7B%20if%20%7D%20x_1%20%3C%20x_2%7D" style="transform: translateY(20%);" />.) -->
+\end{cases}" src="https://render.githubusercontent.com/render/math?math=f%28x_1%2C%20x_2%29%20%3D%20%5Cbegin%7Bcases%7D%0A1%20%09%26%20x_1%20%3E%20x_2%5C%5C%0A0%20%09%26%20x_1%20%3D%20x_2%5C%5C%0A-1%20%09%26%20x_1%20%3C%20x_2%0A%5Cend%7Bcases%7D"/></p>
 
 There are more serious real-world applications for this too. You could imagine using this to let hospitals collaborate on health analytics without sharing their patient records and other similar use cases.
 
@@ -82,7 +78,7 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 `d`: depth of circuit
 
-<embed type="text/html" src="table.html"></embed>
+<embed type="text/html" src="../src/subareas/table.html"></embed>
 
 YearNameNumber of partiesThreat ModelRound ComplexityCommunication ComplexityFunction Representation1986Yao's GC2semi-honestO(1)O(n)Boolean circuit1987GMWmany< n semi-honestO(d)O(1)Boolean circuit​many< n maliciousBoolean circuit1988BGWmany< n/2 semi-honestO(d)O(d)Arithmetic circuit​many< n/3 maliciousO(d)Arithmetic circuit1988CCDmany1990BMRmany< nO(1)Boolean circuit## References
 
