@@ -64,10 +64,13 @@ A function <img alt="f" src="https://render.githubusercontent.com/render/math?ma
 
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 * **Parallel composition**: Two protocols <img alt="\Pi_1, \Pi_2" src="https://render.githubusercontent.com/render/math?math=%5CPi_1%2C%20%5CPi_2" style="transform: translateY(20%);" /> running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
-*
-* ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
-*
-* In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
+* <br/>
+![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)
+
+In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
+
+<br/>
+
 **Hybrid composition**:
 
 > **Composition Theorem.** If <img alt="\rho_1, \ldots, \rho_m" src="https://render.githubusercontent.com/render/math?math=%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m" style="transform: translateY(20%);" /> are secure protocols for computing the functionalities <img alt="f_1, \ldots, f_m" src="https://render.githubusercontent.com/render/math?math=f_1%2C%20%5Cldots%2C%20f_m" style="transform: translateY(20%);" />, and if <img alt="\Pi" src="https://render.githubusercontent.com/render/math?math=%5CPi" style="transform: translateY(20%);" /> is a secure protocol for computing <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> in the <img alt="(f_1, \ldots, f_m)" src="https://render.githubusercontent.com/render/math?math=%28f_1%2C%20%5Cldots%2C%20f_m%29" style="transform: translateY(20%);" />-hybrid world, then the composed protocol <img alt="\Pi^{\rho_1, \ldots, \rho_m}" src="https://render.githubusercontent.com/render/math?math=%5CPi%5E%7B%5Crho_1%2C%20%5Cldots%2C%20%5Crho_m%7D" style="transform: translateY(20%);" /> is a secure protocol for <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" />. That is, if we have a protocol that can secure compute some function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
@@ -146,25 +149,22 @@ Security is defined by a _security game_ in which an attacker should have _negli
   6. A outputs b'
 A *wins* if b=b', and the game outputs 1.
 
-<br/>
 **CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
-* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2.
-Game:
-1. Challenger: k ← Gen(1^n)
-2. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
-3. A outputs m0, m1 of same length
-4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
-5. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-6. A outputs b'
+* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
+  1. Challenger: k ← Gen(1^n)
+  2. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
+  3. A outputs m0, m1 of same length
+  4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
+  5. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+  6. A outputs b'
 A *wins* if b=b', and the game outputs 1.
-* **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c.
-Game:
-1. Challenger: k ← Gen(1^n)
-2. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
-3. A outputs m0, m1 of same length
-4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
-5. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
-6. A outputs b'
+* **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. Game:
+  1. Challenger: k ← Gen(1^n)
+  2. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
+  3. A outputs m0, m1 of same length
+  4. Challenger: b ← {0,1}, c ← Enc_k(m_b), send c to A
+  5. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
+  6. A outputs b'
 A *wins* if b=b', and the game outputs 1.
 
 <!-- Table of security games.

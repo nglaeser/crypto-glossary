@@ -69,11 +69,13 @@ A function $f$ is negligible if for all natural numbers $c$, there exists a natu
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
 - **Parallel composition**: Two protocols $\Pi_1, \Pi_2$ running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+<br/>
 
-  ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)  
+![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)  
 
-  In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
+In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
 
+<br/>
 
 **Hybrid composition**: 
 >**Composition Theorem.** If $\rho_1, \ldots, \rho_m$ are secure protocols for computing the functionalities $f_1, \ldots, f_m$, and if $\Pi$ is a secure protocol for computing $f$ in the $(f_1, \ldots, f_m)$-hybrid world, then the composed protocol $\Pi^{\rho_1, \ldots, \rho_m}$ is a secure protocol for $f$. That is, if we have a protocol that can secure compute some function $f$ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
@@ -153,30 +155,25 @@ Security is defined by a _security game_ in which an attacker should have _negli
 
 A *wins* if b=b', and the game outputs 1.  
 
-<br/>
 **CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
 
-- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2.
-
-Game:
-1. Challenger: k &larr; Gen(1^n)
-1. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
-1. A outputs m0, m1 of same length
-1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-1. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-1. A outputs b'
+- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
+  1. Challenger: k &larr; Gen(1^n)
+  1. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
+  1. A outputs m0, m1 of same length
+  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
+  1. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+  1. A outputs b'
 
 A *wins* if b=b', and the game outputs 1.
 
-- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. 
-
-Game:
-1. Challenger: k &larr; Gen(1^n)
-1. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
-1. A outputs m0, m1 of same length
-1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-1. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
-1. A outputs b'
+- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. Game:
+  1. Challenger: k &larr; Gen(1^n)
+  1. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
+  1. A outputs m0, m1 of same length
+  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
+  1. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
+  1. A outputs b'
 
 A *wins* if b=b', and the game outputs 1.
 
