@@ -24,17 +24,13 @@
 
 **Group**: A set of elements <img alt="G" src="https://render.githubusercontent.com/render/math?math=G" style="transform: translateY(20%);" /> with some binary operation <img alt="\cdot" src="https://render.githubusercontent.com/render/math?math=%5Ccdot" style="transform: translateY(20%);" /> (the group operation) that satisfies particular properties called the [group axioms](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition) (specifically associativity, identity, and invertibility). The integers form a group under addition.
 
-**Hardness assumption**: A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated. [Non-exhaustive list of hardness assumptions &rarr;](hardness.md)
+**Hardness assumption**: A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated.
 
 **i.i.d.**: Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
 
 **Linear operations:** Addition and scalar multiplication.
 
-<<<<<<< HEAD
 **Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:
-=======
-**Negligible function**: A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:  
->>>>>>> main
 
 ![The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs.](./img/negligible.png)
 
@@ -85,41 +81,6 @@ In general, composing secure protocols in parallel does not maintain security (a
 ![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)
 
 Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
-
-### Complexity Theory
-
-- **Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
-
-- **Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
-
-- **Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function _f(n)_ is Big-Theta of n (written as _f(n) &isin; &Theta;(n)_) iff _f(n) &isin; O(n)_ and _f(n) &isin; &Omega;(n)_.
-
-<!-- TODO: drawing of O/Omega/Theta and f(n) --->
-
-### Composition
-
-**Concurrent composition**: Two protocols &Pi;1, &Pi;2 running concurrently are run with their messages arbitrarily interleaved. In the two-party case:  
-
-![The messages of the blue and green protocols are arbitrarily interleaved](./img/concurr-comp.png)  
-
-In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
-
-- **Parallel composition**: Two protocols &Pi;1, &Pi;2 running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:  
-
-  ![The messages in each round of the blue and green protocols are sent together](./img/parallel-comp.png)  
-
-  In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
-
-**Hybrid composition**: 
-- >**Composition Theorem.** If &rho;_1_, ..., &rho;_m_ are secure protocols for computing the functionalities _f1_, ..., _fm_, and if &Pi; is a secure protocol for computing _f_ in the (_f1_, ..., _fm_)-hybrid world, then the composed protocol &Pi;^&rho;_1_, ..., &rho;_m_ is a secure protocol for _f_.  
-That is, if we have a protocol that can secure compute some function _f_ given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.
-
-**Sequential composition**: Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:  
-
-![The messages in each round of the blue and green protocols are sent together](./img/seq-comp.png)  
-
-Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
-
 
 ## Areas of Cryptography
 
@@ -180,44 +141,8 @@ These are active lines of research creating particular schemes or primitives tha
 **UC security**: Universal composability. Security definitions in the UC framework cannot be game-based.
 
 ### Game-based security
-<<<<<<< HEAD
 
 Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_.
-=======
-Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_.
-
-**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to semantic security (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
-- **IND-CPA game**:
-  1. Challenger: k &larr; Gen(1^n)
-  1. A(1^n) interacts with Enc_k(•) (in polynomial time)
-  1. A outputs m0, m1 of same length
-  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-  1. A continues to interact with Enc_k(•) (in polynomial time)
-  1. A outputs b'
-
-  A *wins* if b=b', and the game outputs 1.
-
-**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
-- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
-  1. Challenger: k &larr; Gen(1^n)
-  1. A(1^n) interacts with Enc_k(•) **and Dec_k(•)** (in polynomial time)
-  1. A outputs m0, m1 of same length
-  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-  1. A can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-  1. A outputs b'
-
-  A *wins* if b=b', and the game outputs 1.
-
-- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing c. Game:
-  1. Challenger: k &larr; Gen(1^n)
-  1. A(1^n) interacts with Enc_k(•) and Dec_k(•) (in polynomial time)
-  1. A outputs m0, m1 of same length
-  1. Challenger: b &larr; {0,1}, c &larr; Enc_k(m_b), send c to A
-  1. A **continues to interact with Enc_k(•) and Dec_k(•)** (in polynomial time) but can't query Dec_k(•) on c
-  1. A outputs b'
-
-  A *wins* if b=b', and the game outputs 1.
->>>>>>> main
 
 **CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
 * **IND-CPA game**:
