@@ -10,3 +10,4 @@
 
 **Threshold signature**: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares.
 * a threshold signature should be indistinguishable from an ordinary signature
+

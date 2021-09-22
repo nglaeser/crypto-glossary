@@ -21,9 +21,17 @@ for f in $(find src -type f -name '*_latex.md'); do
     # add path to outfile name
     outfile=$outdir/$outfile
   fi
+
+  ### markdown-math-gh-compiler
   markdown-math-gh-compiler $f -o $outfile
   # example 
   # markdown-math-gh-compiler src/README_latex.md -o README.md
+
+  ### embedmd 
+  # TODO: adds an empty line at the end of the file
+  embedmd $outfile > temp.md
+  cat temp.md > $outfile
+  rm temp.md
 done
 ### stage the updates
 git add .

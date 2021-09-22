@@ -53,3 +53,4 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 ## Example Protocols
 
 **GMW ZK proof**:
+

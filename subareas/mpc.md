@@ -80,7 +80,17 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 <!-- <embed type="text/html" src="../src/subareas/table.html"></embed> -->
 
-YearNameNumber of partiesThreat ModelRound ComplexityCommunication ComplexityFunction Representation1986Yao's GC2semi-honestO(1)O(n)Boolean circuit1987GMWmany< n semi-honestO(d)O(1)Boolean circuit​many< n maliciousBoolean circuit1988BGWmany< n/2 semi-honestO(d)O(d)Arithmetic circuit​many< n/3 maliciousO(d)Arithmetic circuit1988CCDmany1990BMRmany< nO(1)Boolean circuit## References
+Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Function Representation
+:----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
+1986 | Yao's GC | 2    | semi-honest       | O(1) | O(n) | Boolean circuit
+1987 | GMW      | many | < n semi-honest   | O(d) | O(1) | Boolean circuit
+&#8203;|        | many | < n malicious     |      |      | Boolean circuit
+1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic circuit
+&#8203;|        | many | < n/3 malicious   | O(d) |      | Arithmetic circuit
+1988 | CCD      | many |                   |      |      |
+1990 | BMR      | many | < n               | O(1) |     | Boolean circuit
+
+## References
 
 **Yao's GC**: [Original paper](https://ieeexplore.ieee.org/document/4568207)
 
@@ -89,3 +99,4 @@ YearNameNumber of partiesThreat ModelRound ComplexityCommunication ComplexityFun
 **BGW**: Original paper, [full proof](https://eccc.weizmann.ac.il//report/2011/036/)
 
 **BMR**: [Original paper](https://dl.acm.org/doi/pdf/10.1145/100216.100287?casa_token=jgHhj-wpD88AAAAA:17nxjtduFXBZwYyyvRd9sVKdnPBXZ-vaBxXxzmHFQwhZy_dRc1UGxRnmoXj6WlNRflZ-wRlQA0v-iA), [Rogaway's Thesis](https://www.cs.ucdavis.edu/~rogaway/papers/thesis.pdf), [Pragmatic Introduction to MPC, Section 3.5](https://securecomputation.org/)
+
