@@ -1,5 +1,7 @@
 # Crypto Glossary
-Glossary of theoretical cryptography terms
+Glossary of theoretical cryptography terms.
+
+**Important: if you are using GitHub in dark mode, equations will not be visible.**
 
 [Glossary](glossary.md)  
 - [General](glossary.md#general)
