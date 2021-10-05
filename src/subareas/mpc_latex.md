@@ -85,8 +85,8 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 `d`: depth of circuit  
 
-<!-- <embed type="text/html" src="../src/subareas/table.html"></embed> -->
-[#INCLUDE ../src/subareas/table.md]
+<!-- <embed type="text/html" src="../src/subareas/mpc_table.html"></embed> -->
+[#INCLUDE ../src/subareas/mpc_table.md]
 
 ## References
 
