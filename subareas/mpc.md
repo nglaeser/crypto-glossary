@@ -19,6 +19,13 @@ There are more serious real-world applications for this too. You could imagine u
 
 ## Building Blocks
 
+**Beaver Triples**: Assuming parties hold _secret shares_ of values x,y,a,b,c=ab for uniform a,b, they can compute shares of z=xy as follows:
+1. Publicly reconstruct x-a, y-b
+  * Locally compute shares of x-a, y-b
+  * Broadcast shares to reconstruct
+2. Use local computation to get shares of z
+  * Each party sets its share [z] = [c] + (y-b)[x] + (x-a)[y] - (x-a)(y-b)
+  * Note that these are shares of xy!
 **Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit <img alt="b" src="https://render.githubusercontent.com/render/math?math=b" style="transform: translateY(20%);" />. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
 ![Diagram of the OT functionality](../img/OT.png)
 
@@ -70,6 +77,8 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 **Beaver–Micali–Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
 * _Assumptions:_ Secure OT
+**Cramer–Damgård–Nielsen (CDN)**:
+* _Assumptions:_ Threshold homomorphic encryption
 <hr/>
 
 ### Tabular Summary
@@ -80,15 +89,16 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 <!-- <embed type="text/html" src="../src/subareas/mpc_table.html"></embed> -->
 
-Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Function Representation
+Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Circuit Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
-1986 | Yao's GC | 2    | semi-honest       | O(1) | O(n) | Boolean circuit
-1987 | GMW      | many | < n semi-honest   | O(d) | O(1) | Boolean circuit
-&#8203;|        | many | < n malicious     |      |      | Boolean circuit
-1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic circuit
-&#8203;|        | many | < n/3 malicious   | O(d) |      | Arithmetic circuit
+1986 | Yao's GC | 2    | semi-honest       | O(1) | O(n) | Boolean
+1987 | GMW      | many | < n semi-honest   | O(d) | O(1) | Boolean
+&#8203;|        | many | < n malicious     |      |      | Boolean
+1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic
+&#8203;|        | many | < n/3 malicious   | O(d) |      | Arithmetic
 1988 | CCD      | many |                   |      |      |
-1990 | BMR      | many | < n               | O(1) |     | Boolean circuit
+1990 | BMR      | many | < n               | O(1) |     | Boolean
+2001 | CDN      | many | < n/2 malicious   | O(d) | O(n) | Arithmetic
 
 ## References
 

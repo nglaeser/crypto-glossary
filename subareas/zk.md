@@ -26,6 +26,10 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **Proof of knowledge (PoK)**: Secure against a dishonest prover.
 
+**Soundness**: (knowledge soundness?)
+
+**Simulation Soundness**: (simulation extractability?)
+
 **Succinct**:
 
 **Witness indistinguishable (WI)**:
@@ -45,6 +49,8 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **SNARK**: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
 
 **SNIP**: [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
+
+**STARK**:
 
 **DV-NIZK**: Designated Verifier NIZK; can be verified by a particular party. A MAC can be thought of as a DV-NIZK for a message, where the verifier is the party holding the MAC key (?).
 
