@@ -2,7 +2,14 @@
 
 # Signatures
 
+It is known that OWFs imply signatures.
+<!-- Give construction -->
+
 ## Schemes
+
+**CL signatures**:
+
+**ECDSA signatures**:
 
 **Schnorr signatures**: Based on DLog assumption. Let <img alt="G" src="https://render.githubusercontent.com/render/math?math=G" style="transform: translateY(20%);" /> be an elliptic curve group with generator <img alt="g" src="https://render.githubusercontent.com/render/math?math=g" style="transform: translateY(20%);" /> and order <img alt="q" src="https://render.githubusercontent.com/render/math?math=q" style="transform: translateY(20%);" />.
 
@@ -10,9 +17,30 @@
 * **Blind Schnorr signatures**:
 <br/>
 
-**ECDSA signatures**:
+## Other types
+
+**Designated-verifier (DV) signatures**: Instead of being publicly verifiable, a signature can only be verified by a specific party (the DV). _Message authentication codes (MACs)_ can be thought of as DV-sigs, since a secret key is necessary to verify a MAC, so only parties that know the secret key can perform verification.
+
+**Functional signatures**:
+
+**Lockable signatures**:
 
 **Threshold signature**: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares.
 * a threshold signature should be indistinguishable from an ordinary signature
 ## Security Notions
+
+**EUF-CMA**: Existential UnForgeability under adaptive Chosen Message Attacks, aka "existential unforgeability".
+* **EUF-CMA game**:
+  1. Challenger: <img alt="pk,sk \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=pk%2Csk%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
+  2. <img alt="\mathcal{A}(pk)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%28pk%29" style="transform: translateY(20%);" /> interacts with <img alt="Sign_{sk}(\cdot)" src="https://render.githubusercontent.com/render/math?math=Sign_%7Bsk%7D%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time) – that is, it gets to see polynomially many valid signatures on _chosen_ messages
+  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs a message-signature pair <img alt="m^*,\sigma^*" src="https://render.githubusercontent.com/render/math?math=m%5E%2a%2C%5Csigma%5E%2a" style="transform: translateY(20%);" />
+<br/>
+
+<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if (1) <img alt="m^*" src="https://render.githubusercontent.com/render/math?math=m%5E%2a" style="transform: translateY(20%);" /> wasn't one of the messages on which it queried the signing oracle and (2) <img alt="Verify_{pk}(m^*,\sigma^*) = 1" src="https://render.githubusercontent.com/render/math?math=Verify_%7Bpk%7D%28m%5E%2a%2C%5Csigma%5E%2a%29%20%3D%201" style="transform: translateY(20%);" />; in this case, the game outputs 1.
+
+**SUF-CMA**: Strong UnForgeability under adaptive Chosen Message Attacks, aka "strong unforgeability".
+* **SUF-CMA game**: Same as the EUF-CMA game.
+<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if (1) **<img alt="(m^*,\sigma^*)" src="https://render.githubusercontent.com/render/math?math=%28m%5E%2a%2C%5Csigma%5E%2a%29" style="transform: translateY(20%);" /> wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) <img alt="Verify_{pk}(m^*,\sigma^*) = 1" src="https://render.githubusercontent.com/render/math?math=Verify_%7Bpk%7D%28m%5E%2a%2C%5Csigma%5E%2a%29%20%3D%201" style="transform: translateY(20%);" />; in this case, the game outputs 1.
+
+This is a stronger definition than EUF-CMA, since the attacker can win by forging a signature on a previously-queried message <img alt="m^*" src="https://render.githubusercontent.com/render/math?math=m%5E%2a" style="transform: translateY(20%);" /> **as long as the signature is different**, for example by "mauling" a valid signature without changing its validity. This might seem a bit odd -- what does it matter if the adversary produces a different signature? The message was already signed by an honest party, so the adversary isn't convincing anyone that the party signed something it *didn't* actually sign. However, this difference does end up being important in some applications where signatures are used as building blocks.
 
