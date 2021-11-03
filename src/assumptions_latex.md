@@ -63,9 +63,9 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 > 1. DLog, CDH, and co-CDH are hard in both groups
 > 1. DDH is hard in $G_1$
 > 1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. <br/>
+> <p></p>
 >
-> <p>Used in</p>
->
+> Used in
 > - Elliptic-curve cryptography (ECC)
 
 ### **Symmetric External Diffie–Hellman (SXDH)**
