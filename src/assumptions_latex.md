@@ -39,7 +39,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 ### **Decisional Diffie-Hellman (DDH)**
 > Let G be a cyclic group of order q with generator g. Let a,b,c be uniform and independent integers in {0, ..., q-1}:
 > 
-> &emsp;**Given**: $(g,g^a,g^b,g^{ab})$* or $(g,g^a,g^b,g^c)$  
+> &emsp;**Given**: $(g,g^a,g^b,g^{ab})$* or $(g,g^a,g^b,g^c)$  <br/>
 > &emsp;**Output**: A decision about which type of tuple was given
 > 
 > Used in
@@ -47,6 +47,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 > - Cramer–Shoup cryptosystems
 
 <br/>
+
 *This type of tuple is often called a **DDH tuple** (or a **DDH triple** if the generator is left out).
 
 Importantly, the DDH assumption is believed to hold only in [certain groups](https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption#Groups_for_which_DDH_is_assumed_to_hold).
@@ -62,7 +63,8 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 > 1. DLog, CDH, and co-CDH are hard in both groups
 > 1. DDH is hard in $G_1$
 > 1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. <br/>
-> 
+> <br/>
+>
 > Used in
 > - Elliptic-curve cryptography (ECC)
 

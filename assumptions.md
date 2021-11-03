@@ -41,12 +41,14 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 > Let G be a cyclic group of order q with generator g. Let a,b,c be uniform and independent integers in {0, ..., q-1}:
 >
->  **Given**: <img alt="(g,g^a,g^b,g^{ab})" src="https://render.githubusercontent.com/render/math?math=%28g%2Cg%5Ea%2Cg%5Eb%2Cg%5E%7Bab%7D%29" style="transform: translateY(20%);" />* or <img alt="(g,g^a,g^b,g^c)" src="https://render.githubusercontent.com/render/math?math=%28g%2Cg%5Ea%2Cg%5Eb%2Cg%5Ec%29" style="transform: translateY(20%);" /> **Output**: A decision about which type of tuple was given
+>  **Given**: <img alt="(g,g^a,g^b,g^{ab})" src="https://render.githubusercontent.com/render/math?math=%28g%2Cg%5Ea%2Cg%5Eb%2Cg%5E%7Bab%7D%29" style="transform: translateY(20%);" />* or <img alt="(g,g^a,g^b,g^c)" src="https://render.githubusercontent.com/render/math?math=%28g%2Cg%5Ea%2Cg%5Eb%2Cg%5Ec%29" style="transform: translateY(20%);" />  <br/>
+>  **Output**: A decision about which type of tuple was given
 >
 > Used in
 > * ElGamal
 > * Cramer–Shoup cryptosystems
 <br/>
+
 *This type of tuple is often called a **DDH tuple** (or a **DDH triple** if the generator is left out).
 
 Importantly, the DDH assumption is believed to hold only in [certain groups](https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption#Groups_for_which_DDH_is_assumed_to_hold).
@@ -63,6 +65,7 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 > 1. DLog, CDH, and co-CDH are hard in both groups
 > 2. DDH is hard in <img alt="G_1" src="https://render.githubusercontent.com/render/math?math=G_1" style="transform: translateY(20%);" />
 > 3. There is an efficiently computable bilinear map <img alt="e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T" src="https://render.githubusercontent.com/render/math?math=e%28%5Ccdot%2C%20%5Ccdot%29%3A%20G_1%20%5Ctimes%20G_2%20%5Cmapsto%20G_T" style="transform: translateY(20%);" />. <br/>
+> 3. <br/>
 > Used in
 > * Elliptic-curve cryptography (ECC)
 ### **Symmetric External Diffie–Hellman (SXDH)**
