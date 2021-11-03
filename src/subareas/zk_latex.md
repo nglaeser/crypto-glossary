@@ -14,7 +14,9 @@ In the case of our less abstract example, think of a computer program that deter
 
 Zero-knowledge (ZK) protocols occur between two parties: a _prover_ and a _verifier_. The prover's goal is to convince the verifier that some statement _x_ is in some language _L_, by convincing the verifier that it knows some witness _w_ for that statement. The verifier's goal is to be sure the prover knows such a witness.
 
-ZK protocols are only interesting if the prover doesn't want to reveal its witness. (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)
+ZK protocols are only interesting if the prover doesn't want to reveal its witness (the _zero-knowledge_ property). (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)
+
+**Example:** <!-- Where's Waldo example -->
 
 ## Properties
 
@@ -45,8 +47,9 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **NIWI**: Non-Interactive Witness Indistinguishable proof.
 
 **NIZK**: Non-Interactive Zero Knowledge proof.
-- Not known from CDH
+- Not known from CDH 
 <!-- Maybe list for each type what assumptions they are known from? -->
+
 <br/>
 
 **SNARG**: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
