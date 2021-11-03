@@ -12,12 +12,10 @@ It is known that OWFs imply signatures.
 **ECDSA signatures**:
 
 **Schnorr signatures**: Based on DLog assumption. Let $G$ be an elliptic curve group with generator $g$ and order $q$.
-> $KeyGen(G, g, q)$: choose a uniform element $sk \in Z_q$; set the public key $pk = sk \cdot g$.  
-> $Sign(sk, m)$: choose a uniform one-time key $k \in Z_q$; compute a nonce $R = k \cdot g$; the signature is $\sigma = (k - sk \cdot H(R || m ) \mod q), R)$, where $H$ is a hash function.  
-> $Verify(m, \sigma = (s,R))$: Check $s \cdot g =^? R - H(R || m) \cdot pk$.
+> - $KeyGen(G, g, q)$: choose a uniform element $sk \in Z_q$; set the public key $pk = sk \cdot g$.  
+> - $Sign(sk, m)$: choose a uniform one-time key $k \in Z_q$; compute a nonce $R = k \cdot g$; the signature is $\sigma = (k - sk \cdot H(R || m ) \mod q), R)$, where $H$ is a hash function.  
+> - $Verify(m, \sigma = (s,R))$: Check $s \cdot g =^? R - H(R || m) \cdot pk$.
 - **Blind Schnorr signatures**:
-
-<br/>
 
 ## Other types
 
@@ -44,6 +42,8 @@ $\mathcal{A}$ *wins* if (1) $m^*$ wasn't one of the messages on which it queried
 
 **SUF-CMA**: Strong UnForgeability under adaptive Chosen Message Attacks, aka "strong unforgeability".
 - **SUF-CMA game**: Same as the EUF-CMA game.
+
+<br/>
 
 $\mathcal{A}$ *wins* if (1) **$(m^*,\sigma^*)$ wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) $Verify_{pk}(m^*,\sigma^*) = 1$; in this case, the game outputs 1.
 
