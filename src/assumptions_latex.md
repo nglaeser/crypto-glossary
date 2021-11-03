@@ -62,8 +62,8 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 > Assumes the existence of elliptic-curve subgroups $(G_1, G_2)$ such that
 > 1. DLog, CDH, and co-CDH are hard in both groups
 > 1. DDH is hard in $G_1$
-> 1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. <br/>
-> <p></p>
+> 1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. 
+> <br/>
 >
 > Used in
 > - Elliptic-curve cryptography (ECC)
