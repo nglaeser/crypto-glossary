@@ -26,6 +26,8 @@ There are more serious real-world applications for this too. You could imagine u
 2. Use local computation to get shares of z
   * Each party sets its share [z] = [c] + (y-b)[x] + (x-a)[y] - (x-a)(y-b)
   * Note that these are shares of xy!
+**Cut-and-choose**: This is an idea used to turn a semi-honest MPC protocol into a malicious-secure one. Whenever we rely on the well-formedness of some (potentially malicious) party's inputs, we use the following idea to guarantee their well-formedness: we ask the party to generate many values, then challenge it on a randomly selected fraction of them. The party opens this subset, and if they are all well-formed/honestly generated, the unopened half is used in the protocol. By a statistical argument, these are very likely also well-formed.
+
 **Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit <img alt="b" src="https://render.githubusercontent.com/render/math?math=b" style="transform: translateY(20%);" />. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
 ![Diagram of the OT functionality](../img/OT.png)
 
@@ -39,19 +41,28 @@ Schemes:
 * **Exclusive OR (XOR) secret-sharing**: For a secret <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" />, set Party <img alt="i" src="https://render.githubusercontent.com/render/math?math=i" style="transform: translateY(20%);" />'s share to some random value <img alt="r_i" src="https://render.githubusercontent.com/render/math?math=r_i" style="transform: translateY(20%);" />, except for a designated party which gets <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" /> XOR <img alt="r_1" src="https://render.githubusercontent.com/render/math?math=r_1" style="transform: translateY(20%);" /> XOR <img alt="\ldots" src="https://render.githubusercontent.com/render/math?math=%5Cldots" style="transform: translateY(20%);" /> XOR <img alt="r_N" src="https://render.githubusercontent.com/render/math?math=r_N" style="transform: translateY(20%);" />. The shares XOR together to <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" />, but each individual share looks random.
 * **Shamir secret-sharing**: This is a form of <img alt="(t+1)" src="https://render.githubusercontent.com/render/math?math=%28t%2B1%29" style="transform: translateY(20%);" />-out-of-<img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> secret-sharing, i.e., at least <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> out of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-<img alt="t" src="https://render.githubusercontent.com/render/math?math=t" style="transform: translateY(20%);" /> polynomial. Because <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> points define a unique polynomial, <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
 Secret-sharing schemes with additional properties also exist, but basic secret sharing usually suffices for MPC.
-* **Homomorphic secret sharing**:
+* **Function secret sharing (FSS)**:
+* **Homomorphic secret sharing (HSS)**:
 * **Robust secret sharing**: Does not consider a corrupt dealer. ...
 * **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
+**MPC-in-the-head**:
+
 <br/>
 
-**Cut-and-choose**: This is an idea to turn a semi-honest secure MPC protocol into malicious-secure one. ...
+## Protocol Characteristics
 
-## Properties
+**Corruption type**: Semi-honest, malicious, etc.
 
-**Guaranteed output delivery (GOD)**: The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.
+**Corruption threshold** (t): Honest majority (t < n/2), dishonest majority (t < n), etc.
 
-**Security with abort**:
+**Hardness assumptions**:
 
+**Trusted setup**:
+
+**Security guarantees**:
+* **Guaranteed output delivery (GOD)**: The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.
+* **Identifiable abort**:
+* **Security with abort**:
 ## Protocols
 
 Most MPC protocols turn the function to compute into a circuit representation (yes, like in electrical engineering with AND gates and whatnot).
@@ -77,6 +88,8 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 **Beaver–Micali–Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
 * _Assumptions:_ Secure OT
+<br/>
+
 **Cramer–Damgård–Nielsen (CDN)**:
 * _Assumptions:_ Threshold homomorphic encryption
 <hr/>
@@ -91,7 +104,7 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Circuit Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
-1986 | Yao's GC | 2    | semi-honest       | O(1) | O(n) | Boolean
+1986 | Yao's GC | 2    | < 2 semi-honest   | O(1) | O(n) | Boolean
 1987 | GMW      | many | < n semi-honest   | O(d) | O(1) | Boolean
 &#8203;|        | many | < n malicious     |      |      | Boolean
 1988 | BGW      | many | < n/2 semi-honest | O(d) | O(d) | Arithmetic
@@ -99,6 +112,12 @@ Year | Name | Number of parties | Threat Model | Round Complexity | Communicatio
 1988 | CCD      | many |                   |      |      |
 1990 | BMR      | many | < n               | O(1) |     | Boolean
 2001 | CDN      | many | < n/2 malicious   | O(d) | O(n) | Arithmetic
+
+## Extensions to basic MPC
+
+**Non-interactive MPC (NI-MPC)**:
+
+**Non-interactive 2PC**:
 
 ## References
 

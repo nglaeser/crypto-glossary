@@ -39,21 +39,39 @@
 A function <img alt="f" src="https://render.githubusercontent.com/render/math?math=f" style="transform: translateY(20%);" /> is negligible if for all natural numbers <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" />, there exists a natural number <img alt="N" src="https://render.githubusercontent.com/render/math?math=N" style="transform: translateY(20%);" /> such that <img alt="f(n) < n^{-c}" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%3C%20n%5E%7B-c%7D" style="transform: translateY(20%);" /> for all <img alt="n > N" src="https://render.githubusercontent.com/render/math?math=n%20%3E%20N" style="transform: translateY(20%);" />.
 </details>
 
+**Probabilistic polynomial time (PPT)**: A potentially _probabilistic_ algorithm that runs in polynomially many steps. In cryptography, we usually consider PPT adversaries (polynomial in the _security parameter_).
+
 **Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable <img alt="\Pi" src="https://render.githubusercontent.com/render/math?math=%5CPi" style="transform: translateY(20%);" />.
+
+**Probabilistic**:
 
 **Randomized**: A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
 **Security game**: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. See ["Game-based security"](#game-based-security).
 <!-- TODO: link to an example game, e.g. CCA -->
 
+**Security parameter**: Denoted by <img alt="\lambda" src="https://render.githubusercontent.com/render/math?math=%5Clambda" style="transform: translateY(20%);" /> (or sometimes <img alt="\kappa" src="https://render.githubusercontent.com/render/math?math=%5Ckappa" style="transform: translateY(20%);" /> for computational security), this is a measure of how hard it is to break the security of a system.
+Generally, an adversary's _advantage_ in attacking a scheme should be negligible in the security parameter; thus, the parameter needs to be large enough that the specific negligible function also corresponds to a sufficiently low success probability in practice.
+Computational security parameters are generally <img alt="\lambda = 128" src="https://render.githubusercontent.com/render/math?math=%5Clambda%20%3D%20128" style="transform: translateY(20%);" /> or <img alt="\lambda = 256" src="https://render.githubusercontent.com/render/math?math=%5Clambda%20%3D%20256" style="transform: translateY(20%);" /> and correspond to the size of the instance of the computational problem to be solved; information-theoretic security parameters can be lower and corresponds directly to an adversary's statistical success probability. [See also the [Wikipedia page](https://en.wikipedia.org/wiki/Security_parameter)]
+
+**Sybil attack**: Attack in which an adversary creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.
+
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over <img alt="N" src="https://render.githubusercontent.com/render/math?math=N" style="transform: translateY(20%);" /> elements means each of the elements is drawn with probability <img alt="1/N" src="https://render.githubusercontent.com/render/math?math=1%2FN" style="transform: translateY(20%);" />.
 
+**Unary**: Compared to binary, which represents numbers using two symbols (0 and 1), the _unary_ representation of a number consists only of 1s. Specifically, a number n is represented in unary as a string of n 1s (e.g., 5 in unary would be 11111). Security parameters are usually given as input in their unary representation, i.e. <img alt="1^\lambda" src="https://render.githubusercontent.com/render/math?math=1%5E%5Clambda" style="transform: translateY(20%);" />.
+
 **Without loss of generality**:
+
+**w.h.p.**: With high probability.
 
 ### Complexity Theory
 * **Big-O notation**: Written <img alt="O(n)" src="https://render.githubusercontent.com/render/math?math=O%28n%29" style="transform: translateY(20%);" />, this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 * **Big-omega notation**: Written <img alt="\Omega(n)" src="https://render.githubusercontent.com/render/math?math=%5COmega%28n%29" style="transform: translateY(20%);" />, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 * **Big-theta notation**: Written <img alt="\Theta(n)" src="https://render.githubusercontent.com/render/math?math=%5CTheta%28n%29" style="transform: translateY(20%);" />, this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function <img alt="f(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29" style="transform: translateY(20%);" /> is Big-Theta of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> (written as <img alt="f(n) \in \Theta(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5CTheta%28n%29" style="transform: translateY(20%);" />) iff <img alt="f(n) \in O(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20O%28n%29" style="transform: translateY(20%);" /> and <img alt="f(n) \in \Omega(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5COmega%28n%29" style="transform: translateY(20%);" />.
+<hr/>
+
+**Polylog(n)**: Polynomial in the logarithm, i.e. poly(log(n)).
+
 <!-- TODO: drawing of O/Omega/Theta and f(n) --->
 
 ### Composition
@@ -94,9 +112,12 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 * **Lattice-based cryptography**: Cryptography based on lattice hardness assumptions.
 <br/>
 
-**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
-
+**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality.
+* **Virtual-black-box (VBB) security**: The strongest notion of program obfuscation; it says that the obfuscated program acts as a black box. <!-- is there an impossibility result for this? -->
+* **Indistinguishability obfuscation (iO)**: Usually styled as <img alt="\mathcal{iO}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BiO%7D" style="transform: translateY(20%);" />. <!-- todo -->
 **Quantum Cryptography**: Rebuilding cryptographic primitives and cryptosystems that run on (and take advantage of the properties of) quantum computers.
+
+**Rational Cryptography**:
 
 **Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge →](subareas/zk.md)
 
@@ -104,9 +125,19 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 Basic building blocks for cryptographic protocols.
 
-**Cryptographic hash function**:
-
+**Commitment scheme**:
+* **Vector commitment**:
+* **Shrinking commitment**:
+* <!-- used when we want the pk to be small? -->
 **Hash function**:
+* **Cryptographic hash function**:
+**Key Agreement**:
+
+**Key Encapsulation Mechanism (KEM)**:
+
+**Message authentication code (MAC)**:
+
+**One-way function (OWF)**: In a way this is also an assumption, since we don't know of any function that is provably hard to invert.
 
 **Pseudo-random function (PRF)**: A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
 
@@ -116,13 +147,13 @@ Basic building blocks for cryptographic protocols.
 
 **Signatures**: Signatures are used to ensure _integrity_. [More about signatures →](primitives/signatures.md)
 
-### Cryptographic Schemes
-
-These are active lines of research creating particular schemes or primitives that to me don't seem quite large enough to be their own area and are new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
-
-**Message authentication code (MAC)**:
-
 **Time-Lock Puzzle (TLP)**:
+
+**Trapdoor function**:
+* **Lossy trapdoor function**:
+## Standard Techniques
+
+**Fujisaki-Okamoto (FO) Transform**:
 
 ## Threat Models
 
@@ -132,9 +163,21 @@ These are active lines of research creating particular schemes or primitives tha
 
 **Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
+<hr/>
+
+### Less standard
+
+**Fail-stop adversary**: Slightly stronger than the semi-honest adversary; follows the protocol the way a semi-honest adversary does, but can choose to abort at any time (or cause parties it controls to abort).
+
+**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf) | introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
+
 ## Security Definitions & Notions
 
-**Computational security**:
+**Computational security**: The scheme can be [reduced](proofs.md) to solving some problem that is [assumed to be computationally hard](assumptions.md).
+
+**Covert security**:
+
+**Forward secrecy**: In key agreement protocols, this is the guarantee that the compromise of long-term secrets in some session t does not affect the security of any sessions that took place before t (i.e., those messages still cannot be decrypted). This also implies that the compromise of the session key t does not expose previous sessions.
 
 **Knowledge assumption**:
 
@@ -142,48 +185,16 @@ These are active lines of research creating particular schemes or primitives tha
 
 ### Game-based security
 
-Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_.
-
-**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
-* **IND-CPA game**:
-  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
-  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
-  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
-  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
-  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> continues to interact with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
-  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
-<br/>
-
-<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
-
-**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
-* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
-  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
-  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> **and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" />** (in polynomial time)
-  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
-  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
-  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
-<br/>
-
-<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
-* **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" />. Game:
-  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
-  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
-  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
-  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
-  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> **continues to interact with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" />** (in polynomial time) but can't query <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" /> on <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" />
-  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
-<br/>
-
-<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
+Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_. For example, [CPA- and CCA-security](primitives/encryption.md#security-notions).
 
 <!-- Table of security games.
 Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
 <hr/>
 
-**Adaptive security**:
+**Adaptive security**: Secure against an **adaptive adversary**, which can choose its actions dynamically and based on the responses of a game/protocol/etc. Also called **full security**.
+
+**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive** or **static security**. Compare to _adaptive security_.
 
 **Computational security**:
 

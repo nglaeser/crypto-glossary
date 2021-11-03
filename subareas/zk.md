@@ -42,8 +42,11 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 
 **Sigma protocol (Σ-protocol)**: Interactive honest-verifier zero-knowledge (HVZK) proof system.
 
-**NIZK**: Non-Interactive Zero Knowledge proof.
+**NIWI**: Non-Interactive Witness Indistinguishable proof.
 
+**NIZK**: Non-Interactive Zero Knowledge proof.
+* Not known from CDH
+* <!-- Maybe list for each type what assumptions they are known from? -->
 **SNARG**: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
 
 **SNARK**: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
@@ -52,7 +55,10 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 
 **STARK**:
 
-**DV-NIZK**: Designated Verifier NIZK; can be verified by a particular party. A MAC can be thought of as a DV-NIZK for a message, where the verifier is the party holding the MAC key (?).
+**DV-NIZK**: Designated Verifier NIZK; can only be verified by a particular party. A _MAC_ can be thought of as a DV-NIZK for a key (witness) corresponding to a message-signature pair (statement), where the verifier is the party holding the MAC key. This is zero-knowledge since no other party learns the witness from the MAC.
+
+**Signature of Knowledge**: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement x. Thus the signature is done with respect to some NP statement.
+[Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)]
 
 <!-- Insert table? -->
 
