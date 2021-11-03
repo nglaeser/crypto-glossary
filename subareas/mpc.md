@@ -21,18 +21,18 @@ There are more serious real-world applications for this too. You could imagine u
 
 ## Building Blocks
 
-**Beaver Triples**: Assuming parties hold _secret shares_ of values x,y,a,b,c=ab for uniform a,b, they can compute shares of z=xy as follows:
-1. Publicly reconstruct x-a, y-b
+**Beaver Triples**: For any variable d, let [d] denote a party's share of d. Assuming parties hold _secret shares_ of values x,y,a,b,c=ab for uniform a,b, they can compute shares of z=xy as follows:
+1. Publicly reconstruct x-a, y-b:
   * Locally compute shares of x-a, y-b
   * Broadcast shares to reconstruct
-2. Use local computation to get shares of z
-  * For some variable d, let [d] denote a party's share of d. Each party sets its share [z] = [c] + (y-b)[x] + (x-a)[y] - (x-a)(y-b)
+2. Use local computation to get shares of z:
+  * Each party sets its share [z] = [c] + (y-b)[x] + (x-a)[y] - (x-a)(y-b)
   * Note that these are shares of xy!
 <br/>
 
 **Cut-and-choose**: This is an idea used to turn a semi-honest MPC protocol into a malicious-secure one. Whenever we rely on the well-formedness of some (potentially malicious) party's inputs, we use the following idea to guarantee their well-formedness: we ask the party to generate many values, then challenge it on a randomly selected fraction of them. The party opens this subset, and if they are all well-formed/honestly generated, the unopened half is used in the protocol. By a statistical argument, these are very likely also well-formed.
 
-**Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit <img alt="b" src="https://render.githubusercontent.com/render/math?math=b" style="transform: translateY(20%);" />. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
+**Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit _b_. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
 ![Diagram of the OT functionality](../img/OT.png)
 
 OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four choices) or more generally 1-out-of-n OT for some parameter n.
@@ -42,8 +42,8 @@ OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four 
 <a title="Blokhead at English Wikipedia, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Visual_crypto_animation_demo.gif"><img width="256" alt="Visual crypto animation demo" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Visual_crypto_animation_demo.gif"></a>
 
 Schemes:
-* **Exclusive OR (XOR) secret-sharing**: For a secret <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" />, set Party <img alt="i" src="https://render.githubusercontent.com/render/math?math=i" style="transform: translateY(20%);" />'s share to some random value <img alt="r_i" src="https://render.githubusercontent.com/render/math?math=r_i" style="transform: translateY(20%);" />, except for a designated party which gets <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" /> XOR <img alt="r_1" src="https://render.githubusercontent.com/render/math?math=r_1" style="transform: translateY(20%);" /> XOR <img alt="\ldots" src="https://render.githubusercontent.com/render/math?math=%5Cldots" style="transform: translateY(20%);" /> XOR <img alt="r_N" src="https://render.githubusercontent.com/render/math?math=r_N" style="transform: translateY(20%);" />. The shares XOR together to <img alt="s" src="https://render.githubusercontent.com/render/math?math=s" style="transform: translateY(20%);" />, but each individual share looks random.
-* **Shamir secret-sharing**: This is a form of <img alt="(t+1)" src="https://render.githubusercontent.com/render/math?math=%28t%2B1%29" style="transform: translateY(20%);" />-out-of-<img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> secret-sharing, i.e., at least <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> out of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-<img alt="t" src="https://render.githubusercontent.com/render/math?math=t" style="transform: translateY(20%);" /> polynomial. Because <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> points define a unique polynomial, <img alt="t+1" src="https://render.githubusercontent.com/render/math?math=t%2B1" style="transform: translateY(20%);" /> parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
+* **Exclusive OR (XOR) secret-sharing**: For a secret _s_, set Party _i_'s share to some random value <img alt="r_i" src="https://render.githubusercontent.com/render/math?math=r_i" style="transform: translateY(20%);" />, except for a designated party which gets <img alt="s \text{XOR} r_1 \text{XOR} \ldots \text{XOR} r_N" src="https://render.githubusercontent.com/render/math?math=s%20%5Ctext%7BXOR%7D%20r_1%20%5Ctext%7BXOR%7D%20%5Cldots%20%5Ctext%7BXOR%7D%20r_N" style="transform: translateY(20%);" />. The shares XOR together to _s_, but each individual share looks random.
+* **Shamir secret-sharing**: This is a form of (t+1)-out-of-n secret-sharing, i.e., at least t+1 out of n parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-t polynomial. Because t+1 points define a unique polynomial, t+1 parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
 <br/>
 
 Secret-sharing schemes with additional properties also exist, but basic secret sharing usually suffices for MPC.
@@ -54,8 +54,6 @@ Secret-sharing schemes with additional properties also exist, but basic secret s
 <br/>
 
 **MPC-in-the-head**:
-
-<br/>
 
 ## Protocol Characteristics
 
