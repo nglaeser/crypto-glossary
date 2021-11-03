@@ -17,6 +17,7 @@ Glossary of theoretical cryptography terms.
 - [Models](glossary.md#models)
 
 [Proof Techniques](proofs.md)  
+[Cryptographic Assumptions](assumptions.md)
 
 ## Notation
 
