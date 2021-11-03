@@ -64,9 +64,8 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 > 1. DDH is hard in $G_1$
 > 1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. <br/>
 >
->
-> Used in
-> - Elliptic-curve cryptography (ECC)
+> <p>Used in</p>
+> <li>Elliptic-curve cryptography (ECC)</li>
 
 ### **Symmetric External Diffie–Hellman (SXDH)**
 > The same as XDH, but additionally assumes DDH is also hard in $G_2$. 
