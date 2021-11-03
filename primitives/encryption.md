@@ -32,19 +32,25 @@ Schemes:
 
 ### Other
 
-**Structured encryption**:
-
-**Rerandomizable encryption**:
-
 **Attribute-based encryption (ABE)**: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
 
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key <img alt="k_f" src="https://render.githubusercontent.com/render/math?math=k_f" style="transform: translateY(20%);" /> that decrypts the ciphertext into a function <img alt="f(m)" src="https://render.githubusercontent.com/render/math?math=f%28m%29" style="transform: translateY(20%);" /> of the plaintext <img alt="m" src="https://render.githubusercontent.com/render/math?math=m" style="transform: translateY(20%);" />.
 
 **Identity-based encryption (IBE)**:
 * **Hierarchical IBE (HIBE)**:
+**Registration-based encryption (RBE)**:
+
+**Rerandomizable encryption**:
+
+**Structured encryption**:
+
+**Witness encryption (WE)**:
+* **Extractable witness encryption (EWE)**:
 ## Security Notions
 
-**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
+**Circular security**: Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message (KDM) security**.
+
+**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more specific name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
 * **IND-CPA game**:
   1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
   2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
@@ -56,7 +62,7 @@ Schemes:
 
 <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
 
-**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more specifically IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
 * **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
   1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
   2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> **and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" />** (in polynomial time)

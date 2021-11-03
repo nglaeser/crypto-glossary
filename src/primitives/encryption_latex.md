@@ -29,10 +29,6 @@ Schemes:
 
 ### Other
 
-**Structured encryption**:  
-
-**Rerandomizable encryption**:  
-
 **Attribute-based encryption (ABE)**: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
 
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key $k_f$ that decrypts the ciphertext into a function $f(m)$ of the plaintext $m$.
@@ -40,9 +36,20 @@ Schemes:
 **Identity-based encryption (IBE)**:
 - **Hierarchical IBE (HIBE)**:
 
+**Registration-based encryption (RBE)**:
+
+**Rerandomizable encryption**:  
+
+**Structured encryption**:  
+
+**Witness encryption (WE)**:
+- **Extractable witness encryption (EWE)**:
+
 ## Security Notions
 
-**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
+**Circular security**: Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message (KDM) security**.
+
+**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more specific name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
 - **IND-CPA game**:
   1. Challenger: $k \gets Gen(1^n)$
   1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ (in polynomial time)
@@ -55,7 +62,7 @@ Schemes:
 
 $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.  
 
-**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more specifically IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
 
 - **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
   1. Challenger: $k \gets Gen(1^n)$

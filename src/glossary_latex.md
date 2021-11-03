@@ -39,12 +39,22 @@
 A function $f$ is negligible if for all natural numbers $c$, there exists a natural number $N$ such that $f(n) < n^{-c}$ for all $n > N$.
 </details>
 
+**Probabilistic polynomial time (PPT)**: A potentially _probabilistic_ algorithm that runs in polynomially many steps. In cryptography, we usually consider PPT adversaries (polynomial in the _security parameter_).
+
 **Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable $\Pi$.
+
+**Probabilistic**: 
 
 **Randomized**: A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
 **Security game**: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. See ["Game-based security"](#game-based-security).
 <!-- TODO: link to an example game, e.g. CCA -->
+
+**Security parameter**: Denoted by $\lambda$ (or sometimes $\kappa$ for computational security), this is a measure of how hard it is to break the security of a system. 
+Generally, an adversary's _advantage_ in attacking a scheme should be negligible in the security parameter; thus, the parameter needs to be large enough that the specific negligible function also corresponds to a sufficiently low success probability in practice.
+Computational security parameters are generally $\lambda = 128$ or $\lambda = 256$ and correspond to the size of the instance of the computational problem to be solved; information-theoretic security parameters can be lower and corresponds directly to an adversary's statistical success probability. [See also the [Wikipedia page](https://en.wikipedia.org/wiki/Security_parameter)]
+
+**Sybil attack**: Attack in which an adversary creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.
 
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over $N$ elements means each of the elements is drawn with probability $1/N$.
 
@@ -61,6 +71,10 @@ A function $f$ is negligible if for all natural numbers $c$, there exists a natu
 - **Big-omega notation**: Written $\Omega(n)$, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
 - **Big-theta notation**: Written $\Theta(n)$, this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function $f(n)$ is Big-Theta of $n$ (written as $f(n) \in \Theta(n)$) iff $f(n) \in O(n)$ and $f(n) \in \Omega(n)$.
+
+<hr/>
+
+**Polylog(n)**: Polynomial in the logarithm, i.e. poly(log(n)).
 
 <!-- TODO: drawing of O/Omega/Theta and f(n) --->
 
@@ -105,9 +119,13 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 <br/>
 
-**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. The strongest notion of security here is virtual-black-box (VBB) security, which means that the obfuscated program acts as a black box.
+**Program Obfuscation**: hide the inner workings (and secrets) of a program cryptographically while preserving functionality. 
+- **Virtual-black-box (VBB) security**: The strongest notion of program obfuscation; it says that the obfuscated program acts as a black box. <!-- is there an impossibility result for this? -->
+- **Indistinguishability obfuscation (iO)**: Usually styled as $\mathcal{iO}$. <!-- todo -->
 
 **Quantum Cryptography**: Rebuilding cryptographic primitives and cryptosystems that run on (and take advantage of the properties of) quantum computers.
+
+**Rational Cryptography**:
 
 **Zero-knowledge proofs**: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](subareas/zk.md)
 
@@ -115,11 +133,22 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 Basic building blocks for cryptographic protocols.
 
+**Commitment scheme**:
+- **Vector commitment**:
+- **Shrinking commitment**:
+<!-- used when we want the pk to be small? -->
+
 **Hash function**:
 
 - **Cryptographic hash function**:
 
+**Key Agreement**:
+
 **Key Encapsulation Mechanism (KEM)**:
+
+**Message authentication code (MAC)**:
+
+**One-way function (OWF)**: In a way this is also an assumption, since we don't know of any function that is provably hard to invert.
 
 **Pseudo-random function (PRF)**: A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
 
@@ -129,12 +158,14 @@ Basic building blocks for cryptographic protocols.
 
 **Signatures**: Signatures are used to ensure _integrity_. [More about signatures &rarr;](primitives/signatures.md)
 
-### Cryptographic Schemes
-These are active lines of research creating particular schemes or primitives that to me don't seem quite large enough to be their own area and are new enough not to fall under the "classic" crypto primitives [above](#cryptographic-primitives).
-
-**Message authentication code (MAC)**:
-
 **Time-Lock Puzzle (TLP)**:
+
+**Trapdoor function**:
+- **Lossy trapdoor function**:
+
+## Standard Techniques
+
+**Fujisaki-Okamoto (FO) Transform**:
 
 ## Threat Models
 
@@ -144,11 +175,21 @@ These are active lines of research creating particular schemes or primitives tha
 
 **Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
+<hr/>
+
+### Less standard
+
+**Fail-stop adversary**: Slightly stronger than the semi-honest adversary; follows the protocol the way a semi-honest adversary does, but can choose to abort at any time (or cause parties it controls to abort).
+
 **Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf) | introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
 
 ## Security Definitions & Notions
 
-**Computational security**:
+**Computational security**: The scheme can be [reduced](proofs.md) to solving some problem that is [assumed to be computationally hard](assumptions.md).
+
+**Covert security**:
+
+**Forward secrecy**: In key agreement protocols, this is the guarantee that the compromise of long-term secrets in some session t does not affect the security of any sessions that took place before t (i.e., those messages still cannot be decrypted). This also implies that the compromise of the session key t does not expose previous sessions.
 
 **Knowledge assumption**:
 
@@ -164,7 +205,7 @@ Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
 **Adaptive security**: Secure against an **adaptive adversary**, which can choose its actions dynamically and based on the responses of a game/protocol/etc. Also called **full security**.
 
-**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive security**. Compare to _adaptive security_.
+**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive** or **static security**. Compare to _adaptive security_.
 
 **Computational security**:
 

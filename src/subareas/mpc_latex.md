@@ -29,6 +29,8 @@ There are more serious real-world applications for this too. You could imagine u
     - Each party sets its share [z] = [c] + (y-b)[x] + (x-a)[y] - (x-a)(y-b)
     - Note that these are shares of xy!
 
+**Cut-and-choose**: This is an idea used to turn a semi-honest MPC protocol into a malicious-secure one. Whenever we rely on the well-formedness of some (potentially malicious) party's inputs, we use the following idea to guarantee their well-formedness: we ask the party to generate many values, then challenge it on a randomly selected fraction of them. The party opens this subset, and if they are all well-formed/honestly generated, the unopened half is used in the protocol. By a statistical argument, these are very likely also well-formed.
+
 **Oblivious Transfer (OT)**: Functionality in which one party holds two strings and the other a selection bit $b$. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.
 ![Diagram of the OT functionality](../img/OT.png)
 
@@ -43,19 +45,29 @@ Schemes:
 - **Shamir secret-sharing**: This is a form of $(t+1)$-out-of-$n$ secret-sharing, i.e., at least $t+1$ out of $n$ parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-$t$ polynomial. Because $t+1$ points define a unique polynomial, $t+1$ parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
 
 Secret-sharing schemes with additional properties also exist, but basic secret sharing usually suffices for MPC.
-- **Homomorphic secret sharing**:
+- **Function secret sharing (FSS)**:
+- **Homomorphic secret sharing (HSS)**:
 - **Robust secret sharing**: Does not consider a corrupt dealer. ...
 - **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
 
+**MPC-in-the-head**:
+
 <br/>
 
-**Cut-and-choose**: This is an idea to turn a semi-honest secure MPC protocol into malicious-secure one. ...
+## Protocol Characteristics
 
-## Properties
+**Corruption type**: Semi-honest, malicious, etc.
 
-**Guaranteed output delivery (GOD)**: The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.
+**Corruption threshold** (t): Honest majority (t < n/2), dishonest majority (t < n), etc.
 
-**Security with abort**:
+**Hardness assumptions**: 
+
+**Trusted setup**: 
+
+**Security guarantees**:
+- **Guaranteed output delivery (GOD)**: The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.
+- **Identifiable abort**:
+- **Security with abort**:
 
 ## Protocols
 
@@ -87,6 +99,8 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 **Beaver–Micali–Rogaway (BMR)**: This can be viewed as an adaptation of Yao's garbled circuit approach to more than two parties while keeping its low round complexity. Use GMW to compute a garbled circuit for the function to evaluate; then, one party evaluates the garbled circuit.
 - _Assumptions:_ Secure OT
 
+<br/>
+
 **Cramer–Damgård–Nielsen (CDN)**:
 - _Assumptions:_ Threshold homomorphic encryption
 
@@ -100,6 +114,12 @@ Most MPC protocols turn the function to compute into a circuit representation (y
 
 <!-- <embed type="text/html" src="../src/subareas/mpc_table.html"></embed> -->
 [#INCLUDE ../src/subareas/mpc_table.md]
+
+## Extensions to basic MPC
+
+**Non-interactive MPC (NI-MPC)**:
+
+**Non-interactive 2PC**:
 
 ## References
 
