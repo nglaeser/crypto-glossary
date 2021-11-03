@@ -48,7 +48,11 @@ A function $f$ is negligible if for all natural numbers $c$, there exists a natu
 
 **Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over $N$ elements means each of the elements is drawn with probability $1/N$.
 
+**Unary**: Compared to binary, which represents numbers using two symbols (0 and 1), the _unary_ representation of a number consists only of 1s. Specifically, a number n is represented in unary as a string of n 1s (e.g., 5 in unary would be 11111). Security parameters are usually given as input in their unary representation, i.e. $1^\lambda$.
+
 **Without loss of generality**: 
+
+**w.h.p.**: With high probability.
 
 ### Complexity Theory
 
@@ -111,9 +115,11 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 Basic building blocks for cryptographic protocols.
 
-**Cryptographic hash function**:
-
 **Hash function**:
+
+- **Cryptographic hash function**:
+
+**Key Encapsulation Mechanism (KEM)**:
 
 **Pseudo-random function (PRF)**: A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
 
@@ -138,6 +144,8 @@ These are active lines of research creating particular schemes or primitives tha
 
 **Semi-honest adversary**: An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
+**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf) | introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
+
 ## Security Definitions & Notions
 
 **Computational security**:
@@ -154,7 +162,9 @@ Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
 <hr/>
 
-**Adaptive security**:
+**Adaptive security**: Secure against an **adaptive adversary**, which can choose its actions dynamically and based on the responses of a game/protocol/etc. Also called **full security**.
+
+**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive security**. Compare to _adaptive security_.
 
 **Computational security**:
 

@@ -41,7 +41,7 @@ Schemes:
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key <img alt="k_f" src="https://render.githubusercontent.com/render/math?math=k_f" style="transform: translateY(20%);" /> that decrypts the ciphertext into a function <img alt="f(m)" src="https://render.githubusercontent.com/render/math?math=f%28m%29" style="transform: translateY(20%);" /> of the plaintext <img alt="m" src="https://render.githubusercontent.com/render/math?math=m" style="transform: translateY(20%);" />.
 
 **Identity-based encryption (IBE)**:
-
+* **Hierarchical IBE (HIBE)**:
 ## Security Notions
 
 **CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).

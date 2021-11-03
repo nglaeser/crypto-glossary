@@ -38,6 +38,7 @@ Schemes:
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key $k_f$ that decrypts the ciphertext into a function $f(m)$ of the plaintext $m$.
 
 **Identity-based encryption (IBE)**:
+- **Hierarchical IBE (HIBE)**:
 
 ## Security Notions
 
