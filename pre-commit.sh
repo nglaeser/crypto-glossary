@@ -3,7 +3,7 @@
 ### stash unstaged changes
 STASH_MSG="pre-commit-$(date +%s)"
 # `git stash save` is deprecated
-git stash push --keep-index -m $STASH_MSG #-q
+git stash push --keep-index -m $STASH_MSG -q
 
 ### do the stuff
 # look for _latex.md files in all subdirectories of src
@@ -38,4 +38,4 @@ done
 git add .
 
 ### pop the stash to return repo to previous condition
-git stash pop #-q
+git stash pop -q
