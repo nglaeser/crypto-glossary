@@ -16,7 +16,9 @@ Zero-knowledge (ZK) protocols occur between two parties: a _prover_ and a _verif
 
 ZK protocols are only interesting if the prover doesn't want to reveal its witness (the _zero-knowledge_ property). (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)
 
-**Example:** <!-- Where's Waldo example -->
+### Example
+
+<!-- Where's Waldo example -->
 
 ## Properties
 
