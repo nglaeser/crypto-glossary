@@ -16,13 +16,13 @@
 
 **Feasibility result**:
 
-**Field**: A set of elements $F$ with two binary operations $+$ and $\cdot$ (addition and multiplication) that satisfy particular properties called the [field axioms](https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition) (specifically associativity, commutativity, identity, and invertibility of both operations along with distributivity of multiplication over addition). Both the rational numbers and the real numbers are fields.
+**Field**: A set of elements F with two binary operations + and • (addition and multiplication) that satisfy a set of properties called the [field axioms](https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition) (specifically associativity, commutativity, identity, and invertibility of both operations along with distributivity of multiplication over addition). Both the rational numbers and the real numbers are fields.
 
 **Functionality**: A particular set of capabilities or properties to be achieved. For example, many protocols exist that implement the functionality of public key encryption. In this way, a functionality is abstract and independent of implementation details, and cryptosystems are build to achieve a functionality. Often, to prove security, a protocol is compared to an _ideal_ functionality, to show that it meets the same security properties.
 
 **Function**: A mathematical object that maps each input to at most one output.
 
-**Group**: A set of elements $G$ with some binary operation $\cdot$ (the group operation) that satisfies particular properties called the [group axioms](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition) (specifically associativity, identity, and invertibility). The integers form a group under addition.
+**Group**: A set of elements $G$ with some binary operation • (the group operation) that satisfies a set of properties called the [group axioms](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition) (specifically associativity, identity, and invertibility). The integers form a group under addition.
 
 **Hardness assumption**: A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated.
 
@@ -36,12 +36,12 @@
 
 <details>
 <summary>Formal Definition</summary>
-A function $f$ is negligible if for all natural numbers $c$, there exists a natural number $N$ such that $f(n) < n^{-c}$ for all $n > N$.
+A function $f$ is negligible if for all natural numbers c, there exists a natural number N such that $f(n) < n^{-c}$ for all n > N.
 </details>
 
 **Probabilistic polynomial time (PPT)**: A potentially _probabilistic_ algorithm that runs in polynomially many steps. In cryptography, we usually consider PPT adversaries (polynomial in the _security parameter_).
 
-**Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable $\Pi$.
+**Protocol**: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable &Pi;.
 
 **Probabilistic**: 
 
@@ -56,9 +56,9 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 **Sybil attack**: Attack in which an adversary creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.
 
-**Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over $N$ elements means each of the elements is drawn with probability $1/N$.
+**Uniform**: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over N elements means each of the elements is drawn with probability 1/N.
 
-**Unary**: Compared to binary, which represents numbers using two symbols (0 and 1), the _unary_ representation of a number consists only of 1s. Specifically, a number n is represented in unary as a string of n 1s (e.g., 5 in unary would be 11111). Security parameters are usually given as input in their unary representation, i.e. $1^\lambda$.
+**Unary**: Compared to binary, which represents numbers using two symbols (0 and 1), the _unary_ representation of a number consists only of 1s. Specifically, a number n is represented in unary as a string of n 1s (e.g., 5 in unary would be 11111). _Security parameters_ are usually given as input in their unary representation, i.e. $1^\lambda$.
 
 **Without loss of generality**: 
 
@@ -66,11 +66,11 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 ### Complexity Theory
 
-- **Big-O notation**: Written $O(n)$, this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+- **Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
-- **Big-omega notation**: Written $\Omega(n)$, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
+- **Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
-- **Big-theta notation**: Written $\Theta(n)$, this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function $f(n)$ is Big-Theta of $n$ (written as $f(n) \in \Theta(n)$) iff $f(n) \in O(n)$ and $f(n) \in \Omega(n)$.
+- **Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function f(n) is Big-Theta of n (written as f(n) &in; &Theta;(n)) iff f(n) &in; O(n) and f(n) &in; &Omega;(n).
 
 <hr/>
 
@@ -123,6 +123,8 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 - **Virtual-black-box (VBB) security**: The strongest notion of program obfuscation; it says that the obfuscated program acts as a black box. <!-- is there an impossibility result for this? -->
 - **Indistinguishability obfuscation (iO)**: Usually styled as $\mathcal{iO}$. <!-- todo -->
 
+<br/>
+
 **Quantum Cryptography**: Rebuilding cryptographic primitives and cryptosystems that run on (and take advantage of the properties of) quantum computers.
 
 **Rational Cryptography**:
@@ -135,12 +137,14 @@ Basic building blocks for cryptographic protocols.
 
 **Commitment scheme**:
 - **Vector commitment**:
-- **Shrinking commitment**:
-<!-- used when we want the pk to be small? -->
+- **Shrinking commitment**:<!-- used when we want the pk to be small? -->
+
+<br/>
 
 **Hash function**:
-
 - **Cryptographic hash function**:
+
+<br/>
 
 **Key Agreement**:
 
@@ -165,6 +169,8 @@ Basic building blocks for cryptographic protocols.
 
 ## Standard Techniques
 
+**Fiat-Shamir (FS) Transform**:
+
 **Fujisaki-Okamoto (FO) Transform**:
 
 ## Threat Models
@@ -181,11 +187,13 @@ Basic building blocks for cryptographic protocols.
 
 **Fail-stop adversary**: Slightly stronger than the semi-honest adversary; follows the protocol the way a semi-honest adversary does, but can choose to abort at any time (or cause parties it controls to abort).
 
-**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf) | introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
+**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf); introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
 
 ## Security Definitions & Notions
 
-**Computational security**: The scheme can be [reduced](proofs.md) to solving some problem that is [assumed to be computationally hard](assumptions.md).
+**Adaptive security**: Secure against an **adaptive adversary**, which can choose its actions dynamically and based on the responses of a game/protocol/etc. Also called **full security**.
+
+**Computational security**: The security scheme can be [reduced](proofs.md) to solving some problem that is [assumed to be computationally hard](assumptions.md), i.e. its security rests on a computational assumption.
 
 **Covert security**:
 
@@ -193,29 +201,23 @@ Basic building blocks for cryptographic protocols.
 
 **Knowledge assumption**:
 
-**UC security**: Universal composability. Security definitions in the UC framework cannot be game-based.
+**Information-theoretic security**: ... See also _unconditional security_.
+
+**Perfect security**:
+
+**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive** or **static security**. Compare to _adaptive security_.
+
+**Statistical security**: Another term for _information-theoretic security_.
+
+**UC security**: Universal composability. A [simulation-based](proofs.md) security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary [composition](glossary.md#composition).
+
+**Unconditional security**: Usually used interchangeably with _information-theoretic security_. However, it can also be used to mean security that is not based on any computational assumption.
 
 ### Game-based security
 Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_. For example, [CPA- and CCA-security](primitives/encryption.md#security-notions).
 
 <!-- Table of security games. 
 Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
-
-<hr/>
-
-**Adaptive security**: Secure against an **adaptive adversary**, which can choose its actions dynamically and based on the responses of a game/protocol/etc. Also called **full security**.
-
-**Selective security**: In this case, the adversary must pick (select) its messages/queries upfront. Also called **non-adaptive** or **static security**. Compare to _adaptive security_.
-
-**Computational security**:
-
-**Information-theoretic security**: ... See also _unconditional security_.
-
-**Perfect security**:
-
-**Statistical security**: Another term for _information-theoretic security_.
-
-**Unconditional security**: Usually used interchangeably with _information-theoretic security_. However, it can also be used to mean security that is not based on any computational assumption.
 
 ## Models
 
