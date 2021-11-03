@@ -137,8 +137,8 @@ Basic building blocks for cryptographic protocols.
 
 **Commitment scheme**:
 - **Vector commitment**:
-- **Shrinking commitment**:
-<!-- used when we want the pk to be small? -->
+- **Shrinking commitment**:<!-- used when we want the pk to be small? -->
+
 <br/>
 
 **Hash function**:
@@ -169,6 +169,8 @@ Basic building blocks for cryptographic protocols.
 
 ## Standard Techniques
 
+**Fiat-Shamir (FS) Transform**:
+
 **Fujisaki-Okamoto (FO) Transform**:
 
 ## Threat Models
@@ -185,7 +187,7 @@ Basic building blocks for cryptographic protocols.
 
 **Fail-stop adversary**: Slightly stronger than the semi-honest adversary; follows the protocol the way a semi-honest adversary does, but can choose to abort at any time (or cause parties it controls to abort).
 
-**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf) | introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
+**Semi-malicious adversary**: Lies between the semi-honest and malicious cases. The adversary must follow the protocol, but it can arbitrarily and adaptively choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf); introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
 
 ## Security Definitions & Notions
 
