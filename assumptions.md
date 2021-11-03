@@ -1,5 +1,7 @@
 # Assumptions
 
+[Diffie-Hellman](#diffiehellman-dh-assumptions) | [Factoring](#factoring) | [Lattices](#lattice-assumptions)
+
 This page lists common hardness assumptions upon which cryptographic schemes have been based. These range from standard (widely used and believed to hold) to newer assumptions (recently introduced and less well-tested).
 
 <!-- Maybe color-code based on how standard they are? -->
@@ -8,6 +10,8 @@ This page lists common hardness assumptions upon which cryptographic schemes hav
 Computing the requested answer in each of these cases is believed to be hard. Since the assumptions useful in cryptography are largely _computational_ assumptions, "hard to compute" means computationally intractable (typically in polynomial time).
 
 See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions.
+
+**Subexponential assumptions.**
 
 ### **Discrete logarithm problem (DLog/DLP/DL)**
 
@@ -73,4 +77,16 @@ Importantly, the DDH assumption is believed to hold only in [certain groups](htt
 
 > The same as XDH, but additionally assumes DDH is also hard in <img alt="G_2" src="https://render.githubusercontent.com/render/math?math=G_2" style="transform: translateY(20%);" />.
 > <!-- Implies XDH. -->
+
+## Factoring
+
+### RSA Assumption
+
+## Lattice Assumptions
+
+### Learning With Errors (LWE)
+
+### Short Integer Solution (SIS)
+
+### Shortest Vector Problem (SVP)
 

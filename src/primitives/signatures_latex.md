@@ -19,11 +19,19 @@ It is known that OWFs imply signatures.
 
 ## Other types
 
+**Blind signatures**
+
 **Designated-verifier (DV) signatures**: Instead of being publicly verifiable, a signature can only be verified by a specific party (the DV). _Message authentication codes (MACs)_ can be thought of as DV-sigs, since a secret key is necessary to verify a MAC, so only parties that know the secret key can perform verification.
 
 **Functional signatures**:
 
 **Lockable signatures**:
+
+**Structure-preserving signatures**:
+
+## Other types
+
+**Functional signatures**:
 
 **Threshold signature**: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares.
 - a threshold signature should be indistinguishable from an ordinary signature
