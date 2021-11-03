@@ -49,8 +49,8 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **NIWI**: Non-Interactive Witness Indistinguishable proof.
 
 **NIZK**: Non-Interactive Zero Knowledge proof.
+<!-- Maybe list for each type what assumptions they are known from? -->
 * Not known from CDH
-* <!-- Maybe list for each type what assumptions they are known from? -->
 <br/>
 
 **SNARG**: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
