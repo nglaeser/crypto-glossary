@@ -1,8 +1,9 @@
 #!/bin/sh
 
 ### stash unstaged changes
-STASH_NAME="pre-commit-$(date +%s)"
-git stash save -q --keep-index $STASH_NAME
+STASH_MSG="pre-commit-$(date +%s)"
+# `git stash save` is deprecated
+git stash push --keep-index -m $STASH_MSG #-q
 
 ### do the stuff
 # look for _latex.md files in all subdirectories of src
@@ -37,7 +38,4 @@ done
 git add .
 
 ### pop the stash to return repo to previous condition
-STASHES=$(git stash list)
-if [[ $STASHES == "$STASH_NAME" ]]; then
-  git stash pop -q
-fi
+git stash pop #-q
