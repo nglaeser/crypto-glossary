@@ -8,7 +8,7 @@
 
 One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys for a key pair.
 
-#### Schemes:
+Schemes:
 
 **ElGamal encryption**: For a cyclic group <img alt="G" src="https://render.githubusercontent.com/render/math?math=G" style="transform: translateY(20%);" /> of order <img alt="q" src="https://render.githubusercontent.com/render/math?math=q" style="transform: translateY(20%);" /> with generator <img alt="g" src="https://render.githubusercontent.com/render/math?math=g" style="transform: translateY(20%);" />, the secret key is <img alt="x" src="https://render.githubusercontent.com/render/math?math=x" style="transform: translateY(20%);" />, a uniformly chosen element of <img alt="G" src="https://render.githubusercontent.com/render/math?math=G" style="transform: translateY(20%);" />; the public key is <img alt="(G, q, g, h:=g^x)" src="https://render.githubusercontent.com/render/math?math=%28G%2C%20q%2C%20g%2C%20h%3A%3Dg%5Ex%29" style="transform: translateY(20%);" />.
 
@@ -26,7 +26,7 @@ _Properties_: CPA-secure (by DDH assumption), unconditionally malleable.
 
 The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.
 
-#### Schemes:
+Schemes:
 
 **Advanced Encryption Standard (AES)**:
 
