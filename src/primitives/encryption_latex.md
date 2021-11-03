@@ -2,7 +2,8 @@
 
 # Encryption
 
-## Asymmetric (public-key) encryption
+## Types of Schemes
+### Asymmetric (public-key) encryption
 One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys for a key pair.  
 
 Schemes: 
@@ -17,7 +18,7 @@ _Properties_: CPA-secure (by DDH assumption), unconditionally malleable.
 
 **Paillier encryption**:
 
-## Symmetric (secret-key) encryption
+### Symmetric (secret-key) encryption
 The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
 
 Schemes:
@@ -26,7 +27,7 @@ Schemes:
 
 **One-time Pad**:
 
-## Other types
+### Other
 
 **Structured encryption**:  
 
@@ -37,3 +38,44 @@ Schemes:
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key $k_f$ that decrypts the ciphertext into a function $f(m)$ of the plaintext $m$.
 
 **Identity-based encryption (IBE)**:
+
+## Security Notions
+
+**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
+- **IND-CPA game**:
+  1. Challenger: $k \gets Gen(1^n)$
+  1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ (in polynomial time)
+  1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
+  1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
+  1. $\mathcal{A}$ continues to interact with $Enc_k(\cdot)$ (in polynomial time)
+  1. $\mathcal{A}$ outputs $b'$
+
+<br/>
+
+$\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.  
+
+**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+
+- **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
+  1. Challenger: $k \gets Gen(1^n)$
+  1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ **and $Dec_k(\cdot)$** (in polynomial time)
+  1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
+  1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
+  1. $\mathcal{A}$ can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+  1. $\mathcal{A}$ outputs $b'$
+
+<br/>
+
+$\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
+
+- **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing $c$. Game:
+  1. Challenger: $k \gets Gen(1^n)$
+  1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ and $Dec_k(\cdot)$ (in polynomial time)
+  1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
+  1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
+  1. $\mathcal{A}$ **continues to interact with $Enc_k(\cdot)$ and $Dec_k(\cdot)$** (in polynomial time) but can't query $Dec_k(\cdot)$ on $c$
+  1. $\mathcal{A}$ outputs $b'$
+
+<br/>
+
+$\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.

@@ -2,7 +2,9 @@
 
 # Encryption
 
-## Asymmetric (public-key) encryption
+## Types of Schemes
+
+### Asymmetric (public-key) encryption
 
 One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys for a key pair.
 
@@ -18,7 +20,7 @@ _Properties_: CPA-secure (by DDH assumption), unconditionally malleable.
 
 **Paillier encryption**:
 
-## Symmetric (secret-key) encryption
+### Symmetric (secret-key) encryption
 
 The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.
 
@@ -28,7 +30,7 @@ Schemes:
 
 **One-time Pad**:
 
-## Other types
+### Other
 
 **Structured encryption**:
 
@@ -39,4 +41,40 @@ Schemes:
 **Functional encryption (FE)**: An encryption scheme in which it is possible to issue "function keys", e.g. a key <img alt="k_f" src="https://render.githubusercontent.com/render/math?math=k_f" style="transform: translateY(20%);" /> that decrypts the ciphertext into a function <img alt="f(m)" src="https://render.githubusercontent.com/render/math?math=f%28m%29" style="transform: translateY(20%);" /> of the plaintext <img alt="m" src="https://render.githubusercontent.com/render/math?math=m" style="transform: translateY(20%);" />.
 
 **Identity-based encryption (IBE)**:
+
+## Security Notions
+
+**CPA security**: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more accurate name is IND-CPA security. This is equivalent to **semantic security** (semantic security ⇒ IND-CPA and IND-CPA ⇒ semantic security, so semantic security ⇔ IND-CPA).
+* **IND-CPA game**:
+  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
+  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
+  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
+  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
+  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> continues to interact with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
+  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
+<br/>
+
+<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
+
+**CCA security**: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more accurately IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+* **IND-CCA1**: Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. Game:
+  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
+  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> **and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" />** (in polynomial time)
+  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
+  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
+  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
+<br/>
+
+<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
+* **IND-CCA2**: Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" />. Game:
+  1. Challenger: <img alt="k \gets Gen(1^n)" src="https://render.githubusercontent.com/render/math?math=k%20%5Cgets%20Gen%281%5En%29" style="transform: translateY(20%);" />
+  2. <img alt="\mathcal{A}(1^n)" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D%281%5En%29" style="transform: translateY(20%);" /> interacts with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" /> (in polynomial time)
+  3. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="m_0, m_1" src="https://render.githubusercontent.com/render/math?math=m_0%2C%20m_1" style="transform: translateY(20%);" /> of same length
+  4. Challenger: <img alt="b \gets \{0,1\}, c \gets Enc_k(m_b)" src="https://render.githubusercontent.com/render/math?math=b%20%5Cgets%20%5C%7B0%2C1%5C%7D%2C%20c%20%5Cgets%20Enc_k%28m_b%29" style="transform: translateY(20%);" />, send <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" /> to <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" />
+  5. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> **continues to interact with <img alt="Enc_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Enc_k%28%5Ccdot%29" style="transform: translateY(20%);" /> and <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" />** (in polynomial time) but can't query <img alt="Dec_k(\cdot)" src="https://render.githubusercontent.com/render/math?math=Dec_k%28%5Ccdot%29" style="transform: translateY(20%);" /> on <img alt="c" src="https://render.githubusercontent.com/render/math?math=c" style="transform: translateY(20%);" />
+  6. <img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> outputs <img alt="b'" src="https://render.githubusercontent.com/render/math?math=b%27" style="transform: translateY(20%);" />
+<br/>
+
+<img alt="\mathcal{A}" src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BA%7D" style="transform: translateY(20%);" /> *wins* if <img alt="b=b'" src="https://render.githubusercontent.com/render/math?math=b%3Db%27" style="transform: translateY(20%);" />, and the game outputs 1.
 
