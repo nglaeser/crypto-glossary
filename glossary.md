@@ -67,7 +67,7 @@ Computational security parameters are generally <img alt="\lambda = 128" src="ht
 ### Complexity Theory
 * **Big-O notation**: Written O(n), this is an upper bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 * **Big-omega notation**: Written Ω(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
-* **Big-theta notation**: Written Θ(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function <img alt="f(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29" style="transform: translateY(20%);" /> is Big-Theta of <img alt="n" src="https://render.githubusercontent.com/render/math?math=n" style="transform: translateY(20%);" /> (written as <img alt="f(n) \in \Theta(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5CTheta%28n%29" style="transform: translateY(20%);" />) iff <img alt="f(n) \in O(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20O%28n%29" style="transform: translateY(20%);" /> and <img alt="f(n) \in \Omega(n)" src="https://render.githubusercontent.com/render/math?math=f%28n%29%20%5Cin%20%5COmega%28n%29" style="transform: translateY(20%);" />.
+* **Big-theta notation**: Written Θ(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function f(n) is Big-Theta of n (written as f(n) ∈ Θ(n)) iff f(n) ∈ O(n) and f(n) ∈ Ω(n).
 <hr/>
 
 **Polylog(n)**: Polynomial in the logarithm, i.e. poly(log(n)).

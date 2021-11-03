@@ -70,7 +70,7 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 - **Big-omega notation**: Written &Omega;(n), this is a lower bound on the computational complexity of an algorithm/protocol/etc. when n is large enough.
 
-- **Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function $f(n)$ is Big-Theta of $n$ (written as $f(n) \in \Theta(n)$) iff $f(n) \in O(n)$ and $f(n) \in \Omega(n)$.
+- **Big-theta notation**: Written &Theta;(n), this is an approximation of the computational complexity of an algorithm/protocol/etc. when n is large enough. A function f(n) is Big-Theta of n (written as f(n) &in; &Theta;(n)) iff f(n) &in; O(n) and f(n) &in; &Omega;(n).
 
 <hr/>
 
