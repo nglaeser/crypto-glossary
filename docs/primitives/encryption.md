@@ -1,10 +1,11 @@
 # Encryption
 
-## Types of Schemes
-### Asymmetric (public-key) encryption
-One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
+## Types of Encryption
 
-Schemes: 
+**Asymmetric (public-key) encryption**
+: One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
+
+: Schemes: 
 
 !!! info "ElGamal encryption"
 
@@ -22,16 +23,14 @@ Schemes:
 
 !!! info "Paillier encryption"
 
-### Symmetric (secret-key) encryption
-The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
+**Symmetric (secret-key) encryption**
+: The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
 
-Schemes:
+: Schemes:
 
 !!! info "Advanced Encryption Standard (AES)"
 
 !!! info "One-time Pad"
-
-### Other
 
 **Attribute-based encryption (ABE)**
 : Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
@@ -54,7 +53,7 @@ Schemes:
 :  
 
 **Witness encryption (WE)**
-:
+: 
 **Extractable witness encryption (EWE)**
 :
 

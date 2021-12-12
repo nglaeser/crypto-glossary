@@ -121,20 +121,6 @@ In general, composing secure protocols in parallel does not maintain security (a
 Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 
 ## Areas of Cryptography
-**Consensus**
-: An area of problems about how to get distributed systems to agree on state or some other piece of information. [More about consensus &rarr;](subareas/consensus.md)
-
-**Multi-party computation (MPC)**
-: Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. [More about MPC &rarr;](subareas/mpc.md)  
-<br/>
-**Private set intersetion (PSI)**
-: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection. This is a specialized problem that can be considered to fall under MPC.<!-- add use case -->  
-
-**Post-quantum cryptography (PQC)**
-: Cryptographic primitives that are secure against adversaries with quantum capabilities. _Lattice-based cryptography_ is one area of PQC. 
-<br/>
-**Lattice-based cryptography**
-: Cryptography based on lattice hardness assumptions.  
 
 **Program Obfuscation**
 : hide the inner workings (and secrets) of a program cryptographically while preserving functionality. 
@@ -150,9 +136,6 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 **Rational Cryptography**
 : 
-
-**Zero-knowledge proofs**
-: Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness. [More about zero-knowledge &rarr;](subareas/zk.md)
 
 ## Cryptographic Primitives
 
@@ -221,9 +204,8 @@ Basic building blocks for cryptographic protocols.
 **Semi-honest adversary**
 : An adversary that follows the protocol and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
 
-<hr/>
-
-### Less standard
+!!! warning "Less standard threat models"
+    The following threat models are newer and thus less widely used than the ones until now. It's possible different papers use different terms for them or that the names will change in the future.
 
 **Fail-stop adversary**
 : Slightly stronger than the semi-honest adversary; follows the protocol the way a semi-honest adversary does, but can choose to abort at any time (or cause parties it controls to abort).
@@ -245,6 +227,12 @@ Basic building blocks for cryptographic protocols.
 **Forward secrecy**
 : In key agreement protocols, this is the guarantee that the compromise of long-term secrets in some session $t$ does not affect the security of any sessions that took place before $t$ (i.e., those messages still cannot be decrypted). This also implies that the compromise of the session key for $t$ does not expose previous sessions.
 
+**Game-based security**
+: Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_. For example, [CPA- and CCA-security](primitives/encryption.md#security-notions).
+
+<!-- Table of security games. 
+Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
+
 **Knowledge assumption**
 :  
 
@@ -265,12 +253,6 @@ Basic building blocks for cryptographic protocols.
 
 **Unconditional security**
 : Usually used interchangeably with _information-theoretic security_. However, it can also be used to mean security that is not based on any computational assumption.
-
-### Game-based security
-Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_. For example, [CPA- and CCA-security](primitives/encryption.md#security-notions).
-
-<!-- Table of security games. 
-Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
 ## Models
 

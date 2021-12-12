@@ -1,5 +1,8 @@
 # Zero-Knowledge
 
+!!! summary
+    Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness.
+
 ## Background
 
 First, we define what an NP language is. A _language_ is some set of elements that meet a particular property. For instance, the language $L_{HAM}$ is the set of graphs which contain a Hamiltonian cycle. A less mathy example might be the set of words which have double-letters ("hello" is in this language because it contains two back-to-back L's, but "world" is not).

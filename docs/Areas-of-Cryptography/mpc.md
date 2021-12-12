@@ -1,5 +1,8 @@
 # Multi-Party Computation
 
+!!! summary
+    Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. 
+
 Sometimes also referred to as secure multi-party computation (SMC), multi-party computation (MPC) is a functionality in which two or more parties with secret inputs want to compute a joint function $f$ on those inputs. More explicitly, for N parties with inputs $x_1, \ldots, x_N$, an MPC protocol takes those inputs and outputs $y := f(x_1, \ldots, x_N)$.
 
 The protocol should meet a couple of conditions to be interesting/useful:
@@ -60,7 +63,7 @@ Some classic schemes are:
 **MPC-in-the-head**
 : 
 
-## Protocol Characteristics
+## Protocol Parameters
 
 **Corruption type**
 : Semi-honest, malicious, etc.
@@ -74,18 +77,19 @@ Some classic schemes are:
 **Trusted setup**
 :  
 
-**Security guarantees**
-: 
+### **Security guarantees**
 **Guaranteed output delivery (GOD)**
 : The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.  
+
 **Identifiable abort**
 : 
+
 **Security with abort**
 : 
 
-## Protocols
+## Generic Protocols
 
-Most MPC protocols turn the function to compute into a circuit representation (yes, like in electrical engineering with AND gates and whatnot). 
+These are MPC protocols that work for any function. Most protocols turn the function to be computed into a circuit representation (yes, like in electrical engineering with AND gates and whatnot). 
 
 **Yao's Garbled Circuits (GC)**
 : One party (the garbler) "garbles" the circuit by successively encrypting wire keys. The other party (the evaluator) follows the path of correct decriptions through the circuit until it obtains the keys corresponding to the output value. [[Original paper](https://ieeexplore.ieee.org/document/4568207)]
@@ -149,10 +153,17 @@ Year | Name | Number of parties | Threat Model | Round Complexity | Communicatio
 1990 | BMR      | many | <$n$               | $O(1)$ |        | Boolean
 2001 | CDN      | many | <$n/2$ malicious   | $O(d)$ | $O(n)$ | Arithmetic
 
-## Extensions to basic MPC
+## MPC Extensions
 
 **Non-interactive MPC (NI-MPC)**
 : 
 
 **Non-interactive 2PC**
 : 
+
+## Special-Purpose MPC
+
+When considering only a specific class of functions, we can often come up with faster protocols that are specially tailored to the problem.
+
+**Private set intersetion (PSI)**
+: Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection.<!-- add use case -->  

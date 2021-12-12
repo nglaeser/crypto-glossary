@@ -14,8 +14,8 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ## **Discrete logarithm**
 
-!!! info "Discrete Logarithm Problem (DLog/DLP/DL)"
-    === "Assumption"
+**Discrete Logarithm Problem (DLog/DLP/DL)**
+:   === "Assumption"
 
         Let G be a group.  
         &emsp;**Given**: $a,b \in G$  
@@ -86,7 +86,9 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         - Elliptic-curve cryptography (ECC)
 
 **Symmetric External Diffie–Hellman (SXDH)**
-: The same as XDH, but additionally assumes in (2) that DDH is also hard in $G_2$. 
+:   === "Assumption"
+
+        The same as XDH, but additionally assumes in (2) that DDH is also hard in $G_2$. 
 <!-- Implies XDH. -->
 
 ## Factoring
