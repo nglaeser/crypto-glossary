@@ -4,7 +4,11 @@
 
 ## Proof by Simulation
 
-**Black-box simulation**:
+**Black-box simulation**
+: 
+
+!!! tip "Further Reading"  
+    [How to Simulate It – A Tutorial on the Simulation Proof Technique](https://link.springer.com/chapter/10.1007%2F978-3-319-57048-8_6) by Yehuda Lindell
 
 ## Proof by Reduction
 
@@ -15,11 +19,9 @@ This is done by contradiction: we instead prove the contrapositive, that if B is
 
 <!-- drawing -->
 
-**Reduction tightness**: A reduction is called _tight_ if...
+**Reduction tightness**
+: A reduction is called _tight_ if...
 
 ## Rewinding
 
 ## Universal Composability (UC) Framework
-
-## References
-- [How to Simulate It – A Tutorial on the Simulation Proof Technique](https://link.springer.com/chapter/10.1007%2F978-3-319-57048-8_6) by Yehuda Lindell

@@ -1,5 +1,3 @@
-[&larr; Back to Glossary](../glossary.md)
-
 # Zero-Knowledge
 
 ## Background
@@ -16,58 +14,76 @@ Zero-knowledge (ZK) protocols occur between two parties: a _prover_ and a _verif
 
 ZK protocols are only interesting if the prover doesn't want to reveal its witness (the _zero-knowledge_ property). (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)
 
-### Example
-<!-- Where's Waldo example -->
+!!! example
+
+    <!-- Where's Waldo example -->
 
 ## Properties
 
-**Argument of knowledge (AoK)**: 
+**Argument of knowledge (AoK)**
+: 
 
-**Honest-verifier zero-knowledge (HVZK)**:
+**Honest-verifier zero-knowledge (HVZK)**
+: 
 
-**Non-interactive**:
+**Non-interactive**
+: 
 
-**Proof of knowledge (PoK)**: Secure against a dishonest prover.
+**Proof of knowledge (PoK)**
+: Secure against a dishonest prover.
 
-**Soundness**: (knowledge soundness?)
+**Soundness**
+: (knowledge soundness?)
 
-**Simulation Soundness**: (simulation extractability?)
+**Simulation Soundness**
+: (simulation extractability?)
 
-**Succinct**:
+**Succinct**
+: 
 
-**Witness indistinguishable (WI)**:
+**Witness indistinguishable (WI)**
+: 
 
-**Zero-knowledge (ZK)**: Secure against a dishonest verifier.
+**Zero-knowledge (ZK)**
+: Secure against a dishonest verifier.
 
 ## Types
 
 Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. Common ZK proofs:
 
-**Sigma protocol (&Sigma;-protocol)**: Interactive honest-verifier zero-knowledge (HVZK) proof system.
+**Sigma protocol (&Sigma;-protocol)**
+: Interactive honest-verifier zero-knowledge (HVZK) proof system.
 
-**NIWI**: Non-Interactive Witness Indistinguishable proof.
+**NIWI**
+: Non-Interactive Witness Indistinguishable proof.
 
-**NIZK**: Non-Interactive Zero Knowledge proof.
+**NIZK**
+: Non-Interactive Zero Knowledge proof.
 <!-- Maybe list for each type what assumptions they are known from? -->
-- Not known from CDH 
+<!-- - Not known from CDH  -->
 
-<br/>
+**SNARG**
+: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
 
-**SNARG**: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
+**SNARK**
+: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
 
-**SNARK**: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
+**SNIP**
+: [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
 
-**SNIP**: [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
+**STARK**
+: 
 
-**STARK**:
+**DV-NIZK**
+: Designated Verifier NIZK; can only be verified by a particular party. A _MAC_ can be thought of as a DV-NIZK for a key (witness) corresponding to a message-signature pair (statement), where the verifier is the party holding the MAC key. This is zero-knowledge since no other party learns the witness from the MAC.
 
-**DV-NIZK**: Designated Verifier NIZK; can only be verified by a particular party. A _MAC_ can be thought of as a DV-NIZK for a key (witness) corresponding to a message-signature pair (statement), where the verifier is the party holding the MAC key. This is zero-knowledge since no other party learns the witness from the MAC.
-
-**Signature of Knowledge**: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement x. Thus the signature is done with respect to some NP statement.
+**Signature of Knowledge**
+: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
 [Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)]
 
 <!-- Insert table? -->
 
 ## Example Protocols
 
-**GMW ZK proof**:
+**GMW ZK proof**
+: 
