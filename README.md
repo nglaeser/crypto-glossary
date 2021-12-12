@@ -1,23 +1,11 @@
 # Crypto Glossary
 Glossary of theoretical cryptography terms.
 
-**Important: if you are using GitHub in dark mode, equations will not be visible.**
-
-[Glossary](glossary.md)  
-- [General](glossary.md#general)
-- [Areas of Cryptography](glossary.md#areas-of-cryptography)
-    - [Consensus](subareas/consensus.md)
-    - [Multi-party computation](subareas/mpc.md)   
-    - [Zero-Knowledge](subareas/zk.md)
-- [Primitives](glossary.md#cryptographic-primitives)
-    - [Encryption](primitives/encryption.md)
-    - [Signatures](primitives/signatures.md)
-- [Threat Models](glossary.md#threat-models)
-- [Security Definitions](glossary.md#security-definitions--notions)
-- [Models](glossary.md#models)
-
-[Proof Techniques](proofs.md)  
-[Cryptographic Assumptions](assumptions.md)
+## Usage
+For live preview, run
+```
+mkdocs serve
+```
 
 ## Notation
 
@@ -31,8 +19,7 @@ Terms are written in **bold**. Sometimes words in a definition are written in _i
 
 ## Dependencies
 
-- [embedmd](https://github.com/kylepollina/embedmd)
-- [markdown-math-gh-compiler](https://github.com/jeremy-rifkin/markdown-math-gh-compiler) (used in this repo in the same way as explained in [this other repo](https://github.com/nglaeser/gh-md-test/).)
+- [mkdocs](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
 ## License
 
