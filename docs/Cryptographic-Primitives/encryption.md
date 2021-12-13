@@ -1,5 +1,8 @@
 # Encryption
 
+!!! summary
+    Encryption schemes are used to ensure confidentiality.
+
 ## Types of Encryption
 
 **Asymmetric (public-key) encryption**
@@ -7,7 +10,7 @@
 
 : Schemes: 
 
-!!! info "ElGamal encryption"
+!!! example "ElGamal encryption"
 
     === "Scheme"
         For a cyclic group $G$ of order $q$ with generator $g$, the secret key is $x$, a uniformly chosen element of $G$; the public key is $(G, q, g, h:=g^x)$.
@@ -19,18 +22,18 @@
         - CPA-secure (by DDH assumption)
         - unconditionally malleable
 
-!!! info "RSA encryption"
+!!! example "RSA encryption"
 
-!!! info "Paillier encryption"
+!!! example "Paillier encryption"
 
 **Symmetric (secret-key) encryption**
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
 
 : Schemes:
 
-!!! info "Advanced Encryption Standard (AES)"
+!!! example "Advanced Encryption Standard (AES)"
 
-!!! info "One-time Pad"
+!!! example "One-time Pad"
 
 **Attribute-based encryption (ABE)**
 : Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.

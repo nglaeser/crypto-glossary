@@ -1,15 +1,18 @@
 # Signatures
 
+!!! summary
+    Signatures are used to ensure integrity.
+
 It is known that OWFs imply signatures.
 <!-- Give construction -->
 
 ## Schemes
 
-!!! info "CL signatures"
+!!! example "CL signatures"
 
-!!! info "ECDSA signatures"
+!!! example "ECDSA signatures"
 
-!!! info "Schnorr signatures"
+!!! example "Schnorr signatures"
     === "Assumptions"
         - DLog
         
@@ -24,7 +27,7 @@ It is known that OWFs imply signatures.
 
 **Blind signatures**
 : 
-!!! info "Blind Schnorr signatures"
+!!! example "Blind Schnorr signatures"
 
 **Designated-verifier (DV) signatures**
 : Instead of being publicly verifiable, a signature can only be verified by a specific party (the DV). _Message authentication codes (MACs)_ can be thought of as DV-sigs, since a secret key is necessary to verify a MAC, so only parties that know the secret key can perform verification.
