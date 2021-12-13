@@ -1,5 +1,9 @@
 # Crypto Glossary
-Glossary of theoretical cryptography terms.
+Glossary of theoretical cryptography terms. Live at [nglaeser.github.io/crypto-glossary](nglaeser.github.io/crypto-glossary).
+
+## Dependencies
+
+- [mkdocs](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
 ## Usage
 For live preview, run
@@ -13,20 +17,6 @@ mkdocs build
 ```
 
 More about publishing the site with GitHub pages can be found [here](https://squidfunk.github.io/mkdocs-material/publishing-your-site/#github-pages).
-
-## Notation
-
-Terms are written in **bold**. Sometimes words in a definition are written in _italics_; this means they are defined elsewhere and you can check the definition if you are confused about the word's usage.
-
-`<-$`
-
-`{0, 1}*`
-
-`td`: trapdoor
-
-## Dependencies
-
-- [mkdocs](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
 ## License
 
