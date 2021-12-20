@@ -7,9 +7,15 @@ This page lists common hardness assumptions upon which cryptographic schemes hav
 
 Computing the requested answer in each of these cases is believed to be hard. Since the assumptions useful in cryptography are largely _computational_ assumptions, "hard to compute" means computationally intractable (typically in polynomial time).
 
-See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions.
+See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions. Assumptions marked with "*" are thought to be [post-quantum secure](Areas-of-Cryptography/pqc.md).
 
 **Subexponential assumptions**
+: 
+
+**Average-case hardness**
+: 
+
+**Worst-case hardness**
 : 
 
 ## **Discrete logarithm**
@@ -98,11 +104,36 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ## Lattice Assumptions
 
-**Learning With Errors (LWE)**
+\***Learning With Errors (LWE)**
 : 
 
-**Short Integer Solution (SIS)**
+\***Short Integer Solution (SIS)**
 : 
 
-**Shortest Vector Problem (SVP)**
+\***Shortest Vector Problem (SVP)**
 : 
+
+## Other
+
+\***Learning Parity with Noise (LPN)**
+: There are a few (equivalent) ways to phrase this assumption; two are given below.  
+    === "Assumption (version 1)"
+
+        Fix a secret $n$-bit string $k \in \{0,1\}^n$. Let $\mathcal{O}_{k,\epsilon}$ be an oracle that outputs independent samples $(x_i,y_i)$, where $x_i$ is a random $n$-bit string and $y_i := \langle x_i \mid k \rangle \oplus e_i$, where the bit $e_i$ is 1 with probability $\epsilon$ and 0 otherwise and $\langle \cdot \mid \cdot \rangle$ means inner product.  
+        &emsp;**Given**: $q$ samples $(x_i,y_i)$ from $\mathcal{O}_{k,\epsilon}$  
+        &emsp;**Compute**: $k$ (such that $y_i = \langle x_i \mid k \rangle \oplus e_i$ for all $(x_i,y_i), i=1\ldots q$)
+
+    === "Assumption (version 2)"
+
+        Let $A$ be a $q \times n$ matrix of (uniformly random) bits and $e,y$ be $q$-bit vectors (where $e_i = 1$ with probability $\epsilon$ and 0 otherwise).  
+        &emsp;**Given**: $A,y$  
+        &emsp;**Compute**: $k \in \{0,1\}^n$ such that $A\cdot k + e = y \pmod{2}$
+
+    === "Applications"
+
+        - PRGs
+        - Perfectly binding commitment
+        - PAKE
+
+<!-- [Version 1](https://perso.uclouvain.be/fstandae/PUBLIS/182.pdf) -->
+<!-- [Version 2 and applications](http://yuyu.hk/files/LPN.pdf) -->
