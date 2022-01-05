@@ -34,10 +34,12 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ## Diffie–Hellman (DH) assumptions
 
+<!-- When must $g$ (or $G$) be uniformly chosen? -->
+
 **Computational Diffie–Hellman (CDH)**
 :   === "Assumption"
 
-        Let $G$ be a cyclic group of order $q$ with generator $g$. Let $a,b$ be uniform and independent integers in ${0, ..., q-1}$:  
+        Let $G$ be a cyclic group of order $q$. Choose a random generator $g$ and let $a,b$ be uniform and independent integers in ${0, ..., q-1}$:  
         &emsp;**Given**: $(g, g^a, g^b)$  
         &emsp;**Compute**: $g^{ab}$
 
@@ -59,10 +61,10 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
     === "Assumption"
 
         Let $G$ be a cyclic group of order $q$ with generator $g$. Let $a,b,c$ be uniform and independent integers in ${0, ..., q-1}$:  
-        &emsp;**Given**: $(g,g^a,g^b,g^{ab})$ or $(g,g^a,g^b,g^c)$  
+        &emsp;**Given**: $(g,g^a,g^b,g^{ab})$[^1] or $(g,g^a,g^b,g^c)$  
         &emsp;**Output**: A decision about which type of tuple was given
     
-        *[Given]: The first type of tuple is often called a "DDH tuple" (or a "DDH triple" if the generator is left out).
+        [^1]: This type of tuple is often called a "DDH tuple" (or a "DDH triple" if the generator is left out).
 
     === "Applications"
 
@@ -125,9 +127,9 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Assumption (version 2)"
 
-        Let $A$ be a $q \times n$ matrix of (uniformly random) bits and $e,y$ be $q$-bit vectors (where $e_i = 1$ with probability $\epsilon$ and 0 otherwise).  
-        &emsp;**Given**: $A,y$  
-        &emsp;**Compute**: $k \in \{0,1\}^n$ such that $A\cdot k + e = y \pmod{2}$
+        Let $\mathbf{A}$ be a $q \times n$ matrix of (uniformly random) bits and $\vec{e},\vec{y}$ be $q$-bit vectors (where $e_i = 1$ with probability $\epsilon$ and 0 otherwise).  
+        &emsp;**Given**: $\mathbf{A},\vec{y}$  
+        &emsp;**Compute**: $\vec{k} \in \{0,1\}^n$ such that $\mathbf{A}\cdot \vec{k} + \vec{e} = \vec{y} \pmod{2}$
 
     === "Applications"
 

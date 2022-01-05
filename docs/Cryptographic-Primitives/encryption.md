@@ -8,15 +8,18 @@
 **Asymmetric (public-key) encryption**
 : One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
 
-: Schemes: 
-
 !!! example "ElGamal encryption"
 
     === "Scheme"
-        For a cyclic group $G$ of order $q$ with generator $g$, the secret key is $x$, a uniformly chosen element of $G$; the public key is $(G, q, g, h:=g^x)$.
+        $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $G$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ G$ and the public key $g^x$.
 
-        - $Enc(m \in G)$: choose a uniform element $y \in G$; return $(c_1 := g^y, c_2 := m h^y = m g^{xy})$  
-        - $Dec(c_1,c_2)$: let $s := c_1^x = g^{xy} = h^y$ and compute $s^{-1}$. Then $m$ is recovered as $c_2 s^{-1} = (m h^y) (h^y)^{-1} = m$.  
+        $\underline{\mathsf{Enc}(pk, m)}$:
+
+        - return $c := (g^r, m \cdot pk^r)$ where $r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p$
+
+        $\underline{\mathsf{Dec}(sk, c := (c_1, c_2))}:$
+
+        - return $m \gets c_2/c_1^{sk}$. Note this equals $m \cdot pk^r/(g^r)^{sk} = m \cdot g^{xr}/g^{rx} = m$
 
     === "Properties"
         - CPA-secure (by DDH assumption)
@@ -63,7 +66,7 @@
 ## Security Notions
 
 **Circular security**
-: Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message (KDM) security**.
+: Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message security**.
 
 **CPA security**
 : Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more specific name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).

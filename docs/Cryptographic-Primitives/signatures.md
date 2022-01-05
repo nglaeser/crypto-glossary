@@ -13,15 +13,23 @@ It is known that OWFs imply signatures.
 !!! example "ECDSA signatures"
 
 !!! example "Schnorr signatures"
-    === "Assumptions"
-        - DLog
-        
     === "Scheme" 
         Let $G$ be an elliptic curve group with generator $g$ and order $q$.
 
-        - $KeyGen(G, g, q)$: choose a uniform element $sk \in Z_q$; set the public key $pk = sk \cdot g$.  
-        - $Sign(sk, m)$: choose a uniform one-time key $k \in Z_q$; compute a nonce $R = k \cdot g$; the signature is $\sigma = (k - sk \cdot H(R || m ) \mod q), R)$, where $H$ is a hash function.  
-        - $Verify(m, \sigma = (s,R))$: Check $s \cdot g =^? R - H(R || m) \cdot pk$.
+        $\underline{\mathsf{Gen}}$: return the secret key $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $pk := sk \cdot g$.  
+
+        $\underline{\mathsf{Sign}(sk, m)}$: 
+        
+        - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$
+        - compute a nonce $R = k \cdot g$
+        - return the signature $\sigma := (k - sk \cdot H(R || m ) \mod q), R)$, where $H$ is a hash function.  
+
+        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,R))}$: 
+
+        - return the truth value of $s \cdot g =^? R - H(R || m) \cdot pk$
+
+    === "Assumptions"
+        - DLog
 
 ## Other types
 
@@ -50,11 +58,11 @@ It is known that OWFs imply signatures.
 : **E**xistential **U**n**F**orgeability under adaptive **C**hosen **M**essage **A**ttacks, aka "existential unforgeability".
 !!! info "EUF-CMA game"
 
-    1. Challenger: $pk,sk \gets Gen(1^n)$
-    1. $\mathcal{A}(pk)$ interacts with $Sign_{sk}(\cdot)$ (in polynomial time) – that is, it gets to see polynomially many valid signatures on _chosen_ messages
+    1. Challenger: $pk,sk \gets \mathsf{Gen}(1^n)$
+    1. $\mathcal{A}(pk)$ interacts with $\mathsf{Sign}(sk,\cdot)$ (in polynomial time) – that is, it gets to see polynomially many valid signatures on _chosen_ messages
     1. $\mathcal{A}$ outputs a message-signature pair $m^*,\sigma^*$
 
-    $\mathcal{A}$ *wins* if (1) $m^*$ wasn't one of the messages on which it queried the signing oracle and (2) $Verify_{pk}(m^*,\sigma^*) = 1$; in this case, the game outputs 1.
+    $\mathcal{A}$ *wins* if (1) $m^*$ wasn't one of the messages on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
 
 **SUF-CMA**
 : **S**trong **U**n**F**orgeability under adaptive **C**hosen **M**essage **A**ttacks, aka "strong unforgeability".
@@ -62,7 +70,7 @@ It is known that OWFs imply signatures.
 
     Same as the EUF-CMA game; only the winning condition changes:
 
-    $\mathcal{A}$ *wins* if (1) **$(m^*,\sigma^*)$ wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) $Verify_{pk}(m^*,\sigma^*) = 1$; in this case, the game outputs 1.
+    $\mathcal{A}$ *wins* if (1) **$(m^*,\sigma^*)$ wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
 
 : This is a stronger definition than EUF-CMA, since the attacker can win by forging a signature on a previously-queried message $m^*$ **as long as the signature is different**, for example by "mauling" a valid signature without changing its validity. 
 
