@@ -14,3 +14,9 @@ $\{0,1\}^*$ and $\{0,1\}^n$
 
 $\mathsf{td}$
 : Trapdoor
+
+$\mathbb{Z}_p$
+: The group of integers modulo a prime $p$ (sometimes $q$ is used instead), namely $\{0,\dots,p-1\}$. This is a cyclic group, and in fact also a ring, and (since $p$ is prime) it is also a finite field. 
+
+$\mathbb{Z}_n^\times$
+: The multiplicative subgroup of $\mathbb{Z}_n$, which consists of all elements of $\mathbb{Z}_n$ that are coprime with $n$. This means that they all have multiplicative inverses modulo $n$ and thus this group is a commutative multiplicative group.

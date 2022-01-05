@@ -13,9 +13,12 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 : 
 
 **Average-case hardness**
-: 
+: When a randomly selected instance of the problem is hard to solve.
 
 **Worst-case hardness**
+: When a randomly selected instance of the problem is not necessarily hard to solve, but rather only a carefully crafted "worst case" instance.
+
+**Decisional vs. Computational**
 : 
 
 ## **Discrete logarithm**
@@ -102,15 +105,63 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 ## Factoring
 
 **RSA Assumption**
-: 
+:   === "Assumption"
+
+        This assumption corresponds exactly to finding the plaintext of an RSA ciphertext given only the public key.
+
+        &emsp;**Given**: $c,(n,e)$ where $n=pq$ for two primes $p,q$ and $2 < e < n$  
+        &emsp;**Compute**: $p$ such that $p^e = c \pmod{n}$
+
+    === "Applications"
+
+        * RSA encryption
+
+**Hardness of factoring large numbers**
+:   === "Assumption"
+
+        Given a "sufficiently large" composite number, there is no efficient algorithm for decomposing it into a product of smaller integers. (The hardest instances of this problem are of the form $n=pq$ for large random primes $p,q$ of similar magnitude.)
+
+    === "Applications"
+
+        * RSA encryption
 
 ## Lattice Assumptions
 
 \***Learning With Errors (LWE)**
-: 
+:   === "Assumption (computational)"
+
+        Let $\mathbf{A}$ be a $m \times n$ matrix of (uniformly random) integers modulo $q$ and $\vec{e},\vec{s}$ be vectors of length $m$, where $\vec{e}$ is sampled according to some error distribution $\chi$ and $\vec{s}$ consists of uniform integers modulo $q$.  
+
+        That is, $\mathbf{A} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^{m \times n}$, $\vec{s} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^m$, $\vec{e} \gets\!\!\tiny{\$}\normalsize\ \chi$.
+
+        &emsp;**Given**: $\mathbf{A},\vec{b} := \mathbf{A} \cdot \vec{s} + \vec{e}$  
+        &emsp;**Compute**: $\vec{s} \in \mathbb{Z}_q^n$ such that $\mathbf{A}\cdot \vec{s} + vec{e} = \vec{b} \pmod{q}$
+
+        <!-- Drawing of dimensions -->
+
+    === "Assumption (decisional)"
+
+        Let $\mathbf{A},\vec{s},\vec{e},\vec{b}$ be initialized as in the computational assumption.
+
+        &emsp;**Given**: Either $(\mathbf{A},\vec{b})$ or $(\mathbf{A},\vec{u})$, where $\vec{u} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^m$  
+        &emsp;**Decide**: Whether the given tuple was of the form $(\mathbf{A},\vec{b}:=\mathbf{A}\cdot \vec{s} + \vec{e})$ or $(\mathbf{A},\vec{u})$.
+
+    === "Applications"
+
+        * NIZK
+        * Public-key encryption
 
 \***Short Integer Solution (SIS)**
-: 
+:   === "Assumption"
+
+        The problem is parameterized by a "small" scalar $\beta$ (some discussion of bounds on $\beta$ can be found [here](https://en.wikipedia.org/wiki/Short_integer_solution_problem#SISn,m,q,%CE%B2)).
+
+        &emsp;**Given**: $\mathbf{A} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^{n \times m}$  
+        &emsp;**Compute**: $\vec{x} \in \mathbb{Z}_q^m$ such that $\lVert \vec{x} \rVert < \beta$ and $\mathbf{A} \cdot \vec{x} = \vec{0}$
+
+    === "Applications"
+
+        * Trapdoor functions (TDF) (and therefore signatures)
 
 \***Shortest Vector Problem (SVP)**
 : 
