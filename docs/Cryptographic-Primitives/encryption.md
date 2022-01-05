@@ -3,7 +3,9 @@
 !!! summary
     Encryption schemes are used to ensure confidentiality.
 
-## Types of Encryption
+An encryption scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key (or key pair), an encryption algorithm $\mathsf{Enc}$ that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm $\mathsf{Dec}$ that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.
+
+## Basic Types of Encryption
 
 **Asymmetric (public-key) encryption**
 : One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
@@ -27,16 +29,42 @@
 
 !!! example "RSA encryption"
 
+    === "Scheme"
+        $\underline{\mathsf{Gen}}$: return the public key $(n,e)$ and private key $d$, where
+
+        - $n:=pq$ for two random distinct prime numbers $p,q$
+        - $1<e<\varphi(n)$ and $\gcd(e,\varphi(n))=1$[^1]
+        - $d \equiv e^{-1}\pmod{\varphi(n)}$[^2]
+
+        [^1]: $\varphi$ is Euler's totient function; as an optimization, many implementations use Carmicheal's totient function $\lambda$ instead. See the bottom of the [key generation paragraph on Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation) for more information.
+
+        [^2]: e.g., using the extended Euclidean algorithm
+
+        $\underline{\mathsf{Enc}(pk:=(n,e), m)}$ where $0 \le m < n$[^3]:  
+
+        - return $c \equiv m^e \pmod{n}$
+
+        [^3]: A message $M$ is turned into an integer $n$ satisfying this property using an agreed-upon reversible padding scheme.
+
+        $\underline{\mathsf{Dec}(sk := d, c)}:$  
+
+        - compute $c^d \equiv (m^e)^d \equiv m \pmod{n}$
+
+    === "Properties"
+        Assuming a [strong padding scheme](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes), RSA is
+
+        - CCA-secure (by either the RSA assumption or the hardness of integer factorization; if either assumption is proven false the security of RSA is compromised)
+
 !!! example "Paillier encryption"
 
 **Symmetric (secret-key) encryption**
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
 
-: Schemes:
-
 !!! example "Advanced Encryption Standard (AES)"
 
 !!! example "One-time Pad"
+
+## Advanced Encryption
 
 **Attribute-based encryption (ABE)**
 : Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.

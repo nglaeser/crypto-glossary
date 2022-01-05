@@ -3,7 +3,9 @@
 !!! summary
     Signatures are used to ensure integrity.
 
-It is known that OWFs imply signatures.
+A digital signature scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key pair, an signing algorithm $\mathsf{Sign}$ that takes a private key and a message and outputs a signature, and a verification algorithm $\mathsf{Vrfy}$ that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).
+
+It is known that OWFs imply (one-time) signatures.
 <!-- Give construction -->
 
 ## Schemes
