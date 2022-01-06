@@ -96,8 +96,8 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
 **Circular security**
 : Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message security**.
 
-**CPA security**
-: Secure against chosen plaintext attacks (CPA). Again, this is indistinguishability-based, so the more specific name is IND-CPA security. This is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
+### CPA security
+Secure against chosen plaintext attacks (CPA). The indistinguishability-based notion of CPA-security is IND-CPA security. IND-CPA is equivalent to **semantic security** (semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, so semantic security &iff; IND-CPA).
 
 !!! info "IND-CPA game"
 
@@ -110,8 +110,12 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
 
     $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.  
 
-**CCA security**
-: Secure against chosen ciphertext attacks (CCA); this is an indistinguishability-based notion, so it is more specifically IND-CCA security. There are two variants of IND-CCA security, and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.  <br/>  
+**OW-CPA**
+: 
+
+### CCA security
+Secure against chosen ciphertext attacks (CCA). The indistinguishability-based notion of CCA-security is IND-CCA security. There are two variants of IND-CCA security (IND-CCA1 and IND-CCA2), and both are stronger than IND-CPA because the adversary is additionally given access to a _decryption_ oracle. "IND-CCA" (without a number) usually refers to IND-CCA2.
+
 **IND-CCA1**
 : Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. 
 
@@ -139,3 +143,6 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
     1. $\mathcal{A}$ outputs $b'$
 
     $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
+
+**OW-CCA**
+: 
