@@ -7,12 +7,13 @@
 - **Shrinking commitment**
 : <!-- used when we want the pk to be small? -->
 
-**Hash function**
-: 
-**Cryptographic hash function**
-: 
+!!! example "Pedersen commitments"
+
 
 **Key Agreement**
+: 
+
+**Key-Derivation Function (KDF)**
 : 
 
 **Key Encapsulation Mechanism (KEM)**
@@ -24,8 +25,18 @@
 **One-way function (OWF)**
 : In a way this is also an assumption, since we don't know of any function that is provably hard to invert.
 
+**Password Authenticated Key Exchange (PAKE)**
+: 
+
 **Pseudo-random function (PRF)**
 : A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
+
+!!! example "GGM construction"
+<!-- (tree of length-doubling PRGs)     -->
+<!-- Moreover, this is a puncturable PRF: puncture out points by removing the PRG seeds to that point -->
+
+**Pseudo-random generator (PRG)**
+: 
 
 **Pseudo-random permutation (PRP)**
 : 
@@ -33,7 +44,9 @@
 **Time-Lock Puzzle (TLP)**
 : 
 
-**Trapdoor function**
+**Trapdoor function (TDF)**
 : 
+!!! example "TDF from SIS"
+
 **Lossy trapdoor function**
 : 

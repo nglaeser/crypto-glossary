@@ -1,4 +1,4 @@
-# Proof Techniques
+# Types of Security Proofs
 
 **Black-box** versions of each of these techniques are the strongest proofs in each category.
 
@@ -6,6 +6,10 @@
 
 **Black-box simulation**
 : 
+
+**Hybrid argument**
+: 
+<!-- "standard" hybrid argument -->
 
 !!! tip "Further Reading"  
     [How to Simulate It – A Tutorial on the Simulation Proof Technique](https://link.springer.com/chapter/10.1007%2F978-3-319-57048-8_6) by Yehuda Lindell
@@ -23,5 +27,8 @@ This is done by contradiction: we instead prove the contrapositive, that if B is
 : A reduction is called _tight_ if...
 
 ## Rewinding
+
+cf. **Straight-line proof**
+:  
 
 ## Universal Composability (UC) Framework

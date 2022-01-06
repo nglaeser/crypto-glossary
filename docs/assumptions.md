@@ -10,7 +10,7 @@ Computing the requested answer in each of these cases is believed to be hard. Si
 See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions. Assumptions marked with "*" are thought to be [post-quantum secure](Areas-of-Cryptography/pqc.md).
 
 **Subexponential assumptions**
-: 
+: Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in any _subexponential_ time (so we give the adversary more computational power).
 
 **Average-case hardness**
 : When a randomly selected instance of the problem is hard to solve.
@@ -18,8 +18,8 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 **Worst-case hardness**
 : When a randomly selected instance of the problem is not necessarily hard to solve, but rather only a carefully crafted "worst case" instance.
 
-**Decisional vs. Computational**
-: 
+**Decisional vs. Computational (aka Search)**
+: A decisional problem is of the form "given an input z of the form X or Y, decide whether X or Y was given". A computational problem is of the form "given some input, compute an output meeting some condition". (See the DDH and CDH assumptions below for an example.) In general, solving the computational variant of a problem implies solving the decisional variant; equivalently, the decisional variant is stronger: in general, decisional hardness &rArr; computational hardness.
 
 ## **Discrete logarithm**
 

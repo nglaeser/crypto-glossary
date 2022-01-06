@@ -10,6 +10,10 @@
     **Indistinguishability obfuscation (iO)**
     : Usually styled as $\mathcal{iO}$. <!-- todo -->
 
+**Private Information Retrieval (PIR)**
+: 
+<!-- Weaker version of 1-out-of-$n$ OT -->
+
 **Quantum Cryptography**
 : Rebuilding cryptographic primitives and cryptosystems that run on (and take advantage of the properties of) quantum computers.
 

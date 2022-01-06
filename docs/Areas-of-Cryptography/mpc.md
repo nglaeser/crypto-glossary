@@ -1,4 +1,4 @@
-# Multi-Party Computation
+# Multi-Party Computation (MPC)
 
 !!! summary
     Functionality in which two or more parties with secret inputs compute a joint function on those inputs. No party learns any more information about the others' inputs, except what it can infer from the output. 
@@ -65,6 +65,9 @@ Some classic schemes are:
 
 ## Protocol Parameters
 
+**Communication complexity**
+: The amount of data (the size of the messages) exchanged between parties in the protocol. This lower bounds the bandwidth required to run the protocol.
+
 **Corruption type**
 : Semi-honest, malicious, etc.
 
@@ -72,12 +75,22 @@ Some classic schemes are:
 : Honest majority ($t < n/2$), dishonest majority ($t < n$), etc.
 
 **Hardness assumptions**
-:  
+: The [computational hardness assumption(s)](/assumptions) underlying the security of the protocol.
+
+**Round complexity**
+: The number of rounds in the protocol. This lower bounds the time required to complete the protocol.
+
+!!! info
+    The optimal round complexity of an MPC protocol is 2 rounds. <!-- (achieved by ??) -->
 
 **Trusted setup**
 :  
 
 ### **Security guarantees**
+
+**Fairness**
+: 
+
 **Guaranteed output delivery (GOD)**
 : The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.  
 
