@@ -8,6 +8,7 @@
 
 **Bijective**
 : A function which is both _injective_ and _surjective_, that is, every element in the codomain has exactly one preimage in the domain. This implies that the domain and codomain have equal cardinalities (any element of the domain that doesn't map to anything is, by definition, not included in the domain).
+![Every point in the codomain has exactly 1 arrow going into it](assets/images/bijective.jpg)
 
 **Black-box**
 : Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
@@ -32,6 +33,7 @@
 
 **Function**
 : A mathematical object that maps each input to at most one output.
+![Every point in the domain has exactly 1 arrow coming out of it](assets/images/function.jpg)
 
 **Group**
 : A set of elements $G$ with some binary operation • (the group operation) that satisfies a set of properties called the [group axioms](https://en.wikipedia.org/wiki/Group_(mathematics)#Definition) (specifically associativity, identity, and invertibility). The integers form a group under addition.
@@ -43,7 +45,8 @@
 : Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
 
 **Injective**
-: A function such that every element of the codomain is the image of at most one element of the domain. Also known as _one-to-one_. Compare to _surjective_, _bijective_.
+: A function such that every element of the codomain is the image of at most one element of the domain. Equivalently, $f(a)=f(b)$ implies $a=b$. Also known as _one-to-one_. Compare to _surjective_, _bijective_.
+![Every point in the codomain has at most 1 arrow going into it](assets/images/injective.jpg)
 
 **Linear operations**
 : Addition and scalar multiplication.
@@ -80,6 +83,7 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 **Surjective**
 : A function such that every element of the codomain has at least one preimage in the domain. Also known as _onto_. Compare to _injective_, _bijective_.
+![Every point in the codomain has at least 1 arrow going into it](assets/images/surjective.jpg)
 
 **Sybil attack**
 : Attack in which an adversary creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.
@@ -115,13 +119,13 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 ## Composition
 
 **Concurrent composition**
-: Two protocols $\Pi_1, \Pi_2$ running concurrently are run with their messages arbitrarily interleaved. In the two-party case:
-![The messages of the blue and green protocols are arbitrarily interleaved](assets/images/concurr-comp.png)  
+: Two protocols $\Pi_1, \Pi_2$ running concurrently are run with their messages arbitrarily interleaved. In the two-party case:  
+![The messages of the blue and green protocols are arbitrarily interleaved](assets/images/concurr-comp.png){ width=300px }  
 In general, concurrent composition of secure protocols does not maintain security (against malicious adversaries). A special case of concurrent composition is _parallel composition_. Compare to _sequential composition_.
 
 **Parallel composition**
 : Two protocols $\Pi_1, \Pi_2$ running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
-![The messages in each round of the blue and green protocols are sent together](assets/images/parallel-comp.png)  
+![The messages in each round of the blue and green protocols are sent together](assets/images/parallel-comp.png){ width=300px }  
 In general, composing secure protocols in parallel does not maintain security (against malicious adversaries). Parallel composition is a special case of _concurrent composition_. Compare to _sequential composition_.
 
 **Hybrid composition**
@@ -131,7 +135,7 @@ In general, composing secure protocols in parallel does not maintain security (a
 
 **Sequential composition**
 : Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:  
-![The messages in each round of the blue and green protocols are sent together](assets/images/seq-comp.png)  
+![The messages in each round of the blue and green protocols are sent together](assets/images/seq-comp.png){ width=300px }  
 Sequential composition of two secure protocols is still secure. Compare to _concurrent composition_, _parallel composition_.
 
 ## Threat Models

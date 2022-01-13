@@ -107,10 +107,10 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 **RSA Assumption**
 :   === "Assumption"
 
-        This assumption corresponds exactly to finding the plaintext of an RSA ciphertext given only the public key.
+        This assumption corresponds exactly to finding the plaintext ($y$) of an RSA ciphertext ($x$) given only the public key $(n,e)$. Let $n=pq$ for two large primes $p,q$ and $2 < e < n$ (equivalently, $\gcd(e,n)=1$).
 
-        &emsp;**Given**: $c,(n,e)$ where $n=pq$ for two primes $p,q$ and $2 < e < n$  
-        &emsp;**Compute**: $p$ such that $p^e = c \pmod{n}$
+        &emsp;**Given**: $e,x,n$  
+        &emsp;**Compute**: $y$ such that $y^e = x \pmod{n}$
 
     === "Applications"
 
@@ -135,7 +135,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         That is, $\mathbf{A} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^{m \times n}$, $\vec{s} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^m$, $\vec{e} \gets\!\!\tiny{\$}\normalsize\ \chi$.
 
         &emsp;**Given**: $\mathbf{A},\vec{b} := \mathbf{A} \cdot \vec{s} + \vec{e}$  
-        &emsp;**Compute**: $\vec{s} \in \mathbb{Z}_q^n$ such that $\mathbf{A}\cdot \vec{s} + vec{e} = \vec{b} \pmod{q}$
+        &emsp;**Compute**: $\vec{s} \in \mathbb{Z}_q^n$ such that $\mathbf{A}\cdot \vec{s} + \vec{e} = \vec{b} \pmod{q}$
 
         <!-- Drawing of dimensions -->
 

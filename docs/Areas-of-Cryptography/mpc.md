@@ -41,7 +41,7 @@ There are more serious real-world applications for this too. You could imagine u
 **Oblivious Transfer (OT)**
 : Functionality in which one party holds two strings and the other a selection bit _b_. The second party learns the string corresponding to its selection bit and nothing more, while the first party learns nothing about the selection bit.  
 ![Diagram of the OT functionality](../assets/images/OT.png)  
-OTs with different numbers exist, such as 1-out-of-4 OT (P2 selects one of four choices) or more generally 1-out-of-n OT for some parameter n.
+OTs with different numbers exist, such as 1-out-of-4 OT ($P_2$ selects one of four choices) or more generally 1-out-of-$n$ OT for some parameter $n$.
 
 **Secret-sharing**
 : Splitting a secret between parties so that none of the parties know the secret, but they each have a piece of the information, and if they work together they can recover the secret. Here's a visual intuition:  
@@ -151,9 +151,9 @@ These are MPC protocols that work for any function. Most protocols turn the func
 
 ### Tabular Summary
 
-`n`: number of circuit gates
+$n$: number of circuit gates
 
-`d`: depth of circuit  
+$d$: depth of circuit  
 
 Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Circuit Representation
 :----|:-----|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
