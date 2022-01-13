@@ -15,8 +15,8 @@ $\{0,1\}^*$ and $\{0,1\}^n$
 $\mathsf{td}$
 : Trapdoor
 
-$\mathbb{Z}_p$
-: The group of integers modulo a prime $p$ (sometimes $q$ is used instead), namely $\{0,\dots,p-1\}$. This is a cyclic group, and in fact also a ring, and (since $p$ is prime) it is also a finite field. 
+$\mathbb{Z}_n$
+: The additive group of integers modulo $n$, namely $\{0,\dots,n-1\}$. This is a cyclic group, and in fact also a ring. When $n$ is a prime $p$, all non-identity elements are generators of the group. In that case, the set is also a finite field (since all nonzero elements have multiplicative inverses). 
 
-$\mathbb{Z}_n^\times$
-: The multiplicative subgroup of $\mathbb{Z}_n$, which consists of all elements of $\mathbb{Z}_n$ that are coprime with $n$. This means that they all have multiplicative inverses modulo $n$ and thus this group is a commutative multiplicative group.
+$\mathbb{Z}_n^\times$ or $\mathbb{Z}_n^*$
+: The multiplicative subgroup of $\mathbb{Z}_n$, which consists of all elements of $\mathbb{Z}_n$ that are coprime with $n$. This means that they all have multiplicative inverses modulo $n$ and thus this group is a commutative multiplicative group. When $n$ is a prime $p$, the order of the group is not prime (for $p>3$) and computing the order of any element in the group is efficient if the factorization of $\lvert \mathbb{Z}_p^*\rvert = p-1$ is known. For more number theory/algebra basics, see [David Wu's factsheet](https://www.cs.utexas.edu/~dwu4/courses/fa21/static/algebra.pdf).
