@@ -1,15 +1,25 @@
 # Types of Security Proofs
 
-**Black-box** versions of each of these techniques are the strongest proofs in each category.
+**Black-box** versions of each of these techniques are the strongest proofs in each category. "Black-box" means that the adversary is treated as a "black box" (its inner workings are unknown), that is, the approach must work for any adversary. This affects the order of quantifiers in a proof ("There exists [some technique] such that for all adversaries, the scheme is secure" instead of "for all adversaries, there exists [some technique] such that the scheme is secure".)
+
+## Game-based proofs
+
+Security is defined by a [security game](./general.md) in which an attacker should have _negligible_ _advantage_. For example, [CPA-security](primitives/encryption.md#cpa-security).
+
+<!-- Table of security games. 
+Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
+
+**Hybrid argument**
+: Often used in game-based proofs, but a similar technique is also used to break down the various changes between the simulator in the real-world protocol in simulation-based proofs (see below).
+<!-- "standard" hybrid argument -->
+
+!!! tip "Further Reading"
+    ["Sequences of Games: A Tool for Taming Complexity in Security Proofs"](https://eprint.iacr.org/2004/332.pdf) by Victor Shoup
 
 ## Proof by Simulation
 
 **Black-box simulation**
 : 
-
-**Hybrid argument**
-: 
-<!-- "standard" hybrid argument -->
 
 !!! tip "Further Reading"  
     [How to Simulate It – A Tutorial on the Simulation Proof Technique](https://link.springer.com/chapter/10.1007%2F978-3-319-57048-8_6) by Yehuda Lindell

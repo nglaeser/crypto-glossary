@@ -73,8 +73,7 @@
 : A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
 **Security game**
-: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. See ["Game-based security"](#game-based-security).
-<!-- TODO: link to an example game, e.g. CCA -->
+: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. For an example, see the [CPA-security game](./Cryptographic-Primitives/encryption.md#cpa-security). See also ["Game-based proofs"](./proofs.md#game-based-proofs).
 
 **Security parameter**
 : Denoted by $\lambda$ (or sometimes $\kappa$ for computational security), this is a measure of how hard it is to break the security of a system. 
@@ -174,12 +173,6 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 
 **Forward secrecy**
 : In key agreement protocols, this is the guarantee that the compromise of long-term secrets in some session $t$ does not affect the security of any sessions that took place before $t$ (i.e., those messages still cannot be decrypted). This also implies that the compromise of the session key for $t$ does not expose previous sessions.
-
-**Game-based security**
-: Security is defined by a _security game_ in which an attacker should have _negligible_ _advantage_. For example, [CPA- and CCA-security](primitives/encryption.md#security-notions).
-
-<!-- Table of security games. 
-Columns: name, primitive (Enc, MAC, etc.), weaker/stronger than -->
 
 **Knowledge assumption**
 :  
