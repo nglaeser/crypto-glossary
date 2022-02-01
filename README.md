@@ -1,5 +1,5 @@
 # Crypto Glossary
-Glossary of theoretical cryptography terms. Live at [nglaeser.github.io/crypto-glossary](nglaeser.github.io/crypto-glossary).
+Glossary of theoretical cryptography terms. Live at [nglaeser.github.io/crypto-glossary](https://nglaeser.github.io/crypto-glossary).
 
 ## Dependencies
 
