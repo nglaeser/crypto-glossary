@@ -23,8 +23,8 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 ## Properties
 
-**Argument of knowledge (AoK)**
-: 
+**Completeness**
+: For honest P and V, the protocol will accept only on "correct" (true) statements (except with negligible probability).
 
 **Honest-verifier zero-knowledge (HVZK)**
 : 
@@ -32,44 +32,69 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 **Non-interactive**
 : 
 
-**Proof of knowledge (PoK)**
-: Secure against a dishonest prover.
-
 **Soundness**
-: (knowledge soundness?)
+: Intuitively, a cheating (malicious) prover P\* cannot (except with negligible probability) provide a valid proof of a false statement. 
 
-**Simulation Soundness**
-: (simulation extractability?)
+: **Knowledge Soundness**
+    : This property is stronger than _soundness_. Intuitively, it says that any valid proof has a corresponding witness. Formally, for any valid proof, there exists an extractor which can extract the witness when given the proof. What does this actually mean? It says that if a prover provides a valid proof, _it must have known the witness_. In other words, a cheating prover cannot provide a proof of even a _true_ statement if it does not know the witness.
+
+: **Special Soundness**
+    : This lies between soundness and knowledge soundness (?) and applies only to interactive proof systems. Given two (or $s$, in the case of _$s$-special soundness_) valid transcripts for the same statement and with the same first message, there exists an efficient extractor which can recover the witness corresponding to the statement. The "special" part means that this property implies soundness.
+
+: **Simulation Soundness** 
+    : Aka **simulation-knowledge soundness** or **simulation extractability**. An even stronger version of _knowledge soundness_, this notion says that a cheating prover cannot provide a proof of any statement, including true statements, even if it has access to an arbitrary number of simulated proofs. This notion was formulated to capture the notion of non-malleability, since knowledge soundness says nothing about the capabilities of a prover that has seen a valid proof to produce a new valid proof by "mauling" the honest proof (malleability). A good discussion can be found in the introduction of [[2019/641]](https://eprint.iacr.org/2019/641.pdf).
 
 **Succinct**
-: 
+: (1) the size of the proof is polynomial in the security parameter, i.e. $\lvert \pi \rvert \in \mathrm{poly}(\lambda)$, and (2) verification is efficient, i.e. $V(x,\pi) \in O(\mathrm{poly}(\lambda + \lvert x \rvert))$.
 
 **Witness indistinguishable (WI)**
-: 
+: Given a proof, the (malicious?) verifier cannot distinguish between which of two valid witnesses was used to generate the proof with more than negligible probability.
 
 **Zero-knowledge (ZK)**
-: Secure against a dishonest verifier.
+: (With overwhelming probability,) a malicious verifier V\* learns nothing about the prover's witness. Formally, there exists a simulator which given access only to the statement $x$ can generate a view for V\* that is indistinguishable from its view in the real execution. This property comes in computational and information-theoretic variants (depending on the type of indistinguishability of the two transcripts).
 
-## Types
+: **Black-box ZK**
+    : The above holds even when the simulator is given _only oracle (aka, black-box) access_ to V\*.
 
-Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. Common ZK proofs:
+## Proofs and Arguments
+
+By definition, proof systems are complete and sound. Based on the strength of the soundness, we make a distinction betweeen "arguments" and "proofs":
+
+**Argument**
+: Completeness holds perfectly. Soundness holds only against a computationally _bounded_ cheating prover (i.e., computational soundness). For this reason, arguments are sometimes referred to as "computationally sound proofs".
+
+**Proof**
+: Completeness holds perfectly. Soundness holds against a computationally _unbounded_ cheating prover (i.e., statistical or even perfect soundness).
+
+## Types of zero-knowledge proofs
+
+Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. Rememeber from above that all proof systems are by definition complete and sound, so the "proof" part of the name implies completeness and soundness. Common ZK proofs:
+
+**Argument of Knowledge (AoK)**
+: Argument where the (computational) soundness is _knowledge_ soundness. **Properties**: completeness, (computational) knowledge soundness.
+
+**Proof of Knowledge (PoK)**
+: Proof where the soundness is _knowledge_ soundness. **Properties:** completeness, knowledge soundness.
 
 **Sigma protocol (&Sigma;-protocol)**
-: Interactive honest-verifier zero-knowledge (HVZK) proof system.
+: A particular paradigm for a 3-round protocol implementing an interactive honest-verifier zero-knowledge (HVZK) proof system. **Properties**: zero-knowledge ("ZK") _against semi-honest verifiers_ ("HV"), completeness and soundness ("proof system").
 
 **NIWI**
-: Non-Interactive Witness Indistinguishable proof.
+: Non-Interactive Witness Indistinguishable proof. **Properties:** non-interactivity ("NI"), witness indistinguishability ("WI"), completeness and soundness ("proof").
 
 **NIZK**
-: Non-Interactive Zero Knowledge proof.
+: Non-Interactive Zero Knowledge proof. **Properties:** non-interactivity ("NI"), zero-knowledge ("ZK"), completeness and soundness ("proof").
+<!-- TODO Make properties into a table -->
 <!-- Maybe list for each type what assumptions they are known from? -->
 <!-- - Not known from CDH  -->
 
 **SNARG**
-: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).
+: Succinct Non-interactive Argument (a more accurate acronym would be SNArg). **Properties:** succinctness ("S"), non-interactivity ("N"), completeness and (computational) soundness ("ARG").
 
 **SNARK**
-: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).
+: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK). **Properties:** succinctness ("S"), non-interactivity ("N"), completeness and _knowledge_ soundness ("ArK").
+: **zk-SNARK**
+    : zero-knowledge Succinct Non-interactive Argument of Knowledge (i.e. zkSNArK). **Properties:** zero-knowledge ("zk"), succinctness ("S"), non-interactivity ("N"), completeness and knowledge soundness ("ArK").
 
 **SNIP**
 : [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
