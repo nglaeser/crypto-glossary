@@ -5,3 +5,6 @@ diagrams.key
 
 # mkdocs
 site/
+
+# macOS
+.DS_Store

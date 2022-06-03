@@ -13,7 +13,7 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
 !!! example "ElGamal encryption"
 
     === "Scheme"
-        $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $G$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ G$ and the public key $g^x$.
+        $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $\mathbb{G}$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $g^x \in \mathbb{G}$.
 
         $\underline{\mathsf{Enc}(pk, m)}$:
 

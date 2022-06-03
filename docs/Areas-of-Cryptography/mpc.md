@@ -43,6 +43,10 @@ There are more serious real-world applications for this too. You could imagine u
 ![Diagram of the OT functionality](../assets/images/OT.png)  
 OTs with different numbers exist, such as 1-out-of-4 OT ($P_2$ selects one of four choices) or more generally 1-out-of-$n$ OT for some parameter $n$.
 
+!!! example "Construction: Naor-Pinkas OT"
+
+    === "Construction"
+
 **Secret-sharing**
 : Splitting a secret between parties so that none of the parties know the secret, but they each have a piece of the information, and if they work together they can recover the secret. Here's a visual intuition:  
 <a title="Blokhead at English Wikipedia, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Visual_crypto_animation_demo.gif"><img width="256" alt="Visual crypto animation demo" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Visual_crypto_animation_demo.gif"></a>  <br/>
@@ -89,7 +93,7 @@ Some classic schemes are:
 ### **Security guarantees**
 
 **Fairness**
-: 
+: Either all parties learn the output, or no party does. Put in other words, the malicious party/ies cannot learn the output without also revealing it to all honest parties.
 
 **Guaranteed output delivery (GOD)**
 : The strongest type of correctness guarantee. In a protocol with GOD, an adversary cannot even carry out a denial-of-service attack; the (correct) output will always be learned by the participants.  

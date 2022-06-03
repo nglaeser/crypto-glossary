@@ -1,5 +1,12 @@
 # How to Use This Glossary
 
+For the most part, we use a standard glossary style, that is,
+
+> **Term**
+> : This is the definition of the term. We might bold **another name** for this term inside the definition. We use italics when we reference _another word_ defined elsewhere in the glossary.
+
+We use the following callouts for specific examples, summaries, etc.
+
 !!! example "Example/Scheme"
     Examples or specific schemes that realize some cryptographic primitive.
 

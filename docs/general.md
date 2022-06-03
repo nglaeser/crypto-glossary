@@ -41,8 +41,8 @@
 **Hardness assumption**
 : A problem, such as factoring, which is assumed to be hard. A cryptographic scheme's security may hinge on the adversary not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated.
 
-**i.i.d.**
-: Independent and identically distributed. Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.
+**Independent and identically distributed (i.i.d.)**
+: Two random variables are *i.i.d.* if they have the same probability distribution and are independent of each other.
 
 **Injective**
 : A function such that every element of the codomain is the image of at most one element of the domain. Equivalently, $f(a)=f(b)$ implies $a=b$. Also known as _one-to-one_. Compare to _surjective_, _bijective_.
@@ -73,7 +73,8 @@
 : A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
 **Security game**
-: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. For an example, see the [CPA-security game](./Cryptographic-Primitives/encryption.md#cpa-security). See also ["Game-based proofs"](./proofs.md#game-based-proofs).
+: A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. For an example, see the [CPA-security game](./Cryptographic-Primitives/encryption.md#cpa-security). See also ["Game-based proofs"](./proofs.md#game-based-proofs).  
+Sometimes also called an **experiment**.
 
 **Security parameter**
 : Denoted by $\lambda$ (or sometimes $\kappa$ for computational security), this is a measure of how hard it is to break the security of a system. 
@@ -95,9 +96,6 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 **Without loss of generality**
 : 
-
-**w.h.p.**
-: With high probability.
 
 ## Complexity Theory
 
