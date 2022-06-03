@@ -1,4 +1,4 @@
-# Zero-Knowledge
+# Zero-Knowledge (ZK)
 
 !!! summary
     Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a _witness_ for some _statement_ in a _language_ without revealing the witness.
@@ -17,7 +17,7 @@ Zero-knowledge (ZK) protocols occur between two parties: a _prover_ and a _verif
 
 ZK protocols are only interesting if the prover doesn't want to reveal its witness (the _zero-knowledge_ property). (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)
 
-!!! example
+!!! example "Example: _Where's Waldo?_ in zero-knowledge"
 
     <!-- Where's Waldo example -->
 
@@ -35,17 +35,22 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 **Soundness**
 : Intuitively, a cheating (malicious) prover P\* cannot (except with negligible probability) provide a valid proof of a false statement. 
 
-: **Knowledge Soundness**
-    : This property is stronger than _soundness_. Intuitively, it says that any valid proof has a corresponding witness. Formally, for any valid proof, there exists an extractor which can extract the witness when given the proof. What does this actually mean? It says that if a prover provides a valid proof, _it must have known the witness_. In other words, a cheating prover cannot provide a proof of even a _true_ statement if it does not know the witness.
+- **Knowledge Soundness**
+: This property is stronger than _soundness_. Intuitively, it says that any valid proof has a corresponding witness. Formally, for any valid proof, there exists an extractor which can extract the witness when given the proof. What does this actually mean? It says that if a prover provides a valid proof, _it must have known the witness_. In other words, a cheating prover cannot provide a proof of even a _true_ statement if it does not know the witness.
 
-: **Special Soundness**
-    : This lies between soundness and knowledge soundness (?) and applies only to interactive proof systems. Given two (or $s$, in the case of _$s$-special soundness_) valid transcripts for the same statement and with the same first message, there exists an efficient extractor which can recover the witness corresponding to the statement. The "special" part means that this property implies soundness.
+- **Special Soundness**
+: This lies between soundness and knowledge soundness (?) and applies only to interactive proof systems. Given two (or $s$, in the case of _$s$-special soundness_) valid transcripts for the same statement and with the same first message, there exists an efficient extractor which can recover the witness corresponding to the statement. The "special" part means that this property implies soundness.
 
-: **Simulation Soundness** 
-    : Aka **simulation-knowledge soundness** or **simulation extractability**. An even stronger version of _knowledge soundness_, this notion says that a cheating prover cannot provide a proof of any statement, including true statements, even if it has access to an arbitrary number of simulated proofs. This notion was formulated to capture the notion of non-malleability, since knowledge soundness says nothing about the capabilities of a prover that has seen a valid proof to produce a new valid proof by "mauling" the honest proof (malleability). A good discussion can be found in the introduction of [[2019/641]](https://eprint.iacr.org/2019/641.pdf).
+- **Simulation Soundness** 
+: This property requires that _soundness_ holds even when P\* has seen many simulated proofs (potentially even for false statements), i.e. P\* is additionally given an arbitrary number of statement-proof pairs $(x,\pi)$ such that $V(x,\pi)=1$.
+
+- **Simulation Extractability**
+: aka **simulation-knowledge soundness**. An even stronger version of _knowledge soundness_ or (respectively) of _simulation soundness_, this notion says that _knowledge soundness_ holds even when given access to arbitrarily many simulated proofs. This notion was formulated to capture the notion of non-malleability (which it implies), since _knowledge soundness_ on its own says nothing about the capabilities of a prover that has seen a valid proof to produce a new valid proof by "mauling" the honest proof (malleability). A good discussion can be found in the introduction of [[2019/641]](https://eprint.iacr.org/2019/641.pdf).
 
 **Succinct**
-: (1) the size of the proof is polynomial in the security parameter, i.e. $\lvert \pi \rvert \in \mathrm{poly}(\lambda)$, and (2) verification is efficient, i.e. $V(x,\pi) \in O(\mathrm{poly}(\lambda + \lvert x \rvert))$.
+: 
+1. the size of the proof is polynomial in the security parameter, i.e. $\lvert \pi \rvert \in \mathrm{poly}(\lambda)$, and 
+1. verification is efficient, i.e. $V(x,\pi) \in O(\mathrm{poly}(\lambda + \lvert x \rvert))$.
 
 **Witness indistinguishable (WI)**
 : Given a proof, the (malicious?) verifier cannot distinguish between which of two valid witnesses was used to generate the proof with more than negligible probability.
@@ -53,8 +58,8 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 **Zero-knowledge (ZK)**
 : (With overwhelming probability,) a malicious verifier V\* learns nothing about the prover's witness. Formally, there exists a simulator which given access only to the statement $x$ can generate a view for V\* that is indistinguishable from its view in the real execution. This property comes in computational and information-theoretic variants (depending on the type of indistinguishability of the two transcripts).
 
-: **Black-box ZK**
-    : The above holds even when the simulator is given _only oracle (aka, black-box) access_ to V\*.
+- **Black-box ZK**
+: The above holds even when the simulator is given _only oracle (aka, black-box) access_ to V\*.
 
 ## Proofs and Arguments
 
@@ -71,30 +76,35 @@ By definition, proof systems are complete and sound. Based on the strength of th
 Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. Rememeber from above that all proof systems are by definition complete and sound, so the "proof" part of the name implies completeness and soundness. Common ZK proofs:
 
 **Argument of Knowledge (AoK)**
-: Argument where the (computational) soundness is _knowledge_ soundness. **Properties**: completeness, (computational) knowledge soundness.
+: Argument where the (computational) soundness is _knowledge_ soundness.  
+*Properties*: completeness, (computational) knowledge soundness.
 
 **Proof of Knowledge (PoK)**
-: Proof where the soundness is _knowledge_ soundness. **Properties:** completeness, knowledge soundness.
-
-**Sigma protocol (&Sigma;-protocol)**
-: A particular paradigm for a 3-round protocol implementing an interactive honest-verifier zero-knowledge (HVZK) proof system. **Properties**: zero-knowledge ("ZK") _against semi-honest verifiers_ ("HV"), completeness and soundness ("proof system").
+: Proof where the soundness is _knowledge_ soundness.  
+*Properties:* completeness, knowledge soundness.
 
 **NIWI**
-: Non-Interactive Witness Indistinguishable proof. **Properties:** non-interactivity ("NI"), witness indistinguishability ("WI"), completeness and soundness ("proof").
+: Non-Interactive Witness Indistinguishable proof.  
+*Properties:* non-interactivity ("NI"), witness indistinguishability ("WI"), completeness and soundness ("proof").
 
 **NIZK**
-: Non-Interactive Zero Knowledge proof. **Properties:** non-interactivity ("NI"), zero-knowledge ("ZK"), completeness and soundness ("proof").
+: Non-Interactive Zero Knowledge proof.  
+*Properties:* non-interactivity ("NI"), zero-knowledge ("ZK"), completeness and soundness ("proof").
 <!-- TODO Make properties into a table -->
 <!-- Maybe list for each type what assumptions they are known from? -->
 <!-- - Not known from CDH  -->
 
 **SNARG**
-: Succinct Non-interactive Argument (a more accurate acronym would be SNArg). **Properties:** succinctness ("S"), non-interactivity ("N"), completeness and (computational) soundness ("ARG").
+: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).  
+*Properties:* succinctness ("S"), non-interactivity ("N"), completeness and (computational) soundness ("ARG").
 
 **SNARK**
-: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK). **Properties:** succinctness ("S"), non-interactivity ("N"), completeness and _knowledge_ soundness ("ArK").
-: **zk-SNARK**
-    : zero-knowledge Succinct Non-interactive Argument of Knowledge (i.e. zkSNArK). **Properties:** zero-knowledge ("zk"), succinctness ("S"), non-interactivity ("N"), completeness and knowledge soundness ("ArK").
+: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).  
+*Properties:* succinctness ("S"), non-interactivity ("N"), completeness and _knowledge_ soundness ("ArK").
+
+- **zk-SNARK**
+    : zero-knowledge Succinct Non-interactive Argument of Knowledge (i.e. zkSNArK).  
+    *Properties:* zero-knowledge ("zk"), succinctness ("S"), non-interactivity ("N"), completeness and knowledge soundness ("ArK").
 
 **SNIP**
 : [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
@@ -111,7 +121,59 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 
 <!-- Insert table? -->
 
+### Sigma protocols
+
+<!-- useful slides: http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf -->
+
+A sigma protocol (&Sigma;-protocol) is a 3-round interactive HVZK PoK. Put another way, a sigma-protocol has the following properties:
+- perfect completeness
+- special soundness (here, this implies knowledge soundness, so the protocol is a PoK)
+- honest verifier zero-knowledge (HVZK)
+
+Any sigma protocol proving that $(x, w)$ is in some relation $R$ follows this outline:
+
+1. Prover P sends a first message $a$ (the *commitment*)
+1. Verifier V responds with a uniformly random *challenge* $c$
+1. P uses the challenge to generate a *response* $z$
+
+Lastly, V must output either "accept" or "reject" as a deterministic function of $x$ and the transcript $(a, c, z)$.
+
+Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../techniques.md). They can also be composed in the following ways, so that the languages they operate over are composed:
+
+**OR composition**
+: 
+
+**AND composition**
+: 
+
+!!! tip "Further Reading"
+    ["On &Sigma;-protocols"](https://cs.au.dk/~ivan/Sigma.pdf) by Ivan Damg&aring;rd  
+    ["Sigma Protocols" slides](http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf) by Benny Pinkas
+
+!!! example "Sigma protocol: DLog [Schnorr]"
+
+    === "Scheme"
+        To prove knowledge of the discrete logarithm x of y with respect to b (i.e., knowledge of $x$ such that $y = b^x$), 
+
+        1. The prover P chooses a uniform value $r$ and sends $a := b^r$ to the verifier V
+        1. V sends back a uniform challenge $ch$
+        1. P sends $z := r + ch \cdot w$
+        1. V check that $g^z = a \cdot y^{ch}$
+
+        Correctness holds since $a \cdot y^{ch} = (b^r) \cdot (b^x)^{ch} = b^{r + x \cdot ch}$.
+
+    === "Properties"
+        - HVZK
+        - PoK
+
+!!! example "Sigma protocol: DDH"
+
+    === "Scheme"
+
+    === "Properties"
+
 ## Example Protocols
 
-**GMW ZK proof**
-: 
+!!! example "3-coloring [GMW]"
+    === "Scheme"
+    === "Properties"
