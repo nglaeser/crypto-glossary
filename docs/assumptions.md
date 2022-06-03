@@ -9,6 +9,8 @@ Computing the requested answer in each of these cases is believed to be hard. Si
 
 See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions. Assumptions marked with "*" are thought to be [post-quantum secure](Areas-of-Cryptography/pqc.md).
 
+## Types of Assumptions
+
 **Subexponential assumptions**
 : Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in any _subexponential_ time (so we give the adversary more computational power).
 
@@ -21,7 +23,9 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 **Decisional vs. Computational (aka Search)**
 : A decisional problem is of the form "given an input z of the form X or Y, decide whether X or Y was given". A computational problem is of the form "given some input, compute an output meeting some condition". (See the DDH and CDH assumptions below for an example.) In general, solving the computational variant of a problem implies solving the decisional variant; equivalently, the decisional variant is stronger: in general, decisional hardness &rArr; computational hardness.
 
-## **Discrete logarithm**
+## Assumptions
+
+### **Discrete logarithm**
 
 **Discrete Logarithm Problem (DLog/DLP/DL)**
 :   === "Assumption"
@@ -35,7 +39,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         * Digital Signature Algorithm (DSA)
         * Schnorr signatures
 
-## Diffie–Hellman (DH) assumptions
+### Diffie–Hellman (DH) assumptions
 
 <!-- When must $g$ (or $G$) be uniformly chosen? -->
 
@@ -102,7 +106,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         The same as XDH, but additionally assumes in (2) that DDH is also hard in $G_2$. 
 <!-- Implies XDH. -->
 
-## Factoring
+### Factoring
 
 **RSA Assumption**
 :   === "Assumption"
@@ -125,7 +129,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         * RSA encryption
 
-## Lattice Assumptions
+### Lattice Assumptions
 
 \***Learning With Errors (LWE)**
 :   === "Assumption (computational)"
@@ -166,7 +170,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 \***Shortest Vector Problem (SVP)**
 : 
 
-## Other
+### Other
 
 \***Learning Parity with Noise (LPN)**
 : There are a few (equivalent) ways to phrase this assumption; two are given below.  
@@ -187,6 +191,14 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         - PRGs
         - Perfectly binding commitment
         - PAKE
+
+**One-way functions**
+: 
+    === "Assumption"
+
+    === "Applications"
+
+        - One-time signatures
 
 <!-- [Version 1](https://perso.uclouvain.be/fstandae/PUBLIS/182.pdf) -->
 <!-- [Version 2 and applications](http://yuyu.hk/files/LPN.pdf) -->

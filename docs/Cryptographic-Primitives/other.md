@@ -31,7 +31,7 @@
 **Pseudo-random function (PRF)**
 : A function that maps inputs to outputs so that the outputs appear randomly distributed. The function is deterministic in the sense that querying it on the same input always returns the same (random-looking) output.
 
-!!! example "GGM construction"
+!!! example "Construction: GGM"
 <!-- (tree of length-doubling PRGs)     -->
 <!-- Moreover, this is a puncturable PRF: puncture out points by removing the PRG seeds to that point -->
 
@@ -46,7 +46,7 @@
 
 **Trapdoor function (TDF)**
 : 
-!!! example "TDF from SIS"
+!!! example "Construction: TDF from SIS"
 
 **Lossy trapdoor function**
 : 

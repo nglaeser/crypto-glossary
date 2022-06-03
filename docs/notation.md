@@ -18,13 +18,13 @@ $\mathcal{A}$
 $\mathbb{G}$
 : A group
 
-**i.i.d.**
+i.i.d.
 : [Independent and identically distributed](general.md)
 
 $\mathsf{td}$
 : Trapdoor
 
-**w.h.p.**
+w.h.p.
 : With high probability.
 
 $\mathbb{Z}_n$

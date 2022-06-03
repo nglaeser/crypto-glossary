@@ -3,7 +3,14 @@
 !!! summary
     Encryption schemes are used to ensure confidentiality.
 
-An encryption scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key (or key pair), an encryption algorithm $\mathsf{Enc}$ that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm $\mathsf{Dec}$ that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.
+An encryption scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes as input a security parameter and outputs a key (or key pair), an encryption algorithm $\mathsf{Enc}$ that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm $\mathsf{Dec}$ that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.
+
+!!! notation "Encryption scheme syntax"
+    - $({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)$
+    - $c \gets \mathsf{Enc}({\sf pk}, m)$
+    - $m \gets \mathsf{Dec}({\sf sk}, c)$
+
+For correctness, we require that for all key (pairs) output by $\sf Gen$ we have ${\sf Dec}({\sf sk}, {\sf Enc}({\sf pk}, m)) = m$.
 
 ## Basic Types of Encryption
 
@@ -72,16 +79,27 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
 **Functional encryption (FE)**
 : An encryption scheme in which it is possible to issue "function keys", e.g. a key $k_f$ that decrypts the ciphertext into a function $f(m)$ of the plaintext $m$.
 
+!!! notation "FE syntax"
+    - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
+    - ${\sf sk}_f \gets \mathsf{KGen}({\sf msk}, f)$: generate a function secret key
+    - $c \gets \mathsf{Enc}({\sf mpk}, m)$: encrypt under master public key
+    - $f(m) \gets \mathsf{Dec}({\sf sk}, c)$: decrypt with function secret key to obtain the function of the plaintext
+
 **Identity-based encryption (IBE)**
 : 
 **Hierarchical IBE (HIBE)**
 : 
 
 **Registration-based encryption (RBE)**
-:
+: 
 
 **Rerandomizable encryption**
 :  
+
+!!! notation "Rerandomizable encryption syntax"
+    - $\sf Gen, Enc, Dec$ as usual
+    - $c' \gets \mathsf{Rerand}(c, r)$: rerandomize the ciphertext using randomness $r$ without changing the underlying message ($\mathsf{Dec}({\sf sk}, c) = \mathsf{Dec}({\sf sk}, c')$)
+
 
 **Structured encryption**
 :  
@@ -89,7 +107,7 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
 **Witness encryption (WE)**
 : 
 **Extractable witness encryption (EWE)**
-:
+: 
 
 ## Security Notions
 
@@ -119,7 +137,7 @@ Secure against chosen ciphertext attacks (CCA). The indistinguishability-based n
 **IND-CCA1**
 : Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. 
 
-!!! info "IND-CCA1 game"
+!!! info "IND-CCA1 (non-adaptive) game"
 
     1. Challenger: $k \gets Gen(1^n)$
     1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ **and $Dec_k(\cdot)$** (in polynomial time)
@@ -133,7 +151,7 @@ Secure against chosen ciphertext attacks (CCA). The indistinguishability-based n
 **IND-CCA2**
 : Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing $c$.
 
-!!! info "IND-CCA2 game"
+!!! info "IND-CCA2 (adaptive) game"
 
     1. Challenger: $k \gets Gen(1^n)$
     1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ and $Dec_k(\cdot)$ (in polynomial time)

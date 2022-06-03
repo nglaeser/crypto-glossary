@@ -5,7 +5,16 @@
 
 A digital signature scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key pair, an signing algorithm $\mathsf{Sign}$ that takes a private key and a message and outputs a signature, and a verification algorithm $\mathsf{Vrfy}$ that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).
 
+!!! notation "Encryption scheme syntax"
+    - $({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)$
+    - $\sigma \gets \mathsf{Sign}({\sf sk}, m)$
+    - $\{0, 1\} \gets \mathsf{Vrfy}({\sf pk}, m, \sigma)$
+
+For correctness, we require that for all key (pairs) output by $\sf Gen$ we have $\mathsf{Vrfy}({\sf pk}, m, \mathsf{Sign}({\sf pk}, m)) = 1$.
+
 It is known that OWFs imply (one-time) signatures.
+
+!!! example "One-time signatures from OWFs"
 <!-- Give construction -->
 
 ## Schemes

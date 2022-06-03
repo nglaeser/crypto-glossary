@@ -30,7 +30,7 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 : 
 
 **Non-interactive**
-: 
+: No interaction is required; that is, a proof consists of a single message sent by the prover to the verifier (1 round).
 
 **Soundness**
 : Intuitively, a cheating (malicious) prover P\* cannot (except with negligible probability) provide a valid proof of a false statement. 
