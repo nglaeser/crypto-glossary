@@ -10,28 +10,56 @@ It is known that OWFs imply (one-time) signatures.
 
 ## Schemes
 
-!!! example "CL signatures"
+!!! example "Digital Signature Algorithm (DSA)"
+    === "Scheme"
+        DSA is an additive version of Schnorr (which can in turn be seen as a multiplicative version of DSA).
+
+        Let $p,q$ be primes such that $q$ divides $p-1$ and $G$ be a group of order $p$ with generator $g$.
+        Let $H$ be a hash function.
+
+        $\underline{\mathsf{Gen}}$: return the secret key $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $pk := g^{sk} \mod{p}$.
+
+        $\underline{\mathsf{Sign}(sk, m)}$: 
+
+        - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$
+        - compute a nonce $r := (g^k \mod{p}) \mod{q}$ (if $r=0$, start over with a different $k$)
+        - compute $s := k^{-1} \cdot (H(m) + r \cdot sk) \mod{q}$ (if $s=0$, start over with a different $k$)
+
+        Return the signature $\sigma := (s, r)$.
+
+        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,R))}$: 
+
+        Check that the following hold:
+
+        - $r,s \in \mathbb{Z}_q$
+        - $(g^{u_1} {pk}^{u_2} \mod{p}) \mod{q} = r$, where $u_1 := H(m) \cdot s^{-1} \mod{q}$ and $u_2 := r \cdot s^{-1} \mod{q}$
+
+    === "Assumptions"
+        - DLog
 
 !!! example "ECDSA signatures"
 
 !!! example "Schnorr signatures"
     === "Scheme" 
-        Let $G$ be an elliptic curve group with generator $g$ and order $q$.
+        Let $G$ be an elliptic curve group with generator $g$ and order $q$ and $H$ be a hash function.
 
-        $\underline{\mathsf{Gen}}$: return the secret key $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $pk := sk \cdot g$.  
+        $\underline{\mathsf{Gen}}$: return the secret key $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $pk := g \cdot sk$.  
 
         $\underline{\mathsf{Sign}(sk, m)}$: 
         
         - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$
-        - compute a nonce $R = k \cdot g$
-        - return the signature $\sigma := (k - sk \cdot H(R || m ) \mod q), R)$, where $H$ is a hash function.  
+        - compute a nonce $r := g \cdot k$
+        - compute $s := k - H(r || m ) \cdot sk \mod q$
 
-        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,R))}$: 
+        Return the signature $\sigma := (s, r)$.
 
-        - return the truth value of $s \cdot g =^? R - H(R || m) \cdot pk$
+        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,r))}$: return the truth value of $s \cdot g =^? r - H(r || m) \cdot pk$.
 
     === "Assumptions"
         - DLog
+
+!!! example "CL signatures"
+
 
 ## Other types
 
