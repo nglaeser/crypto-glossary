@@ -157,8 +157,8 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 
         1. The prover P chooses a uniform value $r$ and sends $a := b^r$ to the verifier V
         1. V sends back a uniform challenge $ch$
-        1. P sends $z := r + ch \cdot w$
-        1. V check that $g^z = a \cdot y^{ch}$
+        1. P sends $z := r + ch \cdot x$
+        1. V check that $b^z = a \cdot y^{ch}$
 
         Correctness holds since $a \cdot y^{ch} = (b^r) \cdot (b^x)^{ch} = b^{r + x \cdot ch}$.
 

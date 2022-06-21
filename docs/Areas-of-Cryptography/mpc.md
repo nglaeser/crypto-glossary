@@ -54,15 +54,33 @@ Some classic schemes are:
 !!! example "Exclusive OR (XOR, $\oplus$) secret-sharing"
 
     For a secret $s$, set Party $i$'s share to some random value $r_i$, except for a designated party which gets $s \oplus r_1 \oplus \ldots \oplus r_N$. The shares XOR together to $s$, but each individual share looks random.
-!!! example "Shamir secret-sharing"
+!!! example "Shamir secret sharing"
     This is a form of $(t+1)$-out-of-$n$ secret-sharing, i.e., at least $t+1$ out of $n$ parties must work together to recover the secret. Shamir secret-sharing gives every party a point on a degree-t polynomial. Because t+1 points define a unique polynomial, t+1 parties can work together to recover it. The secret is the value when the polynomial is evaluated at 0. Interactive demo [here](./ShamirSS.ipynb).
 
-: Secret-sharing schemes with additional properties also exist, but basic secret sharing usually suffices for MPC.
+: Secret-sharing schemes with additional properties also exist and are sometimes helpful for constructing MPC.
 
 - **Function secret sharing (FSS)**:
 - **Homomorphic secret sharing (HSS)**:
 - **Robust secret sharing**: Does not consider a corrupt dealer. ...
-- **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. During the sharing phase, the parties who receive shares from the dealer also run a verification function to confirm that the shares they received are well-formed (will reconstruct properly).
+- **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. Parties who receive shares from the dealer can also run a verification function to confirm that the shares they received are well-formed (are consistent with each other).
+
+!!! example "Feldman VSS [[Fel87](https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf)]"
+
+    === "Construction"
+        Choose a DLog-hard subgroup $G$ of $\mathbb{Z}_p$ such that $G$ is of order $q$ with generator $g$. The dealer shares the secret $s$ as in regular Shamir secret sharing, using some degree-t polynomial $P(x) = s + a_1 x + \ldots + a_t x^t \pmod{q}$.
+        
+        For verifiability, the dealer includes commitments to the coefficients of $P$, calculated as 
+        
+        \[c_0 := g^s, c_1 := g^{a_1}, \ldots, c_t := g^{a_t} \in \mathbb{Z}_p\]
+        
+        To verify that some share $sh = P(i)$, party $i$ (working in $\mathbb{Z}_p$) checks that
+        
+        \[ g^{sh} =^? c_0 c_1^i \cdots c_t^{i^t} \pmod{p}\]
+        
+        Note that if the share and the commitments are well-formed, this equals $g^{s + a_1 i + \ldots + a_t i^t} = g^{P(i)}$.
+
+    === "Properties"
+        - Computationally secure (by DLog assumption)
 
 **MPC-in-the-head**
 : 

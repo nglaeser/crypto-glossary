@@ -19,8 +19,10 @@ It is known that OWFs imply (one-time) signatures.
 
 ## Schemes
 
+A common paradigm for a signature scheme is to instantiate a signature as a NIZKPoK of the secret key (additionally incorporating the message). See the "Notes" section of the Schnorr signature scheme below for a discussion of how that scheme fits into this paradigm; another example is [Picnic](https://microsoft.github.io/Picnic/), a NIST post-quantum cryptography candidate, which is essentially a proof of knowledge of the preimage of a one-way function.
+
 !!! example "Digital Signature Algorithm (DSA)"
-    === "Scheme"
+    === "Construction"
         DSA is an additive version of Schnorr (which can in turn be seen as a multiplicative version of DSA).
 
         Let $p,q$ be primes such that $q$ divides $p-1$ and $G$ be a group of order $p$ with generator $g$.
@@ -33,23 +35,48 @@ It is known that OWFs imply (one-time) signatures.
         - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$
         - compute a nonce $r := (g^k \mod{p}) \mod{q}$ (if $r=0$, start over with a different $k$)
         - compute $s := k^{-1} \cdot (H(m) + r \cdot sk) \mod{q}$ (if $s=0$, start over with a different $k$)
-
-        Return the signature $\sigma := (s, r)$.
+        - output the signature $\sigma := (s, r)$.
 
         $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,R))}$: 
 
         Check that the following hold:
 
         - $r,s \in \mathbb{Z}_q$
-        - $(g^{u_1} {pk}^{u_2} \mod{p}) \mod{q} = r$, where $u_1 := H(m) \cdot s^{-1} \mod{q}$ and $u_2 := r \cdot s^{-1} \mod{q}$
+        - $r = (g^{u_1} {pk}^{u_2} \mod{p}) \mod{q}$, where $u_1 := H(m) \cdot s^{-1} \mod{q}$ and $u_2 := r \cdot s^{-1} \mod{q}$
 
     === "Assumptions"
         - DLog
 
 !!! example "ECDSA signatures"
+    === "Construction"
+        ECDSA is the elliptic-curve version of DSA.
+
+        Let $G$ be the base point of the elliptic curve, such that $G$ has prime order $p$. Use $\times$ to denote scalar multiplication of an elliptic curve point. We use lowercase variable names for scalars and uppercase variables for elliptic curve points.
+
+        $\underline{\mathsf{Gen}}$: $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p$ and the public key $Q := {sk} \times G$.
+
+        $\underline{\mathsf{Sign}(sk, m)}$:
+
+        - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p$
+        - compute $R := k \times G$ (if $R=0$[^1], start over with a different $k$)
+        - compute $S := k^{-1} \cdot (H(m) + sk \times R)$ (if $S=0$, start over with a different $k$)
+        - output the signature $\sigma := (S, R)$.
+
+        $\underline{\mathsf{Vrfy}(Q,m, \sigma := (S,R))}$:  
+
+        Check that the following hold:
+
+        - $Q,S,R$ are valid elliptic-curve points (and not equal to the identity)
+        - compute $U_1 := H(m) S^{-1}$ and $U_2 := R S^{-1}$
+        - $R = U_1 G + U_2 Q$
+
+        [^1]: By this we mean the x-coordinate is 0 (the y-coordinate is uniquely defined -- up to reflection over the x-axis -- by the x-coordinate).
+
+    === "Assumptions"
+    - DLog over elliptic curves
 
 !!! example "Schnorr signatures"
-    === "Scheme" 
+    === "Construction" 
         Let $G$ be an elliptic curve group with generator $g$ and order $q$ and $H$ be a hash function.
 
         $\underline{\mathsf{Gen}}$: return the secret key $sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $pk := g \cdot sk$.  
@@ -58,14 +85,20 @@ It is known that OWFs imply (one-time) signatures.
         
         - choose a one-time key $k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$
         - compute a nonce $r := g \cdot k$
-        - compute $s := k - H(r || m ) \cdot sk \mod q$
+        - compute $s := k + H(r || m ) \cdot sk \mod q$
 
         Return the signature $\sigma := (s, r)$.
 
-        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,r))}$: return the truth value of $s \cdot g =^? r - H(r || m) \cdot pk$.
+        $\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,r))}$: return the truth value of $s \cdot g =^? r + H(r || m) \cdot pk$.
 
     === "Assumptions"
         - DLog
+
+    === "Notes"
+        Schnorr signatures can be viewed as a [NIZKPoK](../Areas-of-Cryptography/zk.md) of the discrete logarithm of the public key (i.e., knowledge of the secret key). Note that the Schnorr signing algorithm is essentially the standard [sigma-protocol for DLog](../Areas-of-Cryptography/zk.md#sigma-protocols), made non-interactive with the [Fiat-Shamir transform](../techniques.md).
+
+!!! example "EdDSA"
+    EdDSA is a variant of the Schnorr signature scheme for twisted Edwards curves.
 
 !!! example "CL signatures"
 
@@ -89,7 +122,7 @@ It is known that OWFs imply (one-time) signatures.
 : 
 
 **Threshold signatures**
-: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares. A threshold signature should be indistinguishable from an ordinary signature
+: signing/secret key is split into _shares_; producing a signature requires some threshold number of shares. A threshold signature should be indistinguishable from an ordinary signature. Additionally, no single party should ever learn the secret key.
 
 ## Security Notions
 

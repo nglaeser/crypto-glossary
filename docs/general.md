@@ -12,6 +12,7 @@
 
 **Black-box**
 : Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen.
+<!-- Could be worth commenting here on the fact that non-BB constructions are usually more computationally expensive and therefore BB is desirable -->
 
 **Correctness**
 : A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that decryption and encryption are inverses, or that sharing and reconstruction are inverses.
@@ -21,6 +22,9 @@
 
 **Deterministic**
 : A function that always proceeds in the same way when run on the same outputs. Alternatively, the inputs directly determine the output. Compare to _randomized_.
+
+**Elliptic curve**
+: 
 
 **Feasibility result**
 : 

@@ -87,6 +87,8 @@ For correctness, we require that for all key (pairs) output by $\sf Gen$ we have
 
 **Identity-based encryption (IBE)**
 : 
+<!-- include reasoning behind this notion (to avoid PKI) -->
+
 **Hierarchical IBE (HIBE)**
 : 
 
