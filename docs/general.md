@@ -76,6 +76,9 @@
 **Randomized**
 : A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to _deterministic_.
 
+**Ring**
+: 
+
 **Security game**
 : A game is a challenge in which an attacker (called the adversary and usually denoted by a curly letter $\mathcal{A}$) is given some information and tries to break the security property of the scheme. A "wins" the game if it can give an answer that proves it broke the security property of the scheme. For an example, see the [CPA-security game](./Cryptographic-Primitives/encryption.md#cpa-security). See also ["Game-based proofs"](./proofs.md#game-based-proofs).  
 Sometimes also called an **experiment**.
