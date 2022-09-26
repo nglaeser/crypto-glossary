@@ -98,12 +98,16 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        - Elliptic-curve cryptography (ECC)
+        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically type-2 pairings
 
 **Symmetric External Diffie–Hellman (SXDH)**
 :   === "Assumption"
 
         The same as XDH, but additionally assumes in (2) that DDH is also hard in $G_2$. 
+
+:   === "Applications"
+
+        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically type-3 pairings
 <!-- Implies XDH. -->
 
 ### Factoring

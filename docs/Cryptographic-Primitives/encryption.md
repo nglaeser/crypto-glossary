@@ -6,11 +6,16 @@
 An encryption scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes as input a security parameter and outputs a key (or key pair), an encryption algorithm $\mathsf{Enc}$ that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm $\mathsf{Dec}$ that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.
 
 !!! notation "Encryption scheme syntax"
+    An encryption scheme $\Pi_\mathsf{E}$ is a triple of algorithms $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$:
+
     - $({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)$
     - $c \gets \mathsf{Enc}({\sf pk}, m)$
     - $m \gets \mathsf{Dec}({\sf sk}, c)$
 
-For correctness, we require that for all key (pairs) output by $\sf Gen$ we have ${\sf Dec}({\sf sk}, {\sf Enc}({\sf pk}, m)) = m$.
+In the case of a _symmetric (private-key) encryption_ scheme, the private and public key are the same (see also definition below).
+
+**Correctness**
+: For all key (pairs) output by $\sf Gen$ we have ${\sf Dec}({\sf sk}, {\sf Enc}({\sf pk}, m)) = m$. The correctness notions for the fancier encryption schemes below are extensions of this basic notion: basically, if everything is run honestly, a ciphertext should decrypt to its original message.
 
 ## Basic Types of Encryption
 
@@ -74,20 +79,36 @@ For correctness, we require that for all key (pairs) output by $\sf Gen$ we have
 ## Advanced Encryption
 
 **Attribute-based encryption (ABE)**
-: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is public. A trusted third-party distributes keys to parties that meet the policy.
+: Policy-based access to encrypted data (general case of identity-based encryption (IBE)). The policy is not necessarily hidden. A trusted third party is required to distribute policy keys only to parties that meet the policy.
+
+    !!! notation "ABE syntax"
+        - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
+        - ${\sf sk}_{f} \gets \mathsf{KGen}({\sf msk}, f)$: generate a secret key for some access control policy $f: \{0, 1\}^* \rightarrow \{0,1\}$
+        - $c_a \gets \mathsf{Enc}({\sf mpk}, a, m)$: encrypt to all users with the attribute $a$
+        - $\{m, \perp\} \gets \mathsf{Dec}(sk_f, c_a)$: decrypt with secret key for policy $f$ to get the plaintext; returns $\perp$ if $c$ was encrypted to an attribute $a$ which doesn't meet the policy, that is, $f(a) \neq 1$
+
+**Broadcast encryption**
+: 
 
 **Functional encryption (FE)**
 : An encryption scheme in which it is possible to issue "function keys", e.g. a key $k_f$ that decrypts the ciphertext into a function $f(m)$ of the plaintext $m$.
 
-!!! notation "FE syntax"
-    - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
-    - ${\sf sk}_f \gets \mathsf{KGen}({\sf msk}, f)$: generate a function secret key
-    - $c \gets \mathsf{Enc}({\sf mpk}, m)$: encrypt under master public key
-    - $f(m) \gets \mathsf{Dec}({\sf sk}, c)$: decrypt with function secret key to obtain the function of the plaintext
+    !!! notation "FE syntax"
+        - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
+        - ${\sf sk}_f \gets \mathsf{KGen}({\sf msk}, f)$: generate a function secret key
+        - $c \gets \mathsf{Enc}({\sf mpk}, m)$: encrypt under master public key
+        - $f(m) \gets \mathsf{Dec}({\sf sk}_f, c)$: decrypt with function secret key to obtain the function of the plaintext
 
 **Identity-based encryption (IBE)**
-: 
-<!-- include reasoning behind this notion (to avoid PKI) -->
+: Identity-based access to encrypted data. A trusted third party is required to issue keys to identities. The reasoning behind the introduction of IBE was to avoid the complicated public-key infrastructure (PKI), in particular the issue of public key distribution, by allowing encrypters to encrypt directly to an identifier (e.g. a party's name, email, or phone number) without having to obtain the party's public key.
+
+    !!! notation "IBE syntax"
+        - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
+        - ${\sf sk}_{\sf id} \gets \mathsf{KGen}({\sf msk}, {\sf id})$: generate an identity's secret key
+        - $c_{\sf id} \gets \mathsf{Enc}({\sf mpk}, {\sf id}, m)$: encrypt directly to an identity
+        - $\{m, \perp\} \gets \mathsf{Dec}(sk_y, c_{\sf id})$: decrypt with identity secret key to get the plaintext; returns $\perp$ if $c$ was encrypted to an identity ${\sf id} \neq y$
+
+    Note that IBE can be viewed as a specific case of ABE where $f(a) = \begin{cases}1 & a = {\sf id}\\ 0 & \text{otherwise}\end{cases}$.
 
 **Hierarchical IBE (HIBE)**
 : 

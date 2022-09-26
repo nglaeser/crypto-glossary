@@ -7,8 +7,8 @@ For the most part, we use a standard glossary style, that is,
 
 We use the following callouts for specific examples, summaries, etc.
 
-!!! example "Example/Scheme"
-    Examples or specific schemes that realize some cryptographic primitive.
+!!! example "Example/Construction"
+    Examples or specific constructions that realize some cryptographic primitive.
 
 !!! note "Notation"
     For comments about notation.

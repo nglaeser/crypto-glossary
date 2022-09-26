@@ -113,7 +113,8 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 : 
 
 **DV-NIZK**
-: Designated Verifier NIZK; can only be verified by a particular party. A _MAC_ can be thought of as a DV-NIZK for a key (witness) corresponding to a message-signature pair (statement), where the verifier is the party holding the MAC key. This is zero-knowledge since no other party learns the witness from the MAC.
+: Designated Verifier NIZK; can only be verified by a particular party. This is also referred to as the *private-coin* setting, since the coins (randomness) needed to verify the NIZK are known only to the designated verifier and are thus private.  
+A [_MAC_](../Cryptographic-Primitives/other.md) can be thought of as a DV-NIZK for a key (witness) corresponding to a message-signature pair (statement), where the verifier is the party holding the MAC key. This is zero-knowledge since no other party learns the witness from the MAC.
 
 **Signature of Knowledge**
 : A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.

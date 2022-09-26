@@ -107,18 +107,46 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 ## Complexity Theory
 
 **Big-O notation**
-: Written $O(n)$, this is an upper bound on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough.
+: Written $O(g(n))$ for some function $g$, this is an *upper bound* on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in O(g(n))$ means $f(n) grows asymptotically *no faster* than $g(n)$.
 
 **Big-omega notation**
-: Written $\Omega(n)$, this is a lower bound on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough.
+: Written $\Omega(g(n))$ for some function $g$, this is a *lower bound* on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in \Omega(g(n))$ means $f(n)$ grows asymptotically *no slower* than $g(n)$.
 
 **Big-theta notation**
-: Written $\Theta(n)$, this is an approximation of the computational complexity of an algorithm/protocol/etc. when $n$ is large enough. A function $f(n)$ is Big-Theta of $n$ (written as $f(n) \in \Theta(n)$) iff $f(n) \in O(n)$ and $f(n) \in \Omega(n)$.
+: Written $\Theta(g(n))$ for some function $g$, this is an *approximation* of the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in \Theta(g(n))$ means $f(n)$ grows asymptotically *at the same rate* as $g(n)$.  
+Note: $f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n))$ and $f(n) \in \Omega(g(n))$.
+
+![Illustration of Big-O, Big-&Omega;, and Big-&Theta;](./assets/images/big-o-etc.png){ width=500px }
+
+!!! tip "Further Reading"
+    Khan Academy has good explanations of the concepts of [Big-O](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation), [Big-Omega](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-omega-notation), and [Big-Theta](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation), and the diagrams and wording here are based on those pages and a nice summary comment by the user Cameron.
 
 **Polylog(n)**
 : Polynomial in the logarithm, i.e. $poly(\log(n))$.
 
-<!-- TODO: drawing of O/Omega/Theta and f(n) --->
+### Complexity Classes
+
+**P**
+: The class of decision problems (i.e., decide if $x$ is an instance of some language $L$; see also [ZK background](./Areas-of-Cryptography/zk.md#background)) solvable in polynomial time by a Turing machine. Put another way, this is the class of decision problems solvable by a uniform family of polynomial-size Boolean circuits[^1].
+
+[^1]: in logspace, i.e. using O(log(n)) memory.
+
+**P/poly**
+: Same as the class _P_ except that the Turing machine is allowed a trusted "advice string" of size O(poly(n)), where n is the size of the input. This is also known as the non-uniform version of _P_, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
+
+**PPAD**
+: 
+
+**NC**
+: Nick's Class. **NC$^i$** is the class of decision problems solvable by a uniform family of poly-size Booldean circuits (so far, same as _P_) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, NC$^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then **NC** is the union of NC$^i$ over all i ≥ 0.  
+It is known that NC &subseteq; P.
+
+**TC$^0$**
+: The class of decision problems solvable by poly-size *constant-depth* circuits with *unbounded* fan-in using AND, OR, NOT, and threshold gates.  
+It is known that TC$^0$ &subseteq; NC$^1$.
+
+!!! tip "Further Reading"
+    Many more complexity classes can be found on the [Complexity Zoo wiki](https://complexityzoo.net/Complexity_Zoo).
 
 ## Composition
 
@@ -215,6 +243,9 @@ Sequential composition of two secure protocols is still secure. Compare to _conc
 **Generic Group Model (GGM)**
 : This model assumes that the adversary is given access to a randomly chosen (encoding of a) group instead of the groups used in practice, which have efficient encodings. The adversary also has access to an oracle for the group function.
 (Can see this as an analogue of giving the adversary access to a _random oracle_ instead of a real hash function used in practice.)
+
+**Quantum Random Oracle Model (QROM)**
+: 
 
 **Random Oracle Model (ROM)**
 : A proof paradigm that models hash functions as random oracles, i.e. an oracle that outputs a random number for any input (but outputs the same number when given the same input). Read more [here](https://blog.cryptographyengineering.com/2020/01/05/what-is-the-random-oracle-model-and-why-should-you-care-part-5/).

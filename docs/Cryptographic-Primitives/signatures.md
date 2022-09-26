@@ -12,10 +12,15 @@ A digital signature scheme consists of three algorithms: a key generation algori
 
 For correctness, we require that for all key (pairs) output by $\sf Gen$ we have $\mathsf{Vrfy}({\sf pk}, m, \mathsf{Sign}({\sf pk}, m)) = 1$.
 
-It is known that OWFs imply (one-time) signatures.
+It is known that OWFs imply (one-time) signatures (OTS).
 
-!!! example "One-time signatures from OWFs"
+!!! example "One-time signatures (OTS) from OWFs [Lamport]"
 <!-- Give construction -->
+
+OTS in turn imply many-time (i.e., regular) signatures:
+
+!!! example "Many-time signatures from OTS"
+    The construction is a bit involved so it is given in a [separate document](../assets/notes/Sigs-from-OTS.png). The general idea is to make a depth-$\lvert m \rvert$ binary tree of OTS keypairs. Then each parent is used to sign the pair of verification keys below it, and the signature on $m$ consists of the $\lvert m \rvert$ signatures on the path the bits of $m$ from the root to a leaf.
 
 ## Schemes
 
@@ -127,6 +132,8 @@ A common paradigm for a signature scheme is to instantiate a signature as a NIZK
         where Shamir reconstruction is happening homomorphically in the "exponent".
 
         This scheme is also **robust**: the validity of the signature share $\sigma_i$ can be checked by checking that $(Q, V_i, H(m), \sigma_i)$ is a co-Diffie-Hellman tuple (of the form $(Q, a Q, H, b H)$ where $a=b$).
+
+<!-- TODO can be used to construct identity-based signatures? -->
 
 !!! example "CL signatures"
 
