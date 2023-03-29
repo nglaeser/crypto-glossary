@@ -6,5 +6,8 @@ diagrams.key
 # mkdocs
 site/
 
+# VSCode
+.vscode/
+
 # macOS
 .DS_Store

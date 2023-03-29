@@ -22,59 +22,59 @@ In the case of a _symmetric (private-key) encryption_ scheme, the private and pu
 **Asymmetric (public-key) encryption**
 : One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
 
-!!! example "ElGamal encryption"
+    !!! example "ElGamal encryption"
 
-    === "Scheme"
-        $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $\mathbb{G}$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $g^x \in \mathbb{G}$.
+        === "Scheme"
+            $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $\mathbb{G}$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $g^x \in \mathbb{G}$.
 
-        $\underline{\mathsf{Enc}(pk, m)}$:
+            $\underline{\mathsf{Enc}(pk, m)}$:
 
-        - return $c := (g^r, m \cdot pk^r)$ where $r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p$
+            - return $c := (g^r, m \cdot pk^r)$ where $r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p$
 
-        $\underline{\mathsf{Dec}(sk, c := (c_1, c_2))}:$
+            $\underline{\mathsf{Dec}(sk, c := (c_1, c_2))}:$
 
-        - return $m \gets c_2/c_1^{sk}$. Note this equals $m \cdot pk^r/(g^r)^{sk} = m \cdot g^{xr}/g^{rx} = m$
+            - return $m \gets c_2/c_1^{sk}$. Note this equals $m \cdot pk^r/(g^r)^{sk} = m \cdot g^{xr}/g^{rx} = m$
 
-    === "Properties"
-        - CPA-secure (by DDH assumption)
-        - unconditionally malleable
+        === "Properties"
+            - CPA-secure (by DDH assumption)
+            - unconditionally malleable
 
-!!! example "RSA encryption"
+    !!! example "RSA encryption"
 
-    === "Scheme"
-        $\underline{\mathsf{Gen}}$: return the public key $(n,e)$ and private key $d$, where
+        === "Scheme"
+            $\underline{\mathsf{Gen}}$: return the public key $(n,e)$ and private key $d$, where
 
-        - $n:=pq$ for two random distinct prime numbers $p,q$
-        - $1<e<\varphi(n)$ and $\gcd(e,\varphi(n))=1$[^1]
-        - $d \equiv e^{-1}\pmod{\varphi(n)}$[^2]
+            - $n:=pq$ for two random distinct prime numbers $p,q$
+            - $1<e<\varphi(n)$ and $\gcd(e,\varphi(n))=1$[^1]
+            - $d \equiv e^{-1}\pmod{\varphi(n)}$[^2]
 
-        [^1]: $\varphi$ is Euler's totient function; as an optimization, many implementations use Carmicheal's totient function $\lambda$ instead. See the bottom of the [key generation paragraph on Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation) for more information.
+            [^1]: $\varphi$ is Euler's totient function; as an optimization, many implementations use Carmicheal's totient function $\lambda$ instead. See the bottom of the [key generation paragraph on Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation) for more information.
 
-        [^2]: e.g., using the extended Euclidean algorithm
+            [^2]: e.g., using the extended Euclidean algorithm
 
-        $\underline{\mathsf{Enc}(pk:=(n,e), m)}$ where $0 \le m < n$[^3]:  
+            $\underline{\mathsf{Enc}(pk:=(n,e), m)}$ where $0 \le m < n$[^3]:  
 
-        - return $c \equiv m^e \pmod{n}$
+            - return $c \equiv m^e \pmod{n}$
 
-        [^3]: A message $M$ is turned into an integer $n$ satisfying this property using an agreed-upon reversible padding scheme.
+            [^3]: A message $M$ is turned into an integer $n$ satisfying this property using an agreed-upon reversible padding scheme.
 
-        $\underline{\mathsf{Dec}(sk := d, c)}:$  
+            $\underline{\mathsf{Dec}(sk := d, c)}:$  
 
-        - compute $c^d \equiv (m^e)^d \equiv m \pmod{n}$
+            - compute $c^d \equiv (m^e)^d \equiv m \pmod{n}$
 
-    === "Properties"
-        Assuming a [strong padding scheme](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes), RSA is
+        === "Properties"
+            Assuming a [strong padding scheme](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes), RSA is
 
-        - CCA-secure (by either the RSA assumption or the hardness of integer factorization; if either assumption is proven false the security of RSA is compromised)
+            - CCA-secure (by either the RSA assumption or the hardness of integer factorization; if either assumption is proven false the security of RSA is compromised)
 
-!!! example "Paillier encryption"
+    !!! example "Paillier encryption"
 
 **Symmetric (secret-key) encryption**
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via _key agreement_ protocols or by encrypting the symmetric key using public-key encryption.  
 
-!!! example "Advanced Encryption Standard (AES)"
+    !!! example "Advanced Encryption Standard (AES)"
 
-!!! example "One-time Pad"
+    !!! example "One-time Pad"
 
 ## Advanced Encryption
 
@@ -99,6 +99,12 @@ In the case of a _symmetric (private-key) encryption_ scheme, the private and pu
         - $c \gets \mathsf{Enc}({\sf mpk}, m)$: encrypt under master public key
         - $f(m) \gets \mathsf{Dec}({\sf sk}_f, c)$: decrypt with function secret key to obtain the function of the plaintext
 
+**Fully homomorphic encryption (FHE)**
+: 
+
+    !!! tip "Further reading"
+        [fhe.org/resources](https://fhe.org/resources)
+
 **Identity-based encryption (IBE)**
 : Identity-based access to encrypted data. A trusted third party is required to issue keys to identities. The reasoning behind the introduction of IBE was to avoid the complicated public-key infrastructure (PKI), in particular the issue of public key distribution, by allowing encrypters to encrypt directly to an identifier (e.g. a party's name, email, or phone number) without having to obtain the party's public key.
 
@@ -119,9 +125,9 @@ In the case of a _symmetric (private-key) encryption_ scheme, the private and pu
 **Rerandomizable encryption**
 :  
 
-!!! notation "Rerandomizable encryption syntax"
-    - $\sf Gen, Enc, Dec$ as usual
-    - $c' \gets \mathsf{Rerand}(c, r)$: rerandomize the ciphertext using randomness $r$ without changing the underlying message ($\mathsf{Dec}({\sf sk}, c) = \mathsf{Dec}({\sf sk}, c')$)
+    !!! notation "Rerandomizable encryption syntax"
+        - $\sf Gen, Enc, Dec$ as usual
+        - $c' \gets \mathsf{Rerand}(c, r)$: rerandomize the ciphertext using randomness $r$ without changing the underlying message ($\mathsf{Dec}({\sf sk}, c) = \mathsf{Dec}({\sf sk}, c')$)
 
 
 **Structured encryption**
@@ -160,30 +166,33 @@ Secure against chosen ciphertext attacks (CCA). The indistinguishability-based n
 **IND-CCA1**
 : Non-adaptive (lunchtime) chosen ciphertext attack. Weaker than IND-CCA2. 
 
-!!! info "IND-CCA1 (non-adaptive) game"
+    !!! info "IND-CCA1 (non-adaptive) game"
 
-    1. Challenger: $k \gets Gen(1^n)$
-    1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ **and $Dec_k(\cdot)$** (in polynomial time)
-    1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
-    1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
-    1. $\mathcal{A}$ can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
-    1. $\mathcal{A}$ outputs $b'$
+        1. Challenger: $k \gets Gen(1^n)$
+        1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ **and $Dec_k(\cdot)$** (in polynomial time)
+        1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
+        1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
+        1. $\mathcal{A}$ can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? -->
+        1. $\mathcal{A}$ outputs $b'$
 
-    $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
+        $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
 
 **IND-CCA2**
 : Adaptive chosen ciphertext attack. In addition to its capabilities in the IND-CCA1 game, A now has access to the oracles _after_ seeing $c$.
 
-!!! info "IND-CCA2 (adaptive) game"
+    !!! info "IND-CCA2 (adaptive) game"
 
-    1. Challenger: $k \gets Gen(1^n)$
-    1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ and $Dec_k(\cdot)$ (in polynomial time)
-    1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
-    1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
-    1. $\mathcal{A}$ **continues to interact with $Enc_k(\cdot)$ and $Dec_k(\cdot)$** (in polynomial time) but can't query $Dec_k(\cdot)$ on $c$
-    1. $\mathcal{A}$ outputs $b'$
+        1. Challenger: $k \gets Gen(1^n)$
+        1. $\mathcal{A}(1^n)$ interacts with $Enc_k(\cdot)$ and $Dec_k(\cdot)$ (in polynomial time)
+        1. $\mathcal{A}$ outputs $m_0, m_1$ of same length
+        1. Challenger: $b \gets \{0,1\}, c \gets Enc_k(m_b)$, send $c$ to $\mathcal{A}$
+        1. $\mathcal{A}$ **continues to interact with $Enc_k(\cdot)$ and $Dec_k(\cdot)$** (in polynomial time) but can't query $Dec_k(\cdot)$ on $c$
+        1. $\mathcal{A}$ outputs $b'$
 
-    $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
+        $\mathcal{A}$ *wins* if $b=b'$, and the game outputs 1.
 
 **OW-CCA**
+: 
+
+**replayable CCA (RCCA)**
 : 

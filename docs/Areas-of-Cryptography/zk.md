@@ -24,7 +24,7 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 ## Properties
 
 **Completeness**
-: For honest P and V, the protocol will accept only on "correct" (true) statements (except with negligible probability).
+: For honest prover P and verifier V, the protocol will accept only on "correct" (true) statements (except with negligible probability).
 
 **Honest-verifier zero-knowledge (HVZK)**
 : 
@@ -49,8 +49,8 @@ ZK protocols are only interesting if the prover doesn't want to reveal its witne
 
 **Succinct**
 : 
-1. the size of the proof is polynomial in the security parameter, i.e. $\lvert \pi \rvert \in \mathrm{poly}(\lambda)$, and 
-1. verification is efficient, i.e. $V(x,\pi) \in O(\mathrm{poly}(\lambda + \lvert x \rvert))$.
+1. the size of the proof is "small" (e.g., polynomial in the security parameter: $\lvert \pi \rvert \in \mathrm{poly}(\lambda)$, or polylogarithmic in the statement size: $\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)$), and 
+1. verification is "fast", (e.g. $V(x,\pi) \in O(\mathrm{polylog}(\lambda + \lvert x \rvert))$).
 
 **Witness indistinguishable (WI)**
 : Given a proof, the (malicious?) verifier cannot distinguish between which of two valid witnesses was used to generate the proof with more than negligible probability.
@@ -94,23 +94,24 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 <!-- Maybe list for each type what assumptions they are known from? -->
 <!-- - Not known from CDH  -->
 
-**SNARG**
-: Succinct Non-interactive Argument (a more accurate acronym would be SNArg).  
-*Properties:* succinctness ("S"), non-interactivity ("N"), completeness and (computational) soundness ("ARG").
+**SNARG**/**SNArg**
+: Succinct Non-interactive Argument.  
+*Properties:* succinctness ("S"), non-interactivity ("N"), completeness and (computational) soundness ("Arg").
 
-**SNARK**
-: Succinct Non-interactive Argument of Knowledge (a more accurate acronym would be SNArK).  
+**SNARK**/**SNArK**
+: Succinct Non-interactive Argument of Knowledge.  
 *Properties:* succinctness ("S"), non-interactivity ("N"), completeness and _knowledge_ soundness ("ArK").
 
 - **zk-SNARK**
-    : zero-knowledge Succinct Non-interactive Argument of Knowledge (i.e. zkSNArK).  
-    *Properties:* zero-knowledge ("zk"), succinctness ("S"), non-interactivity ("N"), completeness and knowledge soundness ("ArK").
+    : zero-knowledge SNARK.  
+    *Properties:* the above _plus_ zero-knowledge ("zk").
 
 **SNIP**
 : [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)).
 
-**STARK**
-: 
+**STARK**/**STArK**
+: Scalable Transparent Argument of Knowledge.
+*Properties:* Fast verifier _and prover_ time ("S"), transparent/no trusted setup ("T"), completeness and _knowledge_ soundness ("ArK").
 
 **DV-NIZK**
 : Designated Verifier NIZK; can only be verified by a particular party. This is also referred to as the *private-coin* setting, since the coins (randomness) needed to verify the NIZK are known only to the designated verifier and are thus private.  

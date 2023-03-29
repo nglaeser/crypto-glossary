@@ -1,0 +1,44 @@
+# Blockchain and Cryptocurrencies
+
+!!! tip "Background Reading"
+    **Bitcoin whitepaper (2009)**: [A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf) by Satoshi Nakamoto  
+    **Ethereum whitepaper (2014)**:  [Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform](https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf) by Vitalik Buterin  
+
+!!! info "The Blockchain Trilemma"
+    The Blockchain Trilemma refers to the idea that no blockchain can have all three of the following: security, scalability, and decentralization. Any blockchain is forced to optimize for two features to the detriment of the third. The term was coined by Ethereum founder Vitalik Buterin.
+
+## Layer 1 (Consensus)
+
+!!! summary
+    An area of problems about how to get distributed systems to agree on state or some other piece of information. Found new application with the emergence of blockchains.
+
+**State Machine Replication (SMR)**
+: The problem of ensuring that a group of machines maintains agreement on a collective state even under updates (which may only be sent to some of the machines)
+
+**Byzantine Agreement (BA)**
+: 
+- **Consistency**: All honest parties output the same bit
+- **Validity**: If all honest parties input $b$, all honest parties will output $b$
+- **Termination**: All honest parties eventually terminate and output some value
+
+## Layer 2
+
+!!! summary
+    Layer 2 protocols are protocols which rely on an underlying "main" chain and are meant to help with scalability.
+
+**Payment channel (PC)**
+: 
+
+    ** Payment channel network (PCN)**
+    : 
+
+**Sidechain**
+: 
+
+**ZK-Rollup**
+: 
+
+## Layer 3 (UI)
+
+**Deterministic wallet**
+: A deterministic wallet is a cryptocurrency wallet where the keys are deterministically dervied from some seed (e.g., a string of words written on a piece of paper). If the user loses their keys, they can re-derive them from the seed.

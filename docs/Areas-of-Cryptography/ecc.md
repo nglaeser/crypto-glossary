@@ -3,22 +3,16 @@
 !!! tip "Further Reading"
     ["A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography"](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) by Nick Sullivan
 
-<!-- **Bilinear map**
-: A function $B: V \times W \rightarrow X$[^1] so that if the first entry is fixed while the second varies, the function is a linear operator, and vice versa. This means the map has the properties
-
-- for all scalars $\lambda$ (see footnote), $B(\lambda v, w) = B(v, \lambda w) = \lambda B(v,w)$.
-- $B$ is additive in both components: $B(v_1 + v_2, w) = B(v_1, w) + B(v_2, w)$ and $B(v, w_1 + w_2) = B(v, w_1) + B(v, w_2)$.
-
-[^1]: where $V, W, X$ are vector spaces over a base field F or modules over a commutative ring R (one can also use a non-commutative ring). -->
-
 **Elliptic curve**
 : 
 
 **Pairing**
 : In its most common form in cryptography, a pairing is a map $e: G_1 \times G_2 \rightarrow G_T$, where $G_1, G_2$ are additive cyclic groups of prime order $q$ and $G_T$ is a *multiplicative* cyclic group of order $q$. The map $e$ is required to have the following properties:
 
-    - **Bilinearity.** For any $a,b \in \mathbb{F}_q^*$ and $P \in G_1$ and $Q \in G_2$, $e(aP, Q) = e(P, aQ) = e(P,Q)^a$ (therefore $e(aP, bQ) = e(P,Q)^{ab}$).
-    <!-- - $e(x_1 x_2, y) = e(x_1, y) + e(x_2, y)$ and $e(x, y_1 y_2) = e(x, y_1) + e(x, y_2)$   -->
+    - **Bilinearity.** For any $a,b \in \mathbb{F}_q^*$ and $P, P_1, P_2 \in G_1$ and $Q, Q_1, Q_2 \in G_2$,
+        - $e(aP, Q) = e(P, aQ) = e(P,Q)^a$[^1] and
+        [^1]: Therefore $e(aP, bQ) = e(P,Q)^{ab}$.
+        - $e(P_1 + P_2, Q) = e(P_1, Q) \cdot e(P_2, Q)$ and $e(P, Q_1 + Q_2) = e(P, Q_1) \cdot e(P, Q_2)$.
     - **Non-degeneracy.** $e(P, Q) \neq 1$ where $P, Q$ are generators of $G_1, G_2$, respectively.
     - **Computability.** There is an efficient algorithm for computing $e$.
 
