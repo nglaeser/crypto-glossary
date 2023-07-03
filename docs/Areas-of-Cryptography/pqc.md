@@ -6,8 +6,8 @@
 **Code-based cryptography**
 : 
 
-**Isogeny-based cryptography**
+**Isogeny-based cryptography** { #isogenies }
 : 
 
-**Lattice-based cryptography**
+**Lattice-based cryptography** { #lattice-crypto }
 : Cryptography based on [lattice hardness assumptions](../assumptions.md#lattice-assumptions).  

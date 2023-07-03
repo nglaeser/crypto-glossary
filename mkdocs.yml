@@ -10,9 +10,15 @@ markdown_extensions:
   - def_list
   - footnotes
   - pymdownx.details
-  - pymdownx.superfences
   - attr_list
-  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true 
 

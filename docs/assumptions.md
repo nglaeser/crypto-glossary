@@ -7,12 +7,15 @@ This page lists common hardness assumptions upon which cryptographic schemes hav
 
 Computing the requested answer in each of these cases is believed to be hard. Since the assumptions useful in cryptography are largely _computational_ assumptions, "hard to compute" means computationally intractable (typically in polynomial time).
 
-See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions. Assumptions marked with "*" are thought to be [post-quantum secure](Areas-of-Cryptography/pqc.md).
+See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions) for a list of cryptographic hardness assumptions. Assumptions marked with :simple-atom: are thought to be [post-quantum secure](Areas-of-Cryptography/pqc.md).
 
 ## Types of Assumptions
 
 **Subexponential assumptions**
-: Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in any _subexponential_ time (so we give the adversary more computational power).
+: Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in _any_ _subexponential_ time (so we give the adversary more computational power).
+
+**Knowledge assumption**
+: 
 
 **Average-case hardness**
 : When a randomly selected instance of the problem is hard to solve.
@@ -21,13 +24,15 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 : When a randomly selected instance of the problem is not necessarily hard to solve, but rather only a carefully crafted "worst case" instance.
 
 **Decisional vs. Computational (aka Search)**
-: A decisional problem is of the form "given an input z of the form X or Y, decide whether X or Y was given". A computational problem is of the form "given some input, compute an output meeting some condition". (See the DDH and CDH assumptions below for an example.) In general, solving the computational variant of a problem implies solving the decisional variant; equivalently, the decisional variant is stronger: in general, decisional hardness &rArr; computational hardness.
+: A **decisional problem** is of the form "given an input z of the form X or Y, decide whether X or Y was given". A **computational problem** is of the form "given some input, compute an output meeting some condition". (See the [DDH](#ddh) and [CDH](#cdh) assumptions below for an example.)
 
-## Assumptions
+    In general, solving the computational variant of a problem implies solving the decisional variant; equivalently, the decisional variant is stronger, i.e., decisional hardness &rArr; computational hardness in general.
+
+## List of Assumptions
 
 ### **Discrete logarithm**
 
-**Discrete Logarithm Problem (DLog/DLP/DL)**
+**Discrete Logarithm Problem (DLog/DLP/DL)** { #dlp }
 :   === "Assumption"
 
         Let G be a group.  
@@ -36,14 +41,14 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        * Digital Signature Algorithm (DSA)
-        * Schnorr signatures
+        * [Digital Signature Algorithm (DSA)](Cryptographic-Primitives/signatures.md#schemes)
+        * [Schnorr signatures](Cryptographic-Primitives/signatures.md#schemes)
 
 ### Diffie–Hellman (DH) assumptions
 
 <!-- When must $g$ (or $G$) be uniformly chosen? -->
 
-**Computational Diffie–Hellman (CDH)**
+**Computational Diffie–Hellman (CDH)** { #cdh }
 :   === "Assumption"
 
         Let $G$ be a cyclic group of order $q$. Choose a random generator $g$ and let $a,b$ be uniform and independent integers in ${0, ..., q-1}$:  
@@ -52,16 +57,16 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
     
-        * Diffie–Hellman Key Exchange
+        * [Diffie–Hellman Key Exchange](./Cryptographic-Primitives/key-exchange.md)
 
-**Computational co-Diffie–Hellman (co-CDH)** _(Variant of CDH)_
+**Computational co-Diffie–Hellman (co-CDH)** _(Variant of CDH)_ { #co-cdh }
 :   === "Assumption"
     
         Let $G_1$ and $G_2$ be cyclic groups.  
         &emsp;**Given**: $(g,g^a,h)$ where $g,g^a \in G_1$ and $h \in G_2$  
         &emsp;**Compute**: $h^a \in G_2$
 
-**Decisional Diffie-Hellman (DDH)**
+**Decisional Diffie-Hellman (DDH)** { #ddh }
 :   !!! warning
         Importantly, the DDH assumption is believed to hold only in [certain groups](https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption#Groups_for_which_DDH_is_assumed_to_hold).
 
@@ -69,50 +74,62 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         Let $G$ be a cyclic group of order $q$ with generator $g$. Let $a,b,c$ be uniform and independent integers in ${0, ..., q-1}$:  
         &emsp;**Given**: $(g,g^a,g^b,g^{ab})$[^1] or $(g,g^a,g^b,g^c)$  
-        &emsp;**Output**: A decision about which type of tuple was given
+        &emsp;**Decide**: Which type of tuple was given?
     
         [^1]: This type of tuple is often called a "DDH tuple" (or a "DDH triple" if the generator is left out).
 
     === "Applications"
 
-        - ElGamal
+        - [ElGamal encryption](./Cryptographic-Primitives/encryption.md#pke)
         - Cramer–Shoup cryptosystems
 
-**Gap Diffie-Hellman (GDH)**
+**Decisional co-Diffie-Hellman (co-DDH)** _(Variant of DDH)_ { #co-ddh }
 :   === "Assumption"
 
-        Let G be a group in which the DDH problem is easy but the CDH problem is hard (gap group). The assumption is that CDH is still hard in these groups.
+        Let $G_1$ and $G_2$ be cyclic groups with generators $g$ and $h$.  
+        &emsp;**Given**: $(g,g^a,h,h^b)$  
+        &emsp;**Decide**: Does $a=b$?
     
+**Gap Diffie-Hellman (GDH)** { #gdh }
+:   === "Assumption"
+
+        Let G be a group in which the [DDH problem](#ddh) is easy but the [CDH problem](#cdh) is hard (this is called a **gap group**). The assumption is that [CDH](#cdh) is still hard in these groups.
+
+**Gap co-Diffie–Hellman (co-GDH)** _(Variant of GDH)_ { #co-gdh }
+:   === "Assumption"
+    
+        Let $G_1$ and $G_2$ be cyclic groups in which [co-DDH](#co-ddh) is easy but [co-CDH](#co-cdh) is hard. The assumption is that [co-CDH](#co-cdh) is still hard.
+
     === "Applications"
 
-        - BLS digital signature
+        - [BLS digital signature](./Cryptographic-Primitives/signatures.md#schemes)
 
-**External Diffie–Hellman (XDH)** (or **asymmetric XDH**)
+**External Diffie–Hellman (XDH)** (or **asymmetric XDH**) { #xdh }
 :   === "Assumption"
 
         Assumes the existence of elliptic-curve subgroups $(G_1, G_2)$ such that
 
-        1. DLog, CDH, and co-CDH are hard in both groups  
-        1. DDH is hard in $G_1$  
-        1. There is an efficiently computable bilinear map $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. 
+        1. [DLog](#dlp), [CDH](#cdh), and [co-CDH](#co-cdh) are hard in both groups  
+        1. [DDH](#ddh) is hard in $G_1$  
+        1. There is an efficiently computable [bilinear map](./Areas-of-Cryptography/ecc.md#bilinear-map) $e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T$. 
 
     === "Applications"
 
-        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically type-2 pairings
+        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically [type-2 pairings](./Areas-of-Cryptography/ecc.md#type-2)
 
-**Symmetric External Diffie–Hellman (SXDH)**
+**Symmetric External Diffie–Hellman (SXDH)** { #sxdh }
 :   === "Assumption"
 
-        The same as XDH, but additionally assumes in (2) that DDH is also hard in $G_2$. 
+        The same as [XDH](#xdh), but additionally assumes in (2) that [DDH](#ddh) is also hard in $G_2$. 
 
 :   === "Applications"
 
-        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically type-3 pairings
+        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), specifically [type-3 pairings](./Areas-of-Cryptography/ecc.md#type-3)
 <!-- Implies XDH. -->
 
 ### Factoring
 
-**RSA Assumption**
+**RSA Assumption** { #rsa-assumption }
 :   === "Assumption"
 
         This assumption corresponds exactly to finding the plaintext ($y$) of an RSA ciphertext ($x$) given only the public key $(n,e)$. Let $n=pq$ for two large primes $p,q$ and $2 < e < n$ (equivalently, $\gcd(e,n)=1$).
@@ -122,20 +139,20 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        * RSA encryption
+        * [RSA encryption](./Cryptographic-Primitives/encryption.md#pke)
 
-**Hardness of factoring large numbers**
+**Hardness of factoring large numbers** { #factoring-assumption }
 :   === "Assumption"
 
-        Given a "sufficiently large" composite number, there is no efficient algorithm for decomposing it into a product of smaller integers. (The hardest instances of this problem are of the form $n=pq$ for large random primes $p,q$ of similar magnitude.)
+        Given a "sufficiently large" composite number, there is no efficient algorithm for decomposing it into a product of smaller integers. (The hardest instances of this problem are of the form $n=pq$ for large random primes $p,q$ of similar magnitude; $n$ is sometimes called a **semiprime**)
 
     === "Applications"
 
-        * RSA encryption
+        * [RSA encryption](./Cryptographic-Primitives/encryption.md#pke)
 
 ### Lattice Assumptions
 
-\***Learning With Errors (LWE)**
+**Learning With Errors (LWE)** :simple-atom: { #lwe }
 :   === "Assumption (computational)"
 
         Let $\mathbf{A}$ be a $m \times n$ matrix of (uniformly random) integers modulo $q$ and $\vec{e},\vec{s}$ be vectors of length $m$, where $\vec{e}$ is sampled according to some error distribution $\chi$ and $\vec{s}$ consists of uniform integers modulo $q$.  
@@ -156,10 +173,10 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        * NIZK
-        * Public-key encryption
+        * [NIZKs](./Areas-of-Cryptography/zk.md#nizk)
+        * [Public-key encryption](./Cryptographic-Primitives/encryption.md#pke)
 
-\***Short Integer Solution (SIS)**
+**Short Integer Solution (SIS)** :simple-atom: { #sis }
 :   === "Assumption"
 
         The problem is parameterized by a "small" scalar $\beta$ (some discussion of bounds on $\beta$ can be found [here](https://en.wikipedia.org/wiki/Short_integer_solution_problem#SISn,m,q,%CE%B2)).
@@ -169,14 +186,14 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        * Trapdoor functions (TDF) (and therefore signatures)
+        * [Trapdoor functions](./Cryptographic-Primitives/other.md#tdf) (and therefore [signatures](./Cryptographic-Primitives/signatures.md))
 
-\***Shortest Vector Problem (SVP)**
+**Shortest Vector Problem (SVP)** :simple-atom: { #svp }
 : 
 
 ### Other
 
-\***Learning Parity with Noise (LPN)**
+**Learning Parity with Noise (LPN)** :simple-atom: { #lpn }
 : There are a few (equivalent) ways to phrase this assumption; two are given below.  
     === "Assumption (version 1)"
 
@@ -192,17 +209,17 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
     === "Applications"
 
-        - PRGs
-        - Perfectly binding commitment
-        - PAKE
+        - [PRGs](./Cryptographic-Primitives/other.md#prg)
+        - Perfectly binding [commitment](./Cryptographic-Primitives/commitments.md)
+        - [PAKE](./Cryptographic-Primitives/key-exchange.md#pake)
 
-**One-way functions**
+**One-way functions** { #owf-assumption }
 : 
     === "Assumption"
 
     === "Applications"
 
-        - One-time signatures
+        - One-time [signatures](./Cryptographic-Primitives/signatures.md)
 
 <!-- [Version 1](https://perso.uclouvain.be/fstandae/PUBLIS/182.pdf) -->
 <!-- [Version 2 and applications](http://yuyu.hk/files/LPN.pdf) -->

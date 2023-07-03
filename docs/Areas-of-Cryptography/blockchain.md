@@ -12,10 +12,10 @@
 !!! summary
     An area of problems about how to get distributed systems to agree on state or some other piece of information. Found new application with the emergence of blockchains.
 
-**State Machine Replication (SMR)**
+**State Machine Replication (SMR)** { #smr }
 : The problem of ensuring that a group of machines maintains agreement on a collective state even under updates (which may only be sent to some of the machines)
 
-**Byzantine Agreement (BA)**
+**Byzantine Agreement (BA)** { #ba }
 : 
 - **Consistency**: All honest parties output the same bit
 - **Validity**: If all honest parties input $b$, all honest parties will output $b$
@@ -26,19 +26,19 @@
 !!! summary
     Layer 2 protocols are protocols which rely on an underlying "main" chain and are meant to help with scalability.
 
-**Payment channel (PC)**
+**Payment channel (PC)** { #pc }
 : 
 
-    ** Payment channel network (PCN)**
+    ** Payment channel network (PCN)** { #pcn }
     : 
 
 **Sidechain**
 : 
 
-**ZK-Rollup**
-: 
+**Rollup** { #rollup }
+: <!-- TODO --> These are often erroneously called "zk" even though they are not [zero-knowledge](../Areas-of-Cryptography/zk.md#zk).
 
 ## Layer 3 (UI)
 
 **Deterministic wallet**
-: A deterministic wallet is a cryptocurrency wallet where the keys are deterministically dervied from some seed (e.g., a string of words written on a piece of paper). If the user loses their keys, they can re-derive them from the seed.
+: A deterministic wallet is a cryptocurrency wallet where the keys are [deterministically](../general.md#deterministic) dervied from some seed (e.g., a string of words written on a piece of paper). If the user loses their keys, they can re-derive them from the seed.
