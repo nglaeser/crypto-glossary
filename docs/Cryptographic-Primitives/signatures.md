@@ -163,24 +163,26 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
 
 **EUF-CMA**
 : **E**xistential **U**n**F**orgeability under [adaptive](../general.md#adaptive) **C**hosen **M**essage **A**ttacks, aka "existential unforgeability".
-!!! info "EUF-CMA game"
 
-    1. Challenger: $pk,sk \gets \mathsf{Gen}(1^n)$
-    1. $\mathcal{A}(pk)$ interacts with $\mathsf{Sign}(sk,\cdot)$ (in polynomial time) – that is, it gets to see polynomially many valid signatures on _chosen_ messages
-    1. $\mathcal{A}$ outputs a message-signature pair $m^*,\sigma^*$
+    !!! info "EUF-CMA game"
 
-    $\mathcal{A}$ *wins* if (1) $m^*$ wasn't one of the messages on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
+        1. Challenger: $pk,sk \gets \mathsf{Gen}(1^n)$
+        1. $\mathcal{A}(pk)$ interacts with $\mathsf{Sign}(sk,\cdot)$ (in polynomial time) – that is, it gets to see polynomially many valid signatures on _chosen_ messages
+        1. $\mathcal{A}$ outputs a message-signature pair $m^*,\sigma^*$
 
-<!-- TODO diagram like CPA,CCA security -->
+        $\mathcal{A}$ *wins* if (1) $m^*$ wasn't one of the messages on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
+
+    <!-- TODO diagram like CPA,CCA security -->
 
 **SUF-CMA**
 : **S**trong **U**n**F**orgeability under adaptive **C**hosen **M**essage **A**ttacks, aka "strong unforgeability".
-!!! info "SUF-CMA game"
 
-    Same as the EUF-CMA game, only the winning condition changes:
+    !!! info "SUF-CMA game"
 
-    $\mathcal{A}$ *wins* if (1) **$(m^*,\sigma^*)$ wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
+        Same as the EUF-CMA game, only the winning condition changes:
 
-: This is a stronger definition than EUF-CMA, since the attacker can win by forging a signature on a previously-queried message $m^*$ **as long as the signature is different**, for example by "mauling" a valid signature without changing its validity. 
+        $\mathcal{A}$ *wins* if (1) **$(m^*,\sigma^*)$ wasn't one of the message-signature pairs** on which it queried the signing oracle and (2) $\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1$; in this case, the game outputs 1.
 
-: This might seem a bit odd -- what does it matter if the adversary produces a different signature? The message was already signed by an honest party, so the adversary isn't convincing anyone that the party signed something it *didn't* actually sign. However, this difference does end up being important in some applications where signatures are used as building blocks.
+    This is a stronger definition than EUF-CMA, since the attacker can win by forging a signature on a previously-queried message $m^*$ **as long as the signature is different**, for example by "mauling" a valid signature without changing its validity. 
+
+    This might seem a bit odd -- what does it matter if the adversary produces a different signature? The message was already signed by an honest party, so the adversary isn't convincing anyone that the party signed something it *didn't* actually sign. However, this difference does end up being important in some applications where signatures are used as building blocks.

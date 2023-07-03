@@ -47,11 +47,13 @@
 **Indistinguishable** { #indist }
 : Indistinguishability refers to how hard two probability distributions are to tell apart.  
 
-- **Perfectly indistinguishable** { #perfect-indist }
+    **Perfectly indistinguishable** { #perfect-indist }
     : Two distributions are perfectly indistinguishable if they are identical: they are the same distribution.
-- **Statistically indistinguishable** { #stat-indist }
+
+    **Statistically indistinguishable** { #stat-indist }
     : Two distributions are statistically indistinguishable if they are statistically "close", ... <!-- TODO -->
-- **Computationally indistinguishable** { #comp-indist }
+
+    **Computationally indistinguishable** { #comp-indist }
     : Two distributions are computationally indistinguishable if distinguishing them would require solving some [computationally intractable problem](./assumptions.md).
 
 **Injective** { #injective }
