@@ -9,8 +9,6 @@
 **RSA Accumulator**
 : 
 
----
-
 **Complexity Leveraging**
 : 
 
@@ -24,4 +22,7 @@
 : 
 
 **Union bound**
+: 
+
+**Naor-Yung Paradigm**
 : 

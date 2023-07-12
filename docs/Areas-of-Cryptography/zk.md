@@ -54,6 +54,8 @@ The "special" part means that this property implies soundness.
 1. the proof size is "small"
 1. verification is "fast"
 
+    There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? <!-- Can link to Justin's post on misconceptions (#2) once it's out -->
+
     What exactly is meant by "small" and "fast" often depends on the author.  
     "Small" commonly means polynomial in the security parameter ($\lvert \pi \rvert \in \mathrm{poly}(\lambda)$) or polylogarithmic in the statement size ($\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)$).  
     "Fast" could mean polylogarithmic in the security parameter and statement size ($V(x,\pi) \in O(\mathrm{polylog}(\lambda + \lvert x \rvert)$). <!-- link to Justin's misconception blog post once it's done -->
@@ -160,7 +162,7 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
     ["On &Sigma;-protocols"](https://cs.au.dk/~ivan/Sigma.pdf) by Ivan Damg&aring;rd  
     ["Sigma Protocols" slides](http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf) by Benny Pinkas
 
-!!! example "Sigma protocol: DLog [Schnorr]"
+!!! example "Sigma protocol: DLog [Schnorr'89]"
 
     === "Scheme"
         To prove knowledge of the discrete logarithm x of y with respect to b (i.e., knowledge of $x$ such that $y = b^x$), 
@@ -175,12 +177,20 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
     === "Properties"
         - HVZK
         - PoK
+        - [Cramer'97] generalizes this to knowledge of a homomorphism preimage
 
 !!! example "Sigma protocol: DDH"
 
     === "Scheme"
 
     === "Properties"
+
+!!! example "Sigma protocol: DLEq [Chaum-Pedersen'92]"
+
+    === "Scheme"
+
+    === "Properties"
+
 
 ## Example Protocols
 

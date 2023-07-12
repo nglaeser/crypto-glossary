@@ -34,3 +34,12 @@
 
 **Lossy trapdoor function**
 : 
+
+## Accumulators
+
+A **cryptographic accumulator** is a primitive that (succinctly) commits to a set of elements. It should also be possible to provide short proofs of (non-)membership of elements in the set. An accumulator is the unordered sibling of a _vector commitment_.
+
+Some accumulator constructions are described below.
+
+**Merkle tree**
+: 

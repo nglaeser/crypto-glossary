@@ -21,6 +21,21 @@
 - **Validity**: If all honest parties input $b$, all honest parties will output $b$
 - **Termination**: All honest parties eventually terminate and output some value
 
+### State Representation
+
+There are two main *accounting models* used to represent the state of a blockchain system:
+
+**UTXO**
+: Unspent Transaction Output. Every transaction *tx* consists of input transactions and output transactions; before executing *tx*, the chain (miners) check that the input transactions are *unspent*, i.e., they are as-yet unused output transactions from some previous *tx'* (they are in the UTXO set). Once *tx* is processed its inputs are removed from the UTXO set. That means that there is a directed acyclic graph (DAG) describing how assets (UTXOs) have moved between addresses. This DAG represents the global state. (Account balances are computed locally by adding up an account's UTXOs.)  
+Used by: Bitcoin, Litecoin, and Monero.
+
+**Account-based**
+: The account model simply maintains a database mapping accounts to balances. This database represents the global state.
+Use by: Ethereum.
+
+!!! tip "Further Reading"
+    [The UTXO vs. Account Model](https://www.horizen.io/academy/utxo-vs-account-model/)
+
 ## Layer 2
 
 !!! summary

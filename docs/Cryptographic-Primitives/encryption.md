@@ -70,6 +70,8 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
     !!! example "Paillier encryption"
         <!-- TODO -->
 
+    !!! example "Cramer-Shoup cryptosystem"
+
 **Symmetric (secret-key) encryption** { #symmetric-enc }
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via [key agreement](./key-exchange.md#key-agreement) protocols or by encrypting the symmetric key using [public-key encryption](#pke).  
 

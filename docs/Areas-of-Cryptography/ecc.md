@@ -4,7 +4,9 @@
     ["A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography"](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) by Nick Sullivan
 
 **Elliptic curve**
-: 
+: Examples: BN254 (pairing-friendly), BLS12-381, MNT curves
+
+## Pairing-Based Cryptography
 
 **Pairing** { #pairing }
 : In its most common form in cryptography, a pairing is a map $e: G_1 \times G_2 \rightarrow G_T$, where $G_1, G_2$ are additive cyclic groups of prime order $q$ and $G_T$ is a *multiplicative* cyclic group of order $q$. The map $e$ is required to have the following properties:
@@ -27,3 +29,5 @@
     { #type-2 }
     - **Type-3**: $G_1 \neq G_2$ and there is no efficiently computable homomorphism between $G_1$ and $G_2$. [DDH](../assumptions.md#diffiehellman-dh-assumptions) is thought to be hard in both $G_1$ and $G_2$, referred to as the [symmetric external Diffie-Hellman (SXDH) assumption](../assumptions.md#diffiehellman-dh-assumptions).  
     { #type-3 }
+
+    Examples: [Weil pairing](https://crypto.stanford.edu/pbc/notes/ep/pairing.html), [Tate pairing](https://crypto.stanford.edu/pbc/notes/ep/tate.html), [Ate pairing](https://eprint.iacr.org/2006/110)
