@@ -4,7 +4,10 @@
     ["A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography"](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) by Nick Sullivan
 
 **Elliptic curve**
-: Examples: BN254 (pairing-friendly), BLS12-381, MNT curves
+: 
+    - Pairing-friendly: Baretto-Naehrig (BN) curves (e.g., BN254), Barreto-Lynn-Scott (BLS) curves (e.g., BLS12-381), Kachisa-Schaefer-Scott (KSS) curves, Miyaji-Nakabayashi-Takano (MNT) curves. Pairing-friendly curves [have all three of the common pairings](https://crypto.stackexchange.com/questions/70802/do-weil-tate-and-ate-pairings-exist-on-all-elliptic-curves) (Weil, Ate, and Tate).
+    - No pairing: secp256k1, NIST P-256, Curve25519
+    <!-- https://www.ietf.org/proceedings/105/slides/slides-105-cfrg-pairing-friendly-curves-00.pdf -->
 
 ## Pairing-Based Cryptography
 

@@ -61,8 +61,68 @@ Besides the basic commitment functionality, there are additional "fancier" types
         === "Further reading"
             For a more detailed description of the scheme, see [https://risencrypto.github.io/Kate/](https://risencrypto.github.io/Kate/).
 
-**Shrinking commitment**
-: <!-- used when we want the pk to be small? -->
-
 **Vector commitment** { #vc }
 : A vector commitment allows one to commit to a vector $\vec{v} = (v_1, \dots, v_n)$ and later individually open elements $v_i$. (Note that a [polynomial commitment](#poly-com) to a polynomial of degree $d$ can be thought of as a vector commitment to $d+1$ points.)
+
+    !!! example "Libert-Yung VC [[LY10]](https://www.iacr.org/archive/tcc2010/59780496/59780496.pdf)"
+
+        === "Scheme"
+            This is a modified version of the original Libert-Yung VC, which was "mercurial", meaning it allowed both "hard" (normal) and "soft" (teasing open to any message a commitment originally made to "no message") openings.
+
+            Let $\mathbb{G},\mathbb{G}_T$ be bilinear groups of prime order $p$ and $e: \mathbb{G} \times \mathbb{G} \rightarrow \mathbb{G}_T$ be a bilinear map. Let $g$ be a random generator of $\mathbb{G}$.
+
+            - $\underline{{\sf Setup}(1^\lambda, q)}$: To set up a VC for vectors of length at most $q$, sample (a trapdoor) $z \stackrel{\$}{\gets} \mathbb{Z}_p^*$ and compute $h_i := g^{z^i}$ for $i = 1, \ldots, q, q+2, \ldots, 2q$.
+
+            - $\underline{{\sf Com}({\sf pp}, \vec{v})}$: To commit to $\vec{v} = (m_1, \ldots, m_q)$, compute
+
+            $$C := h_1^{m_1} h_2^{m_2} \dots h_q^{m_q}$$
+
+            and output $C$ as the commitment.
+
+            - $\underline{{\sf Open}({\sf pp}, i, m_i)}$: Compute $\Lambda_i := \prod_{j=1,j \neq i}^{q} g_{q+1-j+i}^{m_j}$.
+
+            - $\underline{{\sf Vrfy}({\sf pp}, C, i, m_i, \Lambda_i)}$: Given an opening $(i, m_i)$ for the commitment $C$ and an opening proof $\Lambda_i$, a party can verify the correctness of the opening by checking that 
+            
+            $$e(C, h_{q+1-i}) = e(\Lambda_i, g) \cdot e(h_i^{}).$$
+
+
+
+        === "Properties"
+
+        === "Further reading"
+
+    !!! example "(Updatable) VC from CDH [[CF13]](https://eprint.iacr.org/2011/495)"
+
+        === "Scheme"
+            Let $\mathbb{G},\mathbb{G}_T$ be bilinear groups of prime order $p$ and $e: \mathbb{G} \times \mathbb{G} \rightarrow \mathbb{G}_T$ be a bilinear map. Let $g$ be a random generator of $\mathbb{G}$.
+
+            - $\underline{{\sf Setup}(1^\lambda, q)}$: To set up a VC for vectors of length at most $q$, sample (trapdoors) $z_1, \ldots, z_q \stackrel{\$}{\gets} \mathbb{Z}_p$. Compute $h_i := g^{z_i}$ and $h_{i,j} = g^{z_i z_j}$ for $i,j = 1, \ldots, q$ with $j \neq i$. Output ${\sf pp} := (g, \{h_i\}_{i \in [q]}, \{h_{i,j}\}_{i,j \in [q], i \neq j})$.
+
+            - $\underline{{\sf Com}({\sf pp}, \vec{v})}$: To commit to $\vec{v} = (m_1, \ldots, m_q)$, compute
+
+            $$C := h_1^{m_1} h_2^{m_2} \dots h_q^{m_q}$$
+
+            (same as Libert-Yung VC) and output the commitment $C$ and auxiliary information ${\sf aux} := (m_1, \ldots, m_q)$.
+
+            - $\underline{{\sf Open}({\sf pp}, i, m_i, {\sf aux})}$: Compute $\Lambda_i := \prod_{j=1,j\neq i}^{q} h_{i,j}^{m_j} = \prod_{j=1,j\neq i}^{q} \left( h_j^{m_j} \right)^{z_i}$.
+
+            - $\underline{{\sf Vrfy}({\sf pp}, C, i, m_i, \Lambda_i)}$: Given an opening $(i, m_i)$ for the commitment $C$ and an opening proof $\Lambda_i$, a party can verify the correctness of the opening by checking that 
+            
+            $$e(C/h_i^{m_i}, h_i) = e(\Lambda_i, g).$$
+
+            ---
+
+            - $\underline{{\sf Update}({\sf pp}, C, i, m, m')}$: To update the $i$th entry $m$ to $m'$, compute an updated commitment $C' := C \cdot h_i^{m'-m}$ and updating information $U := (m, m', i)$.
+
+            - $\underline{{\sf PfUpdate}({\sf pp}, C, \Lambda_j, m', U)}$: A proof for the opening of position $j$ which was valid w.r.t. $C$ can be updated for $C'$ as follows:
+                - If $j \neq i$, $\Lambda_j' := \Lambda_j \cdot (h_i^{m'-m})^{z_j} = \Lambda_j \cdot h_{j,i}^{m'-m}$.
+                - If $j = i$, the proof $\Lambda_i$ remains unchanged.
+
+        === "Properties"
+
+            - Security holds by the [CDH assumption](../assumptions.md#cdh) in bilinear groups
+            - The scheme is updatable, so the commitment can be updated to reflect an update to one entry of the vector
+
+        === "Further reading"
+
+            - See [the paper](https://eprint.iacr.org/2011/495) for details as well as an additional updatable VC from the [RSA assumption](../assumptions.md#rsa-assumption).

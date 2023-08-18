@@ -54,7 +54,7 @@ The "special" part means that this property implies soundness.
 1. the proof size is "small"
 1. verification is "fast"
 
-    There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? <!-- Can link to Justin's post on misconceptions (#2) once it's out -->
+    There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? <!-- Can link to Justin's post on misconceptions (#2) once it's out https://a16zcrypto.com/posts/article/17-misconceptions-about-snarks/ -->
 
     What exactly is meant by "small" and "fast" often depends on the author.  
     "Small" commonly means polynomial in the security parameter ($\lvert \pi \rvert \in \mathrm{poly}(\lambda)$) or polylogarithmic in the statement size ($\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)$).  
@@ -92,6 +92,12 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 : [Proof](#proof) where the [soundness](#soundness) is [_knowledge_ soundness](#knowledge-soundness).  
 *Properties:* [completeness](#completeness), [knowledge soundness](#knowledge-soundness).
 
+**Probabilistically Checkable Proof (PCP)** { #pcp }
+: 
+
+**Interactive Oracle Proof (IOP)** { #iop }
+: Sometimes referred to as **probabilistically checkable interactive proofs (PCIP)**, this is an interactive variant of PCPs.
+
 **NIWI** { niwi }
 : [Non-Interactive](#non-int) [Witness Indistinguishable](#wi) [proof](#proof).  
 *Properties:* [non-interactivity](#non-int) ("NI"), [witness indistinguishability](#wi) ("WI"), [completeness](#completeness) and [soundness](#soundness) ("proof").
@@ -123,8 +129,7 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 *Properties:* Fast verifier _and prover_ time ("S"), transparent/no trusted setup ("T"), [completeness](#completeness) and [_knowledge_ soundness](#knowledge-soundness) ("ArK").
 
 **DV-NIZK**
-: Designated Verifier [NIZK](#nizk); can only be verified by a particular party. This is also referred to as the *private-coin* setting, since the coins (randomness) needed to verify the NIZK are known only to the designated verifier and are thus private.  
-A [_MAC_](../Cryptographic-Primitives/other.md#mac) can be thought of as a DV-NIZK for a key (the witness) corresponding to a message-signature pair (the statement), where the verifier is the party holding the MAC key. This is [zero-knowledge](#zk) since no other party learns the witness from the MAC.
+: Designated Verifier [NIZK](#nizk). 
 
 <!-- **Signature of Knowledge**
 : A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
@@ -188,6 +193,13 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 !!! example "Sigma protocol: DLEq [Chaum-Pedersen'92]"
 
     === "Scheme"
+
+    === "Properties"
+
+!!! example "Sigma protocol: Pedersen opening"
+
+    === "Scheme"
+<!-- https://crypto.stackexchange.com/questions/81236/question-of-proving-the-opening-of-pedersen-commitment#81260 -->
 
     === "Properties"
 
