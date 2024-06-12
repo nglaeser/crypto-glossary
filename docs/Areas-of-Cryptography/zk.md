@@ -163,7 +163,10 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 !!! example "Sigma protocol: DLog [Schnorr]"
 
     === "Scheme"
-        To prove knowledge of the discrete logarithm x of y with respect to b (i.e., knowledge of $x$ such that $y = b^x$), 
+        **Public parameters:** None  
+        **Prover:** Knows $x, y, b$  
+        **Verifier:** Knows $y, b$  
+        To prove knowledge of the discrete logarithm $x$ such that $y = b^x$, 
 
         1. The prover P chooses a uniform value $r$ and sends $a := b^r$ to the verifier V
         1. V sends back a uniform challenge $ch$

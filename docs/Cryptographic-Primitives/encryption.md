@@ -70,6 +70,11 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
     !!! example "Paillier encryption"
         <!-- TODO -->
 
+    !!! example "Naor-Yung paradigm"
+
+        === "Scheme"
+            Use a CPA-secure encryption scheme and an adaptively-secure NIZK. Compute $c_1 \gets {\sf Enc}(pk_1, m)$ and $c_2 \gets {\sf Enc}(pk_2, m)$ and use the NIZK to prove $c_1, c_2$ encrypt the same message.
+
 **Symmetric (secret-key) encryption** { #symmetric-enc }
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via [key agreement](./key-exchange.md#key-agreement) protocols or by encrypting the symmetric key using [public-key encryption](#pke).  
 
@@ -205,7 +210,9 @@ These two notions have been shown to be equivalent: semantic security &rArr; IND
 CCA stands for "chosen *ciphertext* attacks", and security against these attacks if normally formulated as an indistinguishability-based notion (IND-CCA). There are two variants of IND-CCA security: [IND-CCA1](#ind-cca1) and [IND-CCA2](#ind-cca2). Both are stronger than [IND-CPA security](#cpa-security) because the adversary is additionally given access to a _decryption_ oracle. **IND-CCA** (without a number) usually refers to [IND-CCA2](#ind-cca2).
 
 **IND-CCA1** { #ind-cca1 }
-: Security against *non-adaptive* ("lunchtime") chosen ciphertext attack. Weaker than [IND-CCA2](#ind-cca2). 
+: Security against *non-adaptive* ("lunchtime") chosen ciphertext attack. Weaker than [IND-CCA2](#ind-cca2).
+
+    Examples: [Naor-Yung encryption](https://www.cs.umd.edu/~jkatz/gradcrypto2/NOTES/lecture7.pdf)
 
     !!! info "IND-CCA1 game"
         === "Description"
@@ -244,6 +251,8 @@ CCA stands for "chosen *ciphertext* attacks", and security against these attacks
 
 **IND-CCA2** { #ind-cca2 }
 : Security against *adaptive* chosen ciphertext attack. In addition to its capabilities in the [IND-CCA1](#ind-cca1) game, $\mathcal{A}$ now has access to the oracles _after_ seeing $c$.
+
+    Examples: Dolev-Dwork-Naor, [Cramer-Shoup](https://en.wikipedia.org/wiki/Cramer%E2%80%93Shoup_cryptosystem)
 
     !!! info "IND-CCA2 game"
         === "Description"
