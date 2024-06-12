@@ -75,6 +75,8 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
         === "Scheme"
             Use a CPA-secure encryption scheme and an adaptively-secure NIZK. Compute $c_1 \gets {\sf Enc}(pk_1, m)$ and $c_2 \gets {\sf Enc}(pk_2, m)$ and use the NIZK to prove $c_1, c_2$ encrypt the same message.
 
+    !!! example "Cramer-Shoup cryptosystem"
+
 **Symmetric (secret-key) encryption** { #symmetric-enc }
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via [key agreement](./key-exchange.md#key-agreement) protocols or by encrypting the symmetric key using [public-key encryption](#pke).  
 
