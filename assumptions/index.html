@@ -1,0 +1,1237 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/assumptions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../general/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Assumptions - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#assumptions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assumptions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Use This Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Assumptions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Assumptions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Assumptions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of Assumptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="List of Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discrete logarithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffiehellman-dh-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffie–Hellman (DH) assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lattice-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lattice Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Notation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proofs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Proofs: Types and Techniques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../techniques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Techniques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Areas of Cryptography
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Areas of Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/blockchain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blockchain and Cryptocurrencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/ecc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elliptic-Curve Cryptography
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/mpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Party Computation (MPC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/other/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/pqc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Post-quantum cryptography (PQC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/zk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zero-Knowledge (ZK)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cryptographic Primitives
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Cryptographic Primitives
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/commitments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commitment schemes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/encryption/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encryption
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hash Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/key-exchange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Key Exchange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/other/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/signatures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signatures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Assumptions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of Assumptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="List of Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discrete logarithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffiehellman-dh-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffie–Hellman (DH) assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lattice-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lattice Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="assumptions">Assumptions</h1>
+<p>This page lists common hardness assumptions upon which cryptographic schemes have been based. These range from standard (widely used and believed to hold) to newer assumptions (recently introduced and less well-tested).</p>
+<!-- Maybe color-code based on how standard they are? -->
+<!-- Also give any implications -->
+
+<p>Computing the requested answer in each of these cases is believed to be hard. Since the assumptions useful in cryptography are largely <em>computational</em> assumptions, "hard to compute" means computationally intractable (typically in polynomial time).</p>
+<p>See also <a href="https://en.wikipedia.org/wiki/Computational_hardness_assumption#Common_cryptographic_hardness_assumptions">Wikipedia</a> for a list of cryptographic hardness assumptions. Assumptions marked with :simple-atom: are thought to be <a href="../Areas-of-Cryptography/pqc/">post-quantum secure</a>.</p>
+<h2 id="types-of-assumptions">Types of Assumptions</h2>
+<dl>
+<dt><strong>Subexponential assumptions</strong></dt>
+<dd>Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in <em>any</em> <em>subexponential</em> time (so we give the adversary more computational power).</dd>
+<dt><strong>Knowledge assumption</strong></dt>
+<dd></dd>
+<dt><strong>Average-case hardness</strong></dt>
+<dd>When a randomly selected instance of the problem is hard to solve.</dd>
+<dt><strong>Worst-case hardness</strong></dt>
+<dd>When a randomly selected instance of the problem is not necessarily hard to solve, but rather only a carefully crafted "worst case" instance.</dd>
+<dt><strong>Decisional vs. Computational (aka Search)</strong></dt>
+<dd>
+<p>A <strong>decisional problem</strong> is of the form "given an input z of the form X or Y, decide whether X or Y was given". A <strong>computational problem</strong> is of the form "given some input, compute an output meeting some condition". (See the <a href="#ddh">DDH</a> and <a href="#cdh">CDH</a> assumptions below for an example.)</p>
+<p>In general, solving the computational variant of a problem implies solving the decisional variant; equivalently, the decisional variant is stronger, i.e., decisional hardness &rArr; computational hardness in general.</p>
+</dd>
+</dl>
+<h2 id="list-of-assumptions">List of Assumptions</h2>
+<h3 id="discrete-logarithm"><strong>Discrete logarithm</strong></h3>
+<dl>
+<dt id="dlp"><strong>Discrete Logarithm Problem (DLog/DLP/DL)</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Assumption</label><label for="__tabbed_1_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let G be a group.<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\(a,b \in G\)</span><br />
+&emsp;<strong>Compute</strong>: k such that <span class="arithmatex">\(b^k=a\)</span></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/signatures/#schemes">Digital Signature Algorithm (DSA)</a></li>
+<li><a href="../Cryptographic-Primitives/signatures/#schemes">Schnorr signatures</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<h3 id="diffiehellman-dh-assumptions">Diffie–Hellman (DH) assumptions</h3>
+<!-- When must $g$ (or $G$) be uniformly chosen? -->
+
+<dl>
+<dt id="cdh"><strong>Computational Diffie–Hellman (CDH)</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Assumption</label><label for="__tabbed_2_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G\)</span> be a cyclic group of order <span class="arithmatex">\(q\)</span>. Choose a random generator <span class="arithmatex">\(g\)</span> and let <span class="arithmatex">\(a,b\)</span> be uniform and independent integers in <span class="arithmatex">\({0, ..., q-1}\)</span>:<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\((g, g^a, g^b)\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(g^{ab}\)</span></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/key-exchange/">Diffie–Hellman Key Exchange</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="co-cdh"><strong>Computational co-Diffie–Hellman (co-CDH)</strong> <em>(Variant of CDH)</em></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Assumption</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G_1\)</span> and <span class="arithmatex">\(G_2\)</span> be cyclic groups.<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\((g,g^a,h)\)</span> where <span class="arithmatex">\(g,g^a \in G_1\)</span> and <span class="arithmatex">\(h \in G_2\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(h^a \in G_2\)</span></p>
+</div>
+</div>
+</div>
+</dd>
+<dt id="ddh"><strong>Decisional Diffie-Hellman (DDH)</strong></dt>
+<dd>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+Importantly, the DDH assumption is believed to hold only in <a href="https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption#Groups_for_which_DDH_is_assumed_to_hold">certain groups</a>.</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Assumption</label><label for="__tabbed_4_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G\)</span> be a cyclic group of order <span class="arithmatex">\(q\)</span> with generator <span class="arithmatex">\(g\)</span>. Let <span class="arithmatex">\(a,b,c\)</span> be uniform and independent integers in <span class="arithmatex">\({0, ..., q-1}\)</span>:<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\((g,g^a,g^b,g^{ab})\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or <span class="arithmatex">\((g,g^a,g^b,g^c)\)</span><br />
+&emsp;<strong>Decide</strong>: Which type of tuple was given?</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/encryption/#pke">ElGamal encryption</a></li>
+<li>Cramer–Shoup cryptosystems</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="co-ddh"><strong>Decisional co-Diffie-Hellman (co-DDH)</strong> <em>(Variant of DDH)</em></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Assumption</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G_1\)</span> and <span class="arithmatex">\(G_2\)</span> be cyclic groups with generators <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(h\)</span>.<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\((g,g^a,h,h^b)\)</span><br />
+&emsp;<strong>Decide</strong>: Does <span class="arithmatex">\(a=b\)</span>?</p>
+</div>
+</div>
+</div>
+</dd>
+<dt id="gdh"><strong>Gap Diffie-Hellman (GDH)</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Assumption</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let G be a group in which the <a href="#ddh">DDH problem</a> is easy but the <a href="#cdh">CDH problem</a> is hard (this is called a <strong>gap group</strong>). The assumption is that <a href="#cdh">CDH</a> is still hard in these groups.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt id="co-gdh"><strong>Gap co-Diffie–Hellman (co-GDH)</strong> <em>(Variant of GDH)</em></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Assumption</label><label for="__tabbed_7_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G_1\)</span> and <span class="arithmatex">\(G_2\)</span> be cyclic groups in which <a href="#co-ddh">co-DDH</a> is easy but <a href="#co-cdh">co-CDH</a> is hard. The assumption is that <a href="#co-cdh">co-CDH</a> is still hard.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/signatures/#schemes">BLS digital signature</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="xdh"><strong>External Diffie–Hellman (XDH)</strong> (or <strong>asymmetric XDH</strong>)</dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Assumption</label><label for="__tabbed_8_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Assumes the existence of elliptic-curve subgroups <span class="arithmatex">\((G_1, G_2)\)</span> such that</p>
+<ol>
+<li><a href="#dlp">DLog</a>, <a href="#cdh">CDH</a>, and <a href="#co-cdh">co-CDH</a> are hard in both groups  </li>
+<li><a href="#ddh">DDH</a> is hard in <span class="arithmatex">\(G_1\)</span>  </li>
+<li>There is an efficiently computable <a href="../Areas-of-Cryptography/ecc/#bilinear-map">bilinear map</a> <span class="arithmatex">\(e(\cdot, \cdot): G_1 \times G_2 \mapsto G_T\)</span>. </li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Areas-of-Cryptography/ecc/">Elliptic-curve cryptography (ECC)</a>, specifically <a href="../Areas-of-Cryptography/ecc/#type-2">type-2 pairings</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="sxdh"><strong>Symmetric External Diffie–Hellman (SXDH)</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Assumption</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The same as <a href="#xdh">XDH</a>, but additionally assumes in (2) that <a href="#ddh">DDH</a> is also hard in <span class="arithmatex">\(G_2\)</span>. </p>
+</div>
+</div>
+</div>
+</dd>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><a href="../Areas-of-Cryptography/ecc/">Elliptic-curve cryptography (ECC)</a>, specifically <a href="../Areas-of-Cryptography/ecc/#type-3">type-3 pairings</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<!-- Implies XDH. -->
+
+<h3 id="factoring">Factoring</h3>
+<dl>
+<dt id="rsa-assumption"><strong>RSA Assumption</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Assumption</label><label for="__tabbed_11_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This assumption corresponds exactly to finding the plaintext (<span class="arithmatex">\(y\)</span>) of an RSA ciphertext (<span class="arithmatex">\(x\)</span>) given only the public key <span class="arithmatex">\((n,e)\)</span>. Let <span class="arithmatex">\(n=pq\)</span> for two large primes <span class="arithmatex">\(p,q\)</span> and <span class="arithmatex">\(2 &lt; e &lt; n\)</span> (equivalently, <span class="arithmatex">\(\gcd(e,n)=1\)</span>).</p>
+<p>&emsp;<strong>Given</strong>: <span class="arithmatex">\(e,x,n\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(y\)</span> such that <span class="arithmatex">\(y^e = x \pmod{n}\)</span></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/encryption/#pke">RSA encryption</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="factoring-assumption"><strong>Hardness of factoring large numbers</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Assumption</label><label for="__tabbed_12_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Given a "sufficiently large" composite number, there is no efficient algorithm for decomposing it into a product of smaller integers. (The hardest instances of this problem are of the form <span class="arithmatex">\(n=pq\)</span> for large random primes <span class="arithmatex">\(p,q\)</span> of similar magnitude; <span class="arithmatex">\(n\)</span> is sometimes called a <strong>semiprime</strong>)</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/encryption/#pke">RSA encryption</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<h3 id="lattice-assumptions">Lattice Assumptions</h3>
+<dl>
+<dt id="lwe"><strong>Learning With Errors (LWE)</strong> :simple-atom:</dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:3"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><input id="__tabbed_13_3" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Assumption (computational)</label><label for="__tabbed_13_2">Assumption (decisional)</label><label for="__tabbed_13_3">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(\mathbf{A}\)</span> be a <span class="arithmatex">\(m \times n\)</span> matrix of (uniformly random) integers modulo <span class="arithmatex">\(q\)</span> and <span class="arithmatex">\(\vec{e},\vec{s}\)</span> be vectors of length <span class="arithmatex">\(m\)</span>, where <span class="arithmatex">\(\vec{e}\)</span> is sampled according to some error distribution <span class="arithmatex">\(\chi\)</span> and <span class="arithmatex">\(\vec{s}\)</span> consists of uniform integers modulo <span class="arithmatex">\(q\)</span>.  </p>
+<p>That is, <span class="arithmatex">\(\mathbf{A} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^{m \times n}\)</span>, <span class="arithmatex">\(\vec{s} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^m\)</span>, <span class="arithmatex">\(\vec{e} \gets\!\!\tiny{\$}\normalsize\ \chi\)</span>.</p>
+<p>&emsp;<strong>Given</strong>: <span class="arithmatex">\(\mathbf{A},\vec{b} := \mathbf{A} \cdot \vec{s} + \vec{e}\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(\vec{s} \in \mathbb{Z}_q^n\)</span> such that <span class="arithmatex">\(\mathbf{A}\cdot \vec{s} + \vec{e} = \vec{b} \pmod{q}\)</span></p>
+<!-- Drawing of dimensions -->
+</div>
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(\mathbf{A},\vec{s},\vec{e},\vec{b}\)</span> be initialized as in the computational assumption.</p>
+<p>&emsp;<strong>Given</strong>: Either <span class="arithmatex">\((\mathbf{A},\vec{b})\)</span> or <span class="arithmatex">\((\mathbf{A},\vec{u})\)</span>, where <span class="arithmatex">\(\vec{u} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^m\)</span><br />
+&emsp;<strong>Decide</strong>: Whether the given tuple was of the form <span class="arithmatex">\((\mathbf{A},\vec{b}:=\mathbf{A}\cdot \vec{s} + \vec{e})\)</span> or <span class="arithmatex">\((\mathbf{A},\vec{u})\)</span>.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Areas-of-Cryptography/zk/#nizk">NIZKs</a></li>
+<li><a href="../Cryptographic-Primitives/encryption/#pke">Public-key encryption</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="sis"><strong>Short Integer Solution (SIS)</strong> :simple-atom:</dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Assumption</label><label for="__tabbed_14_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The problem is parameterized by a "small" scalar <span class="arithmatex">\(\beta\)</span> (some discussion of bounds on <span class="arithmatex">\(\beta\)</span> can be found <a href="https://en.wikipedia.org/wiki/Short_integer_solution_problem#SISn,m,q,%CE%B2">here</a>).</p>
+<p>&emsp;<strong>Given</strong>: <span class="arithmatex">\(\mathbf{A} \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^{n \times m}\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(\vec{x} \in \mathbb{Z}_q^m\)</span> such that <span class="arithmatex">\(\lVert \vec{x} \rVert &lt; \beta\)</span> and <span class="arithmatex">\(\mathbf{A} \cdot \vec{x} = \vec{0}\)</span></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/other/#tdf">Trapdoor functions</a> (and therefore <a href="../Cryptographic-Primitives/signatures/">signatures</a>)</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="svp"><strong>Shortest Vector Problem (SVP)</strong> :simple-atom:</dt>
+<dd></dd>
+</dl>
+<h3 id="other">Other</h3>
+<dl>
+<dt id="lpn"><strong>Learning Parity with Noise (LPN)</strong> :simple-atom:</dt>
+<dd>
+<p>There are a few (equivalent) ways to phrase this assumption; two are given below.  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:3"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><input id="__tabbed_15_3" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Assumption (version 1)</label><label for="__tabbed_15_2">Assumption (version 2)</label><label for="__tabbed_15_3">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Fix a secret <span class="arithmatex">\(n\)</span>-bit string <span class="arithmatex">\(k \in \{0,1\}^n\)</span>. Let <span class="arithmatex">\(\mathcal{O}_{k,\epsilon}\)</span> be an oracle that outputs independent samples <span class="arithmatex">\((x_i,y_i)\)</span>, where <span class="arithmatex">\(x_i\)</span> is a random <span class="arithmatex">\(n\)</span>-bit string and <span class="arithmatex">\(y_i := \langle x_i \mid k \rangle \oplus e_i\)</span>, where the bit <span class="arithmatex">\(e_i\)</span> is 1 with probability <span class="arithmatex">\(\epsilon\)</span> and 0 otherwise and <span class="arithmatex">\(\langle \cdot \mid \cdot \rangle\)</span> means inner product.<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\(q\)</span> samples <span class="arithmatex">\((x_i,y_i)\)</span> from <span class="arithmatex">\(\mathcal{O}_{k,\epsilon}\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(k\)</span> (such that <span class="arithmatex">\(y_i = \langle x_i \mid k \rangle \oplus e_i\)</span> for all <span class="arithmatex">\((x_i,y_i), i=1\ldots q\)</span>)</p>
+</div>
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(\mathbf{A}\)</span> be a <span class="arithmatex">\(q \times n\)</span> matrix of (uniformly random) bits and <span class="arithmatex">\(\vec{e},\vec{y}\)</span> be <span class="arithmatex">\(q\)</span>-bit vectors (where <span class="arithmatex">\(e_i = 1\)</span> with probability <span class="arithmatex">\(\epsilon\)</span> and 0 otherwise).<br />
+&emsp;<strong>Given</strong>: <span class="arithmatex">\(\mathbf{A},\vec{y}\)</span><br />
+&emsp;<strong>Compute</strong>: <span class="arithmatex">\(\vec{k} \in \{0,1\}^n\)</span> such that <span class="arithmatex">\(\mathbf{A}\cdot \vec{k} + \vec{e} = \vec{y} \pmod{2}\)</span></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../Cryptographic-Primitives/other/#prg">PRGs</a></li>
+<li>Perfectly binding <a href="../Cryptographic-Primitives/commitments/">commitment</a></li>
+<li><a href="../Cryptographic-Primitives/key-exchange/#pake">PAKE</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt id="owf-assumption"><strong>One-way functions</strong></dt>
+<dd>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">Assumption</label><label for="__tabbed_16_2">Applications</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block">
+<ul>
+<li>One-time <a href="../Cryptographic-Primitives/signatures/">signatures</a></li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+<!-- [Version 1](https://perso.uclouvain.be/fstandae/PUBLIS/182.pdf) -->
+<!-- [Version 2 and applications](http://yuyu.hk/files/LPN.pdf) -->
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>This type of tuple is often called a "DDH tuple" (or a "DDH triple" if the generator is left out).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1018 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/Cryptographic-Primitives/commitments/">
+      
+      
+        <link rel="prev" href="../../Areas-of-Cryptography/zk/">
+      
+      
+        <link rel="next" href="../encryption/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Commitment schemes - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#commitment-schemes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Commitment schemes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Use This Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assumptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assumptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Notation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proofs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Proofs: Types and Techniques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../techniques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Techniques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Areas of Cryptography
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Areas of Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/blockchain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blockchain and Cryptocurrencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/ecc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elliptic-Curve Cryptography
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/mpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Party Computation (MPC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/other/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/pqc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Post-quantum cryptography (PQC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/zk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zero-Knowledge (ZK)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cryptographic Primitives
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Cryptographic Primitives
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Commitment schemes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Commitment schemes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-commitments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of commitments
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encryption/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encryption
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hash Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-exchange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Key Exchange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signatures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signatures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-commitments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of commitments
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="commitment-schemes">Commitment schemes</h1>
+<p>A commitment scheme consists of a commitment algorithm <span class="arithmatex">\(\sf Com\)</span> and an opening (decommitment) algorithm <span class="arithmatex">\(\sf Open\)</span>. The opening can be checked via an algorithm <span class="arithmatex">\(\sf Vrfy\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\({\sf Com}(m) \to {\sf com}\)</span>: Commit to a message <span class="arithmatex">\(m\)</span> with the commitment <span class="arithmatex">\(\sf com\)</span>.</li>
+<li><span class="arithmatex">\({\sf Open}({\sf com}) \to (m, \pi)\)</span>: Open the commitment to a message <span class="arithmatex">\(m\)</span>, with a proof <span class="arithmatex">\(\pi\)</span> to show correctness of the opening.</li>
+<li><span class="arithmatex">\({\sf Vrfy}({\sf com}, m, \pi) \to \{0,1\}\)</span>: Check that the opening is correct.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Pedersen commitments</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Scheme</label><label for="__tabbed_1_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Parameters:</strong> A group <span class="arithmatex">\(\mathbb{G}\)</span> of prime order <span class="arithmatex">\(p\)</span> and generators <span class="arithmatex">\(g,h \in \mathbb{G}\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(\underline{{\sf Com}(m) \to {\sf com}}\)</span>: output <span class="arithmatex">\({\sf com} = g^m h^r\)</span> where <span class="arithmatex">\(r \gets^\$ \mathbb{Z}_q\)</span>.</li>
+<li><span class="arithmatex">\(\underline{{\sf Open}({\sf com}) \to (m, r)}\)</span>: Output <span class="arithmatex">\(m\)</span> and the randomness <span class="arithmatex">\(r\)</span> that was used to compute <span class="arithmatex">\(\sf com\)</span>. </li>
+<li><span class="arithmatex">\(\underline{{\sf Vrfy}({\sf com}, m, r) \to \{0,1\}}\)</span>: The verifier checks that <span class="arithmatex">\({\sf com} = g^m h^r\)</span>.</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>unconditional hiding</li>
+<li>computational binding (by DLog assumption)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h2 id="properties">Properties</h2>
+<dl>
+<dt id="hiding"><strong>Hiding</strong></dt>
+<dd>Seeing <span class="arithmatex">\(\sf com\)</span> should reveal no information about <span class="arithmatex">\(m\)</span>.</dd>
+<dt id="binding"><strong>Binding</strong></dt>
+<dd>It should be infeasible to open <span class="arithmatex">\(\sf com\)</span> to a different message <span class="arithmatex">\(m' \neq m\)</span> (i.e., find some other opening <span class="arithmatex">\((m', \pi') \neq (m, \pi)\)</span> so that <span class="arithmatex">\({\sf Vrfy}({\sf com}, m', \pi') = 1\)</span>).</dd>
+</dl>
+<div class="admonition info">
+<p class="admonition-title">Hiding vs. binding tradeoff</p>
+<p>There is an inherent tradeoff between the strength of the hiding and binding properties of a scheme: if a scheme is <a href="../../general/#perfect-security">perfectly</a> <a href="#hiding">hiding</a>, it can be only <a href="../../general/#computational">computationally</a> <a href="#binding">binding</a>; and vice versa.</p>
+</div>
+<h2 id="types-of-commitments">Types of commitments</h2>
+<p>Besides the basic commitment functionality, there are additional "fancier" types of commitment schemes.</p>
+<dl>
+<dt id="poly-com"><strong>Polynomial commitment</strong></dt>
+<dd>
+<p>Allows one to commit to a polynomial <span class="arithmatex">\(f(X)\)</span> and later open it at individual points, e.g., reveal <span class="arithmatex">\(f(b)\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">KZG polynomial commitment <a href="https://www.iacr.org/archive/asiacrypt2010/6477178/6477178.pdf">[KZG10]</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Scheme (multiplicative notation)</label><label for="__tabbed_2_2">Scheme (additive notation)</label><label for="__tabbed_2_3">Properties</label><label for="__tabbed_2_4">Further reading</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Parameters:</strong> Let <span class="arithmatex">\(\mathbb{G}\)</span> be an <a href="../../Areas-of-Cryptography/ecc/">elliptic curve group</a> of prime order <span class="arithmatex">\(p\)</span> with generator <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(d\)</span> be the degree of the polynomial to commit to. Furthermore, let <span class="arithmatex">\(e: \mathbb{G} \times \mathbb{G} \mapsto \mathbb{G}_T\)</span> be a <a href="../../Areas-of-Cryptography/ecc/#pairing">bilinear pairing</a>.</p>
+<ul>
+<li><span class="arithmatex">\(\underline{{\sf Setup}({\sf params}) \to {\sf crs}}\)</span>: Using the parameters, compute <span class="arithmatex">\({\sf crs} = \{{\sf crs}_0, {\sf crs}_1, {\sf crs}_2, \dots, {\sf crs}_d\} =\)</span> <span class="arithmatex">\(\{g, g^{\tau}, g^{\tau^2}, \dots, g^{\tau^d}\}\)</span>, where <span class="arithmatex">\(\tau \stackrel{\$}{\gets} \mathbb{Z}_p\)</span>.</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Com}({\sf crs}, f(X)) \to {\sf com}}\)</span>: The commitment to the polynomial <span class="arithmatex">\(f(X) = f_0 + f_1 X + \dots + f_d X^d\)</span> is <span class="arithmatex">\(g^{f(\tau)}\)</span>, which can be computed from the <span class="arithmatex">\(\sf crs\)</span> as </p>
+<div class="arithmatex">\[C_f = {\sf crs}_0^{f_0} \cdot {\sf crs}_1^{f_1} \cdots {\sf crs}_d^{f_d}\]</div>
+<div class="arithmatex">\[= g^{f_0} \cdot g^{f_1 \tau} \cdots g^{f_d \tau^d} = g^{f(\tau)}.\]</div>
+<p>Output <span class="arithmatex">\({\sf com} := C_f\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Open}({\sf crs}, {\sf com}, b) \to (c, \pi)}\)</span>: to prove that the commitment <span class="arithmatex">\(C_f\)</span> to <span class="arithmatex">\(f\)</span> opens to <span class="arithmatex">\(c\)</span> at <span class="arithmatex">\(b\)</span>, i.e. that <span class="arithmatex">\(f(b) = c\)</span>, compute <span class="arithmatex">\(C_q \gets {\sf Com}({\sf crs}, q(X))\)</span>, where </p>
+<div class="arithmatex">\[ q(X) = \frac{f(X) - f(b)}{X - b} = \frac{f(X) - c}{X - b} \]</div>
+<p>(this is a polynomial by <a href="https://en.wikipedia.org/wiki/Polynomial_remainder_theorem">Little Bézout's Theorem</a>). Set <span class="arithmatex">\(\pi := C_q\)</span>. </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Vrfy}({\sf crs}, {\sf com}, (b, c), \pi)}\)</span>: Remember <span class="arithmatex">\({\sf com} = C_f\)</span> and <span class="arithmatex">\(\pi = C_q\)</span>. The verifier checks that </p>
+<div class="arithmatex">\[e(C_q, g^{\tau} / g^b) = e(C_f / g^c, g)\]</div>
+<p>(where <span class="arithmatex">\(g^{\tau} = {\sf crs}_1\)</span>).</p>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>Parameters:</strong> Let <span class="arithmatex">\(\mathbb{G}\)</span> be an <a href="../../Areas-of-Cryptography/ecc/">elliptic curve group</a> of prime order <span class="arithmatex">\(p\)</span> with generator <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(d\)</span> be the degree of the polynomial to commit to. Furthermore, let <span class="arithmatex">\(e: \mathbb{G} \times \mathbb{G} \mapsto \mathbb{G}_T\)</span> be a <a href="../../Areas-of-Cryptography/ecc/#pairing">bilinear pairing</a>.</p>
+<ul>
+<li><span class="arithmatex">\(\underline{{\sf Setup}({\sf params}) \to {\sf crs}}\)</span>: Using the parameters, compute <span class="arithmatex">\({\sf crs} = \{{\sf crs}_0, {\sf crs}_1, {\sf crs}_2, \dots, {\sf crs}_d\} =\)</span> <span class="arithmatex">\(\{g, g^{\tau}, g^{\tau^2}, \dots, g^{\tau^d}\}\)</span>, where <span class="arithmatex">\(\tau \stackrel{\$}{\gets} \mathbb{Z}_p\)</span>.</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Com}({\sf crs}, f(X)) \to {\sf com}}\)</span>: The commitment to the polynomial <span class="arithmatex">\(f(X) = f_0 + f_1 X + \dots + f_d X^d\)</span> is <span class="arithmatex">\(f(\tau) \cdot G\)</span>, which can be computed from the <span class="arithmatex">\(\sf crs\)</span> as </p>
+<div class="arithmatex">\[C_f = f_0 {\sf crs}_0 + f_1 {\sf crs}_1 + \dots + f_d {\sf crs}_d\]</div>
+<div class="arithmatex">\[= f_0 G + f_1 \tau G + \dots f_d \tau^d G = f(\tau) \cdot G.\]</div>
+<p>Output <span class="arithmatex">\({\sf com} := C_f\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Open}({\sf crs}, {\sf com}, b) \to (c, \pi)}\)</span>: to prove that the commitment <span class="arithmatex">\(C_f\)</span> to <span class="arithmatex">\(f\)</span> opens to <span class="arithmatex">\(c\)</span> at <span class="arithmatex">\(b\)</span>, i.e. that <span class="arithmatex">\(f(b) = c\)</span>, compute <span class="arithmatex">\(C_q \gets {\sf Com}({\sf crs}, q(X))\)</span>, where </p>
+<div class="arithmatex">\[ q(X) = \frac{f(X) - f(b)}{X - b} = \frac{f(X) - c}{X - b} \]</div>
+<p>(this is a polynomial by <a href="https://en.wikipedia.org/wiki/Polynomial_remainder_theorem">Little Bézout's Theorem</a>). Set <span class="arithmatex">\(\pi := C_q\)</span>. </p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Vrfy}({\sf crs}, {\sf com}, (b, c), \pi)}\)</span>: Remember <span class="arithmatex">\({\sf com} = C_f\)</span> and <span class="arithmatex">\(\pi = C_q\)</span>. The verifier checks that </p>
+<div class="arithmatex">\[e(C_q, \tau G - bG) = e(C_f - cG, G)\]</div>
+<p>(where <span class="arithmatex">\(\tau G = {\sf crs}_1\)</span>).</p>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>The prover can do a <strong>full open</strong> and reveal all the evaluations by simply sending a candidate polynomial <span class="arithmatex">\(f'(X)\)</span>; the verifier checks that <span class="arithmatex">\({\sf Com}({\sf crs}, f'(X)) = {\sf com}\)</span>. There is an <a href="https://alinush.github.io/2021/06/17/Feist-Khovratovich-technique-for-computing-KZG-proofs-fast.html">optimization [FK20]</a> to do this in <span class="arithmatex">\(O(d\log{d})\)</span> instead of <span class="arithmatex">\(O(d^2)\)</span>.</li>
+<li>There is also a <strong>batch mode</strong> in which the prover can open <span class="arithmatex">\(t &lt; d\)</span> points, which the verifier can check with a single pairing. See "Further reading".</li>
+<li><strong>Trusted setup</strong>: the scheme relies on a trusted setup, i.e. a well-formed CRS. (On the plus side, the CRS is of the "powers-of-tau" variant, which is fairly easy to generate via an <a href="../../Areas-of-Cryptography/mpc/">MPC</a> protocol (e.g., <a href="https://eprint.iacr.org/2022/1592">2022/1592</a>).)</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>For a more detailed description of the scheme, see <a href="https://risencrypto.github.io/Kate/">https://risencrypto.github.io/Kate/</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt id="vc"><strong>Vector commitment</strong></dt>
+<dd>
+<p>A vector commitment allows one to commit to a vector <span class="arithmatex">\(\vec{v} = (v_1, \dots, v_n)\)</span> and later individually open elements <span class="arithmatex">\(v_i\)</span>. (Note that a <a href="#poly-com">polynomial commitment</a> to a polynomial of degree <span class="arithmatex">\(d\)</span> can be thought of as a vector commitment to <span class="arithmatex">\(d+1\)</span> points.)</p>
+<div class="admonition example">
+<p class="admonition-title">Libert-Yung VC <a href="https://www.iacr.org/archive/tcc2010/59780496/59780496.pdf">[LY10]</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Construction</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This is a modified version of the original Libert-Yung VC, which was "mercurial", meaning it allowed both "hard" (normal) and "soft" (open <em>to any message</em> a commitment originally made to "no message") openings.</p>
+<p><strong>Parameters:</strong> Let <span class="arithmatex">\(\mathbb{G},\mathbb{G}_T\)</span> be bilinear groups of prime order <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(e: \mathbb{G} \times \mathbb{G} \rightarrow \mathbb{G}_T\)</span> be a bilinear pairing. Let <span class="arithmatex">\(g \in \mathbb{G}\)</span> be a random generator.</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Setup}(1^\lambda, q) \to {\sf crs}}\)</span>: To set up a VC for vectors of length at most <span class="arithmatex">\(q\)</span>, sample (a trapdoor) <span class="arithmatex">\(z \stackrel{\$}{\gets} \mathbb{Z}_p^*\)</span> and compute <span class="arithmatex">\(h_i := g^{z^i}\)</span> for <span class="arithmatex">\(i \in [2q] \setminus \{q+1\}\)</span>. Output <span class="arithmatex">\({\sf crs} := (h_1, \dots, h_q, h_{q+2}, \dots, h_{2q})\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Com}({\sf crs}, \vec{v}) \to {\sf com}}\)</span>: To commit to <span class="arithmatex">\(\vec{v} = (m_1, \ldots, m_q)\)</span>, compute</p>
+<div class="arithmatex">\[C := h_1^{m_1} h_2^{m_2} \dots h_q^{m_q}\]</div>
+<p>and output <span class="arithmatex">\(C\)</span> as the commitment.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Open}({\sf crs}, {\sf com}, i) \to (m_i, \Lambda_i)}\)</span>: Compute <span class="arithmatex">\(\Lambda_i := \prod_{j=1,j \neq i}^{q} g_{q+1-j+i}^{m_j}\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Vrfy}({\sf crs}, {\sf com}, (i, m_i), \Lambda_i) \to \{0,1\}}\)</span>: Given an opening <span class="arithmatex">\((i, m_i)\)</span> for the commitment <span class="arithmatex">\(\sf com\)</span> and an opening proof <span class="arithmatex">\(\Lambda_i\)</span>, a party can verify the correctness of the opening by checking that </p>
+<div class="arithmatex">\[e({\sf com}, h_{q+1-i}) = e(\Lambda_i, g) \cdot e(h_i^{m_i}, h_{q+1-i}).\]</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- === "Properties" -->
+<!-- === "Further reading"  -->
+</div>
+<div class="admonition example">
+<p class="admonition-title">(Updatable) VC from CDH <a href="https://eprint.iacr.org/2011/495">[CF13]</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Construction</label><label for="__tabbed_4_2">Properties</label><label for="__tabbed_4_3">Further reading</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Parameters:</strong> Let <span class="arithmatex">\(\mathbb{G},\mathbb{G}_T\)</span> be bilinear groups of prime order <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(e: \mathbb{G} \times \mathbb{G} \rightarrow \mathbb{G}_T\)</span> be a bilinear pairing. Let <span class="arithmatex">\(g \in \mathbb{G}\)</span> be a random generator.</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Setup}(1^\lambda, q) \to {\sf pp}}\)</span>: To set up a VC for vectors of length at most <span class="arithmatex">\(q\)</span>, sample (trapdoors) <span class="arithmatex">\(z_1, \ldots, z_q \stackrel{\$}{\gets} \mathbb{Z}_p\)</span>. Compute <span class="arithmatex">\(h_i := g^{z_i}\)</span> and <span class="arithmatex">\(h_{i,j} = g^{z_i z_j}\)</span> for <span class="arithmatex">\(i,j = 1, \ldots, q\)</span> with <span class="arithmatex">\(j \neq i\)</span>. Output <span class="arithmatex">\({\sf pp} := (g, \{h_i\}_{i \in [q]}, \{h_{i,j}\}_{i,j \in [q], i \neq j})\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Com}({\sf pp}, \vec{v}) \to {\sf com}}\)</span>: To commit to <span class="arithmatex">\(\vec{v} = (m_1, \ldots, m_q)\)</span>, compute</p>
+<div class="arithmatex">\[C := h_1^{m_1} h_2^{m_2} \dots h_q^{m_q}\]</div>
+<p>(same as Libert-Yung VC) and output <span class="arithmatex">\(C\)</span> as the commitment.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Open}({\sf pp}, {\sf com}, i) \to (m_i, \Lambda_i)}\)</span>: Compute <span class="arithmatex">\(\Lambda_i := \prod_{j=1,j\neq i}^{q} h_{i,j}^{m_j} = \prod_{j=1,j\neq i}^{q} \left( h_j^{m_j} \right)^{z_i}\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Vrfy}({\sf pp}, {\sf com}, (i, m_i), \Lambda_i) \to \{0,1\}}\)</span>: Given an opening <span class="arithmatex">\((i, m_i)\)</span> for the commitment <span class="arithmatex">\(\sf com\)</span> and an opening proof <span class="arithmatex">\(\Lambda_i\)</span>, a party can verify the correctness of the opening by checking that </p>
+<div class="arithmatex">\[e({\sf com}/h_i^{m_i}, h_i) = e(\Lambda_i, g).\]</div>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf Update}({\sf pp}, {\sf com}, i, m, m') \to {\sf com}'}\)</span>: To update the <span class="arithmatex">\(i\)</span>th entry <span class="arithmatex">\(m\)</span> to <span class="arithmatex">\(m'\)</span>, compute an updated commitment <span class="arithmatex">\({\sf com}' := {\sf com} \cdot h_i^{m'-m}\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\underline{{\sf PfUpdate}({\sf pp}, {\sf com}, (i, m, m'), \Lambda_j) \to \Lambda_j'}\)</span>: A proof for the opening of position <span class="arithmatex">\(j\)</span> which was valid w.r.t. <span class="arithmatex">\(\sf com\)</span> can be updated for <span class="arithmatex">\(\sf com'\)</span> as follows:</p>
+<ul>
+<li>If <span class="arithmatex">\(j \neq i\)</span>, set <span class="arithmatex">\(\Lambda_j' := \Lambda_j \cdot (h_i^{m'-m})^{z_j} = \Lambda_j \cdot h_{j,i}^{m'-m}\)</span>.</li>
+<li>If <span class="arithmatex">\(j = i\)</span>, the proof <span class="arithmatex">\(\Lambda_i\)</span> remains unchanged.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Security</strong> holds by the <a href="../../assumptions/#cdh">CDH assumption</a> in bilinear groups</li>
+<li>The scheme is <strong>updatable</strong>, so the commitment can be updated to reflect an update to one entry of the vector</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>See <a href="https://eprint.iacr.org/2011/495">the paper</a> for details as well as an additional updatable VC from the <a href="../../assumptions/#rsa-assumption">RSA assumption</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt id="func-com"><strong>Functional commitment</strong></dt>
+<dd></dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
