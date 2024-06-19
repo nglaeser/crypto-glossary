@@ -13,6 +13,9 @@ $\stackrel{\$}{\gets}$ or $\stackrel{R}{\gets}$
 $\{0,1\}^*$ and $\{0,1\}^n$
 : The set of binary strings of arbitrary length and length $n$, respectively.
 
+$[n]$
+: The set of integers $\{1, 2, \dots, n\}$.
+
 $\mathcal{A}$
 : [Adversary](./general.md#adversary)
 

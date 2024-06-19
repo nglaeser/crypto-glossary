@@ -54,11 +54,10 @@ The "special" part means that this property implies soundness.
 1. the proof size is "small"
 1. verification is "fast"
 
-    There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? <!-- Can link to Justin's post on misconceptions (#2) once it's out https://a16zcrypto.com/posts/article/17-misconceptions-about-snarks/ -->
+    There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? What exactly is meant often [depends on the author](https://a16zcrypto.com/posts/article/17-misconceptions-about-snarks/#section--3).  
 
-    What exactly is meant by "small" and "fast" often depends on the author.  
-    "Small" commonly means polynomial in the security parameter ($\lvert \pi \rvert \in \mathrm{poly}(\lambda)$) or polylogarithmic in the statement size ($\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)$).  
-    "Fast" could mean polylogarithmic in the security parameter and statement size ($V(x,\pi) \in O(\mathrm{polylog}(\lambda + \lvert x \rvert)$). <!-- link to Justin's misconception blog post once it's done -->
+    "Small" often means polynomial in the security parameter ($\lvert \pi \rvert \in \mathrm{poly}(\lambda)$) or polylogarithmic in the statement size ($\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)$), but could be as general as sublinear in the size of the witness.  
+    "Fast" could mean polylogarithmic in the security parameter and statement size ($V(x,\pi) \in O(\mathrm{polylog}(\lambda + \lvert x \rvert))$).
 
 **Witness indistinguishable (WI)** { #wi }
 : Given a proof, the (malicious?) verifier cannot distinguish between which of two valid witnesses was used to generate the proof with more than negligible probability.
@@ -137,6 +136,8 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 
 <!-- Insert table? -->
 
+### Polynomial IOPs
+
 ### Sigma protocols
 
 <!-- useful slides: http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf -->
@@ -170,17 +171,17 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 !!! example "Sigma protocol: DLog [Schnorr'89]"
 
     === "Scheme"
-        **Public parameters:** None  
-        **Prover:** Knows $x, y, b$  
-        **Verifier:** Knows $y, b$  
+        **Public parameters:** Group $\mathbb{G}$ of prime order $p$.  
+        **Prover:** $y, b \in \mathbb{G}$ and $x \in \mathbb{Z}_p$.  
+        **Verifier:** $y, b \in \mathbb{G}$  
         To prove knowledge of the discrete logarithm $x$ such that $y = b^x$, 
 
-        1. The prover P chooses a uniform value $r$ and sends $a := b^r$ to the verifier V
-        1. V sends back a uniform challenge $ch$
-        1. P sends $z := r + ch \cdot x$
-        1. V check that $b^z = a \cdot y^{ch}$
+        1. The prover P samples $r \stackrel{\$}{\gets} \mathbb{Z}_p$ and sends $a := b^r$ to the verifier V
+        1. V sends back a uniform challenge $c \stackrel{\$}{\gets} \mathbb{Z}_p$
+        1. P sends $z := r + c \cdot x$
+        1. V check that $b^z = a \cdot y^{c}$
 
-        Correctness holds since $a \cdot y^{ch} = (b^r) \cdot (b^x)^{ch} = b^{r + x \cdot ch}$.
+        Correctness holds since $a \cdot y^{c} = (b^r) \cdot (b^x)^{c} = b^{r + x \cdot c}$.
 
     === "Properties"
         - HVZK
@@ -202,7 +203,7 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 !!! example "Sigma protocol: Pedersen opening"
 
     === "Scheme"
-<!-- https://crypto.stackexchange.com/questions/81236/question-of-proving-the-opening-of-pedersen-commitment#81260 -->
+        <!-- https://crypto.stackexchange.com/questions/81236/question-of-proving-the-opening-of-pedersen-commitment#81260 -->
 
     === "Properties"
 

@@ -1,18 +1,43 @@
 # Elliptic-Curve Cryptography
 
 !!! tip "Further Reading"
-    ["A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography"](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) by Nick Sullivan
+    - ["A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography"](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) by Nick Sullivan
+    - ["Elliptic Curve Cryptography: a gentle introduction"](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/) by Andrea Corbellini
 
-**Elliptic curve**
-: 
-    - Pairing-friendly: Baretto-Naehrig (BN) curves (e.g., BN254), Barreto-Lynn-Scott (BLS) curves (e.g., BLS12-381), Kachisa-Schaefer-Scott (KSS) curves, Miyaji-Nakabayashi-Takano (MNT) curves. Pairing-friendly curves [have all three of the common pairings](https://crypto.stackexchange.com/questions/70802/do-weil-tate-and-ate-pairings-exist-on-all-elliptic-curves) (Weil, Ate, and Tate).
-    - No pairing: secp256k1, NIST P-256, Curve25519
+    <!-- https://crypto.stackexchange.com/questions/102887/what-are-the-structural-differences-between-bls12-381-and-bls12-377 (good links therein) -->
+    <!-- https://hackmd.io/@benjaminion/bls12-381 -->
+    <!-- https://neuromancer.sk/std/ -->
+    <!-- https://hackmd.io/@jpw/bn254 -->
+
+**Elliptic curve (EC)**
+: In cryptography, we use ECs over finite fields (i.e., $\mathbb{F}_n$, which is unique for a given value of $n$). Often, we use a [prime field](../general.md#field) $\mathbb{F}_p$ where $p$ is prime. An EC over $\mathbb{F}_n$ is defined as a set of points $(x,y) \in \mathbb{F}_n^2$ satisfying some bivariate equation.
+
+    | Type | Field | EC | Examples
+    |:-----|:------|:--:|:--------
+    | Weierstrass | $\mathbb{F}_p$ | $\{ (x,y): y^2 = x^3 + ax + b, 4a^3 + 27b^2 \neq 0\}$ | All curves can be written in Weierstrass form
+    | Koblitz | $\mathbb{F}_{2^p}$ | $\{ (x,y) : y^2 + xy = x^3 + ax^2 + 1, a \in \{0,1\}\}$ | nistk163, nistk283, nistk571 (the number after `k` is the prime $p$)
+    | Binary | $\mathbb{F}_{2^m}$ | $\{ (x,y) : x^2 + xy = x^3 + x^2 + b \}$ | nistb163, nistb283, nistb571
+    | Edwards | | $\{ (x,y) : x^2 + y^2 = 1 + dx^2y^2, d \in \{0,1\}\}$ |
+    | Montgomery || $\{ (x,y) : by^2 = x^3 + ax^2 + x, b(a^2-4) \neq 0 \}$ | Curve25519
+
+    An EC may or may not be **[pairing](#pairing)-friendly**. Pairing-friendly curves [have all three of the common pairings](https://crypto.stackexchange.com/questions/70802/do-weil-tate-and-ate-pairings-exist-on-all-elliptic-curves) (Weil, Ate, and Tate).
+
+    | Pairing-friendly     | No pairing |
+    |:---------------------|:---------------------|
+    | Baretto-Naehrig (e.g., BN254) | secp256k1            |
+    | Barreto-Lynn-Scott (e.g., BLS12-381, BLS12-377) | NIST P-256 |
+    | Kachisa-Schaefer-Scott (KSS)  | Curve25519 |
+    | Miyaji-Nakabayashi-Takano (MNT) | |
+
     <!-- https://www.ietf.org/proceedings/105/slides/slides-105-cfrg-pairing-friendly-curves-00.pdf -->
+
+    !!! tip "Resource"
+        - The parameters for many elliptic curves used in practice can be found [here](https://safecurves.cr.yp.to/index.html).
 
 ## Pairing-Based Cryptography
 
-**Pairing** { #pairing }
-: In its most common form in cryptography, a pairing is a map $e: G_1 \times G_2 \rightarrow G_T$, where $G_1, G_2$ are additive cyclic groups of prime order $q$ and $G_T$ is a *multiplicative* cyclic group of order $q$. The map $e$ is required to have the following properties:
+(Bilinear) **Pairing** { #pairing }
+: In its most common form in cryptography, a bilinear pairing is a map $e: G_1 \times G_2 \rightarrow G_T$, where $G_1, G_2$ are additive cyclic groups of prime order $q$ and $G_T$ is a *multiplicative* cyclic group of order $q$. The map $e$ is required to have the following properties:
 
     - **Bilinearity.** For any $a,b \in \mathbb{F}_q^*$ and $P, P_1, P_2 \in G_1$ and $Q, Q_1, Q_2 \in G_2$,
         - $e(aP, Q) = e(P, aQ) = e(P,Q)^a$[^1] and
