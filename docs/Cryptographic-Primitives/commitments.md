@@ -16,8 +16,8 @@ A commitment scheme consists of a commitment algorithm $\sf Com$ and an opening 
         - $\underline{{\sf Vrfy}({\sf com}, m, r) \to \{0,1\}}$: The verifier checks that ${\sf com} = g^m h^r$.
 
     === "Properties"
-        - unconditional hiding
-        - computational binding (by DLog assumption)
+        - computationally binding (by DLog assumption)
+        - unconditionally (information-theoretically) hiding
 
 ## Properties
 
@@ -88,6 +88,8 @@ Besides the basic commitment functionality, there are additional "fancier" types
                 (where $\tau G = {\sf crs}_1$).
 
         === "Properties"
+            - Computationally binding ($t$-SDH)
+            - Computationally hiding (DLog)
             - The prover can do a **full open** and reveal all the evaluations by simply sending a candidate polynomial $f'(X)$; the verifier checks that ${\sf Com}({\sf crs}, f'(X)) = {\sf com}$. There is an [optimization [FK20]](https://alinush.github.io/2021/06/17/Feist-Khovratovich-technique-for-computing-KZG-proofs-fast.html) to do this in $O(d\log{d})$ instead of $O(d^2)$.
             - There is also a **batch mode** in which the prover can open $t < d$ points, which the verifier can check with a single pairing. See "Further reading".
             - **Trusted setup**: the scheme relies on a trusted setup, i.e. a well-formed CRS. (On the plus side, the CRS is of the "powers-of-tau" variant, which is fairly easy to generate via an [MPC](../Areas-of-Cryptography/mpc.md) protocol (e.g., [2022/1592](https://eprint.iacr.org/2022/1592)).)
@@ -97,6 +99,8 @@ Besides the basic commitment functionality, there are additional "fancier" types
 
 **Vector commitment** { #vc }
 : A vector commitment allows one to commit to a vector $\vec{v} = (v_1, \dots, v_n)$ and later individually open elements $v_i$. (Note that a [polynomial commitment](#poly-com) to a polynomial of degree $d$ can be thought of as a vector commitment to $d+1$ points.)
+
+    !!! example "Merkle tree"
     
     !!! example "Libert-Yung VC [[LY10]](https://www.iacr.org/archive/tcc2010/59780496/59780496.pdf)"
 

@@ -3,7 +3,7 @@
 !!! summary
     Signatures are used to ensure integrity.
 
-A digital signature scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key pair, an signing algorithm $\mathsf{Sign}$ that takes a private key and a message and outputs a signature, and a verification algorithm $\mathsf{Vrfy}$ that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).
+A digital signature scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a key pair, a signing algorithm $\mathsf{Sign}$ that takes a private key and a message and outputs a signature, and a verification algorithm $\mathsf{Vrfy}$ that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).
 
 !!! notation "Signature scheme syntax"
     - $({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)$
@@ -78,7 +78,7 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
         [^1]: By this we mean the x-coordinate is 0 (the y-coordinate is uniquely defined -- up to reflection over the x-axis -- by the x-coordinate).
 
     === "Assumptions"
-    - [DLog](../assumptions.md#discrete-logarithm) over elliptic curves
+        - [DLog](../assumptions.md#discrete-logarithm) over elliptic curves
 
 !!! example "Schnorr signatures"
     === "Construction" 

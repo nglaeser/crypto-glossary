@@ -179,7 +179,7 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
         1. The prover P samples $r \stackrel{\$}{\gets} \mathbb{Z}_p$ and sends $a := b^r$ to the verifier V
         1. V sends back a uniform challenge $c \stackrel{\$}{\gets} \mathbb{Z}_p$
         1. P sends $z := r + c \cdot x$
-        1. V check that $b^z = a \cdot y^{c}$
+        1. V checks that $b^z = a \cdot y^{c}$
 
         Correctness holds since $a \cdot y^{c} = (b^r) \cdot (b^x)^{c} = b^{r + x \cdot c}$.
 
@@ -197,8 +197,21 @@ Sigma protocols can be made non-interactive via the [Fiat-Shamir transform](../t
 !!! example "Sigma protocol: DLEq [Chaum-Pedersen'92]"
 
     === "Scheme"
+        **Public parameters:** Group $\mathbb{G}$ of prime order $p$.  
+        **Prover:** $y_1,b_1,y_2,b_2 \in \mathbb{G}$ and $x \in \mathbb{Z}_p$.  
+        **Verifier:** $y_1,b_1,y_2,b_2 \in \mathbb{G}$  
+        To prove equality of the discrete logarithms of $y_1,y_2$ w.r.t. $b_1,b_2$, i.e., $y_1 = b_1^x$ and $y_2 = b_2^x$: 
+
+        1. The prover P samples $r \stackrel{\$}{\gets} \mathbb{Z}_p$ and sends $a_1 := b_1^r$, $a_2 := b_2^r$ to the verifier V
+        1. V sends back a uniform challenge $c \stackrel{\$}{\gets} \mathbb{Z}_p$
+        1. P sends $z := r + c \cdot x$
+        1. V checks that $b_1^z = a_1 \cdot y_1^{c}$ and $b_2^z = a_2 \cdot y_2^{c}$
+
+        Correctness holds since $a_i \cdot y_i^{c} = (b_i^r) \cdot (b_i^x)^{c} = b_i^{r + x \cdot c}$ for $i=1,2$ where (crucially) the same $r,z$ are used.
 
     === "Properties"
+        <!-- This can be seen as an AND of two instances of the [Schnorr protocol for DLog]() -->
+        <!-- Not exactly, uses the same randomness $r$ in step 1 -->
 
 !!! example "Sigma protocol: Pedersen opening"
 
