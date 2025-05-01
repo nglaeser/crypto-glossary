@@ -1,7 +1,14 @@
 site_name: Crypto Glossary
 site_url: https://nglaeser.github.io/crypto-glossary/
+copyright: Copyright &copy;2025 Noemi Glaeser
 theme:
   name: material
+extra:
+  social:
+    - icon: material/web
+      link: https://nglaeser.github.io/
+    - icon: fontawesome/brands/github
+      link: https://github.com/nglaeser
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true

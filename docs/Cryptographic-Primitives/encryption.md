@@ -22,9 +22,10 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
 **Asymmetric (public-key) encryption** { #pke }
 : One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  
 
-    !!! example "ElGamal encryption"
+    <a name="elgamal"></a>
+    !!! example "ElGamal encryption" 
 
-        === "Scheme"
+        === "Scheme" 
             $\underline{\mathsf{Gen}}$: Choose a uniform cyclic prime-order group $\mathbb{G}$, where $q$ is the order and $g$ is the generator (these are announced publicly). Output the secret key $x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q$ and the public key $g^x \in \mathbb{G}$.
 
             $\underline{\mathsf{Enc}(pk, m)}$:
@@ -39,6 +40,7 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
             - [CPA-secure](#cpa-security) (by [DDH assumption](../assumptions.md#ddh))
             - unconditionally malleable
 
+    <a name="rsa"></a>
     !!! example "RSA encryption"
 
         === "Scheme"
@@ -67,15 +69,20 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
 
             - [CCA-secure](#cca-security) (by either the [RSA assumption](../assumptions.md#rsa-assumption) or the [hardness of integer factorization](../assumptions.md#factoring-assumption); if either assumption is proven false the security of RSA is compromised)
 
+    <a name="paillier"></a>
     !!! example "Paillier encryption"
         <!-- TODO -->
 
-    !!! example "Naor-Yung paradigm"
+    <a name="cramer-shoup"></a>
+    !!! example "Cramer-Shoup cryptosystem"
 
         === "Scheme"
-            Use a CPA-secure encryption scheme and an adaptively-secure NIZK. Compute $c_1 \gets {\sf Enc}(pk_1, m)$ and $c_2 \gets {\sf Enc}(pk_2, m)$ and use the NIZK to prove $c_1, c_2$ encrypt the same message.
 
-    !!! example "Cramer-Shoup cryptosystem"
+        === "Properties"
+            - [CCA2-secure](#cca-security) (by the [DDH assumption](../assumptions.md#ddh-assumption))
+ 
+        === "Further reading"
+            - [Cramer-Shoup cryptosystem on Wikipedia](https://en.wikipedia.org/wiki/Cramer%E2%80%93Shoup_cryptosystem)
 
 **Symmetric (secret-key) encryption** { #symmetric-enc }
 : The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via [key agreement](./key-exchange.md#key-agreement) protocols or by encrypting the symmetric key using [public-key encryption](#pke).  
@@ -164,7 +171,7 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
 ### CPA security
 CPA stands for "chosen *plaintext* attacks", and security against these attacks can be formulated in two (equivalent) ways. 
 
-The indistinguishability-based notion of CPA security is called **IND-CPA security**, and requires that an adversary cannot distinguish between encryption of two different messages:
+The [indistinguishability](../general.md#indist)-based notion of CPA security is called **IND-CPA security**, and requires that an adversary cannot distinguish between encryption of two different messages:
 
 !!! info "IND-CPA game"
     === "Description"
@@ -201,18 +208,20 @@ The indistinguishability-based notion of CPA security is called **IND-CPA securi
             Note right of Challenger: Adversary wins if b=b'
         ```
 
-The alternative formulation is the simulation-based **semantic security** (or **SIM-CPA**), which says that anything the adversary can compute from the ciphertext can also be computed (simulated) without the ciphertext. That is, the ciphertext does not reveal any new information to the adversary.
+The alternative formulation is the [simulation](../proofs.md#proof-by-simulation)-based **semantic security** (or **SIM-CPA**), which says that anything the adversary can compute from the ciphertext can also be computed (simulated) without the ciphertext. That is, the ciphertext does not reveal any new information to the adversary.
 
 These two notions have been shown to be equivalent: semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, therefore semantic security &iff; IND-CPA.
+
+There are several techniques for transforming a CPA-secure encryption scheme to CCA-secure one, including the [FO transform](../techniques.md#fujisaki-okamoto) and the [Naor-Yung paradigm](../techniques.md#naor-yung).
 
 **OW-CPA**
 : one-way CPA security. <!-- TODO -->
 
 ### CCA security
-CCA stands for "chosen *ciphertext* attacks", and security against these attacks if normally formulated as an indistinguishability-based notion (IND-CCA). There are two variants of IND-CCA security: [IND-CCA1](#ind-cca1) and [IND-CCA2](#ind-cca2). Both are stronger than [IND-CPA security](#cpa-security) because the adversary is additionally given access to a _decryption_ oracle. **IND-CCA** (without a number) usually refers to [IND-CCA2](#ind-cca2).
+CCA stands for "chosen *ciphertext* attacks", and security against these attacks if normally formulated as an [indistinguishability](../general.md#indist)-based notion (IND-CCA). There are two variants of IND-CCA security: [IND-CCA1](#ind-cca1) and [IND-CCA2](#ind-cca2). Both are stronger than [IND-CPA security](#cpa-security) because the adversary is additionally given access to a _decryption_ oracle. **IND-CCA** (without a number) usually refers to [IND-CCA2](#ind-cca2).
 
 **IND-CCA1** { #ind-cca1 }
-: Security against *non-adaptive* ("lunchtime") chosen ciphertext attack. Weaker than [IND-CCA2](#ind-cca2).
+: Security against *non-[adaptive](../general.md#adaptive)* ("lunchtime") chosen ciphertext attack. Weaker than [IND-CCA2](#ind-cca2).
 
     Examples: [Naor-Yung encryption](https://www.cs.umd.edu/~jkatz/gradcrypto2/NOTES/lecture7.pdf)
 
@@ -252,9 +261,9 @@ CCA stands for "chosen *ciphertext* attacks", and security against these attacks
             ```
 
 **IND-CCA2** { #ind-cca2 }
-: Security against *adaptive* chosen ciphertext attack. In addition to its capabilities in the [IND-CCA1](#ind-cca1) game, $\mathcal{A}$ now has access to the oracles _after_ seeing $c$.
+: Security against *[adaptive](../general.md#adaptive)* chosen ciphertext attack. In addition to its capabilities in the [IND-CCA1](#ind-cca1) game, $\mathcal{A}$ now has access to the oracles _after_ seeing $c$.
 
-    Examples: Dolev-Dwork-Naor, [Cramer-Shoup](https://en.wikipedia.org/wiki/Cramer%E2%80%93Shoup_cryptosystem)
+    Examples: Dolev-Dwork-Naor, [Cramer-Shoup](#cramer-shoup)
 
     !!! info "IND-CCA2 game"
         === "Description"

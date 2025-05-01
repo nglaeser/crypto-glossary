@@ -30,8 +30,8 @@ There are two main *accounting models* used to represent the state of a blockcha
 Used by: Bitcoin, Litecoin, and Monero.
 
 **Account-based**
-: The account model simply maintains a database mapping accounts to balances. This database represents the global state.
-Use by: Ethereum.
+: The account model simply maintains a database mapping accounts to balances. This database represents the global state.  
+Used by: Ethereum.
 
 !!! tip "Further Reading"
     [The UTXO vs. Account Model](https://www.horizen.io/academy/utxo-vs-account-model/)

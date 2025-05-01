@@ -43,9 +43,9 @@ There are more serious real-world applications for this too. You could imagine u
 ![Diagram of the OT functionality](../assets/images/OT.png)  
 OTs with different numbers exist, such as 1-out-of-4 OT ($P_2$ selects one of four choices) or more generally 1-out-of-$n$ OT for some parameter $n$.
 
-!!! example "Construction: Naor-Pinkas OT"
+    !!! example "Construction: Naor-Pinkas OT"
 
-    === "Construction"
+        === "Construction"
 
 **Secret-sharing** { #secret-sharing }
 : Splitting a secret between parties so that none of the parties know the secret, but they each have a piece of the information, and if they work together they can recover the secret. Here's a visual intuition:  
@@ -65,26 +65,23 @@ Some classic schemes are:
 - **Robust secret sharing**: Does not consider a corrupt dealer. ...
 - **Verifiable secret sharing (VSS)**: Protects against a corrupt dealer. Parties who receive shares from the dealer can also run a verification function to confirm that the shares they received are well-formed (are consistent with each other).
 
-!!! example "Feldman VSS [[Fel87](https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf)]"
+    !!! example "Feldman VSS [[Fel87](https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf)]"
 
-    === "Construction"
-        Choose a DLog-hard subgroup $G$ of $\mathbb{Z}_p$ such that $G$ is of order $q$ with generator $g$. The dealer shares the secret $s$ as in regular Shamir secret sharing, using some degree-t polynomial $P(x) = s + a_1 x + \ldots + a_t x^t \pmod{q}$.
-        
-        For verifiability, the dealer includes [commitments](../Cryptographic-Primitives/commitments.md) to the coefficients of $P$, calculated as 
-        
-        \[c_0 := g^s, c_1 := g^{a_1}, \ldots, c_t := g^{a_t} \in \mathbb{Z}_p\]
-        
-        To verify that some share $sh = P(i)$, party $i$ (working in $\mathbb{Z}_p$) checks that
-        
-        \[ g^{sh} =^? c_0 c_1^i \cdots c_t^{i^t} \pmod{p}\]
-        
-        Note that if the share and the commitments are well-formed, this equals $g^{s + a_1 i + \ldots + a_t i^t} = g^{P(i)}$.
+        === "Construction"
+            Choose a DLog-hard subgroup $G$ of $\mathbb{Z}_p$ such that $G$ is of order $q$ with generator $g$. The dealer shares the secret $s$ as in regular Shamir secret sharing, using some degree-t polynomial $P(x) = s + a_1 x + \ldots + a_t x^t \pmod{q}$.
+            
+            For verifiability, the dealer includes [commitments](../Cryptographic-Primitives/commitments.md) to the coefficients of $P$, calculated as 
+            
+            \[c_0 := g^s, c_1 := g^{a_1}, \ldots, c_t := g^{a_t} \in \mathbb{Z}_p\]
+            
+            To verify that some share $sh = P(i)$, party $i$ (working in $\mathbb{Z}_p$) checks that
+            
+            \[ g^{sh} =^? c_0 c_1^i \cdots c_t^{i^t} \pmod{p}\]
+            
+            Note that if the share and the commitments are well-formed, this equals $g^{s + a_1 i + \ldots + a_t i^t} = g^{P(i)}$.
 
-    === "Properties"
-        - Computationally secure (by [DLog](../assumptions.md#discrete-logarithm) assumption)
-
-**MPC-in-the-head**
-: 
+        === "Properties"
+            - Computationally secure (by [DLog](../assumptions.md#discrete-logarithm) assumption)
 
 ## Protocol Parameters
 
@@ -104,9 +101,9 @@ Some classic schemes are:
 : The number of rounds in the protocol. This lower bounds the time required to complete the protocol.
 
     !!! info
-        The optimal round complexity of an MPC protocol is 2 rounds. <!-- (achieved by ??) -->
+        The optimal round complexity of an MPC protocol is 2 rounds, since every party needs to send some information about its inputs and then receive some response based on that from the other parties. <!-- (achieved by ??) -->
 
-**Trusted setup**
+**Trusted setup** { #trusted-setup }
 :  
 
 ### **Security guarantees**
@@ -178,16 +175,16 @@ $n$: number of circuit gates
 
 $d$: depth of circuit  
 
-Year | Name | Number of parties | Threat Model | Round Complexity | Communication Complexity | Circuit Representation
-:----|:----------------|:-----------------:|:-------------|:----------------:|:-----------------------:|:-----------
-1986 | [Yao's GC](#gc) | 2    | <2 semi-honest     | $O(1)$ | $O(n)$ | Boolean
-1987 | [GMW](#gmw)     | many | <$n$ semi-honest   | $O(d)$ | $O(1)$ | Boolean
-&#8203;|               | many | <$n$ malicious     |        |        | Boolean
-1988 | [BGW](#bgw)     | many | <$n/2$ semi-honest | $O(d)$ | $O(d)$ | Arithmetic
-&#8203;|               | many | <$n/3$ malicious   | $O(d)$ |        | Arithmetic
-1988 | [CCD](#ccd)     | many |                    |        |        |
-1990 | [BMR](#bmr)     | many | <$n$               | $O(1)$ |        | Boolean
-2001 | [CDN](#cdn)     | many | <$n/2$ malicious   | $O(d)$ | $O(n)$ | Arithmetic
+| Year    | Name            | Number of parties | Threat Model       | Round Complexity | Communication Complexity | Circuit Representation |
+| :------ | :-------------- | :---------------: | :----------------- | :--------------: | :----------------------: | :--------------------- |
+| 1986    | [Yao's GC](#gc) |         2         | <2 semi-honest     |      $O(1)$      |          $O(n)$          | Boolean                |
+| 1987    | [GMW](#gmw)     |       many        | <$n$ semi-honest   |      $O(d)$      |          $O(1)$          | Boolean                |
+| &#8203; |                 |       many        | <$n$ malicious     |                  |                          | Boolean                |
+| 1988    | [BGW](#bgw)     |       many        | <$n/2$ semi-honest |      $O(d)$      |          $O(d)$          | Arithmetic             |
+| &#8203; |                 |       many        | <$n/3$ malicious   |      $O(d)$      |                          | Arithmetic             |
+| 1988    | [CCD](#ccd)     |       many        |                    |                  |                          |
+| 1990    | [BMR](#bmr)     |       many        | <$n$               |      $O(1)$      |                          | Boolean                |
+| 2001    | [CDN](#cdn)     |       many        | <$n/2$ malicious   |      $O(d)$      |          $O(n)$          | Arithmetic             |
 
 ## MPC Extensions
 
@@ -203,3 +200,7 @@ When considering only a specific class of functions, we can often come up with f
 
 **Private set intersetion (PSI)** { #psi }
 : Two parties, each with their own set, want to compute the intersection of these sets without revealing any of the elements not in the intersection.<!-- add use case -->  
+
+**Private Information Retrieval (PIR)** { #pir }
+: 
+<!-- Weaker version of 1-out-of-$n$ OT -->

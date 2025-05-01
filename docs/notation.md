@@ -20,7 +20,7 @@ $\mathcal{A}$
 : [Adversary](./general.md#adversary)
 
 $\mathbb{G}$
-: A group
+: A [group](./general.md#group)
 
 i.i.d.
 : [Independent and identically distributed](general.md#iid)

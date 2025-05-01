@@ -163,5 +163,10 @@ Besides the basic commitment functionality, there are additional "fancier" types
 
             - See [the paper](https://eprint.iacr.org/2011/495) for details as well as an additional updatable VC from the [RSA assumption](../assumptions.md#rsa-assumption).
 
+**Cryptographic accumulator** 
+: An accumulator (succinctly) commits to a set of elements. It should also be possible to provide short proofs of (non-)membership of elements in the set. An accumulator is the unordered sibling of a [vector commitment](#vc).
+
+    !!! example "RSA accumulator"
+
 **Functional commitment** { #func-com }
 : 

@@ -63,6 +63,9 @@
 **Linear operations**
 : Addition and scalar multiplication.
 
+**Min-entropy**
+: 
+
 **Negligible function** { #negligible }
 : A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:  
 ![The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs.](assets/images/negligible.png)
@@ -76,7 +79,7 @@
 : A potentially [probabilistic](#probabilistic) algorithm that runs in polynomially many steps. In cryptography, we usually consider PPT [adversaries](#adversary) (polynomial in the [security parameter](#secparam)).
 
 **Protocol** { #protocol }
-: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Usually denoted by the variable &Pi;.
+: A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Often denoted by the variable $\Pi$.
 
 **Probabilistic** { #probabilistic }
 : 
@@ -94,7 +97,7 @@ A security game is sometimes also called an **experiment**.
 **Security parameter**
 : Denoted by $\lambda$ (or sometimes $\kappa$), this is a measure of how hard it is to break the security of a system. 
 Generally, an adversary's [advantage](#advantage) in attacking a scheme should be [negligible](#negligible) in the security parameter; thus, the parameter needs to be large enough that the specific [negligible function](#negligible) also corresponds to a sufficiently low success probability in practice.
-Computational security parameters are generally $\lambda = 128$ or $\lambda = 256$ and correspond to the size of the instance of the computational problem to be solved; [information-theoretic](#it-security) security parameters can be lower and correspond directly to an [adversary](#adversary)'s statistical success probability. [See also the [Wikipedia page](https://en.wikipedia.org/wiki/Security_parameter)]
+Computational security parameters are generally $\lambda = 128$ or $\lambda = 256$ and correspond to the size of the instance of the computational problem to be solved; [information-theoretic](#it-security) security parameters can be lower and correspond directly to an [adversary](#adversary)'s statistical success probability. (See also the [Wikipedia page](https://en.wikipedia.org/wiki/Security_parameter).)
 
 **Surjective**
 : A function such that every element of the codomain has at least one preimage in the domain. Also known as **onto**. Compare to [injective](#injective), [bijective](#bijective).
@@ -104,7 +107,7 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 : Attack in which an [adversary](#adversary) creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.
 
 **Uniform** { #uniform }
-: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over N elements means each of the elements is drawn with probability 1/N.
+: A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over $N$ elements means each of the elements is drawn with probability $1/N$.
 
 **Unary**
 : Compared to binary, which represents numbers using two symbols (0 and 1), the unary representation of a number consists only of 1s. Specifically, a number $n$ is represented in unary as a string of $n$ 1s (e.g., 5 in unary would be 11111). [Security parameters](#secparam) are usually given as an input in their unary representation, i.e. $1^\lambda$.
@@ -140,20 +143,24 @@ Note: $f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n))$ and $f(n) \in \Omega(g(n))$.
 [^1]: in logspace, i.e. using O(log(n)) memory.
 
 **P/poly**
-: Same as the class _P_ except that the Turing machine is allowed a trusted "advice string" of size $O(poly(n))$, where $n$ is the size of the input. This is also known as the non-uniform version of _P_, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
+: Same as the class $P$ except that the Turing machine is allowed a trusted "advice string" of size $O(poly(n))$, where $n$ is the size of the input. This is also known as the **non-uniform** version of $P$, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
 
 **PPAD**
 : 
 
 **NC**
-: "Nick's Class." **NC$^i$** is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as _P_) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, NC$^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then **NC** is the union of NC$^i$ over all $i \geq 0$.  
+: "Nick's Class." $NC^i$ is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as $P$) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, $NC^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then $NC$ is the union of $NC^i$ over all $i \geq 0$.  
 
-    It is known that NC &subseteq; P.
+    It is known that $NC \subseteq P$.
+
+**NP** { #np }
+: 
+<!-- https://en.wikipedia.org/wiki/NP_(complexity) -->
 
 **TC$^0$**
 : The class of decision problems solvable by poly-size *constant-depth* circuits with *unbounded* fan-in using AND, OR, NOT, and threshold gates.  
 
-    It is known that TC$^0$ &subseteq; NC$^1$.
+    It is known that $TC^0 \subseteq NC^1$.
 
 !!! tip "Further Reading"
     Many more complexity classes can be found on the [Complexity Zoo wiki](https://complexityzoo.net/Complexity_Zoo).
@@ -185,11 +192,13 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 **Malicious adversary** { #malicious }
 : An [adversary](#adversary) that can deviate arbitrarily from the [protocol](#protocol) it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as **active adversary**; compare to [semi-honest adversary](#semi-honest).
 
-!!! note "Notation"
-    We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party $S^*$ in a commitment scheme denotes a potentially malicious sender.
+    !!! note "Notation"
+        We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party $S^*$ in a commitment scheme denotes a potentially malicious sender.
 
 **Semi-honest adversary** { #semi-honest }
 : An [adversary](#adversary) that follows the [protocol](#protocol) and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
+
+---
 
 !!! warning "Less standard threat models"
     The following threat models are newer and thus less widely used than the ones until now. It's possible different papers use different terms for them or that the names will change in the future.
@@ -198,7 +207,7 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 : Slightly stronger than the [semi-honest adversary](#semi-honest); follows the [protocol](#protocol) the way a [semi-honest adversary](#semi-honest) does, but can choose to abort at any time (or cause parties it controls to abort).
 
 **Semi-malicious adversary**
-: Lies between the [semi-honest](#semi-honest) and [malicious cases](#malicious). The [adversary](#adversary) must follow the [protocol](#protocol), but it can arbitrarily and [adaptively](#adaptive) choose the inputs and randomness used in the protocol. [[BHP17 §4](https://eprint.iacr.org/2017/386.pdf); introduced by [AJL+12 §5](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf)]
+: Lies between the [semi-honest](#semi-honest) and [malicious cases](#malicious). The [adversary](#adversary) must follow the [protocol](#protocol), but it can arbitrarily and [adaptively](#adaptive) choose the inputs and randomness used in the protocol. See [[BHP17 §4]](https://eprint.iacr.org/2017/386.pdf); introduced by [[AJL+12 §5]](https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf).
 
 **Uniform adversary**
 : A uniform [adversary](#adversary) uses the same strategy regardless of the protocol instance. Compare to [non-uniform adversary]().
@@ -231,7 +240,7 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 : Another term for [information-theoretic security](#it-security).
 
 **UC security**
-: Security in the "universal composability" framework [[Canetti'01](https://eprint.iacr.org/2000/067)]. This is a [simulation-based](proofs.md) security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary [composition](glossary.md#composition).
+: Security in the ["universal composability" framework](./proofs.md#universal-composability-uc-framework). This is a [simulation-based](./proofs.md#proof-by-simulation) security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary [composition](glossary.md#composition).
 
 **Unconditional security**
 : Usually used interchangeably with [information-theoretic security](#it-security). However, it can also be used to mean security that is not based on any [computational assumption](./assumptions.md).
@@ -247,17 +256,17 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 <!-- TODO -->
 
 **Algebraic Group Model (AGM)** { #agm }
-: This is a stronger assumption than the [standard model](#standard-model), but weaker than the [GGM](#ggm). The model assumes that the [adversary](#adversary) is _algebraic_, meaning that for any group element it outputs, it also knows its representation in the group. This differs from the [GGM](#ggm) in that the adversary knows and can exploit the group structure.
+: This is a stronger assumption than the [standard model](#standard-model), but weaker than the [GGM](#ggm). The model assumes that the [adversary](#adversary) is an **algebraic adversary**, meaning that for any group element it outputs, it also knows its representation in the group. This differs from the [GGM](#ggm) because the adversary knows and can exploit the group structure.
 
 **Generic Group Model (GGM)** { #ggm }
 : This model assumes that the [adversary](#adversary) is given access to a randomly chosen (encoding of a) group instead of the groups used in practice, which have efficient encodings. The adversary also has access to an [oracle](#oracle) for the group function.
-(One can see this as an analogue of giving the adversary access to a [random oracle](#rom) instead of a real hash function used in practice.)
+(This is like how, in the [random oracle model](#rom), we give the adversary access to a random oracle instead of a real hash function used in practice.)
 
 **Quantum Random Oracle Model (QROM)** { #qrom }
 : An analogue of the [ROM](#rom) for [quantum](./Areas-of-Cryptography/other.md#quantum-crypto) [adversaries](#adversary).
 
 **Random Oracle Model (ROM)** { #rom }
-: A proof paradigm that models hash functions as _random oracles_, i.e. an [oracle](#oracle) that outputs a random number for any input (but outputs the same number when given the same input). Read more [here](https://blog.cryptographyengineering.com/2020/01/05/what-is-the-random-oracle-model-and-why-should-you-care-part-5/). Variants include the _programmable ROM_, ...
+: A proof paradigm that models hash functions as **random oracles**, i.e. an [oracle](#oracle) that outputs a random number for any input (but outputs the same number when given the same input). Read more [here](https://blog.cryptographyengineering.com/2020/01/05/what-is-the-random-oracle-model-and-why-should-you-care-part-5/). Variants include the _programmable ROM_ and others.
 
 **Standard Model** { #standard-model }
 : This model assumes only that the [adversary](#adversary) is limited by time or computational power; it makes no further assumptions (the way, e.g., the [ROM](#rom) does). Proofs in the standard model therefore usually rest on a [computational hardness assumption](./assumptions.md), but no idealized cryptographic primitives, and are thus very difficult. In this way this model is "better" than the others listed here because it assumes less.  

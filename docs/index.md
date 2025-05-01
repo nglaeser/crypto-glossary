@@ -1,11 +1,11 @@
 # How to Use This Glossary
 
-For the most part, we use a standard glossary style, that is,
+For the most part, I use a standard glossary style, that is,
 
 > **Term**
-> : This is the definition of the term. We might bold **another name** for this term inside the definition.
+> : This is the definition of the term. I might bold **other terms** being defined inside the definition.
 
-We use the following callouts for specific examples, summaries, etc.
+I use the following callouts for specific examples, summaries, etc.:
 
 !!! example "Example/Construction"
     Examples or specific constructions that realize some cryptographic primitive.
@@ -23,4 +23,4 @@ We use the following callouts for specific examples, summaries, etc.
     Pointers to some additional material.
 
 !!! warning
-    Pretty self-explanatory; these are present to draw your attention to some small but significant detail.
+    Draw attention to some small but significant detail.
