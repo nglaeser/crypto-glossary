@@ -72,6 +72,22 @@
 !!! info "Formal Definition"
     A function $f$ is negligible if for all natural numbers c, there exists a natural number $N$ such that $f(n) < n^{-c}$ for all $n > N$.
 
+**Norm** { #norm }
+: A function from a vector space to non-negative (real) numbers. In cryptography, we mostly deal with integers, so norms usually map an integer vector to a single non-negative integer. A norm can be thought of as a sort of distance measure because it must meet the following three properties:  
+
+    1. [Triangle inequality](https://en.wikipedia.org/wiki/Triangle_inequality), i.e., $\mathsf{norm}(\vec{x} + \vec{y}) \leq \mathsf{norm}(\vec{x}) + \mathsf{norm}(\vec{y})$  
+    2. Linearity up to absolute value ([*absolute* homogeneity](https://en.wikipedia.org/wiki/Homogeneous_function)), i.e., $\mathsf{norm}(s\vec{x}) = \lvert s \rvert \mathsf{norm}(\vec{x})$ for any scalar $s$
+    3. Zero only at the origin, i.e., $\mathsf{norm}(\vec{x}) = 0$ iff $\vec{x} = \vec{0}$
+
+    Some common norms applied to a vector $\vec{x} = (x_1, \dots, x_\ell)$ are:
+
+    - **Infinity norm**: $\lVert \vec{x} \rVert_\infty = \max(\lvert x_i \rvert)$
+    - **Euclidean norm** (aka **L2 norm**): $\lVert \vec{x} \rVert_2 = \sqrt{\sum_i x_i^2}$
+    - **L1 norm**: $\lVert \vec{x} \rVert_1 = \sum_i \lvert x_i \rvert$
+  
+    These are special cases of the **Lp norm** $\lVert \vec{x} \rVert_p = (\sum_i \lvert x_i \rvert^p)^{1/p}$.
+
+
 **Parameterized**
 : 
 
