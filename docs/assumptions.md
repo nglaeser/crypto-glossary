@@ -14,11 +14,11 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 **Subexponential assumptions**
 : Instead of assuming hardness against any adversary running in polynomial time, we make the (stronger) assumption that the problem remains hard even against adversaries running in _any_ _subexponential_ time (so we give the adversary more computational power).
 
-**Knowledge assumption**
+**Knowledge assumption** { #knowledge-assumption }
 : ... These types of assumptions are _non-falsifiable_.
 
-**(Non-)Falsifiable**
-: 
+**(Non-)Falsifiable** { #non-falsifiable }
+: A **falsifiable assumption** is an assumption where a challenger can _efficiently_ decide whether the adversary won the game (i.e., broke the assumption). Many standard assumptions are falsifiable ([discrete log](#dlp), [DDH](#ddh), [CDH](#cdh), [RSA](#rsa-assumption), [factoring](#factoring-assumption), [LWE](#lwe), [SIS](#sis), [SVP](#svp), [LPN](#lpn), [one-way functions](#owf-assumption)). [Knowledge assumptions](#knowledge-assumption), on the other hand, are an example of a class of **non-falsifiable assumptions**. See also discussion in [Gentry-Wichs](https://eprint.iacr.org/2010/610).
 
 **Average-case hardness**
 : When a randomly selected instance of the problem is hard to solve.
@@ -33,7 +33,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ## List of Assumptions
 
-### **Discrete logarithm**
+### Discrete logarithm
 
 <!-- **Discrete Logarithm Problem (DLog/DLP/DL)** { #dlp } -->
 <a name="dlp"></a>
@@ -145,7 +145,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ### Factoring
 
-<a name="#rsa-assumption"></a>
+<a name="rsa-assumption"></a>
 !!! info "RSA Assumption"
     === "Assumption"
 
@@ -158,7 +158,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         - [RSA encryption](./Cryptographic-Primitives/encryption.md#rsa)
 
-<a name="#factoring-assumption"></a>
+<a name="factoring-assumption"></a>
 !!! info "Hardness of factoring large numbers"
     === "Assumption"
 
@@ -170,7 +170,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
 ### Lattice Assumptions
 
-<a name="#lwe"></a>
+<a name="lwe"></a>
 !!! info "Learning With Errors (LWE) :atom_symbol:"
     === "Assumption (computational)"
 
@@ -195,7 +195,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
         * [NIZKs](./Areas-of-Cryptography/zk.md#nizk)
         * [Public-key encryption](./Cryptographic-Primitives/encryption.md#pke)
 
-<a name="#sis"></a>
+<a name="sis"></a>
 !!! info "Short Integer Solution (SIS) :atom_symbol:"
     === "Assumption"
 
@@ -208,12 +208,12 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         - [Trapdoor functions](./Cryptographic-Primitives/other.md#tdf) (and therefore [signatures](./Cryptographic-Primitives/signatures.md))
 
-<a name="#svp"></a>
+<a name="svp"></a>
 !!! info "Shortest Vector Problem (SVP) :atom_symbol:"
 
 ### Other
 
-<a name="#lpn"></a>
+<a name="lpn"></a>
 !!! info "Learning Parity with Noise (LPN) :atom_symbol:"
     There are a few (equivalent) ways to phrase this assumption; two are given below.  
     === "Assumption (version 1)"
@@ -237,7 +237,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 <!-- [Version 1](https://perso.uclouvain.be/fstandae/PUBLIS/182.pdf) -->
 <!-- [Version 2 and applications](http://yuyu.hk/files/LPN.pdf) -->
  
-<a name="#owf-assumption"></a>
+<a name="owf-assumption"></a>
 !!! info "One-way functions (OWF)"
     === "Assumption"
 

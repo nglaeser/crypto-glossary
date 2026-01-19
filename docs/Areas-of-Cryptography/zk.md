@@ -82,7 +82,7 @@ By definition, proof systems are [complete](#completeness) and [sound](#soundnes
 **Proof** { #proof }
 : [Completeness](#completeness) holds [perfectly](../general.md#perfect-security). [Soundness](#soundness) holds against a computationally _unbounded_ cheating prover (i.e., [statistical](../general.md#statistical) or even [perfect](../general.md#perfect-security) soundness).
 
-## Types of zero-knowledge proofs
+## Terminology
 
 Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. 
 <!-- Rememeber from above that all proof systems are by definition complete and sound, so the "proof" part of the name implies completeness and soundness. Common ZK proofs: -->
@@ -94,12 +94,6 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **Proof of Knowledge (PoK)** { #pok }
 : [Proof](#proof) where the [soundness](#soundness) is [_knowledge_ soundness](#knowledge-soundness).  
 *Properties:* [completeness](#completeness), [knowledge soundness](#knowledge-soundness).
-
-**Probabilistically Checkable Proof (PCP)** { #pcp }
-: 
-
-**Interactive Oracle Proof (IOP)** { #iop }
-: Sometimes referred to as **probabilistically checkable interactive proofs (PCIP)**, this is an interactive variant of PCPs.
 
 **NIWI** { niwi }
 : [Non-Interactive](#non-int) [Witness Indistinguishable](#wi) [proof](#proof).  
@@ -115,6 +109,8 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **SNARG** (**SNArg**) { #snarg }
 : [Succinct](#succinct) [Non-interactive](#non-int) [Argument](#argument).  
 *Properties:* [succinctness](#succinct) ("S"), [non-interactivity](#non-int) ("N"), [completeness](#completeness) and computational [soundness](#soundness) ("Arg").
+
+    - Gentry and Wichs [showed](https://eprint.iacr.org/2010/610) an impossibility result for SNARGs/SNARKs for NP, which roughly says that they must rely on [non-falsifiable](../assumptions.md#non-falsifiable) assumptions.
 
 **SNARK** (**SNArK**) { #snark }
 : [Succinct](#succinct) [Non-interactive](#non-int) [Argument](#argument) of Knowledge.  
@@ -134,11 +130,52 @@ Zero-knowledge proofs are named in a fairly self-explanatory way by combining th
 **DV-NIZK**
 : Designated Verifier [NIZK](#nizk). 
 
+<!-- Insert table? -->
+
+## Types of zero-knowledge proofs
+
+Here are some common approaches and design paradigms in the ZKP/SNARK space.
+
+**Probabilistically Checkable Proof (PCP)** { #pcp }
+: 
+
+**Interactive Oracle Proof (IOP)** { #iop }
+: Sometimes referred to as **probabilistically checkable interactive proofs (PCIP)**, this is an interactive variant of PCPs.
+
 <!-- **Signature of Knowledge**
 : A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
 [Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)] -->
 
-<!-- Insert table? -->
+**Collaborative SNARKs** { #co-snarks }
+: Collaborative proof generation when the witness is held jointly (e.g., secret shared) among multiple provers.
+
+**Recursive proofs** { #recursive-proofs }
+: This is a technique which proves the validity of some other, underlying proof(s). The input is proof(s) $\pi_1, \dots, \pi_n$ and the output is a proof $\pi$ claiming that there exists $\pi_1, \dots, pi_n$ (the witness) where $\bigwedge_i V(x_i, \pi_i) = 1$ (the $x_i$'s are the statements proven by the original proofs).  
+Applications:
+
+    - Proof aggregation: Combine multiple proofs into a single proof, allowing you to verify $n$ proofs for the price of 1. The base proofs can also be generated in parallel, potentially reducing prover wall time.
+    - **Incrementally verifiable computation (IVC)**: If a function $f$ to be proven consists of multiple consecutive steps $f_1, f_2, \dots$, each step can be proven individually in a recursive chain by taking the output $x_{t-1}$ of the previous step and a proof $\pi_{t-1}$ of its correct computation, using the input $w_t$ to the current step to compute $x_t = f_t(x_{t-1}, w_t)$, and producing a proof $\pi_t$ that there exist $w_t, \pi_{t-1}$ (the witness) such that $f_t(x_{t-1}, w_t) = x_t \land V(x_{t-1}, \pi_{t-1}) = 1$.
+<!-- https://hackmd.io/@YaoGalteland/S1BnQL0Qkx -->
+
+    <!-- 
+    ``` mermaid
+    block-beta
+        columns 10
+        space:2 prevW["$w_{t-1}$"] space:3 W["$w_t$"] space:3
+        space:10
+        dots["..."] space prev["$f_{t-1}$"] space prevout["$x_{t-1}, \pi_{t-1}$"] space curr["$f_t$"] space out["$x_t, \pi_t$"]
+
+        dots --> prev
+        prev --> prevout
+        prevout --> curr
+        curr --> out
+        W --> curr
+        prevW --> prev
+
+        classDef clear fill:#fff,stroke:#fff;
+        class dots,prevW,W,prevout,out clear
+    ``` 
+    -->
 
 ### Polynomial IOPs
 
