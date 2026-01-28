@@ -126,12 +126,40 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
     !!! notation "IBE syntax"
         - $({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)$: set up master keypair
         - ${\sf sk}_{\sf id} \gets \mathsf{KGen}({\sf msk}, {\sf id})$: generate an identity's secret key
-        - $c_{\sf id} \gets \mathsf{Enc}({\sf mpk}, {\sf id}, m)$: encrypt directly to an identity
-        - $\{m, \perp\} \gets \mathsf{Dec}(sk_y, c_{\sf id})$: decrypt with identity secret key to get the plaintext; returns $\perp$ if $c$ was encrypted to an identity ${\sf id} \neq y$
+        - $c \gets \mathsf{Enc}({\sf mpk}, {\sf id}, m)$: encrypt directly to an identity
+        - $\{m, \perp\} \gets \mathsf{Dec}(sk_{\mathsf{id}'}, c)$: decrypt with identity secret key to get the plaintext; returns $\perp$ if $c$ was encrypted to an identity $\mathsf{id} \neq \mathsf{id}'$
 
     Note that IBE can be viewed as a specific case of [ABE](#abe) where $f(a) = \begin{cases}1 & a = {\sf id}\\ 0 & \text{otherwise}\end{cases}$.
 
-    !!! example "Boneh-Franklin IBE"
+    Furthermore, IBE implies digital signatures, that is, an IBE scheme can be used to build a [digital signature scheme](../Cryptographic-Primitives/signatures.md) by seeing the identity secret keys as signatures:
+
+    - $\underline{\mathsf{Gen}}$: Run the IBE's $\mathsf{Setup}$ algorithm and set the signature secret key $\mathsf{sk}$ to the IBE's $\mathsf{msk}$, and the signature public key $\mathsf{pk}$ to the IBE's $\mathsf{mpk}$ (and any other system parameters).
+    - $\underline{\mathsf{Sign}(\mathsf{sk}, m)}$: To sign a message $m$, publish the IBE secret key using $m$ as the identity (i.e., the signature is $\mathsf{sk}_\mathsf{id}$ for $\mathsf{id} = m$).
+    - $\underline{\mathsf{Vrfy}(\mathsf{pk}, m, \sigma)}$: Verification is a randomized algorithm (unlike most signature schemes). To verify a signature $\sigma$, use the IBE to encrypt a random message $m'$ under $\mathsf{id} = m$, then attempt to decrypt using $\sigma$ as the identity secret key.
+  
+    In fact, the [BLS signature scheme](../Cryptographic-Primitives/signatures.md#bls-sig) is exactly equivalent to applying this transformation to the [Boneh-Franklin IBE](#bf-ibe) (up to the randomization in the encryption). The reverse is also true in this case: BLS signatures are Boneh-Franklin identity secret keys for $\mathsf{id} = m$ so they can be used to realize the Boneh-Franklin IBE.
+
+    <a name="bf-ibe"></a>
+    !!! example "Boneh-Franklin IBE [[BF01]](https://crypto.stanford.edu/~dabo/papers/bfibe.pdf)"
+        === "Scheme" 
+            $\underline{\mathsf{Setup}}$: Choose [elliptic curve](../Areas-of-Cryptography/ecc.md) groups $\mathbb{G}, \mathbb{G}_T$ of prime order $q$ with [pairing](../Areas-of-Cryptography/ecc.md#pairing) $e: \mathbb{G} \times \mathbb{G} \to \mathbb{G}_T$. Let $g$ be a generator of $\mathbb{G}$ and $H_1: \{0,1\}^* \to \mathbb{G}^*$, $H_2: \mathbb{G}_2 \to \{0,1\}^n$ be hash functions (where $n$ is a fixed value representing the message length). $\mathbb{G},\mathbb{G}_T,q,g,e$ are announced publicly. 
+            
+            Sample $x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^*$ and output $\mathsf{msk} := x, \mathsf{mpk} := g^x \in \mathbb{G}$.
+
+            $\underline{\mathsf{KGen}(\mathsf{msk}, \mathsf{id})}$: Note $\mathsf{id} \in \{0,1\}^*$. Compute $g_{\sf id} := H_1(\mathsf{id})$ and output $\mathsf{sk}_\mathsf{id} := g_{\sf id}^{\sf msk}$.
+
+            $\underline{\mathsf{Enc}({\sf mpk}, {\sf id}, m)}$: Note $m \in \{0,1\}^n$. Recompute $g_{\sf id} := H_1(\mathsf{id})$ and $g_{T,\mathsf{id}} := e(g_{\sf id}, \mathsf{mpk}) \in \mathbb{G}_T$.
+
+            - return $c := (g^r, m \oplus H_2(g_{T,\mathsf{id}}^r))$, where $r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^*$
+
+            $\underline{\mathsf{Dec}(\mathsf{sk}_{\mathsf{id}'}, c := (c_1, c_2))}:$
+
+            - return $m := c_2 \oplus H_2(e(\mathsf{sk}_{\mathsf{id}'}, c_1))$. Note that iff $\mathsf{id}' = \mathsf{id}$, this equals $c_2 \oplus H_2(e(g_\mathsf{id}^\mathsf{msk}, g^r))$ $= c_2 \oplus H_2(e(g_\mathsf{id}, \mathsf{mpk})^r) = c_2 \oplus H_2(g_{T,\mathsf{id}}^r) = m$
+
+        === "Properties"
+            - [IND-ID-CPA](#cpa-security) (by [BDH assumption](../assumptions.md#bdh) in the [ROM](../general.md#rom))
+            - [IND-ID-CCA](#cca-security) can be added via [FO transform](../techniques.md#fujisaki-okamoto)
+
 
 **Hierarchical IBE (HIBE)** { #hibe }
 : 

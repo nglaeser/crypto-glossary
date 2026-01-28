@@ -115,6 +115,22 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         - [BLS digital signature](./Cryptographic-Primitives/signatures.md#bls-sig) (co-GDH)
 
+<a name="bdh"></a>
+!!! info "Bilinear Diffie–Hellman (BDH)"
+    === "Assumption"
+
+        Let $\mathbb{G},\mathbb{G}_T$ be groups of prime order $q$ with a [pairing](../Areas-of-Cryptography/ecc.md#pairing) $e: \mathbb{G} \times \mathbb{G} \to \mathbb{G}_T$. Choose a uniform generator $g$ of $\mathbb{G}$ and uniform values $a,b,c \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^*$.  
+        &emsp;**Given**: $(g, g^a, g^b, g^c)$  
+        &emsp;**Compute**: $e(g,g)^{abc} \in \mathbb{G}_T$
+
+    === "Applications"
+
+        - [Elliptic-curve cryptography (ECC)](./Areas-of-Cryptography/ecc.md), e.g., [Boneh-Franklin IBE](./Cryptographic-Primitives/encryption.md#bf-ibe)
+
+    === "Notes"
+
+        - Implies [CDH](#cdh) holds in *both* $\mathbb{G}$ and $\mathbb{G}_T$.
+
 <a name="xdh"></a>
 !!! info "External Diffie–Hellman (XDH) / asymmetric XDH"
     === "Assumption"
