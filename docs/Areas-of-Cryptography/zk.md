@@ -146,7 +146,7 @@ Here are some common approaches and design paradigms in the ZKP/SNARK space.
 : A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
 [Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)] -->
 
-**Collaborative SNARKs** { #co-snarks }
+**Collaborative proofs/SNARKs** { #co-snarks }
 : Collaborative proof generation when the witness is held jointly (e.g., secret shared) among multiple provers.
 
 **Recursive proofs** { #recursive-proofs }
@@ -157,7 +157,6 @@ Applications:
     - **Incrementally verifiable computation (IVC)**: If a function $f$ to be proven consists of multiple consecutive steps $f_1, f_2, \dots$, each step can be proven individually in a recursive chain by taking the output $x_{t-1}$ of the previous step and a proof $\pi_{t-1}$ of its correct computation, using the input $w_t$ to the current step to compute $x_t = f_t(x_{t-1}, w_t)$, and producing a proof $\pi_t$ that there exist $w_t, \pi_{t-1}$ (the witness) such that $f_t(x_{t-1}, w_t) = x_t \land V(x_{t-1}, \pi_{t-1}) = 1$.
 <!-- https://hackmd.io/@YaoGalteland/S1BnQL0Qkx -->
 
-    <!-- 
     ``` mermaid
     block-beta
         columns 10
@@ -175,9 +174,10 @@ Applications:
         classDef clear fill:#fff,stroke:#fff;
         class dots,prevW,W,prevout,out clear
     ``` 
-    -->
 
-### Polynomial IOPs
+### Polynomial commitment + IOP
+
+Many recent SNARKs/SNARGs are, at their core, an [IOP](#iop), which is then instantiating the oracle using a [vector commitment](../Cryptographic-Primitives/commitments.md#vc) or a [polynomial commitment](../Cryptographic-Primitives/commitments.md#poly-com).
 
 ### Sigma protocols
 
