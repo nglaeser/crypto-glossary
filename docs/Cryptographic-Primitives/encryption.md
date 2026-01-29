@@ -186,10 +186,11 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
 **Structured encryption**
 :  
 
-**Witness encryption (WE)**
-: 
-    **Extractable witness encryption (EWE)**
-    : 
+**Witness encryption (WE) [[GGSW13](https://eprint.iacr.org/2013/258)]** { #witness-enc }
+: An encryption scheme in which a message is encrypted with respect to a statement $x$ and can only be decrypted by providing a witness $w$ such that $(x,w) \in R$, where $R$ is an NP-[relation](../Areas-of-Cryptography/zk.md). [Public-key encryption](#pke) can be thought of as a special case of witness encryption for the DLog-relation.
+
+- **Extractable witness encryption (EWE)**
+: The additional property of extractability guarantees semantic security *unless* the adversary knows the witness (cf. [knowledge soundness](../Areas-of-Cryptography/zk.md#knowledge-soundness)).
 
 ## Security Notions
 

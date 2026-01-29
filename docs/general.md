@@ -256,7 +256,7 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 : Another term for [information-theoretic security](#it-security).
 
 **UC security**
-: Security in the ["universal composability" framework](./proofs.md#universal-composability-uc-framework). This is a [simulation-based](./proofs.md#proof-by-simulation) security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary [composition](glossary.md#composition).
+: Security in the ["universal composability" framework](./proofs.md#universal-composability-uc-framework). This is a [simulation-based](./proofs.md#proof-by-simulation) security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary [composition](#composition).
 
 **Unconditional security**
 : Usually used interchangeably with [information-theoretic security](#it-security). However, it can also be used to mean security that is not based on any [computational assumption](./assumptions.md).
