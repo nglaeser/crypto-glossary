@@ -1,0 +1,1289 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/Cryptographic-Primitives/signatures/">
+      
+      
+        <link rel="prev" href="../other/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Signatures - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#signatures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Signatures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Use This Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assumptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Notation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Proofs: Types and Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../techniques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Areas of Cryptography
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Areas of Cryptography
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/blockchain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blockchain and Cryptocurrencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/ecc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elliptic-Curve Cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/mpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Party Computation (MPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/pqc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-quantum cryptography (PQC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/zk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Knowledge (ZK)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Primitives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryptographic Primitives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commitments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commitment schemes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-exchange/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Exchange
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schemes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schemes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="signatures">Signatures</h1>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Signatures are used to ensure authenticity.</p>
+</div>
+<p>A digital signature scheme consists of three algorithms: a key generation algorithm <span class="arithmatex">\(\mathsf{Gen}\)</span> (or <span class="arithmatex">\(\mathsf{KGen}\)</span>) that takes no input and outputs a keypair, a signing algorithm <span class="arithmatex">\(\mathsf{Sign}\)</span> that takes a private key and a message and outputs a signature, and a verification algorithm <span class="arithmatex">\(\mathsf{Vrfy}\)</span> that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).</p>
+<div class="admonition notation">
+<p class="admonition-title">Signature scheme syntax</p>
+<ul>
+<li><span class="arithmatex">\(({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)\)</span></li>
+<li><span class="arithmatex">\(\sigma \gets \mathsf{Sign}({\sf sk}, m)\)</span></li>
+<li><span class="arithmatex">\(\{0, 1\} \gets \mathsf{Vrfy}({\sf pk}, m, \sigma)\)</span></li>
+</ul>
+</div>
+<p>For correctness, we require that for all key(pairs) output by <span class="arithmatex">\(\sf Gen\)</span> we have <span class="arithmatex">\(\mathsf{Vrfy}({\sf pk}, m, \mathsf{Sign}({\sf pk}, m)) = 1\)</span>.</p>
+<p>It is known that <a href="../other/#owf">OWFs</a> imply (one-time) signatures (OTS).</p>
+<div class="admonition example">
+<p class="admonition-title">One-time signatures (OTS) from OWFs [Lamport]</p>
+</div>
+<!-- TODO -->
+
+<p>OTS in turn imply many-time (i.e., regular) signatures:</p>
+<div class="admonition example">
+<p class="admonition-title">Many-time signatures from OTS</p>
+<p>The construction is a bit involved so it is given in a <a href="../../assets/notes/Sigs-from-OTS.png">separate document</a>. The general idea is to make a depth-<span class="arithmatex">\(\lvert m \rvert\)</span> binary tree of OTS keypairs. Then each parent is used to sign the pair of verification keys below it, and the signature on <span class="arithmatex">\(m\)</span> consists of the <span class="arithmatex">\(\lvert m \rvert\)</span> signatures on the path the bits of <span class="arithmatex">\(m\)</span> from the root to a leaf.</p>
+</div>
+<h2 id="schemes">Schemes</h2>
+<p>A common paradigm for a signature scheme is to instantiate a signature as a <a href="../../Areas-of-Cryptography/zk/#nizk">NIZK</a> <a href="../../Areas-of-Cryptography/zk/#pok">PoK</a> of the secret key (additionally incorporating the message). See the "Notes" section of the Schnorr signature scheme below for a discussion of how that scheme fits into this paradigm; another example is <a href="https://microsoft.github.io/Picnic/">Picnic</a>, a NIST <a href="../../Areas-of-Cryptography/pqc/">post-quantum cryptography</a> candidate, which is essentially a <a href="../../Areas-of-Cryptography/zk/#pok">proof of knowledge</a> of the preimage of a <a href="../other/#owf">one-way function</a>.</p>
+<p><a name="dsa"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Digital Signature Algorithm (DSA)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Construction</label><label for="__tabbed_1_2">Assumptions</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>DSA is an additive version of the Schnorr signature scheme (which can in turn be seen as a multiplicative version of DSA).</p>
+<p>Let <span class="arithmatex">\(p,q\)</span> be primes such that <span class="arithmatex">\(q\)</span> divides <span class="arithmatex">\(p-1\)</span> and <span class="arithmatex">\(G\)</span> be a group of order <span class="arithmatex">\(p\)</span> with generator <span class="arithmatex">\(g\)</span>.
+Let <span class="arithmatex">\(H\)</span> be a <a href="../hash/">hash function</a>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: return the secret key <span class="arithmatex">\(sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q\)</span> and the public key <span class="arithmatex">\(pk := g^{sk} \mod{p}\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Sign}(sk, m)}\)</span>: </p>
+<ul>
+<li>choose a one-time key <span class="arithmatex">\(k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q\)</span></li>
+<li>compute a nonce <span class="arithmatex">\(r := (g^k \mod{p}) \mod{q}\)</span> (if <span class="arithmatex">\(r=0\)</span>, start over with a different <span class="arithmatex">\(k\)</span>)</li>
+<li>compute <span class="arithmatex">\(s := k^{-1} \cdot (H(m) + r \cdot sk) \mod{q}\)</span> (if <span class="arithmatex">\(s=0\)</span>, start over with a different <span class="arithmatex">\(k\)</span>)</li>
+<li>output the signature <span class="arithmatex">\(\sigma := (s, r)\)</span>.</li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,R))}\)</span>: </p>
+<p>Check that the following hold:</p>
+<ul>
+<li><span class="arithmatex">\(r,s \in \mathbb{Z}_q\)</span></li>
+<li><span class="arithmatex">\(r = (g^{u_1} {pk}^{u_2} \mod{p}) \mod{q}\)</span>, where <span class="arithmatex">\(u_1 := H(m) \cdot s^{-1} \mod{q}\)</span> and <span class="arithmatex">\(u_2 := r \cdot s^{-1} \mod{q}\)</span></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../../assumptions/#discrete-logarithm">DLog</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><a name="ecdsa"></a></p>
+<div class="admonition example">
+<p class="admonition-title">ECDSA signatures</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Construction (additive notation)</label><label for="__tabbed_2_2">Assumptions</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>ECDSA is the <a href="../../Areas-of-Cryptography/ecc/">elliptic-curve</a> version of DSA.</p>
+<p>Let <span class="arithmatex">\(G\)</span> be the base point of the elliptic curve, such that <span class="arithmatex">\(G\)</span> has prime order <span class="arithmatex">\(p\)</span>. Use <span class="arithmatex">\(\times\)</span> to denote scalar multiplication of an elliptic curve point. We use lowercase variable names for scalars and uppercase variables for elliptic curve points.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: <span class="arithmatex">\(sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p\)</span> and the public key <span class="arithmatex">\(Q := {sk} \times G\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Sign}(sk, m)}\)</span>:</p>
+<ul>
+<li>choose a one-time key <span class="arithmatex">\(k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p\)</span></li>
+<li>compute <span class="arithmatex">\(R := k \times G\)</span> (if <span class="arithmatex">\(R=0\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, start over with a different <span class="arithmatex">\(k\)</span>)</li>
+<li>compute <span class="arithmatex">\(S := k^{-1} \cdot (H(m) + sk \times R)\)</span> (if <span class="arithmatex">\(S=0\)</span>, start over with a different <span class="arithmatex">\(k\)</span>)</li>
+<li>output the signature <span class="arithmatex">\(\sigma := (S, R)\)</span>.</li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Vrfy}(Q,m, \sigma := (S,R))}\)</span>:  </p>
+<p>Check that the following hold:</p>
+<ul>
+<li><span class="arithmatex">\(Q,S,R\)</span> are valid elliptic-curve points (and not equal to the identity)</li>
+<li>compute <span class="arithmatex">\(U_1 := H(m) S^{-1}\)</span> and <span class="arithmatex">\(U_2 := R S^{-1}\)</span></li>
+<li><span class="arithmatex">\(R = U_1 G + U_2 Q\)</span></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../../assumptions/#discrete-logarithm">DLog</a> over elliptic curves</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><a name="schnorr-sig"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Schnorr signatures</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Construction (additive notation)</label><label for="__tabbed_3_2">Assumptions</label><label for="__tabbed_3_3">Notes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(G\)</span> be an elliptic curve group with generator <span class="arithmatex">\(g\)</span> and order <span class="arithmatex">\(q\)</span> and <span class="arithmatex">\(H\)</span> be a <a href="../hash/">hash function</a>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: return the secret key <span class="arithmatex">\(sk \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q\)</span> and the public key <span class="arithmatex">\(pk := g \cdot sk\)</span>.  </p>
+<p><span class="arithmatex">\(\underline{\mathsf{Sign}(sk, m)}\)</span>: </p>
+<ul>
+<li>choose a one-time key <span class="arithmatex">\(k \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q\)</span></li>
+<li>compute a nonce <span class="arithmatex">\(r := g \cdot k\)</span></li>
+<li>compute <span class="arithmatex">\(s := k + H(r || m ) \cdot sk \mod q\)</span></li>
+</ul>
+<p>Return the signature <span class="arithmatex">\(\sigma := (s, r)\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,r))}\)</span>: return the truth value of <span class="arithmatex">\(s \cdot g =^? r + H(r || m) \cdot pk\)</span>.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../../assumptions/#discrete-logarithm">DLog</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Schnorr signatures can be viewed as a <a href="../../Areas-of-Cryptography/zk/#nizk">NIZK</a> <a href="../../Areas-of-Cryptography/zk/#pok">PoK</a> of the discrete logarithm of the public key (i.e., knowledge of the secret key). Note that the Schnorr signing algorithm is essentially a standard <a href="../../Areas-of-Cryptography/zk/#sigma-dlog">sigma-protocol for DLog</a>, made non-interactive with the <a href="../../techniques/#fiat-shamir">Fiat-Shamir transform</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<p><a name="eddsa"></a></p>
+<div class="admonition example">
+<p class="admonition-title">EdDSA</p>
+<p>EdDSA is a variant of the <a href="#schnorr-sig">Schnorr signature scheme</a> for twisted Edwards <a href="../../Areas-of-Cryptography/ecc/">elliptic curves</a>.</p>
+</div>
+<p><a name="bls-sig"></a></p>
+<div class="admonition example">
+<p class="admonition-title">BLS signatures <a href="https://hovav.net/ucsd/dist/sigs.pdf">[BLS01]</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Construction (additive notation)</label><label for="__tabbed_4_2">Assumptions</label><label for="__tabbed_4_3">Properties</label><label for="__tabbed_4_4">Notes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Let <span class="arithmatex">\(\mathbb{G}_1, \mathbb{G}_2\)</span> be <a href="../../Areas-of-Cryptography/ecc/">elliptic curve</a> groups of order <span class="arithmatex">\(p\)</span> generated by <span class="arithmatex">\(P, Q\)</span>, respectively, and <span class="arithmatex">\(e\)</span> be an efficiently computable <a href="../../Areas-of-Cryptography/ecc/#bilinear-map">bilinear map</a> on them. Let <span class="arithmatex">\(H\)</span> be a <a href="../hash/">hash function</a> onto <span class="arithmatex">\(\mathbb{G}_1\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: sample the secret key <span class="arithmatex">\(x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p\)</span> and compute the corresponding public key <span class="arithmatex">\(V := xQ\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Sign}(sk, m)}\)</span>: Output <span class="arithmatex">\(\sigma := x H(m)\)</span></p>
+<p><span class="arithmatex">\(\underline{\mathsf{Vrfy}(pk,m, \sigma := (s,r))}\)</span>: check <span class="arithmatex">\(e(\sigma, Q) = e(H(m), V)\)</span>.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="../../assumptions/#co-gdh">co-Gap Diffie Hellman</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Thresholdizable</li>
+<li>Unique signatures</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>The scheme extends straightforwardly to (a robust, t-out-of-n) <a href="#threshold-sig">threshold signature</a>. Parties receive <a href="../../Areas-of-Cryptography/mpc/#secret-sharing">Shamir secret shares</a> <span class="arithmatex">\(x_i\)</span> of the secret key, and the public key and partial public keys <span class="arithmatex">\(V_i := x_i Q\)</span> are published for all <span class="arithmatex">\(i\)</span>.</p>
+<p>To sign a message, parties that want to participate produce a partial signature (a share of the full signature) <span class="arithmatex">\(\sigma_i\)</span> by signing using their share of the secret key. That is, <span class="arithmatex">\(\sigma_i = x_i H(m)\)</span>. The full signature is then </p>
+<div class="arithmatex">\[ \prod_i \lambda_i \sigma_i \]</div>
+<p>where the <span class="arithmatex">\(\lambda_i\)</span> is each party's Lagrange interpolation at 0. That is,</p>
+<div class="arithmatex">\[ \sigma = \prod_i \lambda_i (x_i H(m)) = (\sum_i \lambda_i x_i) H(m) = x H(m) \]</div>
+<p>where Shamir reconstruction is happening homomorphically in the "exponent".</p>
+<p>This scheme is also <strong>robust</strong>: the validity of the signature share <span class="arithmatex">\(\sigma_i\)</span> can be checked by checking that <span class="arithmatex">\((Q, V_i, H(m), \sigma_i)\)</span> is a <a href="../../assumptions/#co-ddh">co-Diffie-Hellman</a> tuple (of the form <span class="arithmatex">\((Q, a Q, H, b H)\)</span> where <span class="arithmatex">\(a=b\)</span>).</p>
+</div>
+</div>
+</div>
+</div>
+<!-- TODO can be used to construct identity-based signatures? -->
+
+<p><a name="cl-sig"></a></p>
+<div class="admonition example">
+<p class="admonition-title">CL signatures</p>
+</div>
+<h2 id="other-types">Other types</h2>
+<dl>
+<dt><strong>Aggregate signatures</strong></dt>
+<dd>A signature scheme with the property that an arbitrary number of signatures <span class="arithmatex">\(\sigma_1, \dots, \sigma_\ell\)</span> on <em>potentially different</em> messages <span class="arithmatex">\(m_1, \dots, m_\ell\)</span> produced by <em>potentially different</em> signers <span class="arithmatex">\(P_1, \dots, P_\ell\)</span> can be aggregated into a single signature <span class="arithmatex">\(\sigma\)</span> which can be used to verify the authenticity of all <span class="arithmatex">\(\ell\)</span> individiual signatures. Compared to <a href="#musig">multi-signatures</a> and <a href="#threshold-sig">threshold signatures</a>, the final signature spans multiple different messages.</dd>
+<dt><strong>Blind signatures</strong></dt>
+<dd></dd>
+</dl>
+<div class="admonition example">
+<p class="admonition-title">Blind Schnorr signatures</p>
+</div>
+<dl>
+<dt><strong>Designated-verifier (DV) signatures</strong></dt>
+<dd>Instead of being publicly verifiable, a signature can only be verified by a specific party (the DV). <a href="../other/#mac">Message authentication codes (MACs)</a> can be thought of as DV-sigs, since a secret key is necessary to verify a MAC, so only parties that know the secret key can perform verification.</dd>
+</dl>
+<!-- **Functional signatures**
+:  -->
+
+<dl>
+<dt id="group-sig"><strong>Group signatures</strong></dt>
+<dd>One person in a group can produce a signature on behalf of everyone in the group. The signature does not reveal which member of the group produced it, so the signer benefits from some k-anonymity. Unlike <a href="#ring-sig">ring signatures</a>, there is also a special party called the <strong>group manager</strong> who is able to determine the signer given the signature.</dd>
+</dl>
+<!-- **Lockable signatures**
+:  -->
+
+<dl>
+<dt id="musig"><strong>Multi-signatures</strong></dt>
+<dd>A set of arbitrary size <span class="arithmatex">\(\ell\)</span> can work together to produce a single signature on a shared message. Unlike <a href="#threshold-sig">threshold signatures</a>, the (minimum) number of signers is not fixed upfront and can vary; furthermore, the identities of the signers are not hidden, and in fact a goal of the scheme is to be able to prove that everyone in the stated group of signers agreed to produce the signatures. <br />
+Compare to <a href="#threshold-sig">threshold signatures</a> (see also the discussion on page 34 of <a href="https://iacr.org/archive/pkc2003/25670031/25670031.pdf">[Bol03]</a>).</dd>
+<dt id="ring-sig"><strong>Ring signatures</strong></dt>
+<dd>Like group signatures, a member of the "ring" (group) can produce a signature on behalf of everyone in the group while remaining anonymous.
+Compare to <a href="#group-sig">group signatures</a>.</dd>
+</dl>
+<!-- **Structure-preserving signatures**
+:  -->
+
+<dl>
+<dt id="threshold-sig"><strong>Threshold signatures</strong></dt>
+<dd>signing/secret key is split into <a href="../../Areas-of-Cryptography/mpc/#secret-sharing">secret shares</a>; producing a signature requires some threshold number of shares. A threshold signature should be <a href="../../general/#indist">indistinguishable</a> from an ordinary signature. Additionally, no single party should ever learn the secret key.</dd>
+</dl>
+<h2 id="security-notions">Security Notions</h2>
+<dl>
+<dt><strong>EUF-CMA</strong></dt>
+<dd>
+<p><strong>E</strong>xistential <strong>U</strong>n<strong>F</strong>orgeability under <a href="../../general/#adaptive">adaptive</a> <strong>C</strong>hosen <strong>M</strong>essage <strong>A</strong>ttacks, aka "existential unforgeability".</p>
+<div class="admonition info">
+<p class="admonition-title">EUF-CMA game</p>
+<ol>
+<li>Challenger: <span class="arithmatex">\(pk,sk \gets \mathsf{Gen}(1^n)\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}(pk)\)</span> interacts with <span class="arithmatex">\(\mathsf{Sign}(sk,\cdot)\)</span> (in polynomial time) – that is, it gets to see polynomially many valid signatures on <em>chosen</em> messages</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs a message-signature pair <span class="arithmatex">\(m^*,\sigma^*\)</span></li>
+</ol>
+<p><span class="arithmatex">\(\mathcal{A}\)</span> <em>wins</em> if (1) <span class="arithmatex">\(m^*\)</span> wasn't one of the messages on which it queried the signing oracle and (2) <span class="arithmatex">\(\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1\)</span>; in this case, the game outputs 1.</p>
+</div>
+<!-- TODO diagram like CPA,CCA security -->
+</dd>
+<dt><strong>SUF-CMA</strong></dt>
+<dd>
+<p><strong>S</strong>trong <strong>U</strong>n<strong>F</strong>orgeability under adaptive <strong>C</strong>hosen <strong>M</strong>essage <strong>A</strong>ttacks, aka "strong unforgeability".</p>
+<div class="admonition info">
+<p class="admonition-title">SUF-CMA game</p>
+<p>Same as the EUF-CMA game, only the winning condition changes:</p>
+<p><span class="arithmatex">\(\mathcal{A}\)</span> <em>wins</em> if (1) <strong><span class="arithmatex">\((m^*,\sigma^*)\)</span> wasn't one of the message-signature pairs</strong> on which it queried the signing oracle and (2) <span class="arithmatex">\(\mathsf{Vrfy}(pk,m^*,\sigma^*) = 1\)</span>; in this case, the game outputs 1.</p>
+</div>
+<p>This is a stronger definition than EUF-CMA, since the attacker can win by forging a signature on a previously-queried message <span class="arithmatex">\(m^*\)</span> <strong>as long as the signature is different</strong>, for example by "mauling" a valid signature without changing its validity. </p>
+<p>This might seem a bit odd -- what does it matter if the adversary produces a different signature? The message was already signed by an honest party, so the adversary isn't convincing anyone that the party signed something it <em>didn't</em> actually sign. However, this difference does end up being important in some applications where signatures are used as building blocks.</p>
+</dd>
+</dl>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>By this we mean the x-coordinate is 0 (the y-coordinate is uniquely defined -- up to reflection over the x-axis -- by the x-coordinate).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy;2025 Noemi Glaeser
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://nglaeser.github.io/" target="_blank" rel="noopener" title="nglaeser.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nglaeser" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

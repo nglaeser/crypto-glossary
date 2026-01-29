@@ -1,0 +1,1392 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/general/">
+      
+      
+        <link rel="prev" href="../assumptions/">
+      
+      
+        <link rel="next" href="../notation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>General - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              General
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Use This Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assumptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#complexity-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexity Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complexity-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-definitions-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Definitions &amp; Notions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Notation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Proofs: Types and Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../techniques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Areas of Cryptography
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Areas of Cryptography
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/blockchain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blockchain and Cryptocurrencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/ecc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elliptic-Curve Cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/mpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Party Computation (MPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/pqc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-quantum cryptography (PQC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Areas-of-Cryptography/zk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Knowledge (ZK)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Primitives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryptographic Primitives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/commitments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commitment schemes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/key-exchange/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Exchange
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptographic-Primitives/signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#complexity-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complexity Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complexity-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-definitions-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Definitions &amp; Notions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="general">General</h1>
+<dl>
+<dt id="advantage"><strong>Advantage</strong></dt>
+<dd>The probability of an <a href="#adversary">adversary</a> violating the security property of a scheme. The advantage is generally defined with respect to a <a href="#game">security game</a>. For secure constructions, the adversary's advantage usually shown to be small by showing it is bounded by a <a href="#negligible">negligible function</a>.</dd>
+<dt id="adversary"><strong>Adversary</strong></dt>
+<dd>Some dishonest entity that will try to break a primitive or protocol. See <a href="#threat-models">Threat Models</a> for the types of adversaries, each with different capabilities.</dd>
+<dt id="bijective"><strong>Bijective</strong></dt>
+<dd>A function which is both <a href="#injective">injective</a> and <a href="#surjective">surjective</a>, that is, every element in the codomain has exactly one preimage in the domain. This implies that the domain and codomain have equal cardinalities (any element of the domain that doesn't map to anything is, by definition, not included in the domain).
+<img alt="Every point in the codomain has exactly 1 arrow going into it" src="../assets/images/bijective.jpg" /></dd>
+<dt id="black-box"><strong>Black-box</strong></dt>
+<dd>Treating some algorithm or protocol as a "black box" that hides the inner mechanism, allowing only the inputs and outputs to be seen. For instance, <em>black-box constructions</em> are constructions that use some building block as a black box without caring about its inner workings (only its generic input-output behavior).</dd>
+<dt id="correctness"><strong>Correctness</strong></dt>
+<dd>A property of a scheme that ensures it works correctly and does not trivially meet the definition of the scheme. For example, we usually require that <a href="../Cryptographic-Primitives/encryption/">decryption and encryption</a> are inverses, or that <a href="../Areas-of-Cryptography/mpc/#secret-sharing">sharing and reconstruction</a> are inverses.</dd>
+<dt><strong>Cryptographic Primitives</strong></dt>
+<dd>Basic building blocks for cryptographic protocols.</dd>
+<dt id="deterministic"><strong>Deterministic</strong></dt>
+<dd>A function that always proceeds in the same way when run on the same outputs. Alternatively, the inputs directly determine the output. Compare to <a href="#randomized">randomized</a>.</dd>
+<dt><strong>Feasibility result</strong></dt>
+<dd></dd>
+<dt id="field"><strong>Field</strong></dt>
+<dd>A set of elements F with two binary operations + and • (addition and multiplication) that satisfy a set of properties called the <a href="https://en.wikipedia.org/wiki/Field_(mathematics)#Classic_definition">field axioms</a> (specifically associativity, commutativity, identity, and invertibility of both operations along with distributivity of multiplication over addition). Both the rational numbers and the real numbers are fields.</dd>
+<dt><strong>Functionality</strong></dt>
+<dd>A particular set of capabilities or properties to be achieved. For example, many protocols exist that implement the functionality of <a href="../Cryptographic-Primitives/encryption/#pke">public key encryption</a>. In this way, a functionality is abstract and independent of implementation details, and cryptosystems are build to achieve a functionality. Often, to prove security, a protocol is compared to an <a href="#ideal-functionality">ideal functionality</a>, to show that it meets the same security properties.</dd>
+<dt><strong>Function</strong></dt>
+<dd>A mathematical object that maps each input to at most one output.
+<img alt="Every point in the domain has exactly 1 arrow coming out of it" src="../assets/images/function.jpg" /></dd>
+<dt id="group"><strong>Group</strong></dt>
+<dd>A set of elements <span class="arithmatex">\(G\)</span> with some binary operation • (the group operation) that satisfies a set of properties called the <a href="https://en.wikipedia.org/wiki/Group_(mathematics)#Definition">group axioms</a> (specifically associativity, identity, and invertibility). The integers form a group under addition.</dd>
+<dt><strong>Hardness assumption</strong></dt>
+<dd>A problem, such as <a href="../assumptions/#factoring">factoring</a>, which is assumed to be hard. A cryptographic scheme's security may hinge on the <a href="#adversary">adversary</a> not being able to solve this problem, and if the assumption turns out not to hold, the proof of security is invalidated. See <a href="../assumptions/">Assumptions</a> for more details.</dd>
+<dt id="iid"><strong>Independent and identically distributed (i.i.d.)</strong></dt>
+<dd>Two random variables are i.i.d. if they have the same probability distribution and are independent of each other.</dd>
+<dt id="indist"><strong>Indistinguishable</strong></dt>
+<dd>
+<p>Indistinguishability refers to how hard two probability distributions are to tell apart.  </p>
+<dl>
+<dt id="perfect-indist"><strong>Perfectly indistinguishable</strong></dt>
+<dd>Two distributions are perfectly indistinguishable if they are identical: they are the same distribution.</dd>
+<dt id="stat-indist"><strong>Statistically indistinguishable</strong></dt>
+<dd>Two distributions are statistically indistinguishable if they are statistically "close", ... <!-- TODO --></dd>
+<dt id="comp-indist"><strong>Computationally indistinguishable</strong></dt>
+<dd>Two distributions are computationally indistinguishable if distinguishing them would require solving some <a href="../assumptions/">computationally intractable problem</a>.</dd>
+</dl>
+</dd>
+<dt id="injective"><strong>Injective</strong></dt>
+<dd>A function such that every element of the codomain is the image of at most one element of the domain. Equivalently, <span class="arithmatex">\(f(a)=f(b)\)</span> implies <span class="arithmatex">\(a=b\)</span>.Also known as <strong>one-to-one</strong>. Compare to <a href="#surjective">surjective</a>, <a href="#bijective">bijective</a>.
+<img alt="Every point in the codomain has at most 1 arrow going into it" src="../assets/images/injective.jpg" /></dd>
+<dt><strong>Linear operations</strong></dt>
+<dd>Addition and scalar multiplication.</dd>
+<dt><strong>Min-entropy</strong></dt>
+<dd></dd>
+<dt id="negligible"><strong>Negligible function</strong></dt>
+<dd>A function that asymptotically (i.e. after some fixed point) decreases faster than any inverse polynomial:<br />
+<img alt="The function f is upper bounded by n^{-1} and n^{-2} (and presumably all inverse polynomials) for large enough inputs." src="../assets/images/negligible.png" /></dd>
+</dl>
+<div class="admonition info">
+<p class="admonition-title">Formal Definition</p>
+<p>A function <span class="arithmatex">\(f\)</span> is negligible if for all natural numbers c, there exists a natural number <span class="arithmatex">\(N\)</span> such that <span class="arithmatex">\(f(n) &lt; n^{-c}\)</span> for all <span class="arithmatex">\(n &gt; N\)</span>.</p>
+</div>
+<dl>
+<dt id="norm"><strong>Norm</strong></dt>
+<dd>
+<p>A function from a vector space to non-negative (real) numbers. In cryptography, we mostly deal with integers, so norms usually map an integer vector to a single non-negative integer. A norm can be thought of as a sort of distance measure because it must meet the following three properties:  </p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Triangle_inequality">Triangle inequality</a>, i.e., <span class="arithmatex">\(\mathsf{norm}(\vec{x} + \vec{y}) \leq \mathsf{norm}(\vec{x}) + \mathsf{norm}(\vec{y})\)</span>  </li>
+<li>Linearity up to absolute value (<a href="https://en.wikipedia.org/wiki/Homogeneous_function"><em>absolute</em> homogeneity</a>), i.e., <span class="arithmatex">\(\mathsf{norm}(s\vec{x}) = \lvert s \rvert \mathsf{norm}(\vec{x})\)</span> for any scalar <span class="arithmatex">\(s\)</span></li>
+<li>Zero only at the origin, i.e., <span class="arithmatex">\(\mathsf{norm}(\vec{x}) = 0\)</span> iff <span class="arithmatex">\(\vec{x} = \vec{0}\)</span></li>
+</ol>
+<p>Some common norms applied to a vector <span class="arithmatex">\(\vec{x} = (x_1, \dots, x_\ell)\)</span> are:</p>
+<ul>
+<li><strong>Infinity norm</strong>: <span class="arithmatex">\(\lVert \vec{x} \rVert_\infty = \max(\lvert x_i \rvert)\)</span></li>
+<li><strong>Euclidean norm</strong> (aka <strong>L2 norm</strong>): <span class="arithmatex">\(\lVert \vec{x} \rVert_2 = \sqrt{\sum_i x_i^2}\)</span></li>
+<li><strong>L1 norm</strong>: <span class="arithmatex">\(\lVert \vec{x} \rVert_1 = \sum_i \lvert x_i \rvert\)</span></li>
+</ul>
+<p>These are special cases of the <strong>Lp norm</strong> <span class="arithmatex">\(\lVert \vec{x} \rVert_p = (\sum_i \lvert x_i \rvert^p)^{1/p}\)</span>.</p>
+</dd>
+<dt><strong>Parameterized</strong></dt>
+<dd></dd>
+<dt id="ppt"><strong>Probabilistic polynomial time (PPT)</strong></dt>
+<dd>A potentially <a href="#probabilistic">probabilistic</a> algorithm that runs in polynomially many steps. In cryptography, we usually consider PPT <a href="#adversary">adversaries</a> (polynomial in the <a href="#secparam">security parameter</a>).</dd>
+<dt id="protocol"><strong>Protocol</strong></dt>
+<dd>A sequence of messages exchanged between parties to compute some functionality. A protocol specifies how parties should compute their messages based on their knowledge and the other parties' responses. Often denoted by the variable <span class="arithmatex">\(\Pi\)</span>.</dd>
+<dt id="probabilistic"><strong>Probabilistic</strong></dt>
+<dd></dd>
+<dt id="randomized"><strong>Randomized</strong></dt>
+<dd>A function whose output is influenced by some additional source of randomness. Running the function twice on the same inputs may result in a different outcome. Compare to <a href="#deterministic">deterministic</a>.</dd>
+<dt id="ring"><strong>Ring</strong></dt>
+<dd></dd>
+<dt id="game"><strong>Security game</strong></dt>
+<dd>A game is a challenge in which an attacker (called the <a href="#adversary">adversary</a> and usually denoted by a curly letter <span class="arithmatex">\(\mathcal{A}\)</span>) is given some information and tries to break the security property of the scheme. <span class="arithmatex">\(\mathcal{A}\)</span> "wins" the game if it can give an answer that proves it broke the security property of the scheme. For an example, see the <a href="../Cryptographic-Primitives/encryption/#cpa-security">CPA-security game</a>. See also <a href="../proofs/#game-based-proofs">Game-based proofs</a>.<br />
+A security game is sometimes also called an <strong>experiment</strong>.</dd>
+<dt><strong>Security parameter</strong></dt>
+<dd>Denoted by <span class="arithmatex">\(\lambda\)</span> (or sometimes <span class="arithmatex">\(\kappa\)</span>), this is a measure of how hard it is to break the security of a system. 
+Generally, an adversary's <a href="#advantage">advantage</a> in attacking a scheme should be <a href="#negligible">negligible</a> in the security parameter; thus, the parameter needs to be large enough that the specific <a href="#negligible">negligible function</a> also corresponds to a sufficiently low success probability in practice.
+Computational security parameters are generally <span class="arithmatex">\(\lambda = 128\)</span> or <span class="arithmatex">\(\lambda = 256\)</span> and correspond to the size of the instance of the computational problem to be solved; <a href="#it-security">information-theoretic</a> security parameters can be lower and correspond directly to an <a href="#adversary">adversary</a>'s statistical success probability. (See also the <a href="https://en.wikipedia.org/wiki/Security_parameter">Wikipedia page</a>.)</dd>
+<dt><strong>Surjective</strong></dt>
+<dd>A function such that every element of the codomain has at least one preimage in the domain. Also known as <strong>onto</strong>. Compare to <a href="#injective">injective</a>, <a href="#bijective">bijective</a>.
+<img alt="Every point in the codomain has at least 1 arrow going into it" src="../assets/images/surjective.jpg" /></dd>
+<dt><strong>Sybil attack</strong></dt>
+<dd>Attack in which an <a href="#adversary">adversary</a> creates multiple fake identities (parties) it controls in order to increase its influence in a network. To an outside observer these machines can't be distinguished from other honest parties/identities. One way to prevent this is asking new users to perform a somewhat costly registration process as a way to rate-limit creating new identities.</dd>
+<dt id="uniform"><strong>Uniform</strong></dt>
+<dd>A distribution is uniform, or a value uniformly distributed, if every outcome is equally likely. We may say that a value is "drawn uniformly at random". A uniform distribution over <span class="arithmatex">\(N\)</span> elements means each of the elements is drawn with probability <span class="arithmatex">\(1/N\)</span>.</dd>
+<dt><strong>Unary</strong></dt>
+<dd>Compared to binary, which represents numbers using two symbols (0 and 1), the unary representation of a number consists only of 1s. Specifically, a number <span class="arithmatex">\(n\)</span> is represented in unary as a string of <span class="arithmatex">\(n\)</span> 1s (e.g., 5 in unary would be 11111). <a href="#secparam">Security parameters</a> are usually given as an input in their unary representation, i.e. <span class="arithmatex">\(1^\lambda\)</span>.</dd>
+<dt><strong>"Without loss of generality"</strong></dt>
+<dd>This means that only one particular case is analyzed, but the argument holds equally in the other cases.</dd>
+</dl>
+<h2 id="complexity-theory">Complexity Theory</h2>
+<dl>
+<dt><strong>Big-O notation</strong></dt>
+<dd>Written <span class="arithmatex">\(O(g(n))\)</span> for some function <span class="arithmatex">\(g\)</span>, this is an <em>upper bound</em> on the computational complexity of an algorithm/protocol/etc. when <span class="arithmatex">\(n\)</span> is large enough (i.e., an asymptotic bound). Put another way, <span class="arithmatex">\(f(n) \in O(g(n))\)</span> means <span class="arithmatex">\(f(n)\)</span> grows asymptotically <em>no faster</em> than <span class="arithmatex">\(g(n)\)</span>.</dd>
+<dt><strong>Big-omega notation</strong></dt>
+<dd>Written <span class="arithmatex">\(\Omega(g(n))\)</span> for some function <span class="arithmatex">\(g\)</span>, this is a <em>lower bound</em> on the computational complexity of an algorithm/protocol/etc. when <span class="arithmatex">\(n\)</span> is large enough (i.e., an asymptotic bound). Put another way, <span class="arithmatex">\(f(n) \in \Omega(g(n))\)</span> means <span class="arithmatex">\(f(n)\)</span> grows asymptotically <em>no slower</em> than <span class="arithmatex">\(g(n)\)</span>.</dd>
+<dt><strong>Big-theta notation</strong></dt>
+<dd>Written <span class="arithmatex">\(\Theta(g(n))\)</span> for some function <span class="arithmatex">\(g\)</span>, this is an <em>approximation</em> of the computational complexity of an algorithm/protocol/etc. when <span class="arithmatex">\(n\)</span> is large enough (i.e., an asymptotic bound). Put another way, <span class="arithmatex">\(f(n) \in \Theta(g(n))\)</span> means <span class="arithmatex">\(f(n)\)</span> grows asymptotically <em>at the same rate</em> as <span class="arithmatex">\(g(n)\)</span>.<br />
+Note: <span class="arithmatex">\(f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n))\)</span> and <span class="arithmatex">\(f(n) \in \Omega(g(n))\)</span>.</dd>
+</dl>
+<p><img alt="Illustration of Big-O, Big-&Omega;, and Big-&Theta;" src="../assets/images/big-o-etc.png" width="500px" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Further Reading</p>
+<p>Khan Academy has good explanations of the concepts of <a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation">Big-O</a>, <a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-omega-notation">Big-Omega</a>, and <a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation">Big-Theta</a>, and the diagrams and wording here are based on those pages and a nice summary comment by the user Cameron.</p>
+</div>
+<dl>
+<dt><strong>Polylog(n)</strong></dt>
+<dd>Polynomial in the logarithm, i.e. <span class="arithmatex">\(poly(\log(n))\)</span>.</dd>
+</dl>
+<h3 id="complexity-classes">Complexity Classes</h3>
+<dl>
+<dt><strong>P</strong></dt>
+<dd>The class of decision problems (i.e., decide if <span class="arithmatex">\(x\)</span> is an instance of some language <span class="arithmatex">\(L\)</span>; see also <a href="../Areas-of-Cryptography/zk/#background">ZK background</a>) solvable in polynomial time by a Turing machine. Put another way, this is the class of decision problems solvable by a uniform family of polynomial-size Boolean circuits<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</dd>
+<dt><strong>P/poly</strong></dt>
+<dd>Same as the class <span class="arithmatex">\(P\)</span> except that the Turing machine is allowed a trusted "advice string" of size <span class="arithmatex">\(O(poly(n))\)</span>, where <span class="arithmatex">\(n\)</span> is the size of the input. This is also known as the <strong>non-uniform</strong> version of <span class="arithmatex">\(P\)</span>, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).</dd>
+<dt><strong>PPAD</strong></dt>
+<dd></dd>
+<dt><strong>NC</strong></dt>
+<dd>
+<p>"Nick's Class." <span class="arithmatex">\(NC^i\)</span> is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as <span class="arithmatex">\(P\)</span>) of <em>depth <span class="arithmatex">\(O(log^{i}(n))\)</span> and fan-in 2</em>. (Therefore, <span class="arithmatex">\(NC^0\)</span> is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then <span class="arithmatex">\(NC\)</span> is the union of <span class="arithmatex">\(NC^i\)</span> over all <span class="arithmatex">\(i \geq 0\)</span>.  </p>
+<p>It is known that <span class="arithmatex">\(NC \subseteq P\)</span>.</p>
+</dd>
+<dt id="np"><strong>NP</strong></dt>
+<dd></dd>
+</dl>
+<!-- https://en.wikipedia.org/wiki/NP_(complexity) -->
+
+<dl>
+<dt><strong>TC<span class="arithmatex">\(^0\)</span></strong></dt>
+<dd>
+<p>The class of decision problems solvable by poly-size <em>constant-depth</em> circuits with <em>unbounded</em> fan-in using AND, OR, NOT, and threshold gates.  </p>
+<p>It is known that <span class="arithmatex">\(TC^0 \subseteq NC^1\)</span>.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Further Reading</p>
+<p>Many more complexity classes can be found on the <a href="https://complexityzoo.net/Complexity_Zoo">Complexity Zoo wiki</a>.</p>
+</div>
+<h2 id="composition">Composition</h2>
+<dl>
+<dt id="concurrent-comp"><strong>Concurrent composition</strong></dt>
+<dd>Two protocols <span class="arithmatex">\(\Pi_1, \Pi_2\)</span> running concurrently are run with their messages arbitrarily interleaved. In the two-party case:<br />
+<img alt="The messages of the blue and green protocols are arbitrarily interleaved" src="../assets/images/concurr-comp.png" width="300px" /><br />
+In general, concurrent composition of secure protocols does not maintain security (against <a href="#malicious">malicious adversaries</a>). A special case of concurrent composition is <a href="#parallel-comp">parallel composition</a>. Compare to <a href="#sequential-comp">sequential composition</a>.</dd>
+<dt id="parallel-comp"><strong>Parallel composition</strong></dt>
+<dd>Two protocols <span class="arithmatex">\(\Pi_1, \Pi_2\)</span> running in parallel run in "lockstep", i.e. the first round messages of both are sent together, followed by the second, and so on. In the two-party case:
+<img alt="The messages in each round of the blue and green protocols are sent together" src="../assets/images/parallel-comp.png" width="300px" /><br />
+In general, composing secure protocols in parallel does not maintain security (against <a href="#malicious">malicious adversaries</a>). Parallel composition is a special case of <a href="#concurrent-comp">concurrent composition</a>. Compare to <a href="#sequential-comp">sequential composition</a>.</dd>
+<dt id="hybrid-comp"><strong>Hybrid composition</strong></dt>
+<dd><!-- TODO --> </dd>
+</dl>
+<div class="admonition info">
+<p class="admonition-title">Composition Theorem</p>
+<p>If <span class="arithmatex">\(\rho_1, \ldots, \rho_m\)</span> are secure protocols for computing the functionalities <span class="arithmatex">\(f_1, \ldots, f_m\)</span>, and if <span class="arithmatex">\(\Pi\)</span> is a secure protocol for computing <span class="arithmatex">\(f\)</span> in the <span class="arithmatex">\((f_1, \ldots, f_m)\)</span>-<a href="../proofs/#hybrid-arg">hybrid</a> world, then the composed protocol <span class="arithmatex">\(\Pi^{\rho_1, \ldots, \rho_m}\)</span> is a secure protocol for <span class="arithmatex">\(f\)</span>. That is, if we have a protocol that can secure compute some function <span class="arithmatex">\(f\)</span> given it has access to some other functionality/ies, and we have protocols for securely computing those functionality/ies, we can "plug in" those protocols into our main protocol and it will be secure.</p>
+</div>
+<dl>
+<dt><strong>Sequential composition</strong></dt>
+<dd>Two protocols are composed sequentially when they are run back-to-back, i.e. one protocol only begins after the other has concluded. In the two-party case:<br />
+<img alt="The messages in each round of the blue and green protocols are sent together" src="../assets/images/seq-comp.png" width="300px" /><br />
+Sequential composition of two secure protocols is still secure! Compare to <a href="#concurrent-comp">concurrent composition</a>, <a href="#parallel-comp">parallel composition</a>.</dd>
+</dl>
+<h2 id="threat-models">Threat Models</h2>
+<dl>
+<dt id="malicious"><strong>Malicious adversary</strong></dt>
+<dd>
+<p>An <a href="#adversary">adversary</a> that can deviate arbitrarily from the <a href="#protocol">protocol</a> it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as <strong>active adversary</strong>; compare to <a href="#semi-honest">semi-honest adversary</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Notation</p>
+<p>We sometimes use * as a superscript to denote that a party may be malicious, i.e. cheat and deviate from the protocol. For instance, the party <span class="arithmatex">\(S^*\)</span> in a commitment scheme denotes a potentially malicious sender.</p>
+</div>
+</dd>
+<dt id="semi-honest"><strong>Semi-honest adversary</strong></dt>
+<dd>An <a href="#adversary">adversary</a> that follows the <a href="#protocol">protocol</a> and acts honestly, but tries to learn as much as possible from the information it sees. Also known as <strong>honest-but-curious (HbC)</strong> or <strong>passive</strong>.</dd>
+</dl>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Less standard threat models</p>
+<p>The following threat models are newer and thus less widely used than the ones until now. It's possible different papers use different terms for them or that the names will change in the future.</p>
+</div>
+<dl>
+<dt><strong>Fail-stop adversary</strong></dt>
+<dd>Slightly stronger than the <a href="#semi-honest">semi-honest adversary</a>; follows the <a href="#protocol">protocol</a> the way a <a href="#semi-honest">semi-honest adversary</a> does, but can choose to abort at any time (or cause parties it controls to abort).</dd>
+<dt><strong>Semi-malicious adversary</strong></dt>
+<dd>Lies between the <a href="#semi-honest">semi-honest</a> and <a href="#malicious">malicious cases</a>. The <a href="#adversary">adversary</a> must follow the <a href="#protocol">protocol</a>, but it can arbitrarily and <a href="#adaptive">adaptively</a> choose the inputs and randomness used in the protocol. See <a href="https://eprint.iacr.org/2017/386.pdf">[BHP17 §4]</a>; introduced by <a href="https://www.tau.ac.il/~tromer/papers/tfhe-mpc.pdf">[AJL+12 §5]</a>.</dd>
+<dt><strong>Uniform adversary</strong></dt>
+<dd>A uniform <a href="#adversary">adversary</a> uses the same strategy regardless of the protocol instance. Compare to <a href="">non-uniform adversary</a>.</dd>
+</dl>
+<h2 id="security-definitions-notions">Security Definitions &amp; Notions</h2>
+<dl>
+<dt id="adaptive"><strong>Adaptive security</strong></dt>
+<dd>Secure against an <strong>adaptive <a href="#adversary">adversary</a></strong>, which can choose its actions dynamically and based on the responses of a <a href="#game">game</a>/<a href="#protocol">protocol</a>/etc. In particular, in <a href="../Areas-of-Cryptography/mpc/">multi-party protocols</a>, it can choose which parties to corrupt during the course of the protocol (based on the messages they send) instead of fixing a set upfront. This is also called <strong>full security</strong>.</dd>
+<dt id="computational"><strong>Computational security</strong></dt>
+<dd>The security of the scheme can be <a href="../proofs/">reduced</a> to solving some problem that is <a href="../assumptions/">assumed to be computationally hard</a>, i.e. its security rests on a computational assumption.</dd>
+<dt><strong>Covert security</strong></dt>
+<dd></dd>
+<dt><strong>Forward secrecy</strong></dt>
+<dd>In <a href="../Cryptographic-Primitives/key-exchange/#key-agreement">key agreement</a> protocols, this is the guarantee that the compromise of long-term secrets in some session <span class="arithmatex">\(t\)</span> does not affect the security of any sessions that took place before <span class="arithmatex">\(t\)</span> (i.e., those messages still cannot be decrypted). This also implies that the compromise of the session key for <span class="arithmatex">\(t\)</span> does not expose previous sessions.</dd>
+<dt id="it-security"><strong>Information-theoretic security</strong></dt>
+<dd>... See also <a href="#unconditional">unconditional security</a>.</dd>
+</dl>
+<!-- TODO -->
+
+<dl>
+<dt id="perfect-security"><strong>Perfect security</strong></dt>
+<dd>Security is absolute, for example based on two distibutions which are <a href="#perfect-indist">perfectly indistinguishable</a>.</dd>
+<dt><strong>Selective security</strong></dt>
+<dd>In this case, the <a href="#adversary">adversary</a> must pick (select) its messages/queries upfront. Also called <strong>non-adaptive</strong> or <strong>static security</strong>. Compare to <a href="#adaptive">adaptive security</a>.</dd>
+<dt id="statistical"><strong>Statistical security</strong></dt>
+<dd>Another term for <a href="#it-security">information-theoretic security</a>.</dd>
+<dt><strong>UC security</strong></dt>
+<dd>Security in the <a href="../proofs/#universal-composability-uc-framework">"universal composability" framework</a>. This is a <a href="../proofs/#proof-by-simulation">simulation-based</a> security notion; schemes which are proven UC-secure are guaranteed to maintain their security properties even under arbitrary <a href="#composition">composition</a>.</dd>
+<dt><strong>Unconditional security</strong></dt>
+<dd>Usually used interchangeably with <a href="#it-security">information-theoretic security</a>. However, it can also be used to mean security that is not based on any <a href="../assumptions/">computational assumption</a>.</dd>
+</dl>
+<h2 id="models">Models</h2>
+<div class="admonition note">
+<p class="admonition-title">Notation</p>
+<p>The phrase used is "<code>Scheme</code> is secure in the <code>X</code> model".
+<!-- "In the __-hybrid model"? --></p>
+</div>
+<dl>
+<dt id="oracle"><strong>Oracle</strong></dt>
+<dd></dd>
+</dl>
+<!-- TODO -->
+
+<dl>
+<dt id="agm"><strong>Algebraic Group Model (AGM)</strong></dt>
+<dd>This is a stronger assumption than the <a href="#standard-model">standard model</a>, but weaker than the <a href="#ggm">GGM</a>. The model assumes that the <a href="#adversary">adversary</a> is an <strong>algebraic adversary</strong>, meaning that for any group element it outputs, it also knows its representation in the group. This differs from the <a href="#ggm">GGM</a> because the adversary knows and can exploit the group structure.</dd>
+<dt id="ggm"><strong>Generic Group Model (GGM)</strong></dt>
+<dd>This model assumes that the <a href="#adversary">adversary</a> is given access to a randomly chosen (encoding of a) group instead of the groups used in practice, which have efficient encodings. The adversary also has access to an <a href="#oracle">oracle</a> for the group function.
+(This is like how, in the <a href="#rom">random oracle model</a>, we give the adversary access to a random oracle instead of a real hash function used in practice.)</dd>
+<dt id="qrom"><strong>Quantum Random Oracle Model (QROM)</strong></dt>
+<dd>An analogue of the <a href="#rom">ROM</a> for <a href="../Areas-of-Cryptography/other/#quantum-crypto">quantum</a> <a href="#adversary">adversaries</a>.</dd>
+<dt id="rom"><strong>Random Oracle Model (ROM)</strong></dt>
+<dd>A proof paradigm that models hash functions as <strong>random oracles</strong>, i.e. an <a href="#oracle">oracle</a> that outputs a random number for any input (but outputs the same number when given the same input). Read more <a href="https://blog.cryptographyengineering.com/2020/01/05/what-is-the-random-oracle-model-and-why-should-you-care-part-5/">here</a>. Variants include the <em>programmable ROM</em> and others.</dd>
+<dt id="standard-model"><strong>Standard Model</strong></dt>
+<dd>This model assumes only that the <a href="#adversary">adversary</a> is limited by time or computational power; it makes no further assumptions (the way, e.g., the <a href="#rom">ROM</a> does). Proofs in the standard model therefore usually rest on a <a href="../assumptions/">computational hardness assumption</a>, but no idealized cryptographic primitives, and are thus very difficult. In this way this model is "better" than the others listed here because it assumes less.<br />
+Also known as the <strong>bare model</strong> or <strong>plain model</strong>.</dd>
+</dl>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>in logspace, i.e. using O(log(n)) memory.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy;2025 Noemi Glaeser
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://nglaeser.github.io/" target="_blank" rel="noopener" title="nglaeser.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nglaeser" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

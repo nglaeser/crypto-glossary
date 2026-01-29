@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/Cryptographic-Primitives/encryption/">
+      
+      
+        <link rel="prev" href="../commitments/">
+      
+      
+        <link rel="next" href="../hash/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Encryption - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#encryption" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Encryption
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Use This Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assumptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Notation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Proofs: Types and Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../techniques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Areas of Cryptography
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Areas of Cryptography
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/blockchain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blockchain and Cryptocurrencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/ecc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elliptic-Curve Cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/mpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Party Computation (MPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/pqc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-quantum cryptography (PQC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Areas-of-Cryptography/zk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Knowledge (ZK)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Primitives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryptographic Primitives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commitments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commitment schemes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-types-of-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Types of Encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-types-of-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Types of Encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Notions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpa-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPA security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cca-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CCA security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-exchange/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Exchange
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-types-of-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Types of Encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-types-of-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Types of Encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Notions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpa-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPA security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cca-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CCA security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="encryption">Encryption</h1>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Encryption schemes are used to ensure confidentiality.</p>
+</div>
+<p>An encryption scheme consists of three algorithms: a key generation algorithm <span class="arithmatex">\(\mathsf{Gen}\)</span> (or <span class="arithmatex">\(\mathsf{KGen}\)</span>) that takes as input a <a href="../../general/#secparam">security parameter</a> and outputs a key (or key pair), an encryption algorithm <span class="arithmatex">\(\mathsf{Enc}\)</span> that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm <span class="arithmatex">\(\mathsf{Dec}\)</span> that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.</p>
+<div class="admonition notation">
+<p class="admonition-title">Encryption scheme syntax</p>
+<p>An encryption scheme <span class="arithmatex">\(\Pi_\mathsf{E}\)</span> is a triple of algorithms <span class="arithmatex">\((\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})\)</span>:</p>
+<ul>
+<li><span class="arithmatex">\(({\sf pk}, {\sf sk}) \gets \mathsf{Gen}(1^\lambda)\)</span></li>
+<li><span class="arithmatex">\(c \gets \mathsf{Enc}({\sf pk}, m)\)</span></li>
+<li><span class="arithmatex">\(m \gets \mathsf{Dec}({\sf sk}, c)\)</span></li>
+</ul>
+</div>
+<p>In the case of a <a href="#symmetric-enc">symmetric (private-key) encryption</a> scheme, the private and public key are the same.</p>
+<dl>
+<dt><strong>Correctness</strong></dt>
+<dd>For all key (pairs) output by <span class="arithmatex">\(\sf Gen\)</span> we have <span class="arithmatex">\({\sf Dec}({\sf sk}, {\sf Enc}({\sf pk}, m)) = m\)</span>. The correctness notions for the fancier encryption schemes below are extensions of this basic notion: basically, if everything is run honestly, a ciphertext should decrypt to its original message.</dd>
+</dl>
+<h2 id="basic-types-of-encryption">Basic Types of Encryption</h2>
+<dl>
+<dt id="pke"><strong>Asymmetric (public-key) encryption</strong></dt>
+<dd>
+<p>One key (the recipient's public key) is used for encryption, while another key (the corresponding secret key) is used for decryption. The private and public keys form a key pair.  </p>
+<p><a name="elgamal"></a></p>
+<div class="admonition example">
+<p class="admonition-title">ElGamal encryption</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Scheme</label><label for="__tabbed_1_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: Choose a uniform cyclic prime-order group <span class="arithmatex">\(\mathbb{G}\)</span>, where <span class="arithmatex">\(q\)</span> is the order and <span class="arithmatex">\(g\)</span> is the generator (these are announced publicly). Output the secret key <span class="arithmatex">\(x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q\)</span> and the public key <span class="arithmatex">\(g^x \in \mathbb{G}\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Enc}(pk, m)}\)</span>:</p>
+<ul>
+<li>return <span class="arithmatex">\(c := (g^r, m \cdot pk^r)\)</span> where <span class="arithmatex">\(r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_p\)</span></li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Dec}(sk, c := (c_1, c_2))}:\)</span></p>
+<ul>
+<li>return <span class="arithmatex">\(m \gets c_2/c_1^{sk}\)</span>. Note this equals <span class="arithmatex">\(m \cdot pk^r/(g^r)^{sk} = m \cdot g^{xr}/g^{rx} = m\)</span></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="#cpa-security">CPA-secure</a> (by <a href="../../assumptions/#ddh">DDH assumption</a>)</li>
+<li>unconditionally malleable</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><a name="rsa"></a></p>
+<div class="admonition example">
+<p class="admonition-title">RSA encryption</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Scheme</label><label for="__tabbed_2_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: return the public key <span class="arithmatex">\((n,e)\)</span> and private key <span class="arithmatex">\(d\)</span>, where</p>
+<ul>
+<li><span class="arithmatex">\(n:=pq\)</span> for two random distinct prime numbers <span class="arithmatex">\(p,q\)</span> (this is sometimes called a <strong>semiprime</strong>)</li>
+<li><span class="arithmatex">\(1&lt;e&lt;\varphi(n)\)</span> and <span class="arithmatex">\(\gcd(e,\varphi(n))=1\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+<li><span class="arithmatex">\(d \equiv e^{-1}\pmod{\varphi(n)}\)</span><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Enc}(pk:=(n,e), m)}\)</span> where <span class="arithmatex">\(0 \le m &lt; n\)</span><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>:  </p>
+<ul>
+<li>return <span class="arithmatex">\(c \equiv m^e \pmod{n}\)</span></li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Dec}(sk := d, c)}:\)</span>  </p>
+<ul>
+<li>compute <span class="arithmatex">\(c^d \equiv (m^e)^d \equiv m \pmod{n}\)</span></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Assuming a <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Padding_schemes">strong padding scheme</a>, RSA is</p>
+<ul>
+<li><a href="#cca-security">CCA-secure</a> (by either the <a href="../../assumptions/#rsa-assumption">RSA assumption</a> or the <a href="../../assumptions/#factoring-assumption">hardness of integer factorization</a>; if either assumption is proven false the security of RSA is compromised)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p><a name="paillier"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Paillier encryption</p>
+<!-- TODO -->
+</div>
+<p><a name="cramer-shoup"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Cramer-Shoup cryptosystem</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Scheme</label><label for="__tabbed_3_2">Properties</label><label for="__tabbed_3_3">Further reading</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block">
+<ul>
+<li><a href="#cca-security">CCA2-secure</a> (by the <a href="../../assumptions/#ddh-assumption">DDH assumption</a>)</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cramer%E2%80%93Shoup_cryptosystem">Cramer-Shoup cryptosystem on Wikipedia</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt id="symmetric-enc"><strong>Symmetric (secret-key) encryption</strong></dt>
+<dd>
+<p>The same key is used for both decryption and encryption. This means the sender and recipient must somehow securely agree on a secret key; this is usually achieved either via <a href="../key-exchange/#key-agreement">key agreement</a> protocols or by encrypting the symmetric key using <a href="#pke">public-key encryption</a>.  </p>
+<div class="admonition example">
+<p class="admonition-title">Advanced Encryption Standard (AES)</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">One-time Pad</p>
+</div>
+</dd>
+</dl>
+<h2 id="advanced-types-of-encryption">Advanced Types of Encryption</h2>
+<dl>
+<dt id="abe"><strong>Attribute-based encryption (ABE)</strong></dt>
+<dd>
+<p>Policy-based access to encrypted data (general case of <a href="#ibe">identity-based encryption</a>). The policy is not necessarily hidden. A trusted third party is required to distribute policy keys only to parties that meet the policy.</p>
+<div class="admonition notation">
+<p class="admonition-title">ABE syntax</p>
+<ul>
+<li><span class="arithmatex">\(({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)\)</span>: set up master keypair</li>
+<li><span class="arithmatex">\({\sf sk}_{f} \gets \mathsf{KGen}({\sf msk}, f)\)</span>: generate a secret key for some access control policy <span class="arithmatex">\(f: \{0, 1\}^* \rightarrow \{0,1\}\)</span></li>
+<li><span class="arithmatex">\(c_a \gets \mathsf{Enc}({\sf mpk}, a, m)\)</span>: encrypt to all users with the attribute <span class="arithmatex">\(a\)</span></li>
+<li><span class="arithmatex">\(\{m, \perp\} \gets \mathsf{Dec}(sk_f, c_a)\)</span>: decrypt with secret key for policy <span class="arithmatex">\(f\)</span> to get the plaintext; returns <span class="arithmatex">\(\perp\)</span> if <span class="arithmatex">\(c\)</span> was encrypted to an attribute <span class="arithmatex">\(a\)</span> which doesn't meet the policy, that is, <span class="arithmatex">\(f(a) \neq 1\)</span></li>
+</ul>
+</div>
+</dd>
+<dt><strong>Broadcast encryption</strong></dt>
+<dd></dd>
+<dt id="fe"><strong>Functional encryption (FE)</strong></dt>
+<dd>
+<p>An encryption scheme in which it is possible to issue "function keys", e.g. a key <span class="arithmatex">\(k_f\)</span> that decrypts the ciphertext into a function <span class="arithmatex">\(f(m)\)</span> of the plaintext <span class="arithmatex">\(m\)</span>.</p>
+<div class="admonition notation">
+<p class="admonition-title">FE syntax</p>
+<ul>
+<li><span class="arithmatex">\(({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)\)</span>: set up master keypair</li>
+<li><span class="arithmatex">\({\sf sk}_f \gets \mathsf{KGen}({\sf msk}, f)\)</span>: generate a function secret key</li>
+<li><span class="arithmatex">\(c \gets \mathsf{Enc}({\sf mpk}, m)\)</span>: encrypt under master public key</li>
+<li><span class="arithmatex">\(f(m) \gets \mathsf{Dec}({\sf sk}_f, c)\)</span>: decrypt with function secret key to obtain the function of the plaintext</li>
+</ul>
+</div>
+</dd>
+<dt id="fhe"><strong>Fully homomorphic encryption (FHE)</strong></dt>
+<dd>
+<div class="admonition tip">
+<p class="admonition-title">Further reading</p>
+<p><a href="https://fhe.org/resources">FHE.org Resources</a></p>
+</div>
+</dd>
+<dt id="ibe"><strong>Identity-based encryption (IBE)</strong></dt>
+<dd>
+<p>Identity-based access to encrypted data. A trusted third party is required to issue keys to identities. The reasoning behind the introduction of IBE was to avoid the complicated <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">public-key infrastructure (PKI)</a>, in particular the issue of public key distribution, by allowing encrypters to encrypt directly to an identifier (e.g. a party's name, email, or phone number) without having to obtain the party's public key.</p>
+<div class="admonition notation">
+<p class="admonition-title">IBE syntax</p>
+<ul>
+<li><span class="arithmatex">\(({\sf mpk}, {\sf msk}) \gets \mathsf{Setup}(1^\lambda)\)</span>: set up master keypair</li>
+<li><span class="arithmatex">\({\sf sk}_{\sf id} \gets \mathsf{KGen}({\sf msk}, {\sf id})\)</span>: generate an identity's secret key</li>
+<li><span class="arithmatex">\(c \gets \mathsf{Enc}({\sf mpk}, {\sf id}, m)\)</span>: encrypt directly to an identity</li>
+<li><span class="arithmatex">\(\{m, \perp\} \gets \mathsf{Dec}(sk_{\mathsf{id}'}, c)\)</span>: decrypt with identity secret key to get the plaintext; returns <span class="arithmatex">\(\perp\)</span> if <span class="arithmatex">\(c\)</span> was encrypted to an identity <span class="arithmatex">\(\mathsf{id} \neq \mathsf{id}'\)</span></li>
+</ul>
+</div>
+<p>Note that IBE can be viewed as a specific case of <a href="#abe">ABE</a> where <span class="arithmatex">\(f(a) = \begin{cases}1 &amp; a = {\sf id}\\ 0 &amp; \text{otherwise}\end{cases}\)</span>.</p>
+<p>Furthermore, IBE implies digital signatures, that is, an IBE scheme can be used to build a <a href="../signatures/">digital signature scheme</a> by seeing the identity secret keys as signatures:</p>
+<ul>
+<li><span class="arithmatex">\(\underline{\mathsf{Gen}}\)</span>: Run the IBE's <span class="arithmatex">\(\mathsf{Setup}\)</span> algorithm and set the signature secret key <span class="arithmatex">\(\mathsf{sk}\)</span> to the IBE's <span class="arithmatex">\(\mathsf{msk}\)</span>, and the signature public key <span class="arithmatex">\(\mathsf{pk}\)</span> to the IBE's <span class="arithmatex">\(\mathsf{mpk}\)</span> (and any other system parameters).</li>
+<li><span class="arithmatex">\(\underline{\mathsf{Sign}(\mathsf{sk}, m)}\)</span>: To sign a message <span class="arithmatex">\(m\)</span>, publish the IBE secret key using <span class="arithmatex">\(m\)</span> as the identity (i.e., the signature is <span class="arithmatex">\(\mathsf{sk}_\mathsf{id}\)</span> for <span class="arithmatex">\(\mathsf{id} = m\)</span>).</li>
+<li><span class="arithmatex">\(\underline{\mathsf{Vrfy}(\mathsf{pk}, m, \sigma)}\)</span>: Verification is a randomized algorithm (unlike most signature schemes). To verify a signature <span class="arithmatex">\(\sigma\)</span>, use the IBE to encrypt a random message <span class="arithmatex">\(m'\)</span> under <span class="arithmatex">\(\mathsf{id} = m\)</span>, then attempt to decrypt using <span class="arithmatex">\(\sigma\)</span> as the identity secret key.</li>
+</ul>
+<p>In fact, the <a href="../signatures/#bls-sig">BLS signature scheme</a> is exactly equivalent to applying this transformation to the <a href="#bf-ibe">Boneh-Franklin IBE</a> (up to the randomization in the encryption). The reverse is also true in this case: BLS signatures are Boneh-Franklin identity secret keys for <span class="arithmatex">\(\mathsf{id} = m\)</span> so they can be used to realize the Boneh-Franklin IBE.</p>
+<p><a name="bf-ibe"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Boneh-Franklin IBE <a href="https://crypto.stanford.edu/~dabo/papers/bfibe.pdf">[BF01]</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Scheme</label><label for="__tabbed_4_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><span class="arithmatex">\(\underline{\mathsf{Setup}}\)</span>: Choose <a href="../../Areas-of-Cryptography/ecc/">elliptic curve</a> groups <span class="arithmatex">\(\mathbb{G}, \mathbb{G}_T\)</span> of prime order <span class="arithmatex">\(q\)</span> with <a href="../../Areas-of-Cryptography/ecc/#pairing">pairing</a> <span class="arithmatex">\(e: \mathbb{G} \times \mathbb{G} \to \mathbb{G}_T\)</span>. Let <span class="arithmatex">\(g\)</span> be a generator of <span class="arithmatex">\(\mathbb{G}\)</span> and <span class="arithmatex">\(H_1: \{0,1\}^* \to \mathbb{G}^*\)</span>, <span class="arithmatex">\(H_2: \mathbb{G}_2 \to \{0,1\}^n\)</span> be hash functions (where <span class="arithmatex">\(n\)</span> is a fixed value representing the message length). <span class="arithmatex">\(\mathbb{G},\mathbb{G}_T,q,g,e\)</span> are announced publicly. </p>
+<p>Sample <span class="arithmatex">\(x \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^*\)</span> and output <span class="arithmatex">\(\mathsf{msk} := x, \mathsf{mpk} := g^x \in \mathbb{G}\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{KGen}(\mathsf{msk}, \mathsf{id})}\)</span>: Note <span class="arithmatex">\(\mathsf{id} \in \{0,1\}^*\)</span>. Compute <span class="arithmatex">\(g_{\sf id} := H_1(\mathsf{id})\)</span> and output <span class="arithmatex">\(\mathsf{sk}_\mathsf{id} := g_{\sf id}^{\sf msk}\)</span>.</p>
+<p><span class="arithmatex">\(\underline{\mathsf{Enc}({\sf mpk}, {\sf id}, m)}\)</span>: Note <span class="arithmatex">\(m \in \{0,1\}^n\)</span>. Recompute <span class="arithmatex">\(g_{\sf id} := H_1(\mathsf{id})\)</span> and <span class="arithmatex">\(g_{T,\mathsf{id}} := e(g_{\sf id}, \mathsf{mpk}) \in \mathbb{G}_T\)</span>.</p>
+<ul>
+<li>return <span class="arithmatex">\(c := (g^r, m \oplus H_2(g_{T,\mathsf{id}}^r))\)</span>, where <span class="arithmatex">\(r \gets\!\!\tiny{\$}\normalsize\ \mathbb{Z}_q^*\)</span></li>
+</ul>
+<p><span class="arithmatex">\(\underline{\mathsf{Dec}(\mathsf{sk}_{\mathsf{id}'}, c := (c_1, c_2))}:\)</span></p>
+<ul>
+<li>return <span class="arithmatex">\(m := c_2 \oplus H_2(e(\mathsf{sk}_{\mathsf{id}'}, c_1))\)</span>. Note that iff <span class="arithmatex">\(\mathsf{id}' = \mathsf{id}\)</span>, this equals <span class="arithmatex">\(c_2 \oplus H_2(e(g_\mathsf{id}^\mathsf{msk}, g^r))\)</span> <span class="arithmatex">\(= c_2 \oplus H_2(e(g_\mathsf{id}, \mathsf{mpk})^r) = c_2 \oplus H_2(g_{T,\mathsf{id}}^r) = m\)</span></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="#cpa-security">IND-ID-CPA</a> (by <a href="../../assumptions/#bdh">BDH assumption</a> in the <a href="../../general/#rom">ROM</a>)</li>
+<li><a href="#cca-security">IND-ID-CCA</a> can be added via <a href="../../techniques/#fujisaki-okamoto">FO transform</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt id="hibe"><strong>Hierarchical IBE (HIBE)</strong></dt>
+<dd></dd>
+<dt id="rbe"><strong>Registration-based encryption (RBE)</strong></dt>
+<dd>
+<p>Similar to <a href="#ibe">IBE</a>, but without a trusted third party; instead there is a transparent party called the "key curator" who is only responsible for accumulating keys of parties who register in the system, but does not hold any secrets.</p>
+<div class="admonition notation">
+<p class="admonition-title">RBE syntax</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Further Reading</p>
+<ul>
+<li>Introduced in <a href="https://eprint.iacr.org/2018/919">Registration-based encryption: removing private-key generator from IBE</a> [GHMR18]</li>
+<li><a href="https://eprint.iacr.org/2018/1030">Registration-based encryption from standard assumptions</a> [GHMRS19]</li>
+<li><a href="https://eprint.iacr.org/2019/1044">Verifiable registration-based encryption</a> [GV20]</li>
+<li><a href="https://eprint.iacr.org/2022/1505">Efficient registration-based encryption</a> [GKMR23]</li>
+</ul>
+</div>
+</dd>
+<dt><strong>Rerandomizable encryption</strong></dt>
+<dd>
+<p>An encryption scheme in which the ciphertext can be updated into a new and unrelated ciphertext while keeping the underlying plaintext the same.</p>
+<div class="admonition notation">
+<p class="admonition-title">Rerandomizable encryption syntax</p>
+<ul>
+<li><span class="arithmatex">\(\sf Gen, Enc, Dec\)</span> as usual</li>
+<li><span class="arithmatex">\(c' \gets \mathsf{Rerand}(c, r)\)</span>: rerandomize the ciphertext using randomness <span class="arithmatex">\(r\)</span> without changing the underlying message (<span class="arithmatex">\(\mathsf{Dec}({\sf sk}, c) = \mathsf{Dec}({\sf sk}, c')\)</span>)</li>
+</ul>
+</div>
+</dd>
+<dt><strong>Structured encryption</strong></dt>
+<dd></dd>
+<dt id="witness-enc"><strong>Witness encryption (WE) [<a href="https://eprint.iacr.org/2013/258">GGSW13</a>]</strong></dt>
+<dd>An encryption scheme in which a message is encrypted with respect to a statement <span class="arithmatex">\(x\)</span> and can only be decrypted by providing a witness <span class="arithmatex">\(w\)</span> such that <span class="arithmatex">\((x,w) \in R\)</span>, where <span class="arithmatex">\(R\)</span> is an NP-<a href="../../Areas-of-Cryptography/zk/">relation</a>. <a href="#pke">Public-key encryption</a> can be thought of as a special case of witness encryption for the DLog-relation.</dd>
+</dl>
+<ul>
+<li>
+<dl>
+<dt><strong>Extractable witness encryption (EWE)</strong></dt>
+<dd>The additional property of extractability guarantees semantic security <em>unless</em> the adversary knows the witness (cf. <a href="../../Areas-of-Cryptography/zk/#knowledge-soundness">knowledge soundness</a>).</dd>
+</dl>
+</li>
+</ul>
+<h2 id="security-notions">Security Notions</h2>
+<dl>
+<dt><strong>Circular security</strong></dt>
+<dd>Usually, our security definitions say nothing about what happens when we encrypt <em>the secret key itself</em> with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called <strong>key-dependent message security</strong>.</dd>
+</dl>
+<h3 id="cpa-security">CPA security</h3>
+<p>CPA stands for "chosen <em>plaintext</em> attacks", and security against these attacks can be formulated in two (equivalent) ways. </p>
+<p>The <a href="../../general/#indist">indistinguishability</a>-based notion of CPA security is called <strong>IND-CPA security</strong>, and requires that an adversary cannot distinguish between encryption of two different messages:</p>
+<div class="admonition info">
+<p class="admonition-title">IND-CPA game</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Description</label><label for="__tabbed_5_2">Diagram</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Challenger: <span class="arithmatex">\(k \gets Gen(1^n)\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}(1^n)\)</span> interacts with <span class="arithmatex">\(Enc_k(\cdot)\)</span> (in polynomial time)</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(m_0, m_1\)</span> of same length</li>
+<li>Challenger: <span class="arithmatex">\(b \gets \{0,1\}, c \gets Enc_k(m_b)\)</span>, send <span class="arithmatex">\(c\)</span> to <span class="arithmatex">\(\mathcal{A}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> continues to interact with <span class="arithmatex">\(Enc_k(\cdot)\)</span> (in polynomial time)</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(b'\)</span></li>
+</ol>
+<p><span class="arithmatex">\(\mathcal{A}\)</span> <em>wins</em> if <span class="arithmatex">\(b=b'\)</span>, and the game outputs 1.  </p>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>sequenceDiagram
+    Note over Challenger: (1) Sample k #larr; Gen(1^n)
+    Note over Adversary: (2) Query Enc oracle (in poly time)
+    loop Enc oracle
+        Adversary--&gt;&gt;Challenger: m
+        Challenger--&gt;&gt;Adversary: Enc(k, m)
+    end
+    Adversary-&gt;&gt;Challenger: (3) m_0, m_1
+    Note over Challenger: (4) Sample b #larr; {0,1} &lt;br/&gt; c #larr; Enc(k, m_b)
+    Challenger-&gt;&gt;Adversary: c
+    Note over Adversary: (5) Query Enc oracle (in poly time)
+    loop Enc oracle
+        Adversary--&gt;&gt;Challenger: m
+        Challenger--&gt;&gt;Adversary: Enc(k, m)
+    end
+    %%loop Enc oracle
+    %%    Adversary-&gt;&gt;Adversary: query oracle (in poly time)
+    %%end
+    Adversary-&gt;&gt;Challenger: (6) b'
+    Note right of Challenger: Adversary wins if b=b'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>The alternative formulation is the <a href="../../proofs/#proof-by-simulation">simulation</a>-based <strong>semantic security</strong> (or <strong>SIM-CPA</strong>), which says that anything the adversary can compute from the ciphertext can also be computed (simulated) without the ciphertext. That is, the ciphertext does not reveal any new information to the adversary.</p>
+<p>These two notions have been shown to be equivalent: semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, therefore semantic security &iff; IND-CPA.</p>
+<p>There are several techniques for transforming a CPA-secure encryption scheme to CCA-secure one, including the <a href="../../techniques/#fujisaki-okamoto">FO transform</a> and the <a href="../../techniques/#naor-yung">Naor-Yung paradigm</a>.</p>
+<dl>
+<dt><strong>OW-CPA</strong></dt>
+<dd>one-way CPA security. <!-- TODO --></dd>
+</dl>
+<h3 id="cca-security">CCA security</h3>
+<p>CCA stands for "chosen <em>ciphertext</em> attacks", and security against these attacks if normally formulated as an <a href="../../general/#indist">indistinguishability</a>-based notion (IND-CCA). There are two variants of IND-CCA security: <a href="#ind-cca1">IND-CCA1</a> and <a href="#ind-cca2">IND-CCA2</a>. Both are stronger than <a href="#cpa-security">IND-CPA security</a> because the adversary is additionally given access to a <em>decryption</em> oracle. <strong>IND-CCA</strong> (without a number) usually refers to <a href="#ind-cca2">IND-CCA2</a>.</p>
+<dl>
+<dt id="ind-cca1"><strong>IND-CCA1</strong></dt>
+<dd>
+<p>Security against <em>non-<a href="../../general/#adaptive">adaptive</a></em> ("lunchtime") chosen ciphertext attack. Weaker than <a href="#ind-cca2">IND-CCA2</a>.</p>
+<p>Examples: <a href="https://www.cs.umd.edu/~jkatz/gradcrypto2/NOTES/lecture7.pdf">Naor-Yung encryption</a></p>
+<div class="admonition info">
+<p class="admonition-title">IND-CCA1 game</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Description</label><label for="__tabbed_6_2">Diagram</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Challenger: <span class="arithmatex">\(k \gets Gen(1^n)\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}(1^n)\)</span> interacts with <span class="arithmatex">\(Enc_k(\cdot)\)</span> <strong>and <span class="arithmatex">\(Dec_k(\cdot)\)</span></strong> (in polynomial time)</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(m_0, m_1\)</span> of same length</li>
+<li>Challenger: <span class="arithmatex">\(b \gets \{0,1\}, c \gets Enc_k(m_b)\)</span>, send <span class="arithmatex">\(c\)</span> to <span class="arithmatex">\(\mathcal{A}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> can perform some operations (in polynomial time) <!-- does it have access to Enc_k(•)? --></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(b'\)</span></li>
+</ol>
+<p><span class="arithmatex">\(\mathcal{A}\)</span> <em>wins</em> if <span class="arithmatex">\(b=b'\)</span>, and the game outputs 1.</p>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>sequenceDiagram
+    Note over Challenger: (1) Sample k #larr; Gen(1^n)
+    Note over Adversary: (2) Query Enc and Dec oracles &lt;br/&gt; (in poly time)
+    par Enc oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: m
+            Challenger--&gt;&gt;Adversary: Enc(k, m)
+        end
+    and Dec oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: c
+            Challenger--&gt;&gt;Adversary: Dec(k, c)
+        end
+    end
+    Adversary-&gt;&gt;Challenger: (3) m_0, m_1
+    Note over Challenger: (4) Sample b #larr; {0,1} &lt;br/&gt; c #larr; Enc(k, m_b)
+    Challenger-&gt;&gt;Adversary: c
+    Note over Adversary: (5) Perform any operations (in poly time)
+    Adversary-&gt;&gt;Challenger: (6) b'
+    Note right of Challenger: Adversary wins if b=b'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt id="ind-cca2"><strong>IND-CCA2</strong></dt>
+<dd>
+<p>Security against <em><a href="../../general/#adaptive">adaptive</a></em> chosen ciphertext attack. In addition to its capabilities in the <a href="#ind-cca1">IND-CCA1</a> game, <span class="arithmatex">\(\mathcal{A}\)</span> now has access to the oracles <em>after</em> seeing <span class="arithmatex">\(c\)</span>.</p>
+<p>Examples: Dolev-Dwork-Naor, <a href="#cramer-shoup">Cramer-Shoup</a></p>
+<div class="admonition info">
+<p class="admonition-title">IND-CCA2 game</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Description</label><label for="__tabbed_7_2">Diagram</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Challenger: <span class="arithmatex">\(k \gets Gen(1^n)\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}(1^n)\)</span> interacts with <span class="arithmatex">\(Enc_k(\cdot)\)</span> and <span class="arithmatex">\(Dec_k(\cdot)\)</span> (in polynomial time)</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(m_0, m_1\)</span> of same length</li>
+<li>Challenger: <span class="arithmatex">\(b \gets \{0,1\}, c \gets Enc_k(m_b)\)</span>, send <span class="arithmatex">\(c\)</span> to <span class="arithmatex">\(\mathcal{A}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> <strong>continues to interact with <span class="arithmatex">\(Enc_k(\cdot)\)</span> and <span class="arithmatex">\(Dec_k(\cdot)\)</span></strong> (in polynomial time) but can't query <span class="arithmatex">\(Dec_k(\cdot)\)</span> on <span class="arithmatex">\(c\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> outputs <span class="arithmatex">\(b'\)</span></li>
+</ol>
+<p><span class="arithmatex">\(\mathcal{A}\)</span> <em>wins</em> if <span class="arithmatex">\(b=b'\)</span>, and the game outputs 1.</p>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>sequenceDiagram
+    Note over Challenger: (1) Sample k #larr; Gen(1^n)
+    Note over Adversary: (2) Query Enc and Dec oracles &lt;br/&gt; (in poly time)
+    par Enc oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: m
+            Challenger--&gt;&gt;Adversary: Enc(k, m)
+        end
+    and Dec oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: c
+            Challenger--&gt;&gt;Adversary: Dec(k, c)
+        end
+    end
+    Adversary-&gt;&gt;Challenger: (3) m_0, m_1
+    Note over Challenger: (4) Sample b #larr; {0,1} &lt;br/&gt; c #larr; Enc(k, m_b)
+    Challenger-&gt;&gt;Adversary: c
+    Note over Adversary: (5) Continue querying Enc and Dec oracles &lt;br/&gt; (in poly time)
+    par Enc oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: m
+            Challenger--&gt;&gt;Adversary: Enc(k, m)
+        end
+    and Dec oracle
+        loop 
+            Adversary--&gt;&gt;Challenger: c' #ne; c
+            Challenger--&gt;&gt;Adversary: Dec(k, c')
+        end
+    end
+    Adversary-&gt;&gt;Challenger: (6) b'
+    Note right of Challenger: Adversary wins if b=b'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt><strong>OW-CCA</strong></dt>
+<dd>one-way CCA security. <!-- TODO --></dd>
+<dt><strong>replayable CCA (RCCA)</strong></dt>
+<dd><!-- TODO --></dd>
+</dl>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><span class="arithmatex">\(\varphi\)</span> is Euler's totient function; as an optimization, many implementations use Carmicheal's totient function <span class="arithmatex">\(\lambda\)</span> instead. See the bottom of the <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Key_generation">key generation paragraph on Wikipedia</a> for more information.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>e.g., using the extended Euclidean algorithm&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>A message <span class="arithmatex">\(M\)</span> is turned into an integer <span class="arithmatex">\(n\)</span> satisfying this property using an agreed-upon reversible padding scheme.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy;2025 Noemi Glaeser
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://nglaeser.github.io/" target="_blank" rel="noopener" title="nglaeser.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nglaeser" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

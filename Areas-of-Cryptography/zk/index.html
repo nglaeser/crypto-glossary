@@ -1,0 +1,1489 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nglaeser.github.io/crypto-glossary/Areas-of-Cryptography/zk/">
+      
+      
+        <link rel="prev" href="../pqc/">
+      
+      
+        <link rel="next" href="../../Cryptographic-Primitives/commitments/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Zero-Knowledge (ZK) - Crypto Glossary</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#zero-knowledge-zk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Crypto Glossary" class="md-header__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crypto Glossary
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Zero-Knowledge (ZK)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Crypto Glossary" class="md-nav__button md-logo" aria-label="Crypto Glossary" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Crypto Glossary
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Use This Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assumptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Notation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Proofs: Types and Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../techniques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard Techniques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Areas of Cryptography
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Areas of Cryptography
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blockchain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blockchain and Cryptocurrencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elliptic-Curve Cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Party Computation (MPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pqc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-quantum cryptography (PQC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Knowledge (ZK)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Knowledge (ZK)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zk_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proofs-and-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proofs and Arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-zero-knowledge-proofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of zero-knowledge proofs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of zero-knowledge proofs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-commitment-iop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Polynomial commitment + IOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sigma-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sigma protocols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpc-in-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MPC-in-the-Head
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Primitives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryptographic Primitives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/commitments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commitment schemes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/encryption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/key-exchange/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Exchange
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cryptographic-Primitives/signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zk_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proofs-and-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proofs and Arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-zero-knowledge-proofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of zero-knowledge proofs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of zero-knowledge proofs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-commitment-iop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Polynomial commitment + IOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sigma-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sigma protocols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpc-in-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MPC-in-the-Head
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="zero-knowledge-zk">Zero-Knowledge (ZK)</h1>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Ways to prove knowledge of a piece of information without revealing that information. More specifically, the goal is usually to prove knowledge of a <em>witness</em> for some <em>statement</em> in a <em>language</em> without revealing the witness.</p>
+</div>
+<h2 id="background">Background</h2>
+<p>First, we define what an <span class="arithmatex">\(NP\)</span> language is. A <strong>language</strong> is some set of elements that meet a particular property. For instance, the language <span class="arithmatex">\(\mathcal{L}_{HAM}\)</span> is the set of graphs which contain a Hamiltonian cycle. A less mathy example might be the set of words which have double-letters ("hello" is in this language because it contains two back-to-back L's, but "world" is not).</p>
+<p>Loosely defined, a language is in <a href="../../general/#np">NP</a> if it is difficult to decide whether an element belongs to a language, but easy to confirm that it is when provided some evidence (called a <strong>witness</strong>). In the case of <span class="arithmatex">\(\mathcal{L}_{HAM}\)</span>, it's difficult to check if a graph contains a Hamiltonian cycle because finding such a cycle is hard. But if you are given a graph and a supposed cycle in the graph, it's easy to check that the graph really does contain that cycle. </p>
+<p>In the case of our less abstract example, think of a computer program that determes whether a word is in the double-letter language: we have to check all the pairs of consecutive letters in the word and see if any of them match. If we are told exactly which two letters repeat and where they are in the word (that is, given the witness <code>ll, 2</code> for the word "hello"), we can quickly jump to the letter at index <code>2</code> in the word and only check that the next two letters both equal <code>l</code>. (This is not a perfect example, since cycling through the entire length of the word doesn't take all that much time, but the point is that the witness simplifies the verification process.)</p>
+<h2 id="zk_1">ZK</h2>
+<p>Zero-knowledge (ZK) protocols occur between two parties: a <strong>prover</strong> and a <strong>verifier</strong>. The prover's goal is to convince the verifier that some statement <span class="arithmatex">\(x\)</span> is in some language <span class="arithmatex">\(\mathcal{L}\)</span>, by convincing the verifier that it knows some witness <span class="arithmatex">\(w\)</span> for that statement. The verifier's goal is to be sure the prover knows such a witness.</p>
+<p>ZK protocols are only interesting if the prover doesn't want to reveal its witness (the <a href="#zk">zero-knowledge</a> property). (If we didn't care about revealing the witness, the prover could simply send the witness to verifier and we'd be done.)</p>
+<!-- Not true, we might also just want efficient verification -->
+
+<div class="admonition example">
+<p class="admonition-title">Intuitive Example: <em>Where's Waldo?</em> in zero-knowledge</p>
+<!-- Where's Waldo example -->
+</div>
+<div class="admonition example">
+<p class="admonition-title">3-coloring [GMW]</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Scheme</label><label for="__tabbed_1_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+</div>
+<h2 id="properties">Properties</h2>
+<dl>
+<dt id="completeness"><strong>Completeness</strong></dt>
+<dd>For honest prover <span class="arithmatex">\(P\)</span> and verifier <span class="arithmatex">\(V\)</span>, the protocol will accept only on "correct" (true) statements (except with <a href="../../general/#negligible">negligible</a> probability).</dd>
+<dt id="hvzk"><strong>Honest-verifier zero-knowledge (HVZK)</strong></dt>
+<dd></dd>
+<dt id="non-int"><strong>Non-interactive</strong></dt>
+<dd>No interaction is required; that is, a proof consists of a single message sent by the prover to the verifier (1 round).</dd>
+<dt id="soundness"><strong>Soundness</strong></dt>
+<dd>Intuitively, a cheating (<a href="../../general/#malicious">malicious</a>) prover <span class="arithmatex">\(P^*\)</span> cannot (except with <a href="../../general/#negligible">negligible</a> probability) provide a valid proof of a false statement. </dd>
+</dl>
+<ul>
+<li>
+<dl>
+<dt id="knowledge-soundness"><strong>Knowledge Soundness</strong></dt>
+<dd>This property is stronger than <a href="#soundness">soundness</a>. Intuitively, it says that any valid proof has a corresponding witness. Formally, for any valid proof, there exists an <strong>extractor</strong> which can extract the witness when given the proof. What does this actually mean? It says that if a prover provides a valid proof, <em>it must have known the witness</em>. In other words, a cheating prover cannot provide a proof of even a <em>true</em> statement if it does not know the witness.</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt id="special-soundness"><strong>Special Soundness</strong></dt>
+<dd>This lies between <a href="#soundness">soundness</a> and <a href="#knowledge-soundness">knowledge soundness</a> (?) and applies only to interactive proof systems. Given two (or <span class="arithmatex">\(s\)</span>, in the case of <strong><span class="arithmatex">\(s\)</span>-special soundness</strong>) valid transcripts for the same statement and with the same first message, there exists an efficient extractor which can recover the witness corresponding to the statement.<br />
+The "special" part means that this property implies soundness.</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt id="simulation-soundness"><strong>Simulation Soundness</strong></dt>
+<dd>This property requires that <a href="#soundness">soundness</a> holds even when <span class="arithmatex">\(P^*\)</span> has seen many simulated proofs (potentially even for false statements), i.e. <span class="arithmatex">\(P^*\)</span> is additionally given an arbitrary number of statement-proof pairs <span class="arithmatex">\((x,\pi)\)</span> such that <span class="arithmatex">\(V(x,\pi)=1\)</span>.</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt id="simulation-extractability"><strong>Simulation Extractability</strong></dt>
+<dd>aka <strong>simulation-knowledge soundness</strong>. A combination of <a href="#knowledge-soundness">knowledge soundness</a> and <a href="#simulation-soundness">simulation soundness</a>, this notion says that <a href="#knowledge-soundness">knowledge soundness</a> holds even when given access to arbitrarily many simulated proofs. This notion was formulated to capture the notion of <strong>non-malleability</strong> (which it implies), since <a href="#knowledge-soundness">knowledge soundness</a> on its own says nothing about the capabilities of a prover that has seen a valid proof to produce a new valid proof by "mauling" the honest proof (malleability). A good discussion can be found in the introduction of <a href="https://eprint.iacr.org/2019/641.pdf">[AB19]</a>.</dd>
+</dl>
+</li>
+</ul>
+<dl>
+<dt id="succinct"><strong>Succinct</strong></dt>
+<dd>
+<ol>
+<li>the proof size is "small"</li>
+<li>verification is "fast"</li>
+</ol>
+<p>There is some disagreement on exactly how to define "small" and "fast" in the above: constant, polynomial in the security parameter, polylogarithmic in the statement size, sublinear in the witness? What exactly is meant often <a href="https://a16zcrypto.com/posts/article/17-misconceptions-about-snarks/#section--3">depends on the author</a>.  </p>
+<p>"Small" often means polynomial in the security parameter (<span class="arithmatex">\(\lvert \pi \rvert \in \mathrm{poly}(\lambda)\)</span>) or polylogarithmic in the statement size (<span class="arithmatex">\(\lvert \pi \rvert \in \mathrm{polylog}(\lvert x \rvert)\)</span>), but could be as general as sublinear in the size of the witness.<br />
+"Fast" could mean polylogarithmic in the security parameter and statement size (<span class="arithmatex">\(V(x,\pi) \in O(\mathrm{polylog}(\lambda + \lvert x \rvert))\)</span>).</p>
+</dd>
+<dt id="wi"><strong>Witness indistinguishable (WI)</strong></dt>
+<dd>Given a proof, the (malicious?) verifier cannot distinguish between which of two valid witnesses was used to generate the proof with more than negligible probability.</dd>
+<dt id="zk"><strong>Zero-knowledge (ZK)</strong></dt>
+<dd>(With overwhelming probability,) a <a href="../../general/#malicious">malicious</a> verifier <span class="arithmatex">\(V^*\)</span> learns nothing about the prover's witness. Formally, there exists a <a href="../../proofs/#proof-by-simulation">simulator</a> which, given access only to the statement <span class="arithmatex">\(x\)</span>, can generate a view for <span class="arithmatex">\(V^*\)</span> that is <a href="../../general/#indist">indistinguishable</a> from its view in the real execution. This property comes in <a href="../../general/#computational">computational</a> and <a href="../../general/#it-security">information-theoretic</a> variants (depending on the type of indistinguishability of the two transcripts).</dd>
+</dl>
+<!-- - **Black-box ZK**
+: The above holds even when the simulator is given _only oracle (aka, black-box) access_ to V\*. -->
+
+<h2 id="proofs-and-arguments">Proofs and Arguments</h2>
+<p>By definition, proof systems are <a href="#completeness">complete</a> and <a href="#soundness">sound</a>. Based on the strength of the soundness, we make a distinction betweeen "arguments" and "proofs":</p>
+<dl>
+<dt id="argument"><strong>Argument</strong></dt>
+<dd><a href="#completeness">Completeness</a> holds <a href="../../general/#perfect-security">perfectly</a>. <a href="#soundness">Soundness</a> holds only against a <a href="../../general/#computational">computationally <em>bounded</em></a> cheating prover (i.e., computational soundness). For this reason, arguments are sometimes referred to as "computationally sound proofs".</dd>
+<dt id="proof"><strong>Proof</strong></dt>
+<dd><a href="#completeness">Completeness</a> holds <a href="../../general/#perfect-security">perfectly</a>. <a href="#soundness">Soundness</a> holds against a computationally <em>unbounded</em> cheating prover (i.e., <a href="../../general/#statistical">statistical</a> or even <a href="../../general/#perfect-security">perfect</a> soundness).</dd>
+</dl>
+<h2 id="terminology">Terminology</h2>
+<p>Zero-knowledge proofs are named in a fairly self-explanatory way by combining their properties into an acronym. </p>
+<!-- Rememeber from above that all proof systems are by definition complete and sound, so the "proof" part of the name implies completeness and soundness. Common ZK proofs: -->
+
+<dl>
+<dt id="aok"><strong>Argument of Knowledge (AoK)</strong></dt>
+<dd><a href="#argument">Argument</a> where the (computational) <a href="#soundness">soundness</a> is <a href="#knowledge-soundness"><em>knowledge</em> soundness</a>.<br />
+<em>Properties</em>: <a href="#completeness">completeness</a>, computational <a href="#knowledge-soundness">knowledge soundness</a>.</dd>
+<dt id="pok"><strong>Proof of Knowledge (PoK)</strong></dt>
+<dd><a href="#proof">Proof</a> where the <a href="#soundness">soundness</a> is <a href="#knowledge-soundness"><em>knowledge</em> soundness</a>.<br />
+<em>Properties:</em> <a href="#completeness">completeness</a>, <a href="#knowledge-soundness">knowledge soundness</a>.</dd>
+<dt niwi="niwi"><strong>NIWI</strong></dt>
+<dd><a href="#non-int">Non-Interactive</a> <a href="#wi">Witness Indistinguishable</a> <a href="#proof">proof</a>.<br />
+<em>Properties:</em> <a href="#non-int">non-interactivity</a> ("NI"), <a href="#wi">witness indistinguishability</a> ("WI"), <a href="#completeness">completeness</a> and <a href="#soundness">soundness</a> ("proof").</dd>
+<dt id="nizk"><strong>NIZK</strong></dt>
+<dd><a href="#non-int">Non-Interactive</a> <a href="#zk">Zero Knowledge</a> <a href="#proof">proof</a>.<br />
+<em>Properties:</em> <a href="#non-int">non-interactivity</a> ("NI"), <a href="#zk">zero-knowledge</a> ("ZK"), <a href="#completeness">completeness</a> and <a href="#soundness">soundness</a> ("proof").</dd>
+</dl>
+<!-- TODO Make properties into a table -->
+<!-- Maybe list for each type what assumptions they are known from? -->
+<!-- - Not known from CDH  -->
+
+<dl>
+<dt id="snarg"><strong>SNARG</strong> (<strong>SNArg</strong>)</dt>
+<dd>
+<p><a href="#succinct">Succinct</a> <a href="#non-int">Non-interactive</a> <a href="#argument">Argument</a>.<br />
+<em>Properties:</em> <a href="#succinct">succinctness</a> ("S"), <a href="#non-int">non-interactivity</a> ("N"), <a href="#completeness">completeness</a> and computational <a href="#soundness">soundness</a> ("Arg").</p>
+<ul>
+<li>Gentry and Wichs <a href="https://eprint.iacr.org/2010/610">showed</a> an impossibility result for SNARGs/SNARKs for NP, which roughly says that they must rely on <a href="../../assumptions/#non-falsifiable">non-falsifiable</a> assumptions.</li>
+</ul>
+</dd>
+<dt id="snark"><strong>SNARK</strong> (<strong>SNArK</strong>)</dt>
+<dd>
+<p><a href="#succinct">Succinct</a> <a href="#non-int">Non-interactive</a> <a href="#argument">Argument</a> of Knowledge.<br />
+<em>Properties:</em> <a href="#succinct">succinctness</a> ("S"), <a href="#non-int">non-interactivity</a> ("N"), <a href="#completeness">completeness</a> and <a href="#knowledge-soundness"><em>knowledge</em> soundness</a> ("ArK").</p>
+<dl>
+<dt id="zk-snark"><strong>zk-SNARK</strong></dt>
+<dd><a href="#zk">zero-knowledge</a> SNARK.<br />
+<em>Properties:</em> the above plus <a href="#zk">zero-knowledge</a> ("zk").</dd>
+</dl>
+</dd>
+</dl>
+<!-- **SNIP**
+: [Secret-shared](./mpc.md#building-blocks) Non-Interactive Proof (introduced in [Prio](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-corrigan-gibbs.pdf)). -->
+
+<dl>
+<dt><strong>STARK</strong> (<strong>STArK</strong>)</dt>
+<dd><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" />Scalable<img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" /> (NOT "succinct") Transparent <a href="#argument">Argument</a> of Knowledge.<br />
+<em>Properties:</em> Fast verifier <em>and prover</em> time ("S"), transparent/no <a href="../mpc/#trusted-setup">trusted setup</a> ("T"), <a href="#completeness">completeness</a> and <a href="#knowledge-soundness"><em>knowledge</em> soundness</a> ("ArK").</dd>
+<dt><strong>DV-NIZK</strong></dt>
+<dd>Designated Verifier <a href="#nizk">NIZK</a>. </dd>
+</dl>
+<!-- Insert table? -->
+
+<h2 id="types-of-zero-knowledge-proofs">Types of zero-knowledge proofs</h2>
+<p>Here are some common approaches and design paradigms in the ZKP/SNARK space.</p>
+<dl>
+<dt id="pcp"><strong>Probabilistically Checkable Proof (PCP)</strong></dt>
+<dd></dd>
+<dt id="iop"><strong>Interactive Oracle Proof (IOP)</strong></dt>
+<dd>Sometimes referred to as <strong>probabilistically checkable interactive proofs (PCIP)</strong>, this is an interactive variant of PCPs.</dd>
+</dl>
+<!-- **Signature of Knowledge**
+: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
+[Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)] -->
+
+<dl>
+<dt id="co-snarks"><strong>Collaborative proofs/SNARKs</strong></dt>
+<dd>Collaborative proof generation when the witness is held jointly (e.g., secret shared) among multiple provers.</dd>
+<dt id="recursive-proofs"><strong>Recursive proofs</strong></dt>
+<dd>
+<p>This is a technique which proves the validity of some other, underlying proof(s). The input is proof(s) <span class="arithmatex">\(\pi_1, \dots, \pi_n\)</span> and the output is a proof <span class="arithmatex">\(\pi\)</span> claiming that there exists <span class="arithmatex">\(\pi_1, \dots, pi_n\)</span> (the witness) where <span class="arithmatex">\(\bigwedge_i V(x_i, \pi_i) = 1\)</span> (the <span class="arithmatex">\(x_i\)</span>'s are the statements proven by the original proofs).<br />
+Applications:</p>
+<ul>
+<li>Proof aggregation: Combine multiple proofs into a single proof, allowing you to verify <span class="arithmatex">\(n\)</span> proofs for the price of 1. The base proofs can also be generated in parallel, potentially reducing prover wall time.</li>
+<li><strong>Incrementally verifiable computation (IVC)</strong>: If a function <span class="arithmatex">\(f\)</span> to be proven consists of multiple consecutive steps <span class="arithmatex">\(f_1, f_2, \dots\)</span>, each step can be proven individually in a recursive chain by taking the output <span class="arithmatex">\(x_{t-1}\)</span> of the previous step and a proof <span class="arithmatex">\(\pi_{t-1}\)</span> of its correct computation, using the input <span class="arithmatex">\(w_t\)</span> to the current step to compute <span class="arithmatex">\(x_t = f_t(x_{t-1}, w_t)\)</span>, and producing a proof <span class="arithmatex">\(\pi_t\)</span> that there exist <span class="arithmatex">\(w_t, \pi_{t-1}\)</span> (the witness) such that <span class="arithmatex">\(f_t(x_{t-1}, w_t) = x_t \land V(x_{t-1}, \pi_{t-1}) = 1\)</span>.</li>
+</ul>
+</dd>
+</dl>
+<!-- https://hackmd.io/@YaoGalteland/S1BnQL0Qkx -->
+
+<pre><code>``` mermaid
+block-beta
+    columns 10
+    space:2 prevW["$w_{t-1}$"] space:3 W["$w_t$"] space:3
+    space:10
+    dots["..."] space prev["$f_{t-1}$"] space prevout["$x_{t-1}, \pi_{t-1}$"] space curr["$f_t$"] space out["$x_t, \pi_t$"]
+
+    dots --&gt; prev
+    prev --&gt; prevout
+    prevout --&gt; curr
+    curr --&gt; out
+    W --&gt; curr
+    prevW --&gt; prev
+
+    classDef clear fill:#fff,stroke:#fff;
+    class dots,prevW,W,prevout,out clear
+```
+</code></pre>
+<h3 id="polynomial-commitment-iop">Polynomial commitment + IOP</h3>
+<p>Many recent SNARKs/SNARGs are, at their core, an <a href="#iop">IOP</a>, which is then instantiating the oracle using a <a href="../../Cryptographic-Primitives/commitments/#vc">vector commitment</a> or a <a href="../../Cryptographic-Primitives/commitments/#poly-com">polynomial commitment</a>.</p>
+<h3 id="sigma-protocols">Sigma protocols</h3>
+<!-- useful slides: http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf -->
+
+<p>A sigma protocol (&Sigma;-protocol) is a 3-round interactive <a href="#hvzk">HVZK</a> <a href="#pok">PoK</a>. Put another way, a sigma-protocol has the following properties:  </p>
+<ul>
+<li><a href="../../general/#perfect-security">perfect</a> <a href="#completeness">completeness</a></li>
+<li><a href="#special-soundness">special soundness</a> (here, this implies <a href="#knowledge-soundness">knowledge soundness</a>, so the protocol is a <a href="#pok">PoK</a>)</li>
+<li><a href="#hvzk">honest verifier zero-knowledge</a> (HVZK)</li>
+</ul>
+<p>Any sigma protocol proving that <span class="arithmatex">\((x, w)\)</span> is in some relation <span class="arithmatex">\(R\)</span> follows the same outline:</p>
+<ol>
+<li>Prover <span class="arithmatex">\(P\)</span> sends a first message <span class="arithmatex">\(a\)</span> (the <em>commitment</em>)</li>
+<li>Verifier <span class="arithmatex">\(V\)</span> responds with a uniformly random <em>challenge</em> <span class="arithmatex">\(c\)</span></li>
+<li><span class="arithmatex">\(P\)</span> uses the challenge to generate a <em>response</em> <span class="arithmatex">\(z\)</span></li>
+</ol>
+<p>Lastly, <span class="arithmatex">\(V\)</span> must output either "accept" or "reject" as a <a href="../../general/#deterministic">deterministic</a> function of <span class="arithmatex">\(x\)</span> and the transcript <span class="arithmatex">\((a, c, z)\)</span>.</p>
+<p>Sigma protocols can be made non-interactive via the <a href="../../techniques/#fiat-shamir">Fiat-Shamir transform</a>. They can also be composed in the following ways, so that the languages they operate over are composed:</p>
+<dl>
+<dt><strong>OR composition</strong></dt>
+<dd></dd>
+<dt><strong>AND composition</strong></dt>
+<dd></dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Further Reading</p>
+<p><a href="https://cs.au.dk/~ivan/Sigma.pdf">"On &Sigma;-protocols"</a> by Ivan Damg&aring;rd<br />
+<a href="http://cyber.biu.ac.il/wp-content/uploads/2018/08/WS-19-11-sigma-protocols-winter-school-2019-1.pdf">"Sigma Protocols" slides</a> by Benny Pinkas</p>
+</div>
+<p><a name="sigma-dlog"></a></p>
+<div class="admonition example">
+<p class="admonition-title">Sigma protocol: DLog [Schnorr'89]</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Scheme</label><label for="__tabbed_2_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Public parameters:</strong> Group <span class="arithmatex">\(\mathbb{G}\)</span> of prime order <span class="arithmatex">\(p\)</span>.<br />
+<strong>Prover:</strong> <span class="arithmatex">\(y, b \in \mathbb{G}\)</span> and <span class="arithmatex">\(x \in \mathbb{Z}_p\)</span>.<br />
+<strong>Verifier:</strong> <span class="arithmatex">\(y, b \in \mathbb{G}\)</span><br />
+To prove knowledge of the discrete logarithm <span class="arithmatex">\(x\)</span> such that <span class="arithmatex">\(y = b^x\)</span>, </p>
+<ol>
+<li>The prover P samples <span class="arithmatex">\(r \stackrel{\$}{\gets} \mathbb{Z}_p\)</span> and sends <span class="arithmatex">\(a := b^r\)</span> to the verifier V</li>
+<li>V sends back a uniform challenge <span class="arithmatex">\(c \stackrel{\$}{\gets} \mathbb{Z}_p\)</span></li>
+<li>P sends <span class="arithmatex">\(z := r + c \cdot x\)</span></li>
+<li>V checks that <span class="arithmatex">\(b^z = a \cdot y^{c}\)</span></li>
+</ol>
+<p>Correctness holds since <span class="arithmatex">\(a \cdot y^{c} = (b^r) \cdot (b^x)^{c} = b^{r + x \cdot c}\)</span>.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>HVZK</li>
+<li>PoK</li>
+<li>[Cramer'97] generalizes this to knowledge of a homomorphism preimage</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Sigma protocol: DDH</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Scheme</label><label for="__tabbed_3_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Sigma protocol: DLEq [Chaum-Pedersen'92]</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Scheme</label><label for="__tabbed_4_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Public parameters:</strong> Group <span class="arithmatex">\(\mathbb{G}\)</span> of prime order <span class="arithmatex">\(p\)</span>.<br />
+<strong>Prover:</strong> <span class="arithmatex">\(y_1,b_1,y_2,b_2 \in \mathbb{G}\)</span> and <span class="arithmatex">\(x \in \mathbb{Z}_p\)</span>.<br />
+<strong>Verifier:</strong> <span class="arithmatex">\(y_1,b_1,y_2,b_2 \in \mathbb{G}\)</span><br />
+To prove equality of the discrete logarithms of <span class="arithmatex">\(y_1,y_2\)</span> w.r.t. <span class="arithmatex">\(b_1,b_2\)</span>, i.e., <span class="arithmatex">\(y_1 = b_1^x\)</span> and <span class="arithmatex">\(y_2 = b_2^x\)</span>: </p>
+<ol>
+<li>The prover P samples <span class="arithmatex">\(r \stackrel{\$}{\gets} \mathbb{Z}_p\)</span> and sends <span class="arithmatex">\(a_1 := b_1^r\)</span>, <span class="arithmatex">\(a_2 := b_2^r\)</span> to the verifier V</li>
+<li>V sends back a uniform challenge <span class="arithmatex">\(c \stackrel{\$}{\gets} \mathbb{Z}_p\)</span></li>
+<li>P sends <span class="arithmatex">\(z := r + c \cdot x\)</span></li>
+<li>V checks that <span class="arithmatex">\(b_1^z = a_1 \cdot y_1^{c}\)</span> and <span class="arithmatex">\(b_2^z = a_2 \cdot y_2^{c}\)</span></li>
+</ol>
+<p>Correctness holds since <span class="arithmatex">\(a_i \cdot y_i^{c} = (b_i^r) \cdot (b_i^x)^{c} = b_i^{r + x \cdot c}\)</span> for <span class="arithmatex">\(i=1,2\)</span> where (crucially) the same <span class="arithmatex">\(r,z\)</span> are used.</p>
+</div>
+<div class="tabbed-block">
+<p><!-- This can be seen as an AND of two instances of the <a href="">Schnorr protocol for DLog</a> -->
+<!-- Not exactly, uses the same randomness <span class="arithmatex">\(r\)</span> in step 1 --></p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Sigma protocol: Pedersen opening</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Scheme</label><label for="__tabbed_5_2">Properties</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<!-- https://crypto.stackexchange.com/questions/81236/question-of-proving-the-opening-of-pedersen-commitment#81260 -->
+</div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+</div>
+<h3 id="mpc-in-the-head">MPC-in-the-Head</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy;2025 Noemi Glaeser
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://nglaeser.github.io/" target="_blank" rel="noopener" title="nglaeser.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nglaeser" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
