@@ -1,8 +1,5 @@
 # Encryption
 
-!!! summary
-    Encryption schemes are used to ensure confidentiality.
-
 An encryption scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes as input a [security parameter](../general.md#secparam) and outputs a key (or key pair), an encryption algorithm $\mathsf{Enc}$ that takes a (public) key and a message and outputs a ciphertext, and a decryption algorithm $\mathsf{Dec}$ that takes a (private) key and a ciphertext and outputs a message. Some schemes with advanced properties may add additional algorithms.
 
 !!! notation "Encryption scheme syntax"
@@ -13,6 +10,8 @@ An encryption scheme consists of three algorithms: a key generation algorithm $\
     - $m \gets \mathsf{Dec}({\sf sk}, c)$
 
 In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, the private and public key are the same.
+
+Encryption schemes are used to ensure _confidentiality_.
 
 **Correctness**
 : For all key (pairs) output by $\sf Gen$ we have ${\sf Dec}({\sf sk}, {\sf Enc}({\sf pk}, m)) = m$. The correctness notions for the fancier encryption schemes below are extensions of this basic notion: basically, if everything is run honestly, a ciphertext should decrypt to its original message.
@@ -197,7 +196,7 @@ In the case of a [symmetric (private-key) encryption](#symmetric-enc) scheme, th
 **Circular security**
 : Usually, our security definitions say nothing about what happens when we encrypt _the secret key itself_ with the encryption scheme. If a scheme is circular secure, it is secure even when the message is (a function of) the secret key. This is also called **key-dependent message security**.
 
-### CPA security
+### CPA-security
 CPA stands for "chosen *plaintext* attacks", and security against these attacks can be formulated in two (equivalent) ways. 
 
 The [indistinguishability](../general.md#indist)-based notion of CPA security is called **IND-CPA security**, and requires that an adversary cannot distinguish between encryption of two different messages:
@@ -246,7 +245,7 @@ There are several techniques for transforming a CPA-secure encryption scheme to 
 **OW-CPA**
 : one-way CPA security. <!-- TODO -->
 
-### CCA security
+### CCA-security
 CCA stands for "chosen *ciphertext* attacks", and security against these attacks if normally formulated as an [indistinguishability](../general.md#indist)-based notion (IND-CCA). There are two variants of IND-CCA security: [IND-CCA1](#ind-cca1) and [IND-CCA2](#ind-cca2). Both are stronger than [IND-CPA security](#cpa-security) because the adversary is additionally given access to a _decryption_ oracle. **IND-CCA** (without a number) usually refers to [IND-CCA2](#ind-cca2).
 
 **IND-CCA1** { #ind-cca1 }

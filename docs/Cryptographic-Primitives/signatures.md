@@ -1,8 +1,5 @@
 # Signatures
 
-!!! summary
-    Signatures are used to ensure authenticity.
-
 A digital signature scheme consists of three algorithms: a key generation algorithm $\mathsf{Gen}$ (or $\mathsf{KGen}$) that takes no input and outputs a keypair, a signing algorithm $\mathsf{Sign}$ that takes a private key and a message and outputs a signature, and a verification algorithm $\mathsf{Vrfy}$ that takes a public key, a message, and a signature and outputs 1 (the signature is a valid signature on that message) or 0 (the signature is not valid on that message).
 
 !!! notation "Signature scheme syntax"
@@ -11,6 +8,8 @@ A digital signature scheme consists of three algorithms: a key generation algori
     - $\{0, 1\} \gets \mathsf{Vrfy}({\sf pk}, m, \sigma)$
 
 For correctness, we require that for all key(pairs) output by $\sf Gen$ we have $\mathsf{Vrfy}({\sf pk}, m, \mathsf{Sign}({\sf pk}, m)) = 1$.
+
+Signatures are used to ensure _authenticity_.
 
 It is known that [OWFs](./other.md#owf) imply (one-time) signatures (OTS).
 
@@ -22,7 +21,7 @@ OTS in turn imply many-time (i.e., regular) signatures:
 !!! example "Many-time signatures from OTS"
     The construction is a bit involved so it is given in a [separate document](../assets/notes/Sigs-from-OTS.png). The general idea is to make a depth-$\lvert m \rvert$ binary tree of OTS keypairs. Then each parent is used to sign the pair of verification keys below it, and the signature on $m$ consists of the $\lvert m \rvert$ signatures on the path the bits of $m$ from the root to a leaf.
 
-## Schemes
+## Constructions
 
 A common paradigm for a signature scheme is to instantiate a signature as a [NIZK](../Areas-of-Cryptography/zk.md#nizk) [PoK](../Areas-of-Cryptography/zk.md#pok) of the secret key (additionally incorporating the message). See the "Notes" section of the Schnorr signature scheme below for a discussion of how that scheme fits into this paradigm; another example is [Picnic](https://microsoft.github.io/Picnic/), a NIST [post-quantum cryptography](../Areas-of-Cryptography/pqc.md) candidate, which is essentially a [proof of knowledge](../Areas-of-Cryptography/zk.md#pok) of the preimage of a [one-way function](./other.md#owf).
 
@@ -147,10 +146,14 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
 <a name="cl-sig"></a>
 !!! example "CL signatures"
 
-## Other types
+## Advanced Types of Signatures
 
-**Aggregate signatures**
+**Aggregate/aggregatable signatures**
 : A signature scheme with the property that an arbitrary number of signatures $\sigma_1, \dots, \sigma_\ell$ on _potentially different_ messages $m_1, \dots, m_\ell$ produced by _potentially different_ signers $P_1, \dots, P_\ell$ can be aggregated into a single signature $\sigma$ which can be used to verify the authenticity of all $\ell$ individiual signatures. Compared to [multi-signatures](#musig) and [threshold signatures](#threshold-sig), the final signature spans multiple different messages.
+
+    $$
+    (\sigma_{\mathsf{sk}_1,m_1}, \dots, \sigma_{\mathsf{sk}_\ell,m_\ell}) \to \sigma_{(\mathsf{sk}_1,m_1), \dots, (\mathsf{sk}_\ell,m_\ell)} \text{ for any } \ell
+    $$
 
 **Blind signatures**
 : 
@@ -172,6 +175,10 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
 : A set of arbitrary size $\ell$ can work together to produce a single signature on a shared message. Unlike [threshold signatures](#threshold-sig), the (minimum) number of signers is not fixed upfront and can vary; furthermore, the identities of the signers are not hidden, and in fact a goal of the scheme is to be able to prove that everyone in the stated group of signers agreed to produce the signatures.   
 Compare to [threshold signatures](#threshold-sig) (see also the discussion on page 34 of [[Bol03]](https://iacr.org/archive/pkc2003/25670031/25670031.pdf)).
 
+    $$
+    (\mathsf{sk}_1, \dots, \mathsf{sk}_\ell, m) \to \sigma_{(\mathsf{sk}_1,m), \dots, (\mathsf{sk}_\ell,m)} \text{ for any } \ell
+    $$
+
 **Ring signatures** { #ring-sig }
 : Like group signatures, a member of the "ring" (group) can produce a signature on behalf of everyone in the group while remaining anonymous.
 Compare to [group signatures](#group-sig).
@@ -181,6 +188,10 @@ Compare to [group signatures](#group-sig).
 
 **Threshold signatures** { #threshold-sig }
 : signing/secret key is split into [secret shares](../Areas-of-Cryptography/mpc.md#secret-sharing); producing a signature requires some threshold number of shares. A threshold signature should be [indistinguishable](../general.md#indist) from an ordinary signature. Additionally, no single party should ever learn the secret key.
+
+    $$
+    (\mathsf{sk}_1, \dots, \mathsf{sk}_t, m) \to \sigma_{(\mathsf{sk},m)} \text{ for a priori fixed } t
+    $$
 
 ## Security Notions
 

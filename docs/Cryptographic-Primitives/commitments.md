@@ -6,6 +6,8 @@ A commitment scheme consists of a commitment algorithm $\sf Com$ and an opening 
 - ${\sf Open}({\sf com}) \to (m, \pi)$: Open the commitment to a message $m$, with a proof $\pi$ to show correctness of the opening.
 - ${\sf Vrfy}({\sf com}, m, \pi) \to \{0,1\}$: Check that the opening is correct.
 
+## Basic Constructions
+
 !!! example "Pedersen commitments"
 
     === "Scheme"
@@ -16,21 +18,10 @@ A commitment scheme consists of a commitment algorithm $\sf Com$ and an opening 
         - $\underline{{\sf Vrfy}({\sf com}, m, r) \to \{0,1\}}$: The verifier checks that ${\sf com} = g^m h^r$.
 
     === "Properties"
-        - computationally binding (by DLog assumption)
-        - unconditionally (information-theoretically) hiding
+        - computationally [binding](#binding) (by DLog assumption)
+        - unconditionally (information-theoretically) [hiding](#hiding)
 
-## Properties
-
-**Hiding** { #hiding }
-: Seeing $\sf com$ should reveal no information about $m$.
-
-**Binding** { #binding }
-: It should be infeasible to open $\sf com$ to a different message $m' \neq m$ (i.e., find some other opening $(m', \pi') \neq (m, \pi)$ so that ${\sf Vrfy}({\sf com}, m', \pi') = 1$).
-
-!!! info "Hiding vs. binding tradeoff"
-    There is an inherent tradeoff between the strength of the hiding and binding properties of a scheme: if a scheme is [perfectly](../general.md#perfect-security) [hiding](#hiding), it can be only [computationally](../general.md#computational) [binding](#binding); and vice versa.
-
-## Types of commitments
+## Advanced Types of Commitments
 
 Besides the basic commitment functionality, there are additional "fancier" types of commitment schemes.
 
@@ -88,8 +79,8 @@ Besides the basic commitment functionality, there are additional "fancier" types
                 (where $\tau G = {\sf crs}_1$).
 
         === "Properties"
-            - Computationally binding ($t$-SDH)
-            - Computationally hiding (DLog)
+            - Computationally [binding](#binding) ($t$-SDH)
+            - Computationally [hiding](#hiding) (DLog)
             - The prover can do a **full open** and reveal all the evaluations by simply sending a candidate polynomial $f'(X)$; the verifier checks that ${\sf Com}({\sf crs}, f'(X)) = {\sf com}$. There is an [optimization [FK20]](https://alinush.github.io/2021/06/17/Feist-Khovratovich-technique-for-computing-KZG-proofs-fast.html) to do this in $O(d\log{d})$ instead of $O(d^2)$.
             - There is also a **batch mode** in which the prover can open $t < d$ points, which the verifier can check with a single pairing. See "Further reading".
             - **Trusted setup**: the scheme relies on a trusted setup, i.e. a well-formed CRS. (On the plus side, the CRS is of the "powers-of-tau" variant, which is fairly easy to generate via an [MPC](../Areas-of-Cryptography/mpc.md) protocol (e.g., [2022/1592](https://eprint.iacr.org/2022/1592)).)
@@ -170,3 +161,14 @@ Besides the basic commitment functionality, there are additional "fancier" types
 
 **Functional commitment** { #func-com }
 : 
+
+## Security Properties
+
+**Hiding** { #hiding }
+: Seeing $\sf com$ should reveal no information about $m$.
+
+**Binding** { #binding }
+: It should be infeasible to open $\sf com$ to a different message $m' \neq m$ (i.e., find some other opening $(m', \pi') \neq (m, \pi)$ so that ${\sf Vrfy}({\sf com}, m', \pi') = 1$).
+
+!!! info "Hiding vs. binding tradeoff"
+    There is an inherent tradeoff between the strength of the hiding and binding properties of a scheme: if a scheme is [perfectly](../general.md#perfect-security) [hiding](#hiding), it can be only [computationally](../general.md#computational) [binding](#binding); and vice versa.
