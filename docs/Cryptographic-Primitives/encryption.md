@@ -157,7 +157,7 @@ Encryption schemes are used to ensure _confidentiality_.
 
         === "Properties"
             - [IND-ID-CPA](#cpa-security) (by [BDH assumption](../assumptions.md#bdh) in the [ROM](../general.md#rom))
-            - [IND-ID-CCA](#cca-security) can be added via [FO transform](../techniques.md#fujisaki-okamoto)
+            - [IND-ID-CCA](#cca-security) can be added via [FO transform](../techniques.md#fo-transform)
 
 
 **Hierarchical IBE (HIBE)** { #hibe }
@@ -240,7 +240,7 @@ The alternative formulation is the [simulation](../proofs.md#proof-by-simulation
 
 These two notions have been shown to be equivalent: semantic security &rArr; IND-CPA and IND-CPA &rArr; semantic security, therefore semantic security &iff; IND-CPA.
 
-There are several techniques for transforming a CPA-secure encryption scheme to CCA-secure one, including the [FO transform](../techniques.md#fujisaki-okamoto) and the [Naor-Yung paradigm](../techniques.md#naor-yung).
+There are several techniques for transforming a CPA-secure encryption scheme to CCA-secure one, including the [FO transform](../techniques.md#fo-transform) and the [Naor-Yung paradigm](../techniques.md#naor-yung).
 
 **OW-CPA**
 : one-way CPA security. <!-- TODO -->
