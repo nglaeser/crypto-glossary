@@ -139,12 +139,15 @@ Here are some common approaches and design paradigms in the ZKP/SNARK space.
 **Probabilistically Checkable Proof (PCP)** { #pcp }
 : 
 
+!!! info "PCP Theorem"
+
+
 **Interactive Oracle Proof (IOP)** { #iop }
 : Sometimes referred to as **probabilistically checkable interactive proofs (PCIP)**, this is an interactive variant of PCPs.
 
-<!-- **Signature of Knowledge**
-: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement.
-[Introduced by [CL06](https://eprint.iacr.org/2006/184.pdf)] -->
+<!-- **Signature of Knowledge** [[CL06]](https://eprint.iacr.org/2006/184)
+: A generalization of digital signatures. Instead of only proving that the signer has knowledge of a secret key corresponding to a public key, signatures of knowledge can be used to prove the signer knows a witness to some statement $x$. Thus the signature is done with respect to some NP statement. The main application is (delegatable) [anonymous credentials](../Cryptographic-Primitives/anonymous-credentials.md).
+-->
 
 **Collaborative proofs/SNARKs** { #co-snarks }
 : Collaborative proof generation when the witness is held jointly (e.g., secret shared) among multiple provers.

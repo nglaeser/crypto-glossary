@@ -162,6 +162,7 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 ### Factoring
 
 <a name="rsa-assumption"></a>
+<!-- implies factoring -->
 !!! info "RSA Assumption"
     === "Assumption"
 
@@ -174,6 +175,20 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
 
         - [RSA encryption](./Cryptographic-Primitives/encryption.md#rsa)
 
+<a name="strong-rsa"></a>
+!!! info "Strong RSA Assumption"
+<!-- implies RSA  -->
+    === "Assumption"
+
+        The [RSA assumption](#rsa-assumption) holds even when the adversary is allowed to choose the public exponent $e$ freely. In other words:
+
+        &emsp;**Given**: $x,n$  
+        &emsp;**Compute**: $e,y$ such that $y^e = x \pmod{n}$
+
+    === "Applications"
+
+        - [CL signatures](./Cryptographic-Primitives/signatures.md#cl-sig)
+
 <a name="factoring-assumption"></a>
 !!! info "Hardness of factoring large numbers"
     === "Assumption"
@@ -183,6 +198,8 @@ See also [Wikipedia](https://en.wikipedia.org/wiki/Computational_hardness_assump
     === "Applications"
 
         - [RSA encryption](./Cryptographic-Primitives/encryption.md#rsa)
+
+<!-- TODO implication flowchart? -->
 
 ### Lattice Assumptions
 

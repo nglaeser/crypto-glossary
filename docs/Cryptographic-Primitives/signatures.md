@@ -144,7 +144,25 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
 <!-- TODO can be used to construct identity-based signatures? -->
 
 <a name="cl-sig"></a>
-!!! example "CL signatures"
+!!! example "CL signatures [[CL02](https://cs.brown.edu/research/pubs/pdfs/2002/Camenisch-2002-SSE.pdf)]"
+    === "Construction"
+
+    === "Assumptions"
+        - [Strong RSA](../assumptions.md#strong-rsa)
+ 
+    === "Notes"
+        - CL signatures are commonly used in [anonymous credentials](./anonymous-credentials.md)
+ 
+<a name="bbs-sig"></a>
+!!! example "BBS(+) signatures [[BBS]()]"
+    === "Construction"
+
+    === "Notes"
+        - BBS(+) signatures are commonly used in [anonymous credentials](./anonymous-credentials.md)
+
+<a name="bb-sig"></a>
+!!! example "BB signatures [[BB]()]"
+    === "Construction"
 
 ## Advanced Types of Signatures
 
@@ -155,9 +173,17 @@ A common paradigm for a signature scheme is to instantiate a signature as a [NIZ
     (\sigma_{\mathsf{sk}_1,m_1}, \dots, \sigma_{\mathsf{sk}_\ell,m_\ell}) \to \sigma_{(\mathsf{sk}_1,m_1), \dots, (\mathsf{sk}_\ell,m_\ell)} \text{ for any } \ell
     $$
 
-**Blind signatures**
-: 
-!!! example "Blind Schnorr signatures"
+**Blind signatures [[Chaum'82]](https://www.hit.bme.hu/~buttyan/courses/BMEVIHIM219/2009/Chaum.BlindSigForPayment.1982.PDF)**
+: A signature scheme in which the signer signs the message without learning the signature. Applications include e-cash, voting, and [anonymous credentials](./anonymous-credentials.md).
+
+    Constructions:
+    - Blind RSA signatures
+    - Blind Schnorr signatures
+    - Blind BLS signatures
+    - BBS(+) signatures
+    - Blind CL signature (using their protocol for signing committed values)
+
+    !!! example "Blind Schnorr signatures"
 
 **Designated-verifier (DV) signatures**
 : Instead of being publicly verifiable, a signature can only be verified by a specific party (the DV). [Message authentication codes (MACs)](./other.md#mac) can be thought of as DV-sigs, since a secret key is necessary to verify a MAC, so only parties that know the secret key can perform verification.

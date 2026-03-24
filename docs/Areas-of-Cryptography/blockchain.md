@@ -26,7 +26,7 @@
 There are two main *accounting models* used to represent the state of a blockchain system:
 
 **UTXO**
-: Unspent Transaction Output. Every transaction *tx* consists of input transactions and output transactions; before executing *tx*, the chain (miners) check that the input transactions are *unspent*, i.e., they are as-yet unused output transactions from some previous *tx'* (they are in the UTXO set). Once *tx* is processed its inputs are removed from the UTXO set. That means that there is a directed acyclic graph (DAG) describing how assets (UTXOs) have moved between addresses. This DAG represents the global state. (Account balances are computed locally by adding up an account's UTXOs.)  
+: Unspent Transaction Output. Every transaction $tx$ consists of input transactions and output transactions; before executing $tx$, the chain (miners) check that the input transactions are *unspent*, i.e., they are as-yet unused output transactions from some previous $tx'$ (they are in the UTXO set). Once $tx$ is processed its inputs are removed from the UTXO set (that is, input UTXOs must be fully consumed by a transaction). That means that there is a directed acyclic graph (DAG) describing how assets (UTXOs) have moved between addresses. This DAG represents the global state. (Account balances are computed locally by adding up an account's UTXOs.)  
 Used by: Bitcoin, Litecoin, and Monero.
 
 **Account-based**
@@ -35,6 +35,15 @@ Used by: Ethereum.
 
 !!! tip "Further Reading"
     [The UTXO vs. Account Model](https://www.horizen.io/academy/utxo-vs-account-model/)
+
+### Common Cryptocurrencies
+
+| Cryptocurrency | Main idea                                                                                                                                  | Model   |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :------ |
+| Bitcoin        | PoW to select miner of next block; resolve forks via longest-chain rule; a transaction is only valid if it spends a UTXO | UTXO    |
+| Ethereum       | Initially used PoW, now PoS to select next block proposer; Keeps global state of account balances; Turing-complete programmability via EVM | Account |
+| Monero         | Users pick other pk's to include in their transaction whenever they spend coins, use a ring signature to hide which pk actually spent them | UTXO
+| Zcash          |                                                                                                                          | UTXO
 
 ## Layer 2
 

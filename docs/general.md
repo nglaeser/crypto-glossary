@@ -133,17 +133,28 @@ Computational security parameters are generally $\lambda = 128$ or $\lambda = 25
 
 ## Complexity Theory
 
+**Little-o notation**
+: Written $o(g(n))$ for some function $g$, this is a *asymptotic strict upper bound* on the computational complexity of an algorithm/protocol/etc. (i.e., a strict upper bound as $n \to \infty$). It can be thought of as the asymptotic equivalent of $< g(n)$.  
+Put another way, $f(n) \in O(g(n))$ means $f(n)$ grows asymptotically *slower* than $g(n)$.
+
 **Big-O notation**
-: Written $O(g(n))$ for some function $g$, this is an *upper bound* on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in O(g(n))$ means $f(n)$ grows asymptotically *no faster* than $g(n)$.
+: Written $O(g(n))$ for some function $g$, this is an *asymptotic upper bound* on the computational complexity of an algorithm/protocol/etc. (i.e., an upper bound as $n \to \infty$). This bound may be, but is not necessarily, tight; it can be thought of as the asymptotic equivalent of $\leq g(n)$.  
+Put another way, $f(n) \in O(g(n))$ means $f(n)$ grows asymptotically *no faster* than $g(n)$.
 
-**Big-omega notation**
-: Written $\Omega(g(n))$ for some function $g$, this is a *lower bound* on the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in \Omega(g(n))$ means $f(n)$ grows asymptotically *no slower* than $g(n)$.
-
-**Big-theta notation**
-: Written $\Theta(g(n))$ for some function $g$, this is an *approximation* of the computational complexity of an algorithm/protocol/etc. when $n$ is large enough (i.e., an asymptotic bound). Put another way, $f(n) \in \Theta(g(n))$ means $f(n)$ grows asymptotically *at the same rate* as $g(n)$.  
+**Big-Theta notation**
+: Written $\Theta(g(n))$ for some function $g$, this is an *asymptotic approximation* of the computational complexity of an algorithm/protocol/etc. (i.e., an approximation as $n \to \infty$). This can be thought of as the asymptotic equivalent of $\approx g(n)$.  
+Put another way, $f(n) \in \Theta(g(n))$ means $f(n)$ grows asymptotically *at the same rate* as $g(n)$.  
 Note: $f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n))$ and $f(n) \in \Omega(g(n))$.
 
-![Illustration of Big-O, Big-&Omega;, and Big-&Theta;](./assets/images/big-o-etc.png){ width=500px }
+**Big-Omega notation**
+: Written $\Omega(g(n))$ for some function $g$, this is an *asymptotic lower bound* on the computational complexity of an algorithm/protocol/etc. (i.e., a lower bound as $n \to \infty$). This bound may be, but is not necessarily, tight; it can be thought of as the asymptotic equivalent of $\geq g(n)$.   
+Put another way, $f(n) \in \Omega(g(n))$ means $f(n)$ grows asymptotically *no slower* than $g(n)$.
+
+**Little-omega notation**
+: Written $\omega(g(n))$ for some function $g$, this is an *asymptotic strict lower bound* on the computational complexity of an algorithm/protocol/etc. (i.e., a strict lower bound as $n \to \infty$). It can be thought of as the asymptotic equivalent of $> g(n)$.   
+Put another way, $f(n) \in \omega(g(n))$ means $f(n)$ grows asymptotically *faster* than $g(n)$.
+
+![Illustration of Big-O, Big-&Omega;, and Big-&Theta;](./assets/images/big-o-etc2.png){ width=500px }
 
 !!! tip "Further Reading"
     Khan Academy has good explanations of the concepts of [Big-O](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation), [Big-Omega](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-omega-notation), and [Big-Theta](https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation), and the diagrams and wording here are based on those pages and a nice summary comment by the user Cameron.
@@ -205,6 +216,8 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 
 ## Threat Models
 
+### By type of corruption
+
 **Malicious adversary** { #malicious }
 : An [adversary](#adversary) that can deviate arbitrarily from the [protocol](#protocol) it is participating in. That is, it doesn't follow the rules and may send malformed, empty, or incorrect messages, not send a message when it is supposed to or vice versa, and otherwise behave maliciously. Also known as **active adversary**; compare to [semi-honest adversary](#semi-honest).
 
@@ -213,6 +226,17 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 
 **Semi-honest adversary** { #semi-honest }
 : An [adversary](#adversary) that follows the [protocol](#protocol) and acts honestly, but tries to learn as much as possible from the information it sees. Also known as **honest-but-curious (HbC)** or **passive**.
+
+### By corruption threshold
+
+**Honest majority**
+: 
+
+**Dishonest majority**
+: 
+
+**Existential honesty**
+: Assumes that there exists a single honest party ($1$-of-$n$ threshold)
 
 ---
 

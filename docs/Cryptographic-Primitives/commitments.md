@@ -91,6 +91,8 @@ Besides the basic commitment functionality, there are additional "fancier" types
 **Vector commitment** { #vc }
 : A vector commitment allows one to commit to a vector $\vec{v} = (v_1, \dots, v_n)$ and later individually open elements $v_i$. (Note that a [polynomial commitment](#poly-com) to a polynomial of degree $d$ can be thought of as a vector commitment to $d+1$ points.)
 
+    !!! example "Pedersen VC"
+
     !!! example "Merkle tree"
     
     !!! example "Libert-Yung VC [[LY10]](https://www.iacr.org/archive/tcc2010/59780496/59780496.pdf)"
