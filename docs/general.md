@@ -164,21 +164,32 @@ Put another way, $f(n) \in \omega(g(n))$ means $f(n)$ grows asymptotically *fast
 
 ### Complexity Classes
 
+<!-- https://complexityzoo.net/Petting_Zoo -->
+<!-- include / make some image of the inclusions, like https://complexityzoo.net/File:Really-important-inclusions.png -->
+
 **P**
 : The class of decision problems (i.e., decide if $x$ is an instance of some language $L$; see also [ZK background](./Areas-of-Cryptography/zk.md#background)) solvable in polynomial time by a Turing machine. Put another way, this is the class of decision problems solvable by a uniform family of polynomial-size Boolean circuits[^1].
 
 [^1]: in logspace, i.e. using O(log(n)) memory.
 
+**BPP**
+: *Bounded-error probabilistic polynomial time*, or BPP, is the class of decision problems solvable in polynomial time by a *probabilistic* Turing machine, with error bounded by 1/3 (for all instances). In other words, it is the probabilistic version of P, and therefore it contains P: $\mathsf{P} \subseteq \mathsf{BPP}$.
+
 **P/poly**
-: Same as the class $P$ except that the Turing machine is allowed a trusted "advice string" of size $O(poly(n))$, where $n$ is the size of the input. This is also known as the **non-uniform** version of $P$, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
+: Same as the class $\mathsf{P}$ except that the Turing machine is allowed a trusted "advice string" of size $O(poly(n))$, where $n$ is the size of the input. This is also known as the **non-uniform** version of $\mathsf{P}$, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
+
+    Again, as a generalization of P, we have $\mathsf{P} \subseteq \mathsf{P}/\mathsf{poly}$.
 
 **PPAD**
-: 
+: This class contains the problem of computing a Nash equilibrium.
+
+**PSPACE**
+: The class of decision problems solvable by a Turing machine using a polynomial amount of *space*. This is the space analogue of P.
 
 **NC**
-: "Nick's Class." $NC^i$ is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as $P$) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, $NC^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then $NC$ is the union of $NC^i$ over all $i \geq 0$.  
+: "Nick's Class." $\mathsf{NC}^i$ is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as $\mathsf{P}$) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, $\mathsf{NC}^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then $\mathsf{NC}$ is the union of $\mathsf{NC}^i$ over all $i \geq 0$.  
 
-    It is known that $NC \subseteq P$.
+    It is known that $\mathsf{NC} \subseteq \mathsf{P}$.
 
 **NP** { #np }
 : 
@@ -187,10 +198,13 @@ Put another way, $f(n) \in \omega(g(n))$ means $f(n)$ grows asymptotically *fast
 **TC$^0$**
 : The class of decision problems solvable by poly-size *constant-depth* circuits with *unbounded* fan-in using AND, OR, NOT, and threshold gates.  
 
-    It is known that $TC^0 \subseteq NC^1$.
+    It is known that $\mathsf{TC}^0 \subseteq \mathsf{NC}^1$.
 
 !!! tip "Further Reading"
     Many more complexity classes can be found on the [Complexity Zoo wiki](https://complexityzoo.net/Complexity_Zoo).
+
+**$X$-completeness**
+: For a complexity class $X$, a language $L$ is $X$-complete if it is in $X$ and it is $X$-hard, meaning every language $L' \neq L$ in $X$ can be [reduced](proofs.md) to $L$ (i.e., $L'$ is no more difficult to decide than $L$). In other words, $X$-complete problems/languages are the "hardest" problems in the class $X$.
 
 ## Composition
 
