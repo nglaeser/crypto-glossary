@@ -178,9 +178,13 @@ Applications:
         class dots,prevW,W,prevout,out clear
     ``` 
 
+## Common Techniques
+
 ### Polynomial commitment + IOP
 
 Many recent SNARKs/SNARGs are, at their core, an [IOP](#iop), which is then instantiating the oracle using a [vector commitment](../Cryptographic-Primitives/commitments.md#vc) or a [polynomial commitment](../Cryptographic-Primitives/commitments.md#poly-com).
+
+### Sumcheck protocol [[LFKN, FOCS'90]](https://ieeexplore.ieee.org/document/89518)
 
 ### Sigma protocols
 

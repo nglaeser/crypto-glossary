@@ -165,15 +165,18 @@ Put another way, $f(n) \in \omega(g(n))$ means $f(n)$ grows asymptotically *fast
 ### Complexity Classes
 
 <!-- https://complexityzoo.net/Petting_Zoo -->
-<!-- include / make some image of the inclusions, like https://complexityzoo.net/File:Really-important-inclusions.png -->
+<!-- include / make some image of the inclusions, like https://complexityzoo.net/File:Really-important-inclusions.png or (more complicated) https://people.cs.umass.edu/~immerman/descriptiveWorld.jpg -->
 
 **P**
 : The class of decision problems (i.e., decide if $x$ is an instance of some language $L$; see also [ZK background](./Areas-of-Cryptography/zk.md#background)) solvable in polynomial time by a Turing machine. Put another way, this is the class of decision problems solvable by a uniform family of polynomial-size Boolean circuits[^1].
 
-[^1]: in logspace, i.e. using O(log(n)) memory.
-
 **BPP**
 : *Bounded-error probabilistic polynomial time*, or BPP, is the class of decision problems solvable in polynomial time by a *probabilistic* Turing machine, with error bounded by 1/3 (for all instances). In other words, it is the probabilistic version of P, and therefore it contains P: $\mathsf{P} \subseteq \mathsf{BPP}$.
+
+**IP**
+: Class of decision problems solvable by an interactive [proof system](./Areas-of-Cryptography/zk.md), where the prover is unbounded and the verifier is PPT, and they exchange a polynomial number of messages. Introduced by [[GMR, STOC'85]](https://dl.acm.org/doi/10.1145/22145.22178).
+
+    It is known that $\mathsf{IP} = \mathsf{PSPACE}$ [[Shamir92]](https://dl.acm.org/doi/10.1145/146585.146609). Also, $\mathsf{coNP} \subseteq \mathsf{IP}$ [[LFKN, FOCS'90]](https://ieeexplore.ieee.org/document/89518).[^2]
 
 **P/poly**
 : Same as the class $\mathsf{P}$ except that the Turing machine is allowed a trusted "advice string" of size $O(poly(n))$, where $n$ is the size of the input. This is also known as the **non-uniform** version of $\mathsf{P}$, since the Turing machine can depend on the specific instance in question and can therefore vary widely between instances (modeled by using the advice string to inform the Turing machine's layout).
@@ -187,7 +190,7 @@ Put another way, $f(n) \in \omega(g(n))$ means $f(n)$ grows asymptotically *fast
 : The class of decision problems solvable by a Turing machine using a polynomial amount of *space*. This is the space analogue of P.
 
 **NC**
-: "Nick's Class." $\mathsf{NC}^i$ is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as $\mathsf{P}$) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, $\mathsf{NC}^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then $\mathsf{NC}$ is the union of $\mathsf{NC}^i$ over all $i \geq 0$.  
+: "Nick's Class". $\mathsf{NC}^i$ is the class of decision problems solvable by a uniform family of poly-size Boolean circuits (so far, same as $\mathsf{P}$) of _depth $O(log^{i}(n))$ and fan-in 2_. (Therefore, $\mathsf{NC}^0$ is the class of decision problems solvable by constant-depth bounded fan-in circuits.) Then $\mathsf{NC}$ is the union of $\mathsf{NC}^i$ over all $i \geq 0$.  
 
     It is known that $\mathsf{NC} \subseteq \mathsf{P}$.
 
@@ -325,3 +328,6 @@ Sequential composition of two secure protocols is still secure! Compare to [conc
 **Standard Model** { #standard-model }
 : This model assumes only that the [adversary](#adversary) is limited by time or computational power; it makes no further assumptions (the way, e.g., the [ROM](#rom) does). Proofs in the standard model therefore usually rest on a [computational hardness assumption](./assumptions.md), but no idealized cryptographic primitives, and are thus very difficult. In this way this model is "better" than the others listed here because it assumes less.  
 Also known as the **bare model** or **plain model**.
+
+[^1]: in logspace, i.e. using O(log(n)) memory.
+[^2]: In fact, they prove a stronger result: $\mathsf{PH} \subseteq \mathsf{IP}$. Note $\mathsf{coNP} \cup \mathsf{NP} \subseteq \mathsf{PH}$.
